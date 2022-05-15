@@ -1,0 +1,9 @@
+@import "./src/styles/landingPage.styles.scss";
+@import "./src/styles/rippleButton.styles.scss";
+@import "./src/styles/common.styles.scss";
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}

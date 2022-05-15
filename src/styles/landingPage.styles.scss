@@ -1,0 +1,209 @@
+.testDiv {
+  background-color: #656565;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.section {
+  min-height: 100vh;
+  display: flex;
+  padding: 0 2rem;
+
+  scroll-snap-align: start;
+}
+
+.section-one {
+  background-image: linear-gradient(to right, #9d50bb, #6e48aaba),
+    url(./src/assets/images/illustration-university-graduates_53876-28466.webp);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: bottom;
+  color: #fff;
+  width: 100%;
+  // flex-direction: row;
+  // align-items: center;
+  // justify-content: space-between;
+
+  .left-panel {
+    width: 100%;
+    height: 100vh;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    font-size: 3rem;
+  }
+  :nth-child(2) {
+    font-size: 3rem;
+  }
+
+  .right-panel {
+    width: 100%;
+    height: 100vh;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.section-two {
+  background-color: #fff;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  .left-panel {
+    width: 100%;
+    height: 100vh;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    .backdrop {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      left: -25%;
+      bottom: 3.5rem;
+      z-index: 0;
+    }
+    :nth-child(2) {
+      width: 200px;
+      height: 200px;
+      border-radius: 15px;
+      transform: rotate(45deg);
+      background-image: linear-gradient(to right, #9d50bb, #6e48aa);
+    }
+    .backdrop .leftBoxes div {
+      width: 200px;
+      height: 200px;
+      border-radius: 15px;
+      background-image: linear-gradient(to left, #9d50bb, #6e48aa);
+      transform: rotate(45deg);
+    }
+  }
+
+  .right-panel {
+    width: 100%;
+    height: 100vh;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+  }
+  :nth-child(1) {
+    font-size: 3rem;
+    color: #512474;
+  }
+  :nth-child(2) {
+    font-size: 2rem;
+    color: black;
+  }
+}
+
+.section-three {
+  // background-color: #fff;
+  background-image: linear-gradient(to right, #9d50bb, #6e48aa);
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-three {
+  // background-color: #fff;
+  background-image: linear-gradient(to right, #9d50bb, #6e48aa);
+  width: 100%;
+}
+
+.section-four {
+  background-color: #fff;
+  width: 100%;
+
+  .left-panel {
+    width: 100%;
+    height: 100vh;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    .backdrop {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      left: -25%;
+      bottom: 3.5rem;
+    }
+    :nth-child(2) {
+      width: 200px;
+      height: 200px;
+      border-radius: 15px;
+      transform: rotate(45deg);
+      background-image: linear-gradient(to right, #9d50bb, #6e48aa);
+    }
+    .backdrop .leftBoxes div {
+      width: 200px;
+      height: 200px;
+      border-radius: 15px;
+      background-image: linear-gradient(to left, #9d50bb, #6e48aa);
+      transform: rotate(45deg);
+    }
+  }
+
+  .right-panel {
+    width: 100%;
+    height: 100vh;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+  }
+  :nth-child(1) {
+    font-size: 3rem;
+    color: #512474;
+  }
+  :nth-child(2) {
+    font-size: 2rem;
+    color: black;
+  }
+}
+
+.left-panel-image {
+  position: relative;
+
+  img {
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    left: 50%;
+    top: 0%;
+    // transform: translate(-50%, -50%);
+  }
+}
