@@ -7,7 +7,7 @@ export const Navigationbar = () => {
         <>
             <header>
                 <nav
-                    className="navbar navbar-expand-lg navbar-light fixed-top"
+                    className="navbar navbar-expand-lg fixed-top"
                 >
                     <div className="container-fluid">
                         <a className="navbar-brand js-scroll-trigger" href="/dashboard">
@@ -44,7 +44,7 @@ export const Navigationbar = () => {
                                 <li class="nav-item">
                                     <Link to="/">
                                         <button class="btn btn-text">
-                                            login <span class="sr-only">(current)</span>
+                                            login
                                         </button>
                                     </Link>
                                 </li>

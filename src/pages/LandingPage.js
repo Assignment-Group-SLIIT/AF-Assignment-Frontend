@@ -35,7 +35,7 @@ export const LandingPage = () => {
                         </Col>
                         <Col lg={6}>
                             <div className="right-panel">
-                                <img src={SliitLogo} width={"300px"} height={"400px"} alt="sliit logo" />
+                                <img src={SliitLogo} width={"200px"} height={"300px"} alt="sliit logo" />
                             </div>
                         </Col>
                     </Row>
