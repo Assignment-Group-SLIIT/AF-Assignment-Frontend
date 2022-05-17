@@ -21,8 +21,8 @@ export const PMTopicRequest = () => {
 
                     <div className="col">
                         <div class="input-group input-group-search">
-                            <div class="searchbar">
-                                <form 
+                            <div className="searchbar">
+                                <form
                                 // onSubmit={(e) => searchRooms(e)}
                                 >
                                     <input class="search_input" type="text" name="search" placeholder="Search..."
@@ -50,18 +50,18 @@ export const PMTopicRequest = () => {
                     <tbody>
                         {/* return( */}
 
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td className='text'>
-                                    <RippleButton className="ripple-button" text="submit" onClick={() =>{navigate('/sendEmail')}} />
-                                    <RippleButton className="ripple-button-warning" text="cancel"  />
-                                </td>
-                            </tr>
-                       {/* ) */}
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td className='text'>
+                                <RippleButton className="ripple-button" text="submit" onClick={() => { navigate('/sendEmail') }} />
+                                <RippleButton className="ripple-button-warning" text="cancel" />
+                            </td>
+                        </tr>
+                        {/* ) */}
                     </tbody>
                 </table>
 
