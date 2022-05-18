@@ -22,7 +22,7 @@ export const RoutesComponent = () => {
             <Router basename={'/'}>
                 <Navigationbar />
                 <Routes>
-                    <Route exact path='/' element={<LandingPage />} />
+                    <Route exact path='/home' element={<LandingPage />} />
                     <Route exact path='/test' element={<TestPage />} />
                     <Route exact path='/pmRequest' element={<PMTopicRequest />} />
                     <Route exact path='/pmEvaluation' element={<PMPresentationEvaluation />} />
@@ -32,9 +32,7 @@ export const RoutesComponent = () => {
                     <Route exact path='/panelAllocate' element={<PanelAllocation />} />
                     <Route exact path='/createPanel' element={<CreatePanel />} />
                     <Route exact path='/evaluation' element={<Evaluation />} />
-                    <Route exact path='/sendEmail' element={<SendEmail />} />
                     <Route exact path='/topicRequest' element={<TopicRequest />} />
-
                 </Routes>
                 <Footer />
             </Router>
