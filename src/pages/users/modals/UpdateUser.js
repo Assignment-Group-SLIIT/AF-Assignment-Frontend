@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
+import { FormSection } from "../../../components/FormSection";
 import { RippleButton } from "../../../components/RippleButton";
 import '../../../styles/usersList.styles.scss'
 
@@ -37,9 +38,10 @@ function UpdateUser(user) {
                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <form >
                             <div class="form-row">
-                                <div class="col-md-3">
+                                {/* <div class="col-md-3">
                                     <label class="update-font" for="group">Personal Details</label>
-                                </div>
+                                </div> */}
+                                <FormSection headline={'Personal Details'} />
                             </div>
                             <br></br>
                             <div class="row">
@@ -73,9 +75,10 @@ function UpdateUser(user) {
                             </div>
                             <br></br>
                             <div class="form-row">
-                                <div class="col-md-3">
+                                {/* <div class="col-md-3">
                                     <label class="update-font" for="staff">Academic Details</label>
-                                </div>
+                                </div> */}
+                                <FormSection headline={'Academic Details'} />
                             </div>
                             <br></br>
                             <div class="row">
