@@ -2,6 +2,8 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import Footer from '../components/Footer'
 import { Navigationbar } from '../components/Navigationbar'
+import { CreateTemplate } from '../pages/admin/CreateTemplate'
+import { ViewTemplates } from '../pages/admin/ViewTemplates'
 import { LandingPage } from '../pages/LandingPage'
 import { CreatePanel } from '../pages/panel/CreatePanel'
 import { PanelAllocation } from '../pages/panel/PanelAllocation'
@@ -20,6 +22,7 @@ import { RequestTopic } from '../pages/students/RequestTopic'
 import { RequestTopicCoSupervisor } from '../pages/students/RequestCo-Supervisor'
 import { GroupRequest } from '../pages/Supervisor/GroupRequest'
 import { EvaluationSubmission } from '../pages/Supervisor/EvaluationSubmission'
+import { CreateSubmission } from '../pages/admin/CreateSubmission'
 
 
 
@@ -40,6 +43,9 @@ export const RoutesComponent = () => {
                     <Route exact path='/panelList' element={<PanelList />} />
                     <Route exact path='/panelAllocate' element={<PanelAllocation />} />
                     <Route exact path='/createPanel' element={<CreatePanel />} />
+                    <Route exact path='/createTemplate' element={<CreateTemplate />} />
+                    <Route exact path='/createSubmission' element={<CreateSubmission />} />
+                    <Route exact path='/viewTemplates' element={<ViewTemplates />} />
                     <Route exact path='/evaluation' element={<Evaluation />} />
                     <Route exact path='/topicRequest' element={<TopicRequest />} />
                     <Route exact path='/studentdashboard' element={< StudentDashboard />} />
