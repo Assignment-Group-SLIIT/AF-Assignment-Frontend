@@ -133,14 +133,17 @@ export const UserList = () => {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered>
                 <Modal.Header>
-                    <Modal.Title>Confirm Deletion</Modal.Title>
+                    <Modal.Title>
+                        <p><strong>Confirm Deletion</strong></p>
+                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>Are you sure you want to remove this user?</p>
-
+                    <center>
+                        <p><strong>Are you sure you want to remove this user?</strong></p>
+                    </center>
                 </Modal.Body>
                 <Modal.Footer>
-                    <div className="form-group row">
+                    <div className="delete-modal row">
                         <div className="col-6">
                             <RippleButton className="ripple-button" text=" Confirm" />
                         </div>
