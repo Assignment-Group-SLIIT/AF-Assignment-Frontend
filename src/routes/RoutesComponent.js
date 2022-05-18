@@ -11,6 +11,7 @@ import { SendEmail } from '../pages/panel_member/SendEmail'
 import { TopicRequest } from '../pages/panel_member/TopicRequest'
 import { TestPage } from '../pages/TestPage'
 import { UserList } from '../pages/users/UserList'
+import StudentDashboard from '../pages/student/dashboard'
 import { RequestTopic } from '../pages/students/RequestTopic'
 import { RequestTopicCoSupervisor } from '../pages/students/RequestCo-Supervisor'
 import { GroupRequest } from '../pages/Supervisor/GroupRequest'
@@ -33,11 +34,11 @@ export const RoutesComponent = () => {
                     <Route exact path='/createPanel' element={<CreatePanel />} />
                     <Route exact path='/evaluation' element={<Evaluation />} />
                     <Route exact path='/topicRequest' element={<TopicRequest />} />
+                    <Route exact path='/studentdashboard' element={< StudentDashboard />} />
                     <Route exact path='/requestTopic' element={<RequestTopic />} />
                     <Route exact path='/requestTopicCo-supervisor' element={<RequestTopicCoSupervisor />} />
                     <Route exact path='/groupRequest' element={<GroupRequest />} />
                     <Route exact path='/evaluationSubmission' element={<EvaluationSubmission />} />
-
                 </Routes>
                 <Footer />
             </Router>
