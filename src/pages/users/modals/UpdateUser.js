@@ -43,11 +43,11 @@ function UpdateUser(user) {
                             <br></br>
                             <div class="row">
                                 <div class="col-6">
-                                    <label for="fName">First Name</label>
+                                    <label className="form-pad" for="fName">First Name</label>
                                     <input type="text" class="form-control" id="fName" placeholder="First Name" value={fName} onChange={(e) => { setFName(e.target.value) }} />
                                 </div>
                                 <div class="col-6">
-                                    <label for="lName">Last Name</label>
+                                    <label className="form-pad" for="lName">Last Name</label>
                                     <input type="text" class="form-control" id="lName" placeholder="Last Name" value={lName} onChange={(e) => { setLName(e.target.value) }} />
                                 </div>
                             </div>
@@ -55,18 +55,18 @@ function UpdateUser(user) {
 
                             <div class="row">
                                 <div class="col-6">
-                                    <label for="contactNo">Contact Number</label>
+                                    <label className="form-pad" for="contactNo">Contact Number</label>
                                     <input type="number" class="form-control" id="contactNo" placeholder="Contact number" value={contactNo} onChange={(e) => { setContactNo(e.target.value) }} />
                                 </div>
                                 <div class="col-6">
-                                    <label for="password">Password</label>
+                                    <label className="form-pad" for="password">Password</label>
                                     <input type="text" class="form-control" id="password" placeholder="********" value={password} onChange={(e) => { setPassword(e.target.value) }} />
                                 </div>
                             </div>
                             <br></br>
                             <div class="row">
                                 <div class="col">
-                                    <label for="email">Email Address</label>
+                                    <label className="form-pad" for="email">Email Address</label>
                                     <input type="email" class="form-control" id="email" placeholder="abc@gmail.com" value={email} onChange={(e) => { setEmail(e.target.value) }} />
                                 </div>
                             </div>
@@ -79,7 +79,7 @@ function UpdateUser(user) {
                             <br></br>
                             <div class="row">
                                 <div class="col-6">
-                                    <label for="degree">Degree</label>
+                                    <label className="form-pad" for="degree">Degree</label>
                                     <select class="form-select" className="form-control" name="degree" id="degree" value={degree} onChange={(e) => { setDegree(e.target.value) }}>
                                         <option  >Choose Degree</option>
                                         <option id="SE" >Software Engineering</option>
@@ -91,7 +91,7 @@ function UpdateUser(user) {
                                     </select>
                                 </div>
                                 <div class="col-6">
-                                    <label for="department">Department</label>
+                                    <label className="form-pad" for="department">Department</label>
                                     <select class="form-select" className="form-control" name="department" id="department" value={department} onChange={(e) => { setDepartment(e.target.value) }}>
                                         <option  >Choose Department</option>
                                         <option id="Computing" >Computing</option>
@@ -103,7 +103,7 @@ function UpdateUser(user) {
 
                             <div class="row">
                                 <div class="col-6">
-                                    <label for="role">Role</label>
+                                    <label className="form-pad" for="role">Role</label>
                                     <select class="form-select" className="form-control" name="role" id="role" value={role} onChange={(e) => { setRole(e.target.value) }}>
                                         <option  >Choose Role</option>
                                         <option id="Student" >Student</option>
@@ -113,7 +113,7 @@ function UpdateUser(user) {
                                     </select>
                                 </div>
                                 <div class="col-6">
-                                    <label for="field">Field Of Interest</label>
+                                    <label className="form-pad" for="field">Field Of Interest</label>
                                     <select class="form-select" className="form-control" name="field" id="field" value={field} onChange={(e) => { setField(e.target.value) }}>
                                         <option  >Choose Fieldt</option>
                                         <option id="Medical" >Medical</option>

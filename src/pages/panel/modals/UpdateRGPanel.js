@@ -4,6 +4,22 @@ import { RippleButton } from "../../../components/RippleButton";
 
 function UpdateRGPanel(user) {
 
+    const [fName, setFName] = useState("");
+    const [lName, setLName] = useState("");
+    const [contactNo, setContactNo] = useState("");
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [degree, setDegree] = useState("");
+    const [department, setDepartment] = useState("");
+    const [role, setRole] = useState("");
+    const [field, setField] = useState("");
+
+
+    useEffect(() => {
+
+    }, [])
+
+
     return (
 
         <div>
