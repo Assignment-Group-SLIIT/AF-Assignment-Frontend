@@ -5,7 +5,7 @@ import { Modal, Button } from "react-bootstrap";
 
 
 
-export const TopicRequest = () => {
+export const GroupRequest = () => {
 
     const [search, setSearch] = useState("");
     const [modalData, setData] = useState([]);
@@ -34,10 +34,15 @@ export const TopicRequest = () => {
 
 
     return (
+  
         <div className='body-content-container'>
             <div className="container-border">
+            
+                <h2>Once Accepts or Rejects send and email to leader’s email straight away</h2>
+                <br />
+                <hr />
                 <h3> Group Request</h3>
-                <br /> <br /> <br />
+                <br /> <br />
                 <div class="row table-head-search">
                     <div className="col-md-8"></div>
 
@@ -65,7 +70,6 @@ export const TopicRequest = () => {
                             <th className='text'>Leader Email</th>
                             <th className='text'>Reserch Topic</th>
                             <th className='text'>Research Field</th>
-                            <th className='text'>Document</th>
                             <th className='text'>Action</th>
                         </tr>
                     </thead>
@@ -73,7 +77,6 @@ export const TopicRequest = () => {
                         {/* return( */}
 
                             <tr>
-                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -139,5 +142,6 @@ export const TopicRequest = () => {
             </Modal>
 
         </div >
+        
     )
 }

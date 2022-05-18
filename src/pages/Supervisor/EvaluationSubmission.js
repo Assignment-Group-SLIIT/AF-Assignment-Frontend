@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Modal } from "react-bootstrap";
 import { RippleButton } from '../../components/RippleButton'
-import AddMarks from './modals/AddMarks';
+import EvaluationSubmissionModal from './modals/evaluationSubmissionModal';
 
 
-export const Evaluation = () => {
+export const EvaluationSubmission = () => {
 
     const [search, setSearch] = useState("");
     const [evaluation, setEvaluation] = useState([]);
@@ -41,7 +41,7 @@ export const Evaluation = () => {
             <div className="container-border">
                 <div className="row table-head mt-3">
                     <div className="col">
-                        <h3 className="float-left" >Presentation Evaluation</h3>
+                        <h3 className="float-left" >Submissions To Be Evaluated</h3>
                     </div>
                 </div>
                 <br /> <br /> <br />
@@ -69,7 +69,9 @@ export const Evaluation = () => {
                     <thead class="thead-dark">
                         <tr>
                             <th className='text'>Group ID</th>
-                            <th className='text'>Evaluation Status</th>
+                            <th className='text'>Submission ID</th>
+                            <th className='text'>Submission Type</th>
+                            <th className='text'>Document</th>
                             <th className='text'>Marks</th>
                             <th className='text'>Action</th>
                         </tr>
@@ -81,8 +83,10 @@ export const Evaluation = () => {
                                 <td></td>
                                 <td></td>
                                 <td></td>
+                                <td></td>
+                                <td></td>
                                 <td className='text'>
-                                    <RippleButton className="ripple-button" text="Add Marks" onClick={() => openModalUpdate()} />          
+                                    <RippleButton className="ripple-button" text="Evaluate" onClick={() => openModalUpdate()} />          
                                 </td>
                             </tr>
                        {/* ) */}
@@ -98,7 +102,7 @@ export const Evaluation = () => {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
-                <AddMarks
+                <EvaluationSubmissionModal
                     data={modalDataUpdate}
                     onHide={() => setModalUpdate(false)}
                 />

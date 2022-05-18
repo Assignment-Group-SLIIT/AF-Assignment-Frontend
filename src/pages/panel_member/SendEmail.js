@@ -4,20 +4,18 @@ import { RippleButton } from '../../components/RippleButton'
 
 export const SendEmail = () => {
 
-    const onSubmit = () => {
-        console.log("clicked the button")
-    }
 
     return (
         <div className='body-content-container-pm'>
             <div className="container-border-pm">
-                <h1> presentation submission evaluation table</h1>
+                <h3> presentation submission evaluation table</h3>
                 
                 <br /> <br /> 
-                <h3>***Description***</h3>
+                <h5>***Description***</h5>
+                <br />
                 <div className="row mb-2">
                     <div className="col">
-                        <div className="form-group pminput">
+                        <div className="form-group ">
                             <label for="email">Email </label>
                             <input 
                                 type="text" 
@@ -28,9 +26,7 @@ export const SendEmail = () => {
                                 // onChange={(e) => { setReserverName(e.target.value) }} 
                                 />
                         </div>
-
                     </div>
-
                 </div>
                 <div className="row mb-2">
                     <div className="col">
@@ -45,9 +41,7 @@ export const SendEmail = () => {
                                 // onChange={(e) => { setReserverName(e.target.value) }} 
                                 />
                         </div>
-
                     </div>
-
                 </div>
                 <div className='sendEmail'>
                     <RippleButton className="ripple-button " text="submit"  />
