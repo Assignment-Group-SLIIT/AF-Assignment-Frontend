@@ -65,7 +65,7 @@ function DropzoneArea(props) {
 
             {/* <RippleButton className="ripple-button" text="Upload" onClick={(e) => { handleOpen(e) }}></RippleButton> */}
             <Button onClick={(e) => { handleOpen(e) }}>
-                Upload Template
+                Upload 
             </Button>
 
             <DropzoneDialog
