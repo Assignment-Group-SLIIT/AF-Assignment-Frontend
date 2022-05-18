@@ -23,6 +23,7 @@ import { RequestTopicCoSupervisor } from '../pages/students/RequestCo-Supervisor
 import { GroupRequest } from '../pages/Supervisor/GroupRequest'
 import { EvaluationSubmission } from '../pages/Supervisor/EvaluationSubmission'
 import { CreateSubmission } from '../pages/admin/CreateSubmission'
+import UploadInitialEvaluation from '../pages/student/uploadEvaluation'
 
 
 
@@ -53,6 +54,7 @@ export const RoutesComponent = () => {
                     <Route exact path='/requestTopicCo-supervisor' element={<RequestTopicCoSupervisor />} />
                     <Route exact path='/groupRequest' element={<GroupRequest />} />
                     <Route exact path='/evaluationSubmission' element={<EvaluationSubmission />} />
+                    <Route exact path='/upload-initial-evaluation' element={<UploadInitialEvaluation />} />
                 </Routes>
                 <Footer />
             </Router>
