@@ -46,9 +46,9 @@ const UploadEvaluation = () => {
                             </div>
                             <br></br>
                             <div class="row">
-                                {/* <div class="col-3">
-                                    <label className="form-pad" for="template">Template Document</label>
-                                </div> */}
+                                <div class="col-3">
+                                    <label className="form-pad mt-2" for="template">Upload Document</label>
+                                </div>
                                 <div className='col-4'>
                                     <DropzoneArea sendData={sendData} />
                                     {fileName ? fileName : ''}

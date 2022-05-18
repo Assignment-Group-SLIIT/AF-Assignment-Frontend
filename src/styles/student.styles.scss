@@ -33,3 +33,43 @@
         border-color: #fff;
     }
 }
+
+// .dropZoneBtn {
+//     background: none;
+//     border: 1px solid rgb(239, 197, 255);
+//     color: rgb(78, 59, 85);
+//     padding: 10px;
+//     cursor: pointer;
+//     outline: none;
+//     position: relative;
+//     animation: all 1s;
+//     overflow: hidden;
+//     border-radius: 10px;
+//     font-weight: bold;
+//     padding-bottom: 0;
+//     padding-top: 15px;
+// }
+
+// .dropZoneBtn:before {
+//     content: "";
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     background: linear-gradient(rgb(239, 197, 255), rgb(239, 197, 255));
+//     width: 100%;
+//     transition: all 0.3s;
+//     z-index: -1;
+// }
+
+// .dropZoneBtn:hover {
+//     color: #fff
+// }
+
+// .dropZoneBtn:before {
+//     border-radius: 0 0 50% 50%;
+//     height: 0;
+// }
+
+// .dropZoneBtn:hover::before {
+//     height: 200%;
+// }
