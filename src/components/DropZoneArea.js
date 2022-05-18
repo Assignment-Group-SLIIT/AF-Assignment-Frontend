@@ -27,31 +27,32 @@ function DropzoneArea() {
 
     const handleSave = (e) => {
         console.log("Method called", e)
-        setFiles(e[0])
-        console.log("Method called2", files)
-        // onFileUpload(files)
+        setFiles(e)
+
+        // console.log("Method called2", files[0].name)
+        // console.log("Method called2", files[0].path)
         // setOpen(false)
     }
 
-    // onFileUpload = (files) => {
 
-    //     // Create an object of formData
-    //     const formData = new FormData();
+    const onFileUpload = () => {
+        console.log("Method called2", files[0])
+        const uploadFile = files[0];
+        console.log("Method called3", uploadFile.path)
+        // Create an object of formData
+        let formData = new FormData();
 
-    //     // Update the formData object
-    //     formData.append(
-    //         "myFile",
-    //         files[0],
-    //         files[0].name
-    //     );
+        // Update the formData object
+        formData.append("file", uploadFile, uploadFile.name);
 
-    //     // Details of the uploaded file
-    //     console.log('formData', formData);
+        // Details of the uploaded file
+        console.log(formData.get('file'));
 
-    //     // Request made to the backend api
-    //     // Send formData object
-    //     // axios.post("api/uploadfile", formData);
-    // };
+
+        // Request made to the backend api
+        // Send formData object
+        // axios.post("api/uploadfile", formData);
+    };
 
 
     return (
@@ -61,10 +62,13 @@ function DropzoneArea() {
             <Button onClick={(e) => { handleOpen(e) }}>
                 Upload Template
             </Button>
+
             <DropzoneDialog
                 open={open}
-                onSave={(e) => { handleSave(e) }}
+                onSave={() => { onFileUpload() }}
                 // acceptedFiles={['/doc', '*/csv', 'lab-assessment/pdf']}
+
+                onDrop={(e) => { handleSave(e) }}
                 showPreviews={true}
                 maxFileSize={5000000}
                 onClose={(e) => { handleClose(e) }}
