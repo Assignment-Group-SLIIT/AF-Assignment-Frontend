@@ -45,7 +45,7 @@ const StudentSubmissionDocument = () => {
 
                                     <Col>
                                         <Form.Label>Topic Details</Form.Label>
-                                        <Form.Control type="text" placeholder="Submission ID" />
+                                        <Form.Control type="text" placeholder="Topic Details" />
                                     </Col>
                                 </Row>
 
@@ -56,7 +56,7 @@ const StudentSubmissionDocument = () => {
 
                                     <Col>
                                         <Form.Label>Research Topic</Form.Label>
-                                        <Form.Control type="text" placeholder="Submission ID" />
+                                        <Form.Control type="text" placeholder="Research Topic" />
                                     </Col>
                                 </Row>
                             </Form.Group>
@@ -65,15 +65,18 @@ const StudentSubmissionDocument = () => {
 
                                     <Col>
                                         <Form.Label>Research Details</Form.Label>
-                                        <Form.Control type="text" placeholder="Submission ID" />
+                                        <Form.Control type="text" placeholder="Research Details" />
                                     </Col>
                                 </Row>
                             </Form.Group>
-                            <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Group className="mb-3 mt-4" controlId="formBasicEmail">
                                 <Row>
+                                    <Col lg={3}>
+                                        <Form.Label className='mt-1'>Upload Document</Form.Label>
+                                    </Col>
 
                                     <Col>
-                                        <Form.Label>Upload Document</Form.Label>
+
                                         <div className='col-4'>
                                             <DropzoneArea sendData={sendData} />
                                             {fileName ? fileName : ''}

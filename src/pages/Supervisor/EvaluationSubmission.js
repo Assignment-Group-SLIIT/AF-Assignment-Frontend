@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Modal } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import { RippleButton } from '../../components/RippleButton'
 import EvaluationSubmissionModal from './modals/evaluationSubmissionModal';
 
@@ -37,7 +37,7 @@ export const EvaluationSubmission = () => {
 
     return (
         <div className='body-content-container'>
- 
+
             <div className="container-border">
                 <div className="row table-head mt-3">
                     <div className="col">
@@ -51,7 +51,7 @@ export const EvaluationSubmission = () => {
                     <div className="col">
                         <div class="search-box input-group input-group-search">
                             <div class="searchbar">
-                                <form 
+                                <form
                                 // onSubmit={(e) => searchRooms(e)}
                                 >
                                     <input class="search_input" type="text" name="search" placeholder="Search..."
@@ -79,23 +79,23 @@ export const EvaluationSubmission = () => {
                     <tbody>
                         {/* return( */}
 
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td className='text'>
-                                    <RippleButton className="ripple-button" text="Evaluate" onClick={() => openModalUpdate()} />          
-                                </td>
-                            </tr>
-                       {/* ) */}
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td className='text'>
+                                <RippleButton className="ripple-button" text="Evaluate" onClick={() => openModalUpdate()} />
+                            </td>
+                        </tr>
+                        {/* ) */}
                     </tbody>
                 </table>
 
             </div>
-             {/* Modal to be used in update */}
-             <Modal
+            {/* Modal to be used in update */}
+            <Modal
                 show={modalUpdate}
                 onHide={() => setModalUpdate(false)}
                 size="lg"
