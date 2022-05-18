@@ -22,16 +22,16 @@ function AddMarks(user) {
                 <div className="row">
                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <form >
-                            <div class="form-row">
-                                <div class="col-md-3">
-                                    <label class="update-font" for="group">Group Details</label>
-                                </div>
-                            </div>
+                     
                             <br></br>
                             <div class="row">
                                 <div class="col-6">
                                     <label className="form-pad" for="groupID">Group ID</label>
                                     <input type="text" class="form-control" id="groupID" placeholder="Group ID" value={groupID} onChange={(e) => { setGroupID(e.target.value) }} />
+                                </div>
+                                <div class="col-6">
+                                    <label className="form-pad" for="marks">Evaluation Marks</label>
+                                    <input type="text" class="form-control" id="marks" placeholder="marks" value={marks} onChange={(e) => { setMarks(e.target.value) }} />
                                 </div>
                                 
                             </div>
@@ -49,13 +49,7 @@ function AddMarks(user) {
 
                             </div>
                             <br></br>
-                            <div class="row">
-                                <div class="col-6">
-                                    <label className="form-pad" for="marks">Evaluation Marks</label>
-                                    <input type="text" class="form-control" id="marks" placeholder="marks" value={marks} onChange={(e) => { setMarks(e.target.value) }} />
-                                </div>
-                               
-                            </div>
+                            
                             <br></br>
                             <div className="row mb-4">
                                 <div className="col py-3 text-center">
