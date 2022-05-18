@@ -5,6 +5,9 @@ import { LandingPage } from '../pages/LandingPage'
 import { CreatePanel } from '../pages/panel/CreatePanel'
 import { PanelAllocation } from '../pages/panel/PanelAllocation'
 import { PanelList } from '../pages/panel/PanelList'
+import { Evaluation } from '../pages/panel_member/Evaluation'
+import { SendEmail } from '../pages/panel_member/SendEmail'
+import { TopicRequest } from '../pages/panel_member/TopicRequest'
 import { TestPage } from '../pages/TestPage'
 import { UserList } from '../pages/users/UserList'
 
@@ -20,6 +23,9 @@ export const RoutesComponent = () => {
                     <Route exact path='/panelList' element={<PanelList />} />
                     <Route exact path='/panelAllocate' element={<PanelAllocation />} />
                     <Route exact path='/createPanel' element={<CreatePanel />} />
+                    <Route exact path='/evaluation' element={<Evaluation />} />
+                    <Route exact path='/sendEmail' element={<SendEmail />} />
+                    <Route exact path='/topicRequest' element={<TopicRequest />} />
 
                 </Routes>
             </Router>
