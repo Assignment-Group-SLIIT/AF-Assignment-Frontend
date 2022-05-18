@@ -5,16 +5,10 @@ import { Link, useNavigate } from 'react-router-dom'
 
 export const PMTopicRequest = () => {
 
-    const onSubmit = () => {
-        console.log("clicked the button")
-    }
-
-    const navigate = useNavigate();
-
     return (
         <div className='body-content-container'>
             <div className="container-border">
-                <h1> Group Request</h1>
+                <h3> Group Request</h3>
                 <br /> <br /> <br />
                 <div class="row table-head-search">
                     <div className="col-md-8"></div>
@@ -57,7 +51,7 @@ export const PMTopicRequest = () => {
                             <td></td>
                             <td></td>
                             <td className='text'>
-                                <RippleButton className="ripple-button" text="submit" onClick={() => { navigate('/sendEmail') }} />
+                                <RippleButton className="ripple-button" text="submit"  />
                                 <RippleButton className="ripple-button-warning" text="cancel" />
                             </td>
                         </tr>
