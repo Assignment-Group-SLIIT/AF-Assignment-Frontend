@@ -25,7 +25,8 @@ const UploadEvaluation = () => {
                 <div className="row">
                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <form >
-                            <h2><label for="group">Upload Submission Template</label></h2>
+                            <h2><label for="group">Submit Assignment</label></h2>
+                            <hr></hr>
                             <br></br>
                             <div class="row">
 

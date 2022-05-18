@@ -35,7 +35,7 @@ export const CreateTemplate = () => {
                                 </div>
                                 <div class="col-6">
                                     <label className="form-pad" for="submissionType">Submission Type</label>
-                                    <select class="form-select" className="form-control" name="submissionType" id="submissionType" value={submissionType} onChange={(e) => { setSubmissionType(e.target.value) }}>
+                                    <select class="form-select form-control" name="submissionType" id="submissionType" value={submissionType} onChange={(e) => { setSubmissionType(e.target.value) }}>
                                         <option  >Choose Type</option>
                                         <option id="1" >Submission One</option>
                                         <option id="2" >Submission Two</option>
