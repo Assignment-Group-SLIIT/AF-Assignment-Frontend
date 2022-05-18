@@ -1,15 +1,37 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import { RippleButton } from '../../components/RippleButton'
 import { Link, useNavigate } from 'react-router-dom'
+import { Modal, Button } from "react-bootstrap";
+
 
 
 export const TopicRequest = () => {
 
-    const onSubmit = () => {
-        console.log("clicked the button")
+    const [search, setSearch] = useState("");
+    const [modalData, setData] = useState([]);
+    const [modalShow, setModalShow] = useState(false);
+
+
+    const [modalDataDelete, setModalDataDelete] = useState([]);
+    const [modalDeleteConfirm, setModalDeleteConfirm] = useState(false);
+    const [modalDelete, setModalDelete] = useState(false);
+
+    const [modalDataAccept, setModalDataAccept] = useState([]);
+    const [modalAcceptConfirm, setModalAcceptConfirm] = useState(false);
+    const [modalAccept, setModalAccept] = useState(false);
+
+    const [modalLoading, setModalLoading] = useState(false);
+
+    const openModal = (data) => {
+        // setData(rental);
+        setModalAcceptConfirm(true);
     }
 
-    const navigate = useNavigate();
+    const openModalDelete = (data) => {
+        // setModalDataDelete(data);
+        setModalDeleteConfirm(true);
+    }
+
 
     return (
         <div className='body-content-container'>
@@ -57,8 +79,8 @@ export const TopicRequest = () => {
                                 <td></td>
                                 <td></td>
                                 <td className='text'>
-                                    <RippleButton className="ripple-button" text="Accept"  />
-                                    <RippleButton className="ripple-button-danger" text="Reject" />
+                                    <RippleButton className="ripple-button" text="Accept" onClick={() => openModal()} />
+                                    <RippleButton className="ripple-button-danger" text="Reject" onClick={() => openModalDelete()}/>
                                 </td>
                             </tr>
                        {/* ) */}
@@ -66,6 +88,56 @@ export const TopicRequest = () => {
                 </table>
 
             </div>
+            <Modal show={modalDeleteConfirm} size="md"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered>
+                <Modal.Header>
+                    <Modal.Title>Confirm Reject the Research Topic</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <center>
+                        <p></p>
+                        <p><strong>Are you sure you want to reject this reserach topic?</strong></p>
+                    </center>
+                </Modal.Body>
+                <Modal.Footer>
+                    <div className="delete-modal row">
+                        <div className="col-6">
+                            <RippleButton className="ripple-button" text=" Confirm" />
+                        </div>
+                        <div className="col-6">
+                            <RippleButton className="ripple-button-warning" text="cancel" onClick={() => setModalDeleteConfirm(false)} />
+                        </div>
+
+                    </div>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal show={modalAcceptConfirm} size="md"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered>
+                <Modal.Header>
+                    <Modal.Title>Confirm Accept the Research Topic</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <center>
+                        <p></p>
+                        <p><strong>Are you sure you want to accept this reserach topic?</strong></p>
+                    </center>
+                </Modal.Body>
+                <Modal.Footer>
+                    <div className="delete-modal row">
+                        <div className="col-6">
+                            <RippleButton className="ripple-button" text=" Confirm" />
+                        </div>
+                        <div className="col-6">
+                            <RippleButton className="ripple-button-warning" text="cancel" onClick={() => setModalAcceptConfirm(false)} />
+                        </div>
+
+                    </div>
+                </Modal.Footer>
+            </Modal>
+
         </div >
     )
 }
