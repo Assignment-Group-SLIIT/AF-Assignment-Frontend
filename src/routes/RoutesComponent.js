@@ -3,9 +3,6 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Footer from '../components/Footer'
 import { Navigationbar } from '../components/Navigationbar'
 import { LandingPage } from '../pages/LandingPage'
-import { PMPresentationEvaluation } from '../pages/PanelMember/PMPresentationEvaluation'
-import { PMTopicRequest } from '../pages/PanelMember/PMTopicRequest'
-import { SendEmail } from '../pages/PanelMember/sendEmal'
 import { CreatePanel } from '../pages/panel/CreatePanel'
 import { PanelAllocation } from '../pages/panel/PanelAllocation'
 import { PanelList } from '../pages/panel/PanelList'
@@ -29,8 +26,6 @@ export const RoutesComponent = () => {
                 <Routes>
                     <Route exact path='/home' element={<LandingPage />} />
                     <Route exact path='/test' element={<TestPage />} />
-                    <Route exact path='/pmRequest' element={<PMTopicRequest />} />
-                    <Route exact path='/pmEvaluation' element={<PMPresentationEvaluation />} />
                     <Route exact path='/sendEmail' element={<SendEmail />} />
                     <Route exact path='/userList' element={<UserList />} />
                     <Route exact path='/panelList' element={<PanelList />} />

@@ -58,6 +58,7 @@ function EvaluationSubmissionModal(user) {
                                 </div>
 
                             </div>
+                            <br></br>
                             <div class="row">
                                 <div class="col-6">
                                     <label className="form-pad" for="document">Document</label>
@@ -65,7 +66,6 @@ function EvaluationSubmissionModal(user) {
                                 </div>
                                
                             </div>
-                            <br></br>
                             <br></br>
                             <div class="row">
                                 <div class="col-6">
