@@ -129,11 +129,11 @@ function UpdateUser(user) {
 
                             <div className="row mb-4">
                                 <div className="col py-3 text-center">
-                                    <RippleButton className="ripple-button" text="submit" onClick={() => { onSubmit() }} />
+                                    <RippleButton className="ripple-button" text="Submit" onClick={() => { onSubmit() }} />
 
                                 </div>
                                 <div className="col py-3 text-center">
-                                    <RippleButton className="ripple-button-warning" text="cancel" onClick={user.onHide} />
+                                    <RippleButton className="ripple-button-warning" text="Cancel" onClick={user.onHide} />
 
                                 </div>
                             </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Modal } from "react-bootstrap";
 import ViewUser from '../users/modals/ViewUser';
 import { RippleButton } from "../../components/RippleButton"
+import '../../styles/usersList.styles.scss'
 
 export const PanelList = () => {
 
@@ -34,6 +35,9 @@ export const PanelList = () => {
         setModalDeleteConfirm(true);
     }
 
+    useEffect(() => {
+
+    }, [])
 
 
     return (
@@ -62,13 +66,13 @@ export const PanelList = () => {
                     <div className="col-md-8"></div>
 
                     <div className="col">
-                        <div className="input-group input-group-search">
+                        <div className="search-box">
                             <div className="searchbar">
                                 <form >
                                     <input className="search_input" type="text" name="search" placeholder="Search..."
                                     />
-                                    <button className="btn search_icon" type="submit" id="submit" name="submit">
-                                        Submit</button>
+                                    {/* <button class="btn search_icon" type="submit" id="submit" name="submit">
+                                        <i class="fa fa-search"></i></button> */}
                                 </form>
                             </div>
                         </div>

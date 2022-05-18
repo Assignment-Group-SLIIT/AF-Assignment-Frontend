@@ -62,13 +62,13 @@ export const PanelAllocation = () => {
                     <div className="col-md-8"></div>
 
                     <div className="col">
-                        <div className="input-group input-group-search">
+                        <div className="search-box">
                             <div className="searchbar">
                                 <form >
                                     <input className="search_input" type="text" name="search" placeholder="Search..."
                                     />
-                                    <button className="btn search_icon" type="submit" id="submit" name="submit">
-                                        Submit</button>
+                                    {/* <button className="btn search_icon" type="submit" id="submit" name="submit">
+                                        Submit</button> */}
                                 </form>
                             </div>
                         </div>

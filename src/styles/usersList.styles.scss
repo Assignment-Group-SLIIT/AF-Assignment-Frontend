@@ -28,10 +28,61 @@
 
 .create-panel-form {
     width: 100vh;
-    min-height: 70vh;
-    margin-left: 155px;
+    min-height: 100vh;
+    border: 1px solid #512474;
+    border-radius: 10px;
+    padding: 2rem 1.5rem 2rem 1.5rem;
+    -webkit-box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.45);
+    box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.45);
 }
 
 .delete-modal {
     padding-right: 50px;
+}
+
+.auto-width {
+    height: 20px;
+}
+
+.searchbar {
+    margin-right: -5px;
+    height: 40px;
+    background-color: #ffffff;
+    border-radius: 30px;
+    border-style: solid;
+    border-color: #9D50BB;
+    padding: 0;
+}
+
+.search_input {
+    color: black;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 21.5rem;
+    line-height: 30px;
+    padding-left: 1rem;
+}
+
+.searchbar:hover>.search_icon {
+    color: #000000;
+}
+
+.search_icon {
+    top: 10px;
+    height: 35px;
+    width: 50px;
+    float: right;
+    display: flex;
+    border-radius: 1rem;
+    color: white;
+    background-color: #9D50BB;
+    text-decoration: none;
+    margin: 0 auto;
+}
+
+
+
+.search-box {
+    width: 300px;
 }

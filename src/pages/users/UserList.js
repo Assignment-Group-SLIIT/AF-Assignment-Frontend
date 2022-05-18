@@ -73,13 +73,13 @@ export const UserList = () => {
                     <div className="col-md-8"></div>
 
                     <div className="col">
-                        <div className="input-group input-group-search">
+                        <div className="search-box">
                             <div className="searchbar">
                                 <form >
                                     <input className="search_input" type="text" name="search" placeholder="Search..."
                                     />
-                                    <button className="btn search_icon" type="submit" id="submit" name="submit">
-                                        Submit</button>
+                                    {/* <button className="btn search_icon" type="submit" id="submit" name="submit">
+                                        Submit</button> */}
                                 </form>
                             </div>
                         </div>
@@ -148,7 +148,7 @@ export const UserList = () => {
                             <RippleButton className="ripple-button" text=" Confirm" />
                         </div>
                         <div className="col-6">
-                            <RippleButton className="ripple-button-warning" text="cancel" onClick={() => setModalDeleteConfirm(false)} />
+                            <RippleButton className="ripple-button-warning" text="Cancel" onClick={() => setModalDeleteConfirm(false)} />
                         </div>
 
                     </div>
