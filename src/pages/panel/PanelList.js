@@ -84,11 +84,11 @@ export const PanelList = () => {
                 <table className="table table-hover">
                     <thead className="thead-dark">
                         <tr>
-                            <th>Name</th>
-                            <th>Email Address</th>
-                            <th>Contact Number</th>
-                            <th>Role</th>
-                            <th colSpan={2}>Action </th>
+                            <th className='text'>Name</th>
+                            <th className='text'>Email Address</th>
+                            <th className='text'>Contact Number</th>
+                            <th className='text'>Role</th>
+                            <th className='text'>Action </th>
                         </tr>
                     </thead>
                     <tbody>

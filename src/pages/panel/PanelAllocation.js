@@ -81,12 +81,12 @@ export const PanelAllocation = () => {
                 <table className="table table-hover">
                     <thead className="thead-dark">
                         <tr>
-                            <th>Group ID</th>
-                            <th>Group Name</th>
-                            <th>Research Topic</th>
-                            <th>Research Field</th>
-                            <th>Panel</th>
-                            <th colSpan={2}>Action </th>
+                            <th className='text'>Group ID</th>
+                            <th className='text'>Group Name</th>
+                            <th className='text'>Research Topic</th>
+                            <th className='text'>Research Field</th>
+                            <th className='text'>Panel</th>
+                            <th className='text'>Action </th>
                         </tr>
                     </thead>
                     <tbody>
