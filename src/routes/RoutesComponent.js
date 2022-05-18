@@ -14,7 +14,7 @@ import { SendEmail } from '../pages/panel_member/SendEmail'
 import { TopicRequest } from '../pages/panel_member/TopicRequest'
 import { TestPage } from '../pages/TestPage'
 import { UserList } from '../pages/users/UserList'
-
+import StudentDashboard from '../pages/student/dashboard'
 
 export const RoutesComponent = () => {
     return (
@@ -33,6 +33,7 @@ export const RoutesComponent = () => {
                     <Route exact path='/createPanel' element={<CreatePanel />} />
                     <Route exact path='/evaluation' element={<Evaluation />} />
                     <Route exact path='/topicRequest' element={<TopicRequest />} />
+                    <Route exact path='/studentdashboard' element={< StudentDashboard />} />
                 </Routes>
                 <Footer />
             </Router>
