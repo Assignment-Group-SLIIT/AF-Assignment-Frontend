@@ -36,6 +36,16 @@
     box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.45);
 }
 
+.create-template-form {
+    width: 100vh;
+    // min-height: 2rem;
+    border: 1px solid #512474;
+    border-radius: 10px;
+    padding: 2rem 1.5rem 2rem 1.5rem;
+    -webkit-box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.45);
+    box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.45);
+}
+
 .delete-modal {
     padding-right: 50px;
 }
