@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import { RippleButton } from './RippleButton';
 
 
-function DropzoneArea() {
+function DropzoneArea(props) {
     // const [files, setFiles] = useState([])
 
     // return (
@@ -31,7 +31,11 @@ function DropzoneArea() {
 
         // console.log("Method called2", files[0].name)
         // console.log("Method called2", files[0].path)
-        // setOpen(false)
+
+    }
+
+    const sendData = (data) => {
+        props.sendData(data);
     }
 
 
@@ -48,7 +52,8 @@ function DropzoneArea() {
         // Details of the uploaded file
         console.log(formData.get('file'));
 
-
+        sendData(formData.get('file'))
+        setOpen(false)
         // Request made to the backend api
         // Send formData object
         // axios.post("api/uploadfile", formData);

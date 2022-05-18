@@ -7,13 +7,20 @@ export const CreateTemplate = () => {
 
     const [submissionID, setSubmissionID] = useState("")
     const [submissionType, setSubmissionType] = useState("")
+    const [fileName, setFileName] = useState("")
 
     useEffect(() => {
 
     }, [])
 
+
+    const sendData = (data) => {
+        console.log("Child data", data)
+        setFileName(data.name)
+    }
+
     return (
-        <div className='body-content-container'>
+        <div className='template-content-container'>
             <div className='create-template-form'>
 
                 <div className="row">
@@ -41,9 +48,12 @@ export const CreateTemplate = () => {
                             </div>
                             <br></br>
                             <div class="row">
-                                <div class="col">
+                                <div class="col-3">
                                     <label className="form-pad" for="template">Template Document</label>
-                                    <DropzoneArea />
+                                </div>
+                                <div className='col-4'>
+                                    <DropzoneArea sendData={sendData} />
+                                    {fileName ? fileName : ''}
                                 </div>
 
                             </div>

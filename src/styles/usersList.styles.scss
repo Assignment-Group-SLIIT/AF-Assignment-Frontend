@@ -34,11 +34,23 @@
     padding: 2rem 1.5rem 2rem 1.5rem;
     -webkit-box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.45);
     box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.45);
+
+}
+
+.template-content-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    position: relative;
+    margin-top: 8rem;
+    margin-bottom: 4rem;
 }
 
 .create-template-form {
     width: 100vh;
-    // min-height: 2rem;
+    min-height: 50vh;
     border: 1px solid #512474;
     border-radius: 10px;
     padding: 2rem 1.5rem 2rem 1.5rem;
