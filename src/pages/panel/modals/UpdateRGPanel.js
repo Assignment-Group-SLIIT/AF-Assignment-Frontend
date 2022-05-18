@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
+import { FormSection } from "../../../components/FormSection";
 import { RippleButton } from "../../../components/RippleButton";
+import "../../../styles/usersList.styles.scss"
 
 function UpdateRGPanel(user) {
 
@@ -34,9 +36,10 @@ function UpdateRGPanel(user) {
                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <form >
                             <div class="form-row">
-                                <div class="col-md-3">
+                                {/* <div class="col-md-3">
                                     <label class="update-font" for="group">Group Details</label>
-                                </div>
+                                </div> */}
+                                <FormSection headline={'Group Details'} />
                             </div>
                             <br></br>
                             <div class="row">
@@ -51,9 +54,10 @@ function UpdateRGPanel(user) {
                             </div>
                             <br></br>
                             <div class="form-row">
-                                <div class="col-md-3">
+                                {/* <div class="col-md-3">
                                     <label class="update-font" for="research">Research Details </label>
-                                </div>
+                                </div> */}
+                                <FormSection headline={'Research Details'} />
                             </div>
                             <br></br>
                             <div class="row">
@@ -68,9 +72,10 @@ function UpdateRGPanel(user) {
                             </div>
                             <br></br>
                             <div class="form-row">
-                                <div class="col-md-3">
+                                {/* <div class="col-md-3">
                                     <label class="update-font" for="staff">Staff Details</label>
-                                </div>
+                                </div> */}
+                                <FormSection headline={'Staff Details'} />
                             </div>
                             <br></br>
                             <div class="row">
@@ -85,9 +90,10 @@ function UpdateRGPanel(user) {
                             </div>
                             <br></br>
                             <div class="form-row">
-                                <div class="col-md-3">
+                                {/* <div class="col-md-3">
                                     <label class="update-font" for="customer">Panel Details</label>
-                                </div>
+                                </div> */}
+                                <FormSection headline={'Panel Details'} />
                             </div>
                             <br></br>
                             <div class="row">

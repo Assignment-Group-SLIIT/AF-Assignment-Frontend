@@ -3,10 +3,12 @@ import React, { useState, useEffect } from 'react'
 import { RippleButton } from '../../components/RippleButton'
 import '../../styles/usersList.styles.scss'
 
-export const CreateTemplate = () => {
+export const CreateSubmission = () => {
 
     const [submissionID, setSubmissionID] = useState("")
     const [submissionType, setSubmissionType] = useState("")
+    const [startDate, setStartDate] = useState("")
+    const [endDate, setEndDate] = useState("")
     const [fileName, setFileName] = useState("")
 
     useEffect(() => {
@@ -26,7 +28,7 @@ export const CreateTemplate = () => {
                 <div className="row">
                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <form >
-                            <h2><label for="group">Upload Submission Template</label></h2>
+                            <h2><label for="group">Create Submission</label></h2>
                             <br></br>
                             <div class="row">
                                 <div class="col-6">
@@ -44,6 +46,17 @@ export const CreateTemplate = () => {
                                         <option id="5" >Submission Five</option>
                                     </select>
 
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-6">
+                                    <label className="form-pad" for="startDate">Start Date</label>
+                                    <input type="date" class="form-control" id="startDate" placeholder="Start Date" value={startDate} onChange={(e) => { setStartDate(e.target.value) }} />
+                                </div>
+                                <div class="col-6">
+                                    <label className="form-pad" for="endDate">End Date</label>
+                                    <input type="date" class="form-control" id="endDate" placeholder="End Date" value={endDate} onChange={(e) => { setEndDate(e.target.value) }} />
                                 </div>
                             </div>
                             <br></br>
