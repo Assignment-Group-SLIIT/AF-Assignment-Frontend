@@ -4,6 +4,21 @@ import { RippleButton } from "../../../components/RippleButton";
 
 function UpdateUser(user) {
 
+    const [fName, setFName] = useState("");
+    const [lName, setLName] = useState("");
+    const [contactNo, setContactNo] = useState("");
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [degree, setDegree] = useState("");
+    const [department, setDepartment] = useState("");
+    const [role, setRole] = useState("");
+    const [field, setField] = useState("");
+
+
+    useEffect(() => {
+
+    }, [])
+
 
 
     return (
@@ -29,11 +44,11 @@ function UpdateUser(user) {
                             <div class="row">
                                 <div class="col-6">
                                     <label for="fName">First Name</label>
-                                    <input type="text" class="form-control" id="fName" placeholder="First Name" />
+                                    <input type="text" class="form-control" id="fName" placeholder="First Name" value={fName} onChange={(e) => { setFName(e.target.value) }} />
                                 </div>
                                 <div class="col-6">
                                     <label for="lName">Last Name</label>
-                                    <input type="text" class="form-control" id="lName" placeholder="Last Name" />
+                                    <input type="text" class="form-control" id="lName" placeholder="Last Name" value={lName} onChange={(e) => { setLName(e.target.value) }} />
                                 </div>
                             </div>
                             <br></br>
@@ -41,18 +56,18 @@ function UpdateUser(user) {
                             <div class="row">
                                 <div class="col-6">
                                     <label for="contactNo">Contact Number</label>
-                                    <input type="number" class="form-control" id="contactNo" placeholder="Contact number" />
+                                    <input type="number" class="form-control" id="contactNo" placeholder="Contact number" value={contactNo} onChange={(e) => { setContactNo(e.target.value) }} />
                                 </div>
                                 <div class="col-6">
                                     <label for="password">Password</label>
-                                    <input type="text" class="form-control" id="password" placeholder="********" />
+                                    <input type="text" class="form-control" id="password" placeholder="********" value={password} onChange={(e) => { setPassword(e.target.value) }} />
                                 </div>
                             </div>
                             <br></br>
                             <div class="row">
                                 <div class="col">
                                     <label for="email">Email Address</label>
-                                    <input type="email" class="form-control" id="email" placeholder="abc@gmail.com" />
+                                    <input type="email" class="form-control" id="email" placeholder="abc@gmail.com" value={email} onChange={(e) => { setEmail(e.target.value) }} />
                                 </div>
                             </div>
                             <br></br>
@@ -65,7 +80,7 @@ function UpdateUser(user) {
                             <div class="row">
                                 <div class="col-6">
                                     <label for="degree">Degree</label>
-                                    <select class="form-select" className="form-control" name="degree" id="degree">
+                                    <select class="form-select" className="form-control" name="degree" id="degree" value={degree} onChange={(e) => { setDegree(e.target.value) }}>
                                         <option  >Choose Degree</option>
                                         <option id="SE" >Software Engineering</option>
                                         <option id="DS" >Data Science</option>
@@ -77,7 +92,7 @@ function UpdateUser(user) {
                                 </div>
                                 <div class="col-6">
                                     <label for="department">Department</label>
-                                    <select class="form-select" className="form-control" name="department" id="department">
+                                    <select class="form-select" className="form-control" name="department" id="department" value={department} onChange={(e) => { setDepartment(e.target.value) }}>
                                         <option  >Choose Department</option>
                                         <option id="Computing" >Computing</option>
                                         <option id="Business" >Business</option>
@@ -89,7 +104,7 @@ function UpdateUser(user) {
                             <div class="row">
                                 <div class="col-6">
                                     <label for="role">Role</label>
-                                    <select class="form-select" className="form-control" name="role" id="role">
+                                    <select class="form-select" className="form-control" name="role" id="role" value={role} onChange={(e) => { setRole(e.target.value) }}>
                                         <option  >Choose Role</option>
                                         <option id="Student" >Student</option>
                                         <option id="Supervisor" >Supervisor</option>
@@ -99,7 +114,7 @@ function UpdateUser(user) {
                                 </div>
                                 <div class="col-6">
                                     <label for="field">Field Of Interest</label>
-                                    <select class="form-select" className="form-control" name="field" id="field">
+                                    <select class="form-select" className="form-control" name="field" id="field" value={field} onChange={(e) => { setField(e.target.value) }}>
                                         <option  >Choose Fieldt</option>
                                         <option id="Medical" >Medical</option>
                                         <option id="Technology" >Technology</option>
