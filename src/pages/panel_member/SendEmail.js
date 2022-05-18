@@ -11,7 +11,7 @@ export const SendEmail = () => {
     return (
         <div className='body-content-container-pm'>
             <div className="container-border-pm">
-                <h1> presentation submission evaluation table</h1>
+                <h3> presentation submission evaluation table</h3>
                 
                 <br /> <br /> 
                 <h3>***Description***</h3>
@@ -28,9 +28,7 @@ export const SendEmail = () => {
                                 // onChange={(e) => { setReserverName(e.target.value) }} 
                                 />
                         </div>
-
                     </div>
-
                 </div>
                 <div className="row mb-2">
                     <div className="col">
@@ -45,9 +43,7 @@ export const SendEmail = () => {
                                 // onChange={(e) => { setReserverName(e.target.value) }} 
                                 />
                         </div>
-
                     </div>
-
                 </div>
                 <div className='sendEmail'>
                     <RippleButton className="ripple-button " text="submit"  />

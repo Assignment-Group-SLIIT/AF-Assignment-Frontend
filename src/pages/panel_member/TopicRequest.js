@@ -36,7 +36,7 @@ export const TopicRequest = () => {
     return (
         <div className='body-content-container'>
             <div className="container-border">
-                <h1> Group Request</h1>
+                <h3> Group Request</h3>
                 <br /> <br /> <br />
                 <div class="row table-head-search">
                     <div className="col-md-8"></div>
