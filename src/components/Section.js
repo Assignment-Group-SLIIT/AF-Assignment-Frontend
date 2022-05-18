@@ -1,7 +1,18 @@
 import React from 'react'
+import { saveAs } from "file-saver";
 import '../styles/usersList.styles.scss'
 
 export const Section = (props) => {
+
+    const download = (link) => {
+        console.log(link)
+        saveAs(
+            link,
+            "example.pdf"
+        );
+    }
+
+
     return (
         <>
             <hr></hr>
@@ -15,21 +26,14 @@ export const Section = (props) => {
                         <table className='download-links-list'>
 
                             <tbody>
-                                {/* {rentalList.map((rental) => {
-                                        return ( */}
-                                <tr>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                </tr>
-                                {/* ) */}
+                                {props.links.map((link) => {
+                                    return (
+                                        <tr onClick={() => download(link)} key={link + Math.random()} >
+                                            <td>{link}</td>
+                                        </tr>
+                                    )
+                                })}
+
                             </tbody>
                         </table>
 
