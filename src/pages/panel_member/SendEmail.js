@@ -4,9 +4,6 @@ import { RippleButton } from '../../components/RippleButton'
 
 export const SendEmail = () => {
 
-    const onSubmit = () => {
-        console.log("clicked the button")
-    }
 
     return (
         <div className='body-content-container-pm'>
@@ -14,10 +11,11 @@ export const SendEmail = () => {
                 <h3> presentation submission evaluation table</h3>
                 
                 <br /> <br /> 
-                <h3>***Description***</h3>
+                <h5>***Description***</h5>
+                <br />
                 <div className="row mb-2">
                     <div className="col">
-                        <div className="form-group pminput">
+                        <div className="form-group ">
                             <label for="email">Email </label>
                             <input 
                                 type="text" 

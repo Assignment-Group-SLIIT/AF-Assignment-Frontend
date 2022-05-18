@@ -16,6 +16,9 @@ import { TestPage } from '../pages/TestPage'
 import { UserList } from '../pages/users/UserList'
 import { RequestTopic } from '../pages/students/RequestTopic'
 import { RequestTopicCoSupervisor } from '../pages/students/RequestCo-Supervisor'
+import { GroupRequest } from '../pages/Supervisor/GroupRequest'
+import { EvaluationSubmission } from '../pages/Supervisor/EvaluationSubmission'
+
 
 
 export const RoutesComponent = () => {
@@ -37,6 +40,9 @@ export const RoutesComponent = () => {
                     <Route exact path='/topicRequest' element={<TopicRequest />} />
                     <Route exact path='/requestTopic' element={<RequestTopic />} />
                     <Route exact path='/requestTopicCo-supervisor' element={<RequestTopicCoSupervisor />} />
+                    <Route exact path='/groupRequest' element={<GroupRequest />} />
+                    <Route exact path='/evaluationSubmission' element={<EvaluationSubmission />} />
+
                 </Routes>
                 <Footer />
             </Router>
