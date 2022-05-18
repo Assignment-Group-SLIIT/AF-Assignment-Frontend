@@ -112,11 +112,13 @@ export const PanelList = () => {
                     <Modal.Title>Confirm Deletion</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>Are you sure you want to remove this panel member?</p>
-
+                    <center>
+                        <p></p>
+                        <p><strong>Are you sure you want to remove this panel member?</strong></p>
+                    </center>
                 </Modal.Body>
                 <Modal.Footer>
-                    <div className="form-group row">
+                    <div className="delete-modal row">
                         <div className="col-6">
                             <RippleButton className="ripple-button" text=" Confirm" />
                         </div>
