@@ -1,9 +1,33 @@
-.table-users {
+.update-font {
     position: relative;
-    margin: 0 1rem 0 4.5rem;
-    padding: 1rem 2rem;
-    width: auto;
-    border-radius: 0.5rem;
-    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2),
-        0px 0px 10px 0px rgba(0, 0, 0, 0.19);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.update-font::after {
+    content: "";
+    display: block;
+    width: 37rem;
+    height: 1px;
+    background: #656568;
+    left: 155px;
+    top: 60%;
+    position: absolute;
+
+}
+
+.create-panel {
+    position: relative;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.form-pad {
+    padding-bottom: 15px;
+}
+
+.create-panel-form {
+    width: 100vh;
+    min-height: 70vh;
+    margin-left: 155px;
 }

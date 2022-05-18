@@ -1,26 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import '../../styles/usersList.styles.scss'
 import { Modal } from "react-bootstrap";
-import ViewUser from './modals/ViewUser';
-import UpdateUser from './modals/UpdateUser';
 import { RippleButton } from "../../components/RippleButton"
+import ResearchGroup from './modals/ResearchGroup';
+import UpdateRGPanel from './modals/UpdateRGPanel';
 
-export const UserList = () => {
+export const PanelAllocation = () => {
 
     const [search, setSearch] = useState("");
-    const [usersList, setUserList] = useState([]);
+    const [groupList, setGroupList] = useState([]);
     const [modalData, setData] = useState([]);
     const [modalShow, setModalShow] = useState(false);
 
     const [modalDataUpdate, setModalDataUpdate] = useState([]);
     const [modalUpdate, setModalUpdate] = useState(false);
 
-    const [modalDataDelete, setModalDataDelete] = useState([]);
-    const [modalDeleteConfirm, setModalDeleteConfirm] = useState(false);
-    const [modalDelete, setModalDelete] = useState(false);
-
     const [modalLoading, setModalLoading] = useState(false);
-    const [refresgPage, setRefreshPage] = useState(false);
+
 
     const openModal = (user) => {
         // setData(rental);
@@ -33,11 +28,6 @@ export const UserList = () => {
         setModalShow(true);
     }
 
-    const openModalDelete = (data) => {
-        // setModalDataDelete(data);
-        setModalDeleteConfirm(true);
-    }
-
     const openModalUpdate = (user) => {
 
         console.log("request came for modal updateeeeeee");
@@ -45,7 +35,6 @@ export const UserList = () => {
         setModalUpdate(true);
 
     }
-
 
     return (
         <div className='body-content-container'>
@@ -56,7 +45,7 @@ export const UserList = () => {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
-                <ViewUser
+                <ResearchGroup
                     // data={modalData}
                     onHide={() => setModalShow(false)}
                 />
@@ -66,7 +55,7 @@ export const UserList = () => {
 
                 <div className="row table-head mt-3">
                     <div className="col">
-                        <h3 className="float-left" >List of Users</h3>
+                        <h3 className="float-left" >Panel Allocation</h3>
                     </div>
                 </div>
                 <div className="row table-head-search">
@@ -91,10 +80,11 @@ export const UserList = () => {
                 <table className="table table-hover">
                     <thead className="thead-dark">
                         <tr>
-                            <th>Name</th>
-                            <th>Email Address</th>
-                            <th>Contact Number</th>
-                            <th>Role</th>
+                            <th>Group ID</th>
+                            <th>Group Name</th>
+                            <th>Research Topic</th>
+                            <th>Research Field</th>
+                            <th>Panel</th>
                             <th colSpan={2}>Action </th>
                         </tr>
                     </thead>
@@ -105,9 +95,9 @@ export const UserList = () => {
                             <td ></td>
                             <td ></td>
                             <td></td>
+                            <th></th>
                             <td>
-                                <RippleButton className="ripple-button" text="Update" onClick={() => openModalUpdate()} />
-                                <RippleButton className="ripple-button-danger" text="Delete" onClick={() => openModalDelete()} />
+                                <RippleButton className="ripple-button" text="Allocate Panel" onClick={() => openModalUpdate()} />
                             </td>
                         </tr>
                     </tbody>
@@ -121,39 +111,11 @@ export const UserList = () => {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
-                <UpdateUser
+                <UpdateRGPanel
                     data={modalDataUpdate}
                     onHide={() => setModalUpdate(false)}
                 />
             </Modal>
-
-            {/* Modal to be used in delete */}
-
-            <Modal show={modalDeleteConfirm} size="md"
-                aria-labelledby="contained-modal-title-vcenter"
-                centered>
-                <Modal.Header>
-                    <Modal.Title>Confirm Deletion</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <p>Are you sure you want to remove this user?</p>
-
-                </Modal.Body>
-                <Modal.Footer>
-                    <div className="form-group row">
-                        <div className="col-6">
-                            <RippleButton className="ripple-button" text=" Confirm" />
-                        </div>
-                        <div className="col-6">
-                            <RippleButton className="ripple-button-warning" text="cancel" onClick={() => setModalDeleteConfirm(false)} />
-                        </div>
-
-                    </div>
-                </Modal.Footer>
-            </Modal>
-
-
-
         </div>
     )
 

@@ -1,26 +1,22 @@
 import React, { useState, useEffect } from 'react'
-import '../../styles/usersList.styles.scss'
 import { Modal } from "react-bootstrap";
-import ViewUser from './modals/ViewUser';
-import UpdateUser from './modals/UpdateUser';
+import ViewUser from '../users/modals/ViewUser';
 import { RippleButton } from "../../components/RippleButton"
 
-export const UserList = () => {
+export const PanelList = () => {
 
     const [search, setSearch] = useState("");
-    const [usersList, setUserList] = useState([]);
+    const [panelList, setPanelList] = useState([]);
     const [modalData, setData] = useState([]);
     const [modalShow, setModalShow] = useState(false);
 
-    const [modalDataUpdate, setModalDataUpdate] = useState([]);
-    const [modalUpdate, setModalUpdate] = useState(false);
 
     const [modalDataDelete, setModalDataDelete] = useState([]);
     const [modalDeleteConfirm, setModalDeleteConfirm] = useState(false);
     const [modalDelete, setModalDelete] = useState(false);
 
     const [modalLoading, setModalLoading] = useState(false);
-    const [refresgPage, setRefreshPage] = useState(false);
+
 
     const openModal = (user) => {
         // setData(rental);
@@ -38,13 +34,6 @@ export const UserList = () => {
         setModalDeleteConfirm(true);
     }
 
-    const openModalUpdate = (user) => {
-
-        console.log("request came for modal updateeeeeee");
-        // setModalDataUpdate(data);
-        setModalUpdate(true);
-
-    }
 
 
     return (
@@ -66,7 +55,7 @@ export const UserList = () => {
 
                 <div className="row table-head mt-3">
                     <div className="col">
-                        <h3 className="float-left" >List of Users</h3>
+                        <h3 className="float-left" >Panel Members</h3>
                     </div>
                 </div>
                 <div className="row table-head-search">
@@ -101,31 +90,18 @@ export const UserList = () => {
                     <tbody>
                         <tr >
 
-                            <td onClick={() => openModal()}>data</td>
+                            <td >data</td>
                             <td ></td>
                             <td ></td>
                             <td></td>
                             <td>
-                                <RippleButton className="ripple-button" text="Update" onClick={() => openModalUpdate()} />
+                                <RippleButton className="ripple-button" text="View" onClick={() => openModal()} />
                                 <RippleButton className="ripple-button-danger" text="Delete" onClick={() => openModalDelete()} />
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            {/* Modal to be used in update */}
-            <Modal
-                show={modalUpdate}
-                onHide={() => setModalUpdate(false)}
-                size="lg"
-                aria-labelledby="contained-modal-title-vcenter"
-                centered
-            >
-                <UpdateUser
-                    data={modalDataUpdate}
-                    onHide={() => setModalUpdate(false)}
-                />
-            </Modal>
 
             {/* Modal to be used in delete */}
 
@@ -136,7 +112,7 @@ export const UserList = () => {
                     <Modal.Title>Confirm Deletion</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>Are you sure you want to remove this user?</p>
+                    <p>Are you sure you want to remove this panel member?</p>
 
                 </Modal.Body>
                 <Modal.Footer>

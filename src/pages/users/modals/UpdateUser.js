@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { RippleButton } from "../../../components/RippleButton";
 
 function UpdateUser(user) {
+
+
 
     return (
 
@@ -17,45 +19,54 @@ function UpdateUser(user) {
             <Modal.Body className="px-4">
                 <div className="row">
                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <form>
-                            <div class="form-group row">
-                                <label for="fName" className="col-sm-2 col-form-label">First Name</label>
-                                <div className="col-sm-4">
-                                    <input type="text" className="form-control" id="fName" />
-                                </div>
-                                <label for="lName" className="col-sm-2 col-form-label">Last Name</label>
-                                <div className="col-sm-4">
-                                    <input type="text" className="form-control" id="lName" />
+                        <form >
+                            <div class="form-row">
+                                <div class="col-md-3">
+                                    <label class="update-font" for="group">Personal Details</label>
                                 </div>
                             </div>
                             <br></br>
-                            <br></br>
-                            <div class="form-group row">
-                                <label for="email" className="col-sm-2 col-form-label">Email Address</label>
-                                <div className="col-sm-10">
-                                    <input type="email" className="form-control" id="email" />
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="fName">First Name</label>
+                                    <input type="text" class="form-control" id="fName" placeholder="First Name" />
+                                </div>
+                                <div class="col-6">
+                                    <label for="lName">Last Name</label>
+                                    <input type="text" class="form-control" id="lName" placeholder="Last Name" />
                                 </div>
                             </div>
                             <br></br>
-                            <br></br>
-                            <div class="form-group row">
-                                <label for="contactNo" className="col-sm-2 col-form-label">Telephone</label>
-                                <div className="col-sm-4">
-                                    <input type="text" className="form-control" id="contactNo" />
-                                </div>
-                                <label for="password" className="col-sm-2 col-form-label">Password</label>
-                                <div className="col-sm-4">
-                                    <input type="password" className="form-control" id="password" />
-                                </div>
-                            </div>
-                            <br></br>
-                            <br></br>
-                            <div class="form-group row">
-                                <label for="degree" className="col-sm-2 col-form-label">Degree</label>
-                                <div className="col-sm-4">
 
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="contactNo">Contact Number</label>
+                                    <input type="number" class="form-control" id="contactNo" placeholder="Contact number" />
+                                </div>
+                                <div class="col-6">
+                                    <label for="password">Password</label>
+                                    <input type="text" class="form-control" id="password" placeholder="********" />
+                                </div>
+                            </div>
+                            <br></br>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" class="form-control" id="email" placeholder="abc@gmail.com" />
+                                </div>
+                            </div>
+                            <br></br>
+                            <div class="form-row">
+                                <div class="col-md-3">
+                                    <label class="update-font" for="staff">Academic Details</label>
+                                </div>
+                            </div>
+                            <br></br>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="degree">Degree</label>
                                     <select class="form-select" className="form-control" name="degree" id="degree">
-                                        <option  >Degree</option>
+                                        <option  >Choose Degree</option>
                                         <option id="SE" >Software Engineering</option>
                                         <option id="DS" >Data Science</option>
                                         <option id="ISE" >ISE</option>
@@ -64,10 +75,32 @@ function UpdateUser(user) {
                                         <option id="CN" >Networking</option>
                                     </select>
                                 </div>
-                                <label for="field" className="col-sm-2 col-form-label">F O I</label>
-                                <div className="col-sm-4">
+                                <div class="col-6">
+                                    <label for="department">Department</label>
+                                    <select class="form-select" className="form-control" name="department" id="department">
+                                        <option  >Choose Department</option>
+                                        <option id="Computing" >Computing</option>
+                                        <option id="Business" >Business</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br></br>
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="role">Role</label>
+                                    <select class="form-select" className="form-control" name="role" id="role">
+                                        <option  >Choose Role</option>
+                                        <option id="Student" >Student</option>
+                                        <option id="Supervisor" >Supervisor</option>
+                                        <option id="CoSupervisor" >Co-Supervisor</option>
+                                        <option id="Panel" >Panel Member</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <label for="field">Field Of Interest</label>
                                     <select class="form-select" className="form-control" name="field" id="field">
-                                        <option  >Field Of Interest</option>
+                                        <option  >Choose Fieldt</option>
                                         <option id="Medical" >Medical</option>
                                         <option id="Technology" >Technology</option>
                                         <option id="Robotics" >Robotics</option>
@@ -77,42 +110,21 @@ function UpdateUser(user) {
                                 </div>
                             </div>
                             <br></br>
-                            <br></br>
-                            <div class="form-group row">
-                                <label for="role" className="col-sm-2 col-form-label">Role</label>
-                                <div className="col-sm-4">
 
-                                    <select class="form-select" className="form-control" name="role" id="role">
-                                        <option  >Role</option>
-                                        <option id="Student" >Student</option>
-                                        <option id="Supervisor" >Supervisor</option>
-                                        <option id="CoSupervisor" >Co-Supervisor</option>
-                                        <option id="Panel" >Panel Member</option>
-                                    </select>
-                                </div>
-                                <label for="field" className="col-sm-2 col-form-label">Department</label>
-                                <div className="col-sm-4">
-                                    <select class="form-select" className="form-control" name="field" id="field">
-                                        <option  >Department</option>
-                                        <option id="Computing" >Computing</option>
-                                        <option id="Business" >Business</option>
-                                    </select>
-                                </div>
-                            </div>
 
                             <div className="row mb-4">
                                 <div className="col py-3 text-center">
-                                    <RippleButton />
+                                    <RippleButton className="ripple-button" text="submit" onClick={() => { onSubmit() }} />
+
                                 </div>
                                 <div className="col py-3 text-center">
-                                    <RippleButton onClick={rental.onHide} />
+                                    <RippleButton className="ripple-button-warning" text="cancel" onClick={user.onHide} />
 
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
-
             </Modal.Body >
         </div >
     )
