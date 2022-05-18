@@ -10,7 +10,7 @@ export const Navigationbar = () => {
                     className="navbar navbar-expand-lg fixed-top"
                 >
                     <div className="container-fluid">
-                        <a className="navbar-brand js-scroll-trigger" href="/dashboard">
+                        <a className="navbar-brand js-scroll-trigger" href="/home">
                             <h2 className='text-light'>Research Portal</h2>
 
                         </a>
