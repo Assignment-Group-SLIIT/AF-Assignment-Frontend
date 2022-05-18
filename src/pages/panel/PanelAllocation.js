@@ -3,6 +3,7 @@ import { Modal } from "react-bootstrap";
 import { RippleButton } from "../../components/RippleButton"
 import ResearchGroup from './modals/ResearchGroup';
 import UpdateRGPanel from './modals/UpdateRGPanel';
+import '../../styles/usersList.styles.scss'
 
 export const PanelAllocation = () => {
 

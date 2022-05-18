@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import { RippleButton } from "../../../components/RippleButton";
+import "../../../styles/usersList.styles.scss"
 
 function UpdateRGPanel(user) {
 

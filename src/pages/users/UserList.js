@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import '../../styles/usersList.styles.scss'
 import { Modal } from "react-bootstrap";
 import ViewUser from './modals/ViewUser';
 import UpdateUser from './modals/UpdateUser';
 import { RippleButton } from "../../components/RippleButton"
+import '../../styles/usersList.styles.scss'
 
 export const UserList = () => {
 
