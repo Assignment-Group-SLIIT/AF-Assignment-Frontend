@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const RippleButton = ({ text, className, onClick }) => {
+export const RippleButton = ({ disabled, text, className, onClick }) => {
     const [coords, setCoords] = React.useState({ x: -1, y: -1 });
     const [isRippling, setIsRippling] = React.useState(false);
 
@@ -24,6 +24,7 @@ export const RippleButton = ({ text, className, onClick }) => {
                 setCoords({ x: e.clientX - rect.left, y: e.clientY - rect.top });
                 onClick && onClick(e);
             }}
+            disabled={disabled}
         >
             {isRippling ? (
                 <span
@@ -36,8 +37,14 @@ export const RippleButton = ({ text, className, onClick }) => {
             ) : (
                 ''
             )}
-            <span className="ripple-button-text">{text}</span>
-            {/* {text} */}
+            {/* <span className="ripple-button-text">{text}</span> */}
+            {/* <span className="ripple-button-black">{text}</span> */}
+            {/* {disabled ?
+                <span className="ripple-button-black-disabled">{text}</span>
+                :
+                <span className="ripple-button-black">{text}</span>
+            } */}
+            {text}
         </button>
     );
 };
