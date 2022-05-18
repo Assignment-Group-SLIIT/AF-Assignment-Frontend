@@ -48,9 +48,9 @@ export const CreateTemplate = () => {
                             </div>
                             <br></br>
                             <div class="row">
-                                <div class="col-3">
+                                {/* <div class="col-3">
                                     <label className="form-pad" for="template">Template Document</label>
-                                </div>
+                                </div> */}
                                 <div className='col-4'>
                                     <DropzoneArea sendData={sendData} />
                                     {fileName ? fileName : ''}

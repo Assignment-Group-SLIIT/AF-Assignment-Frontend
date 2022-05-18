@@ -58,6 +58,17 @@
     box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.45);
 }
 
+.view-templates {
+    width: 150vh;
+    min-height: 100vh;
+    // border: 1px solid #512474;
+    border-radius: 10px;
+    padding: 2rem 1.5rem 2rem 1.5rem;
+    -webkit-box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.45);
+    // box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.45);
+
+}
+
 .delete-modal {
     padding-right: 50px;
 }
@@ -103,8 +114,42 @@
     margin: 0 auto;
 }
 
-
-
 .search-box {
     width: 300px;
+}
+
+.content {
+    position: relative;
+    height: 10rem;
+}
+
+.section-view {
+    position: relative;
+    width: 100%;
+    color: #000000;
+    background-color: rgba(75, 63, 63, 0.116);
+    height: 2.5rem;
+}
+
+.vertical-line {
+    position: relative;
+    width: 10px;
+    height: 2.5rem;
+    background-color: #9D50BB;
+}
+
+.section-heading {
+    position: relative;
+    padding: 8px 15px;
+    font-weight: 400;
+    font-size: 16px;
+    width: 350px !important;
+    // margin-left: 20px;
+    color: #000000;
+}
+
+.download-links-list {
+    width: 300px;
+    margin-left: 50px;
+    padding: 20px;
 }
