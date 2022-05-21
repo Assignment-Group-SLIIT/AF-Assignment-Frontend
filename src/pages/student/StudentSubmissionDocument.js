@@ -26,7 +26,7 @@ const StudentSubmissionDocument = () => {
                 <div className="row">
                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <Form >
-                            <h2><label for="group">Submit Assignment</label></h2>
+                            <h3><label for="group">Project Proposal Submission</label></h3>
                             <hr></hr>
                             <br></br>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -44,8 +44,8 @@ const StudentSubmissionDocument = () => {
                                 <Row>
 
                                     <Col>
-                                        <Form.Label>Topic Details</Form.Label>
-                                        <Form.Control type="text" placeholder="Topic Details" />
+                                        <Form.Label>Leader Email</Form.Label>
+                                        <Form.Control type="text" placeholder="Leader Email" />
                                     </Col>
                                 </Row>
 

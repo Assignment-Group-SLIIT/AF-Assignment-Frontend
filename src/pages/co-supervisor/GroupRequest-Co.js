@@ -5,7 +5,7 @@ import { Modal, Button } from "react-bootstrap";
 
 
 
-export const GroupRequest = () => {
+export default GroupRequest = () => {
 
     const [search, setSearch] = useState("");
     const [modalData, setData] = useState([]);
@@ -39,7 +39,7 @@ export const GroupRequest = () => {
             <div className="container-border">
 
 
-                <h3> Initial Group Request For Supervisor</h3>
+                <h3> Initial Group Request For Co-Supervisor</h3>
                 <br /> <br />
                 <div class="row table-head-search">
                     <div className="col-md-8"></div>

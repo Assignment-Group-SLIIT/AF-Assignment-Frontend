@@ -6,7 +6,7 @@ export const StudentSignUp = () => {
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();
     const [email, setEmail] = useState();
-    const [role, setRole] = useState();
+    const [studentID, setStudnetID] = useState();
     const [ContactNo, setContactNo] = useState();
     const [password, setPassword] = useState();
     const [ConfirmPassword, setConfirmPassword] = useState();
@@ -50,19 +50,8 @@ export const StudentSignUp = () => {
                                 </Col>
                                 <Col>
                                     <Form.Label>Role</Form.Label>
-                                    <select class="form-select form-control"
-                                        name="type" id="type" required
-                                        // value={type}
-                                        onChange={(e) => {
-                                            setRole(e.target.value);
-                                        }}
-                                    >
-                                        <option  >Choose</option>
-                                        <option id="Single" >Single</option>
-                                        <option id="Double">Double</option>
-                                        <option id="Family" >Family</option>
-                                        <option id="Luxuary" >Luxuary</option>
-                                    </select>
+                                    <Form.Label>Contact Number</Form.Label>
+                                    <Form.Control type="text" placeholder="IT########" onChange={(e) => setStudnetID(e.target.value)} />
                                 </Col>
                             </Row>
                         </Form.Group>
