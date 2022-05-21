@@ -36,30 +36,45 @@ export const RoutesComponent = () => {
             <Router basename={'/'}>
                 <Navigationbar />
                 <Routes>
+
+                    {/* common */}
                     <Route exact path='/home' element={<LandingPage />} />
                     <Route exact path='/test' element={<TestPage />} />
-                    <Route exact path='/studentSignup' element={< StudentSignUp />} />
                     <Route exact path='/login' element={<Login />} />
-                    <Route exact path='/staffSignup' element={<StaffSignup />} />
-                    <Route exact path='/group-registration' element={<StudentGroupRegister />} />
-                    <Route exact path='/sendEmail' element={<SendEmail />} />
-                    <Route exact path='/userList' element={<UserList />} />
-                    <Route exact path='/panelList' element={<PanelList />} />
-                    <Route exact path='/panelAllocate' element={<PanelAllocation />} />
-                    <Route exact path='/createPanel' element={<CreatePanel />} />
-                    <Route exact path='/createTemplate' element={<CreateTemplate />} />
-                    <Route exact path='/createSubmission' element={<CreateSubmission />} />
-                    <Route exact path='/viewTemplates' element={<ViewTemplates />} />
-                    <Route exact path='/evaluation' element={<Evaluation />} />
-                    <Route exact path='/topicRequest' element={<TopicRequest />} />
-                    <Route exact path='/studentdashboard' element={< StudentDashboard />} />
-                    <Route exact path='/requestTopic' element={<RequestTopic />} />
-                    <Route exact path='/requestTopicCo-supervisor' element={<RequestTopicCoSupervisor />} />
-                    <Route exact path='/request/supervisor' element={<GroupRequest />} />
-                    <Route exact path='/evaluationSubmission' element={<EvaluationSubmission />} />
-                    <Route exact path='/upload-initial-evaluation' element={<UploadInitialEvaluation />} />
-                    <Route exact path='/student-submission-document' element={<StudentSubmissionDocument />} />
-                    <Route exact path='/request/cosupervisor' element={< GroupRequestCoSupevisor />} />
+                    <Route exact path='/templates' element={<ViewTemplates />} />
+
+                    {/* student */}
+                    <Route exact path='/signup/student' element={< StudentSignUp />} />
+                    <Route exact path='/student/groupregistration' element={<StudentGroupRegister />} />
+                    <Route exact path='/student/dashboard' element={< StudentDashboard />} />
+                    <Route exact path='/student/projectproposal' element={<StudentSubmissionDocument />} />
+                    <Route exact path='/student/assignment' element={<UploadInitialEvaluation />} />
+                    <Route exact path='/student/request/supervisor' element={<RequestTopic />} />
+                    <Route exact path='/student/request/cosupervisor' element={<RequestTopicCoSupervisor />} />
+
+                    {/* staff */}
+                    <Route exact path='/signup/staff' element={<StaffSignup />} />
+
+                    {/* supervisor */}
+                    <Route exact path='/supervisor/list/request' element={<GroupRequest />} />
+                    <Route exact path='/supervisor/list/submissions' element={<EvaluationSubmission />} />
+
+                    {/* cosupervisor */}
+                    <Route exact path='/cosupervisor/list/request' element={< GroupRequestCoSupevisor />} />
+
+                    {/* admin */}
+                    <Route exact path='/admin/list/user' element={<UserList />} />
+                    <Route exact path='/admin/list/panel' element={<PanelList />} />
+                    <Route exact path='/admin/panel' element={<PanelAllocation />} />
+                    <Route exact path='/admin/panel/registration' element={<CreatePanel />} />
+                    <Route exact path='/admin/template' element={<CreateTemplate />} />
+                    <Route exact path='/admin/submission' element={<CreateSubmission />} />
+
+                    {/* panel */}
+                    <Route exact path='/panel/email' element={<SendEmail />} />
+                    <Route exact path='/panel/evaluation' element={<Evaluation />} />
+                    <Route exact path='/panel/topic' element={<TopicRequest />} />
+
                 </Routes>
                 <Footer />
             </Router>
