@@ -34,10 +34,10 @@ export const GroupRequest = () => {
 
 
     return (
-  
+
         <div className='body-content-container'>
             <div className="container-border">
-            
+
                 <h2>Once Accepts or Rejects send and email to leader’s email straight away</h2>
                 <br />
                 <hr />
@@ -47,7 +47,7 @@ export const GroupRequest = () => {
                     <div className="col-md-8"></div>
 
                     <div className="col">
-                        <div class="input-group input-group-search">
+                        <div class="search-box">
                             <div className="searchbar">
                                 <form
                                 // onSubmit={(e) => searchRooms(e)}
@@ -56,10 +56,11 @@ export const GroupRequest = () => {
                                         // value={search}
                                         // onChange={(event) => { setSearch(event.target.value) }}
                                         require />
-                                    <button class="pmtbtn search_icon" type="submit" id="submit" name="submit">
-                                        <i class="fa fa-search"></i></button>
+                                    <button className="btn search_icon" type="submit" id="submit" name="submit">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
                                 </form>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -76,17 +77,17 @@ export const GroupRequest = () => {
                     <tbody>
                         {/* return( */}
 
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td className='text'>
-                                    <RippleButton className="ripple-button" text="Accept" onClick={() => openModal()} />
-                                    <RippleButton className="ripple-button-danger" text="Reject" onClick={() => openModalDelete()}/>
-                                </td>
-                            </tr>
-                       {/* ) */}
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td className='text'>
+                                <RippleButton className="ripple-button" text="Accept" onClick={() => openModal()} />
+                                <RippleButton className="ripple-button-danger" text="Reject" onClick={() => openModalDelete()} />
+                            </td>
+                        </tr>
+                        {/* ) */}
                     </tbody>
                 </table>
 
@@ -142,6 +143,6 @@ export const GroupRequest = () => {
             </Modal>
 
         </div >
-        
+
     )
 }

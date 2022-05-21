@@ -1,4 +1,4 @@
-import React, { State } from 'react'
+import React, { useState } from 'react'
 import { RippleButton } from '../../components/RippleButton'
 import { Form, Button, Row, Col, ProgressBar } from 'react-bootstrap'
 
@@ -19,6 +19,7 @@ export const StudentSignUp = () => {
     return (
         <div className='body-content-container'>
             <div className="container-border p-5">
+
                 <h3 className="pb-3">Sign-up Form</h3>
                 <hr></hr>
                 <div className='mt-5'>
@@ -94,6 +95,11 @@ export const StudentSignUp = () => {
 
                     </Form>
                 </div>
+            </div>
+            <div class='box'>
+                <div class='wave -one'></div>
+                <div class='wave -two'></div>
+                <div class='wave -three'></div>
             </div>
         </div >
     )
