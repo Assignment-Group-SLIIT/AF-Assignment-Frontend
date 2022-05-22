@@ -40,3 +40,14 @@ export const deleteGroup = async (id) => {
         return {ok:false, error: message};
     }
 }
+
+export const getOneGroup = async(id) => {
+    try{
+        const response = await API.get(`groups/${id}`);
+        if(response.status === 200){
+            return {ok:true};
+        }
+    }catch(message){
+        return {ok:false, error: message};
+    }
+}
