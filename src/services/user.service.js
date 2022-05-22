@@ -1,7 +1,5 @@
 import API from "./API";
 
-const BASE_URL = PORT + "/users";
-
 export const registerUser = async (userPayload) => {
 
     try {

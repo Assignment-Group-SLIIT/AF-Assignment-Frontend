@@ -6,13 +6,13 @@ export const createTemplate = async (payload) => {
         if (res.status === 201)
             return { ok: true };
     } catch (error) {
-        return { ok: false, err: error.response.data.status };
+        return { ok: false, err: error };
     }
 }
 
 export const getAllTemplate = async () => {
     try {
-        const res = await API.get(`templates/`);
+        const res = await API.get(`templates`);
         if (res.status === 200)
             return { ok: true, data: res.data };
     } catch (error) {
@@ -26,7 +26,7 @@ export const updateTemplate = async (id, payload) => {
         if (res.status === 200)
             return { ok: true };
     } catch (error) {
-        return { ok: false, err: error.response.data.status };
+        return { ok: false, err: error };
     }
 }
 
@@ -36,6 +36,6 @@ export const deleteTemplate = async (id) => {
         if (res.status === 200)
             return { ok: true };
     } catch (error) {
-        return { ok: false, err: error.response.data.status };
+        return { ok: false, err: error };
     }
 }

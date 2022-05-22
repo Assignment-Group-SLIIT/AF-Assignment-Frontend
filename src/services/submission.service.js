@@ -2,40 +2,40 @@ import API from "./API";
 
 export const addSubmission = async (payload) => {
     try {
-        const res = await axios.post(`${PORT}/submissions`, employeePayload);
+        const res = await API.post(`submissions`, payload);
         if (res.status === 201)
             return { ok: true };
     } catch (error) {
-        return { ok: false, err: error.response.data.status };
+        return { ok: false, err: error };
     }
 }
 
 export const getAllSubmissions = async () => {
     try {
-        const res = await axios.get(`${PORT}/submissions`);
+        const res = await API.get(`submissions`);
         if (res.status === 200)
-            return { ok: true };
+            return { ok: true, data: res.data };
     } catch (error) {
-        return { ok: false, err: error.response.data.status };
+        return { ok: false, err: error };
     }
 }
 
 export const updateSubmission = async (id, payload) => {
     try {
-        const res = await axios.put(`${PORT}/submissions/${id}`, payload);
+        const res = await API.put(`submissions/${id}`, payload);
         if (res.status === 200)
             return { ok: true };
     } catch (error) {
-        return { ok: false, err: error.response.data.status };
+        return { ok: false, err: error };
     }
 }
 
 export const deleteSubmission = async (id) => {
     try {
-        const res = await axios.delete(`${PORT}/submissions/${id}`);
+        const res = await API.delete(`submissions/${id}`);
         if (res.status === 200)
             return { ok: true };
     } catch (error) {
-        return { ok: false, err: error.response.data.status };
+        return { ok: false, err: error };
     }
 }
