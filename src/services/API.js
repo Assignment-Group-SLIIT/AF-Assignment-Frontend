@@ -1,5 +1,6 @@
 import axios from 'axios'
 import global from "../config/globals";
+import { getToken } from '../utils/token';
 
 const instance = axios.create({
     //baseURL: proxyurl+apiUrl
@@ -8,10 +9,11 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
     async config => {
-        const token = localStorage.getItem('token')
+
+        const token = getToken();
 
         const headers = {
-            Authorization: `bearer ${token}`,
+            Authorization: 'Bearer' + token,
             'Access-Control-Allow-Origin': "*",
             'Access-Control-Allow-Headers': "Content-Type",
         }

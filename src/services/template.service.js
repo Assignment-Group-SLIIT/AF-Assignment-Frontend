@@ -1,8 +1,8 @@
 import API from "./API";
 
-export const addSubmission = async (payload) => {
+export const createTemplate = async (payload) => {
     try {
-        const res = await API.post(`submissions`, payload);
+        const res = await API.post(`templates`, payload);
         if (res.status === 201)
             return { ok: true };
     } catch (error) {
@@ -10,9 +10,19 @@ export const addSubmission = async (payload) => {
     }
 }
 
-export const getAllSubmissions = async () => {
+export const getAllTemplate = async () => {
     try {
-        const res = await axios.get(`submissions`);
+        const res = await API.get(`templates/`);
+        if (res.status === 200)
+            return { ok: true, data: res.data };
+    } catch (error) {
+        return { ok: false, err: error };
+    }
+}
+
+export const updateTemplate = async (id, payload) => {
+    try {
+        const res = await API.put(`templates/${id}`, payload);
         if (res.status === 200)
             return { ok: true };
     } catch (error) {
@@ -20,19 +30,9 @@ export const getAllSubmissions = async () => {
     }
 }
 
-export const updateSubmission = async (id, payload) => {
+export const deleteTemplate = async (id) => {
     try {
-        const res = await axios.put(`submissions/${id}`, payload);
-        if (res.status === 200)
-            return { ok: true };
-    } catch (error) {
-        return { ok: false, err: error.response.data.status };
-    }
-}
-
-export const deleteSubmission = async (id) => {
-    try {
-        const res = await axios.delete(`submissions/${id}`);
+        const res = await API.delete(`templates/${id}`);
         if (res.status === 200)
             return { ok: true };
     } catch (error) {

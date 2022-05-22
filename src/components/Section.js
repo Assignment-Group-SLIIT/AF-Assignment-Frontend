@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { saveAs } from "file-saver";
 import '../styles/usersList.styles.scss'
+import { getAllTemplate } from '../services/template.service';
 
 export const Section = (props) => {
+
+    useEffect(() => {
+        getAllTemplate().then((res) => {
+            console.log(res)
+        }).catch((err) => {
+            console.log(err)
+        })
+    }, [])
 
     const download = (link) => {
         console.log(link)

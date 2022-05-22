@@ -1,5 +1,4 @@
-import axios from "axios";
-import { PORT } from "../config/globals";
+import API from "./API";
 
 export const addSubmission = async (payload) => {
     try {
