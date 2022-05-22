@@ -1,12 +1,9 @@
-import axios from "axios";
-import { PORT } from "../globals/globals";
-
-const BASE_URL = PORT + "/users";
+import API from "./API";
 
 export const registerUser = async (userPayload) => {
 
     try {
-        const response = await axios.post(BASE_URL + "/register", userPayload);
+        const response = await API.post("register", userPayload);
         return {
             ok: true,
             data: response.data
