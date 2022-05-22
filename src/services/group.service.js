@@ -30,3 +30,13 @@ export const updateGroup = async (id, payload) => {
     }
 }
 
+export const deleteGroup = async (id) => {
+    try{
+        const response = await API.delete(`groups/${id}`);
+        if(response.status === 200){
+            return {ok:true};
+        }
+    }catch(message){
+        return {ok:false, error: message};
+    }
+}
