@@ -3,6 +3,15 @@ import { RippleButton } from '../../components/RippleButton'
 import { Form, Button, Row, Col, ProgressBar } from 'react-bootstrap'
 
 const StudentGroupRegister = () => {
+
+    const [groupId , setGroupId] = useState("");
+    const [student , setStudent] = useState("");
+    const [supervisor , setSupervisor] = useState("");
+    const [coSupervisor , setCoSupervisor] = useState("");
+    const [researchTopic , setResearchTopic] = useState("");
+    const [researchField , setResearchField] = useState("");
+    const [panelNo , setPanelNo] = useState("");
+
     const [step, setStep] = useState(1)
     const [progress, setProgress] = useState(20)
     console.log("stepp>>", step)

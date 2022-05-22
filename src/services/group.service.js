@@ -19,3 +19,14 @@ export const getAllGroup = async() => {
         return {ok: false, error:message}
     }
 }
+
+export const updateGroup = async (id, payload) => {
+    try {
+        const response = await API.put(`groups/${id}`, payload);
+            if(response.status === 200)
+                return {ok: true};
+    }catch(message) {
+        return {ok: false , error: message};
+    }
+}
+
