@@ -17,8 +17,8 @@ function Tables(props) {
             <thead>
                 <tr>
                     <th>Member</th>
-                    <th >Reg No</th>
-                    <th >email</th>
+                    <th>Reg No</th>
+                    <th>Email</th>
                 </tr>
             </thead>
             <tbody>
