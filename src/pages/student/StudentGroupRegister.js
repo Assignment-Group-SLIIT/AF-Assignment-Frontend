@@ -3,7 +3,8 @@ import { RippleButton } from '../../components/RippleButton'
 import { Form, Button, Row, Col, ProgressBar } from 'react-bootstrap'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-
+import { nanoid } from 'nanoid'
+import { createGroup } from '../../services/group.service';
 
 const StudentGroupRegister = () => {
 
@@ -136,7 +137,23 @@ const StudentGroupRegister = () => {
 
         }
 
-        console.log("students>>>", students)
+        const payload = {
+            groupId: nanoid(6),
+            student: students,
+            supervisor: "",
+            coSupervisor: "",
+            researchTopic: "",
+            researchField: "",
+            panelNo: ""
+
+        }
+
+        console.log("students>>>", payload)
+        createGroup(payload).then((res) => {
+            console.log("after group registration>>", res)
+        }).catch((err) => {
+            console.log("error while registering a group>>", err)
+        })
     }
 
     return (

@@ -27,9 +27,6 @@ import UploadInitialEvaluation from '../pages/student/uploadEvaluation'
 import StudentSubmissionDocument from '../pages/student/StudentSubmissionDocument'
 import GroupRequestCoSupevisor from '../pages/co-supervisor/GroupRequest-Co'
 
-
-
-
 export const RoutesComponent = () => {
     return (
         <>
