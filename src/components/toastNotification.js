@@ -46,4 +46,4 @@ const toastNotification = (message, status) => {
     }
 };
 
-export { toastNotification };
+export default toastNotification;

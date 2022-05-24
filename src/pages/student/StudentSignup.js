@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { RippleButton } from '../../components/RippleButton'
 import { Form, Button, Row, Col, ProgressBar } from 'react-bootstrap'
-
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { RippleButton } from '../../components/RippleButton'
+import toastNotification from '../../components/toastNotification';
+
+import { registerUser } from '../../services/user.service';
 
 export const StudentSignUp = () => {
     const [fullName, setFullName] = useState({ value: "", error: "This field cannot be empty", isError: false });
@@ -65,7 +67,7 @@ export const StudentSignUp = () => {
             contactNo: contactNo.value,
             degree: degree.value.name,
             password: password.value,
-            role: "",
+            role: "student",
             groupId: "",
             isAvailable: true,
             department: "",
@@ -74,6 +76,12 @@ export const StudentSignUp = () => {
         if (!fullName.isError && !email.isError && !degree.isError && !studentID.isError && !contactNo.isError && !password.isError && !confirmPassword.isError) {
             if (password.value === confirmPassword.value) {
                 console.log("data>>", payload)
+                registerUser(payload).then((res) => {
+                    res.ok ? toastNotification("Success!", "success") : null
+                }).catch((err) => {
+                    res.ok === false ? toastNotification("Error occured!", "error") : null
+                    console.log("error while student signup", err.error)
+                })
             } else {
                 setConfirmPassword({ ...confirmPassword, isError: true, error: "Passwords are not matching" })
             }
@@ -168,10 +176,10 @@ export const StudentSignUp = () => {
                     </Form>
                 </div>
             </div>
-            <div class='box'>
-                <div class='wave -one'></div>
-                <div class='wave -two'></div>
-                <div class='wave -three'></div>
+            <div className='box'>
+                <div className='wave -one'></div>
+                <div className='wave -two'></div>
+                <div className='wave -three'></div>
             </div>
         </div >
     )
