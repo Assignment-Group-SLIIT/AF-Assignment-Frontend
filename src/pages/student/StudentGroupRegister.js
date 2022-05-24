@@ -37,7 +37,7 @@ const StudentGroupRegister = () => {
     const [emailM3, setEmailM3] = useState("");
 
     const [step, setStep] = useState(1)
-    const [progress, setProgress] = useState(20)
+    const [progress, setProgress] = useState(0)
 
     const specializations = [
         {
@@ -73,32 +73,29 @@ const StudentGroupRegister = () => {
     const increaseStepFunc = () => {
         if (step == 1) {
             setStep(2)
-            setProgress(40)
+            setProgress(25)
 
         } else if (step == 2) {
             setStep(3)
-            setProgress(60)
+            setProgress(50)
         } else if (step == 3) {
             setStep(4)
-            setProgress(80)
+            setProgress(75)
         }
-        else if (step == 4) {
-            setStep(5)
-            setProgress(100)
-        }
+
     }
 
     const previousStepFunc = () => {
         if (step == 2) {
             setStep(1)
-            setProgress(20)
+            setProgress(0)
         } else if (step == 3) {
             setStep(2)
-            setProgress(40)
+            setProgress(25)
         }
         else if (step == 4) {
             setStep(3)
-            setProgress(60)
+            setProgress(50)
         }
     }
 
@@ -151,6 +148,11 @@ const StudentGroupRegister = () => {
         console.log("students>>>", payload)
         createGroup(payload).then((res) => {
             console.log("after group registration>>", res)
+            if (res.ok) {
+                setStep(5)
+                setProgress(100)
+            }
+
         }).catch((err) => {
             console.log("error while registering a group>>", err)
         })
@@ -162,7 +164,7 @@ const StudentGroupRegister = () => {
                 <h3 className="pb-3">Sign-up Form</h3>
                 <hr></hr>
                 <div className="progress mb-5">
-                    <div className="progress-bar" role="progressbar" style={{ width: `${progress}%`, background: "#9D50BB" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="99">{step == 1 ? "Leader" : step == 2 ? "Member 1" : step == 3 ? "Member 2" : step == 4 ? "Member 3" : "Done"}</div>
+                    <div className="progress-bar" role="progressbar" style={{ width: `${progress}%`, background: "#9D50BB" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="99">{progress}%</div>
                 </div>
                 <div className='mt-5'>
                     {step == 1 &&
@@ -316,7 +318,7 @@ const StudentGroupRegister = () => {
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                                     </div>
                                     <div className='ml-3'>
-                                        <h5>Member 1 Details</h5>
+                                        <h5>Member 2 Details</h5>
                                     </div>
                                 </div>
 
@@ -390,7 +392,7 @@ const StudentGroupRegister = () => {
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                                     </div>
                                     <div className='ml-3'>
-                                        <h5>Member 1 Details</h5>
+                                        <h5>Member 3 Details</h5>
                                     </div>
                                 </div>
 
