@@ -3,7 +3,7 @@ import API from "./API";
 export const registerUser = async (userPayload) => {
 
     try {
-        const response = await API.post("register", userPayload);
+        const response = await API.post("/users/register", userPayload);
         return {
             ok: true,
             data: response.data
