@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
+import Tables from "../../../components/Table";
 import "../../../styles/usersList.styles.scss"
 
 
@@ -29,9 +30,9 @@ function ResearchGroup(group) {
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
-                                        Group Name
+                                        Leader Name
                                     </th>
-                                    {group.data.groupId}
+                                    {group.data?.student?.leader?.name}
                                 </tr><tr>
                                     <th class="text-left" scope="row">
                                         Research Field
@@ -62,19 +63,19 @@ function ResearchGroup(group) {
                                     </th>
                                     {group.data.panelNo}
                                 </tr>
-                                <tr>
-                                    <th class="text-left" scope="row">
-                                        Group Members
-                                    </th>
-                                    {group.data?.student?.leader?.name}
-                                </tr>
+
                             </tbody>
                         </table>
+                        <Tables members={group.data} />
+
                     </div>
                 </div>
             </Modal.Body>
         </div>
     )
 }
+
+
+
 
 export default ResearchGroup
