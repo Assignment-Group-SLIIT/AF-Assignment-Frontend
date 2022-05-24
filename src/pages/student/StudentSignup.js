@@ -79,7 +79,7 @@ export const StudentSignUp = () => {
                 registerUser(payload).then((res) => {
                     res.ok ? toastNotification("Success!", "success") : null
                 }).catch((err) => {
-                    res.ok === false ? toastNotification("Error occured!", "error") : null
+                    err.ok === false ? toastNotification("Error occured!", "error") : null
                     console.log("error while student signup", err.error)
                 })
             } else {
