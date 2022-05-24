@@ -4,6 +4,7 @@ import ViewUser from './modals/ViewUser';
 import UpdateUser from './modals/UpdateUser';
 import { RippleButton } from "../../components/RippleButton"
 import '../../styles/usersList.styles.scss'
+import { getAllUsers } from '../../services/user.service';
 
 export const UserList = () => {
 
@@ -22,8 +23,17 @@ export const UserList = () => {
     const [modalLoading, setModalLoading] = useState(false);
     const [refresgPage, setRefreshPage] = useState(false);
 
+    useEffect(() => {
+        getAllUsers().then((response) => {
+            setUserList(response.data.reverse())
+        }).catch((error) => {
+            console.log(error)
+        })
+    },[])
+
+
     const openModal = (user) => {
-        // setData(rental);
+         setData(user);
         handleViewOnClick();
     }
 
@@ -47,6 +57,7 @@ export const UserList = () => {
     }
 
 
+
     return (
         <div className='body-content-container'>
             <Modal
@@ -57,7 +68,7 @@ export const UserList = () => {
                 centered
             >
                 <ViewUser
-                    // data={modalData}
+                     data={modalData}
                     onHide={() => setModalShow(false)}
                 />
             </Modal>
@@ -99,17 +110,21 @@ export const UserList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr >
-
-                            <td onClick={() => openModal()}>data</td>
-                            <td ></td>
-                            <td ></td>
-                            <td></td>
-                            <td>
-                                <RippleButton className="ripple-button" text="Update" onClick={() => openModalUpdate()} />
-                                <RippleButton className="ripple-button-danger" text="Delete" onClick={() => openModalDelete()} />
-                            </td>
-                        </tr>
+                        {usersList.map((user) => {
+                            return(
+                                <tr >
+                                    <td onClick={() => openModal(user)}>{user.fullname}</td>
+                                    <td >{user.email}</td>
+                                    <td >{user.contactNo}</td>
+                                    <td>{user.role}</td>
+                                    <td>
+                                    <RippleButton className="ripple-button" text="Update" onClick={() => openModalUpdate()} />
+                                    <RippleButton className="ripple-button-danger" text="Delete" onClick={() => openModalDelete()} />
+                                    </td>
+                                </tr>
+                            )
+                        })}
+                        
                     </tbody>
                 </table>
             </div>

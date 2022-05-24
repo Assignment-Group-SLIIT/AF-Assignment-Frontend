@@ -123,10 +123,10 @@ const StaffSignup = () => {
                                     }}
                                     >
                                         <option  >Choose</option>
-                                        <option id="admin" >Admin</option>
-                                        <option id="supervisor">Supervisor</option>
-                                        <option id="cosupervisor" >Co-Supervisor</option>
-                                       
+                                        <option id="Admin" >Admin</option>
+                                        <option id="Supervisor">Supervisor</option>
+                                        <option id="Co-Supervisor" >Co-Supervisor</option>
+                                        <option id="Panel" >Panel</option>
                                     </select>
                                     {role.isError && <small className='text-danger'>{role.error}</small>}
 
