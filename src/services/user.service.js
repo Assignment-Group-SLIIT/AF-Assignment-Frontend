@@ -5,23 +5,22 @@ export const registerUser = async (userPayload) => {
 
     try {
         const response = await API.post("users/register", userPayload);
-        return {
-            ok: true,
-            data: response.data
+        if (response.status === 201) {
+            return {
+                ok: true,
+                data: response.data
+            }
         }
     } catch (error) {
-        return {
-            ok: false,
-            error: error.message
-        }
+        return { ok: false, err: error.message }
     }
 
 }
 
-export const signin = async (userPayload) => {
+export const loginUser = async (user) => {
 
     try {
-        const response = await API.post("users/login", userPayload);
+        const response = await API.post("users/login", user)
         if (response.status === 200) {
             setUserSession(response.data.token, response.data)
             return {
@@ -29,12 +28,78 @@ export const signin = async (userPayload) => {
                 data: response.data
             }
         }
-    } catch (error) {
-        return {
-            ok: false,
-            error: error.message
-        }
-    }
 
+    } catch (error) {
+        return { ok: false, err: error.message }
+    }
 }
 
+export const forgetPassword = async (email, newPassword) => {
+    try {
+        const response = await API.put("users/" + email + "/" + newPassword)
+        if (response.status === 200) {
+            return {
+                ok: true,
+                data: response.data
+            }
+        }
+    } catch (error) {
+        return { ok: false, err: error.message }
+    }
+}
+
+export const getAllUsers = async () => {
+    try {
+        const response = await API.get("users/")
+        if (response.status === 200) {
+            return {
+                ok: true,
+                data: response.data
+            }
+        }
+    } catch (error) {
+        return { ok: false, err: error.message }
+    }
+}
+
+export const getOneUser = async (email) => {
+    try {
+        const response = await API.get("users/" + email)
+        if (response.status === 200) {
+            return {
+                ok: true,
+                data: response.data
+            }
+        }
+    } catch (error) {
+        return { ok: false, err: error.message }
+    }
+}
+
+export const updateUser = async (email, updatePayload) => {
+    try {
+        const response = await API.put("users/" + email, updatePayload)
+        if (response.status === 200) {
+            return {
+                ok: true,
+                data: response.data
+            }
+        }
+    } catch (error) {
+        return { ok: false, err: error.message }
+    }
+}
+
+export const deleteUser = async (email) => {
+    try {
+        const response = await API.delete("users/" + email)
+        if (response.status === 204) {
+            return {
+                ok: true,
+                data: "Successfully deleted a user"
+            }
+        }
+    } catch (error) {
+        return { ok: false, err: error.message }
+    }
+}
