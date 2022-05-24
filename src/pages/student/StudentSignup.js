@@ -2,17 +2,53 @@ import React, { useState, useEffect } from 'react'
 import { RippleButton } from '../../components/RippleButton'
 import { Form, Button, Row, Col, ProgressBar } from 'react-bootstrap'
 
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+
 export const StudentSignUp = () => {
     const [fullName, setFullName] = useState({ value: "", error: "This field cannot be empty", isError: false });
     const [email, setEmail] = useState({ value: "", error: "This field cannot be empty", isError: false });
+    const [degree, setDegree] = useState({ value: "", error: "This field cannot be empty", isError: false });
     const [studentID, setStudnetID] = useState({ value: "", error: "This field cannot be empty", isError: false });
     const [contactNo, setContactNo] = useState({ value: "", error: "This field cannot be empty", isError: false });
     const [password, setPassword] = useState({ value: "", error: "This field cannot be empty", isError: false });
     const [confirmPassword, setConfirmPassword] = useState({ value: "", error: "This field cannot be empty", isError: false });
 
+    const degreePrograms = [
+        {
+            id: 0,
+            name: "BSc (Hons) in Information Technology Specializing in Information Technology"
+        },
+        {
+            id: 1,
+            name: "BSc (Hons) in Information Technology Specializing in Computer Systems & Network Engineering"
+        },
+        {
+            id: 2,
+            name: "BSc (Hons) in Information Technology Specializing in Software Engineering"
+        },
+        {
+            id: 3,
+            name: "BSc (Hons) in Information Technology Specializing in Information Systems Engineering"
+        },
+        {
+            id: 4,
+            name: "BSc (Hons) in Information Technology Specializing in Cyber Security"
+        },
+        {
+            id: 5,
+            name: "BSc (Hons) in Information Technology Specializing in Interactive Media"
+        },
+        {
+            id: 6,
+            name: "BSc (Hons) in Information Technology Specializing in Data Science"
+        },
+    ]
+
     useEffect(() => {
         fullName.value === "" ? setFullName({ ...fullName, isError: true }) : setFullName({ ...fullName, isError: false });
         email.value === "" ? setEmail({ ...email, isError: true }) : setEmail({ ...email, isError: false });
+        degree.value === null ? setDegree({ ...degree, isError: true }) : setDegree({ ...degree, isError: false });
         studentID.value === "" ? setStudnetID({ ...studentID, isError: true }) : setStudnetID({ ...studentID, isError: false });
         contactNo.value === "" ? setContactNo({ ...contactNo, isError: true }) : setContactNo({ ...contactNo, isError: false });
         password.value === "" ? setPassword({ ...password, isError: true }) : setPassword({ ...password, isError: false });
@@ -22,8 +58,25 @@ export const StudentSignUp = () => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        if (!fullName.isError && !email.isError && !studentID.isError && !contactNo.isError && !password.isError && !confirmPassword.isError) {
-            console.log("data>>")
+        const payload = {
+            fullname: fullName.value,
+            studentId: studentID.value,
+            email: email.value,
+            contactNo: contactNo.value,
+            degree: degree.value.name,
+            password: password.value,
+            role: "",
+            groupId: "",
+            isAvailable: true,
+            department: "",
+            field: ""
+        }
+        if (!fullName.isError && !email.isError && !degree.isError && !studentID.isError && !contactNo.isError && !password.isError && !confirmPassword.isError) {
+            if (password.value === confirmPassword.value) {
+                console.log("data>>", payload)
+            } else {
+                setConfirmPassword({ ...confirmPassword, isError: true, error: "Passwords are not matching" })
+            }
         }
     }
 
@@ -46,6 +99,27 @@ export const StudentSignUp = () => {
                             <Form.Label>Email</Form.Label>
                             <Form.Control type="email" placeholder="Email" value={email.value} onChange={(e) => setEmail({ ...email, value: e.target.value })} />
                             {email.isError && <small className='text-danger'>{email.error}</small>}
+                        </Form.Group>
+                        <Form.Group className="mb-3" >
+                            <Form.Label>Degree</Form.Label>
+                            <Autocomplete
+
+                                id="panelmember1"
+                                options={degreePrograms}
+                                renderInput={params => (
+                                    <TextField {...params} variant="outlined" />
+                                )}
+
+                                getOptionSelected={(option, value) => option.id === value.id}
+                                getOptionLabel={option => option.name || ""}
+                                value={degree.value}
+                                onChange={(_event, name) => {
+                                    setDegree({ ...degree, value: name });
+                                }}
+                                size="small"
+
+                            />
+                            {degree.isError && <small className='text-danger'>{degree.error}</small>}
                         </Form.Group>
                         <Form.Group className="mb-3" >
                             <Row>
