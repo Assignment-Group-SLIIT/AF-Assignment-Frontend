@@ -4,10 +4,17 @@ import { FormSection } from "../../../components/FormSection";
 import { RippleButton } from "../../../components/RippleButton";
 import toastNotification from "../../../components/toastNotification";
 import { updateGroup } from "../../../services/group.service";
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
 import "../../../styles/usersList.styles.scss"
+import { getAllPanels } from "../../../services/panel.service";
 
 function UpdateRGPanel(group) {
 
+    const panelOption = [];
+    const [panelOptions, setPanelOptions] = useState([]);
+    const [panelListOptions, setPanelListOptions] = useState([]);
+    const [state, setState] = useState(false);
 
     const [groupID, setGroupID] = useState("");
     const [leader, setLeader] = useState("");
@@ -16,6 +23,7 @@ function UpdateRGPanel(group) {
     const [supervisor, setSupervisor] = useState("");
     const [cosupervisor, setCoSupervisor] = useState("");
     const [panel, setPanel] = useState("");
+
 
 
     useEffect(() => {
@@ -27,7 +35,39 @@ function UpdateRGPanel(group) {
         setCoSupervisor(group.data.coSupervisor)
         setPanel(group.data.panelNo)
 
+        getAllPanels().then(res => {
+            console.log(res.data)
+            if (res.ok) {
+                setPanelListOptions(res.data)
+                setState(true)
+            } else {
+                toastNotification("Cannot load the panels to allocate", "warn")
+            }
+
+        }).catch(err => {
+            toastNotification("Error", "error")
+        })
+
     }, [])
+
+    useEffect(() => {
+        setPanelOptions(createPanelMembers())
+    }, [state])
+
+    const createPanelMembers = () => {
+        let value = -1;
+        panelListOptions.map(panel => {
+            value = Number(value + 1)
+            let pMember = {
+                id: value,
+                name: String(panel.panelNumber)
+            }
+            panelOption.push(pMember);
+
+        })
+        return panelOption;
+    }
+
 
 
     const allocatePanel = (e) => {
@@ -40,7 +80,7 @@ function UpdateRGPanel(group) {
             coSupervisor: cosupervisor,
             researchTopic: topic,
             researchField: field,
-            panelNo: panel
+            panelNo: panel.name
         }
 
 
@@ -139,14 +179,28 @@ function UpdateRGPanel(group) {
                             <div class="row">
                                 <div class="col">
                                     <label className="form-pad" for="panel">Panel</label>
-                                    <select class="form-select" className="form-control" name="panel" id="panel" value={panel} onChange={(e) => { setPanel(e.target.value) }}>
+                                    {/* <select class="form-select" className="form-control" name="panel" id="panel" value={panel} onChange={(e) => { setPanel(e.target.value) }}>
                                         <option  >Select Panel</option>
                                         <option id="001" >Panel One</option>
                                         <option id="002" >Panel Two</option>
                                         <option id="003" >Panel Three</option>
                                         <option id="004" >Panel Four</option>
                                         <option id="005" >Panel Five</option>
-                                    </select>
+                                    </select> */}
+                                    <Autocomplete
+                                        id="panel"
+                                        options={panelOptions}
+                                        renderInput={params => (
+                                            <TextField {...params} variant="outlined" />
+                                        )}
+                                        getOptionSelected={(option, value) => option.id === value.id}
+                                        getOptionLabel={option => option.name || ""}
+                                        value={panel}
+                                        onChange={(_event, panel) => {
+                                            setPanel(panel);
+                                        }}
+                                        size="small"
+                                    />
                                 </div>
 
 

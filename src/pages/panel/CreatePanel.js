@@ -6,7 +6,7 @@ import '../../styles/usersList.styles.scss'
 import { nanoid } from 'nanoid'
 import { getAllUsers } from '../../services/user.service';
 import { createPanel } from '../../services/panel.service';
-import { toastNotification } from '../../components/toastNotification'
+import toastNotification from '../../components/toastNotification';
 
 export const CreatePanel = () => {
 
@@ -14,8 +14,8 @@ export const CreatePanel = () => {
     const [panelMembers, setPanelMembers] = useState([]);
 
     const [field, setField] = useState("");
+    const [state, setState] = useState(false);
     const [panelList, setPanelList] = useState([]);
-    const [panelId, setPanelId] = useState(null);
     const [panelNumber, setPanelNumber] = useState(null);
     const [selectedMember1, setSelectedMember1] = useState(null);
     const [selectedMember2, setSelectedMember2] = useState(null);
@@ -32,6 +32,9 @@ export const CreatePanel = () => {
                         el.role == 'Panel'
                     )
                 }));
+
+                setState(true)
+
             } else {
                 toastNotification("Cannot load the panel members", "warn")
             }
@@ -42,7 +45,7 @@ export const CreatePanel = () => {
 
     useEffect(() => {
         setPanelMembers(createPanelMembers())
-    }, [panelList])
+    }, [state])
 
     const createPanelMembers = () => {
         let value = -1;
@@ -62,23 +65,25 @@ export const CreatePanel = () => {
 
 
 
-    const createPanel = (e) => {
+    const createNewPanel = (e) => {
 
         e.preventDefault()
 
         const panel = {
             panelId: nanoid(4),
             panelNumber: panelNumber,
-            member1: selectedMember1,
-            member2: selectedMember2,
-            member3: selectedMember3,
-            member4: selectedMember4,
+            member1: selectedMember1.name,
+            member2: selectedMember2.name,
+            member3: selectedMember3.name,
+            member4: selectedMember4.name,
             FieldOfInterest: field,
         }
 
+
         createPanel(panel).then(response => {
+            // console.log(response)
             if (response.ok) {
-                console.log(response)
+                // console.log(response)
                 toastNotification("Successfully created a panel", "success")
             } else {
                 toastNotification("Could not create a panel", "warn")
@@ -217,7 +222,7 @@ export const CreatePanel = () => {
                     <br></br>
                     <div className="row mb-4">
                         <div className="col py-3 text-center">
-                            <RippleButton className="ripple-button" text="Create" onClick={(e) => { createPanel(e) }} />
+                            <RippleButton className="ripple-button" text="Create" onClick={(e) => { createNewPanel(e) }} />
 
                         </div>
                         <div className="col py-3 text-center">

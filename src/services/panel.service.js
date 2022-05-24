@@ -15,3 +15,20 @@ export const createPanel = async (userPayload) => {
     }
 
 }
+
+export const getAllPanels = async () => {
+
+    try {
+        const response = await API.get("panels/");
+        if (response.status === 200) {
+            return {
+                ok: true,
+                data: response.data
+            }
+        }
+    } catch (error) {
+        return { ok: false, err: error.message }
+    }
+
+}
+

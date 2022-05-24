@@ -62,6 +62,12 @@ function ResearchGroup(group) {
                                     </th>
                                     {group.data.panelNo}
                                 </tr>
+                                <tr>
+                                    <th class="text-left" scope="row">
+                                        Group Members
+                                    </th>
+                                    {group.data?.student?.leader?.name}
+                                </tr>
                             </tbody>
                         </table>
                     </div>
