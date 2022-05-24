@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { RippleButton } from '../../components/RippleButton'
 import { registerUser } from '../../services/user.service';
-import { toastNotification } from '../../components/toastNotification';
+import toastNotification from '../../components/toastNotification';
 
 const StaffSignup = () => {
 
-    let history = useNavigate();
+    let navigate = useNavigate();
 
     const [fullname , setFullname] = useState({ value: "", error: "This field cannot be empty", isError: false });
     const [email , setEmail] =useState({ value: "", error: "This field cannot be empty", isError: false });
@@ -50,13 +50,14 @@ const StaffSignup = () => {
                     console.log("data>>", userPayload)
                     registerUser(userPayload).then((res) => {
                         res.ok ? toastNotification("Staff Profile create Successfully", "success") : null
-                        // useNavigate('/login')
+                        navigate('/login')
                     }).catch((err) => {
                         err.ok === false ? toastNotification("Error occured!", "error") : null
                         console.log("error while staff signup", err.error)
                     })
                 } else {
                     setConfirmPassword({ ...confirmPassword, isError: true, error: "Passwords are not matching" })
+                    toastNotification("Passwords are not matching", "error")
                 }
             }
         }
