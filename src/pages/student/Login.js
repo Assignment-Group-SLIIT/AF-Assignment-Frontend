@@ -26,10 +26,10 @@ const Signup = () => {
         if (!userName.isError && !password.isError) {
             signin(payload).then((res) => {
                 console.log("after sign in >>", res)
-                res.ok ? toastNotification("Success!", "success") : toastNotification("Error occured!", "error")
+                res.ok ? toastNotification("Success!", "success") : toastNotification("Username or Password is incorrect!", "error")
             }).catch((err) => {
                 console.log("error while sign in >>", err.ok)
-                err.ok === false ? toastNotification("Error occured!", "error") : null
+                err.ok === false ? toastNotification("Username or Password is incorrect!", "error") : null
 
             })
         }
