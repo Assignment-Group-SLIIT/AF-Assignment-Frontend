@@ -92,7 +92,7 @@ export const StudentSignUp = () => {
                     res.ok ? toastNotification("Success!", "success") : null
                     navigate("/login")
                 }).catch((err) => {
-                    res.ok === false ? toastNotification("Error occured!", "error") : null
+                    err.ok === false ? toastNotification("Error occured!", "error") : null
                     console.log("error while student signup", err.error)
                 })
             } else {
