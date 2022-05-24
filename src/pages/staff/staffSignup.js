@@ -124,17 +124,10 @@ const StaffSignup = () => {
                                         }}
                                     >
                                         <option  >Choose</option>
-<<<<<<< HEAD
                                         <option id="Admin" >Admin</option>
                                         <option id="Supervisor">Supervisor</option>
                                         <option id="Co-Supervisor" >Co-Supervisor</option>
                                         <option id="Panel" >Panel</option>
-=======
-                                        <option id="admin" >Admin</option>
-                                        <option id="supervisor">Supervisor</option>
-                                        <option id="cosupervisor" >Co-Supervisor</option>
-
->>>>>>> 5bddb9124f7e1371cc4a1ec5d474e02a954847fb
                                     </select>
                                     {role.isError && <small className='text-danger'>{role.error}</small>}
 

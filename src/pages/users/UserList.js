@@ -50,7 +50,7 @@ export const UserList = () => {
     const openModalUpdate = (user) => {
 
         console.log("request came for modal updateeeeeee");
-        // setModalDataUpdate(data);
+        setModalDataUpdate(user);
         setModalUpdate(true);
 
     }
@@ -128,7 +128,7 @@ export const UserList = () => {
                                     <td >{user.contactNo}</td>
                                     <td>{user.role}</td>
                                     <td>
-                                    <RippleButton className="ripple-button" text="Update" onClick={() => openModalUpdate()} />
+                                    <RippleButton className="ripple-button" text="Update" onClick={() => openModalUpdate(user)} />
                                     <RippleButton className="ripple-button-danger" text="Delete" onClick={() => openModalDelete(user)} />
                                     </td>
                                 </tr>

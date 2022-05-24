@@ -4,7 +4,7 @@ import '../../../styles/usersList.styles.scss'
 
 function ViewUser(user) {
 
-    console.log("model openingggg", user)
+    console.log("model openingggg", user.data.fullname)
 
     return (
         <div>
