@@ -10,10 +10,11 @@ export const Navigationbar = () => {
                     className="navbar navbar-expand-lg fixed-top"
                 >
                     <div className="container-fluid">
-                        <a className="navbar-brand js-scroll-trigger" href="/home">
-                            <h2 className='text-light'>Research Portal</h2>
-
-                        </a>
+                        <Link to="/home">
+                            <a className="navbar-brand js-scroll-trigger">
+                                <h2 className='text-light'>Research Portal</h2>
+                            </a>
+                        </Link>
                         <button
                             className="navbar-toggler"
                             type="button"
@@ -42,19 +43,18 @@ export const Navigationbar = () => {
                             </ul>
                             <ul class="navbar-nav ml-auto ">
                                 <li class="nav-item">
-                                    <Link to="/">
+                                    <Link to="/login">
                                         <button class="btn btn-text">
                                             login
                                         </button>
                                     </Link>
                                 </li>
                                 <li class="nav-item">
-                                    <button class="btn btn-text"
-                                        onClick={() => {
-                                        }}
-                                    >
-                                        register
-                                    </button>
+                                    <Link to="/signup/student">
+                                        <button class="btn btn-text">
+                                            register
+                                        </button>
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
