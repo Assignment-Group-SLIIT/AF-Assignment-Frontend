@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { RippleButton } from '../../components/RippleButton'
 
 const StaffSignup = () => {
+
+    let history = useNavigate();
+
+    const [fullName , setFullName] = useState("");
+    const [email , setEmail] =useState("");
+    const [contactNo , setContactNo] = useState("");
+    const [role , setRole] = useState("");
+    const [password, setPassword] =useState("");
+    const [department , setDepartment] = useState("");
+    const [field , setField] = useState("");
+
+
     return (
         <div className='body-content-container'>
             <div className="container-border p-5">
@@ -10,26 +23,29 @@ const StaffSignup = () => {
                 <hr></hr>
                 <div className='mt-5'>
                     <Form>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3">
                             <Row>
                                 <Col>
-                                    <Form.Label>First Name</Form.Label>
-                                    <Form.Control type="text" placeholder="First Name" />
+                                    <Form.Label>Full Name</Form.Label>
+                                    <Form.Control 
+                                        type="text" 
+                                        placeholder="Full Name" 
+                                        value={fullName}
+                                        onChange={(e) => {setFullName(e.target.value)}}
+                                        required
+                                        />
                                 </Col>
-                                <Col>
-                                    <Form.Label>Last Name</Form.Label>
-                                    <Form.Control type="text" placeholder="Last Name" />
-                                </Col>
+
                             </Row>
 
 
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3">
                             <Form.Label>Email</Form.Label>
                             <Form.Control type="email" placeholder="Email" />
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3" >
                             <Row>
                                 <Col>
                                     <Form.Label>Contact Number</Form.Label>
@@ -45,16 +61,16 @@ const StaffSignup = () => {
                                     // }}
                                     >
                                         <option  >Choose</option>
-                                        <option id="Single" >Single</option>
-                                        <option id="Double">Double</option>
-                                        <option id="Family" >Family</option>
-                                        <option id="Luxuary" >Luxuary</option>
+                                        <option id="admin" >Admin</option>
+                                        <option id="supervisor">Supervisor</option>
+                                        <option id="cosupervisor" >Co-Supervisor</option>
+                                       
                                     </select>
                                 </Col>
                             </Row>
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3">
                             <Row>
                                 <Col>
                                     <Form.Label>Password</Form.Label>
@@ -69,11 +85,7 @@ const StaffSignup = () => {
 
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Password" />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3">
                             <Row>
                                 <Col>
                                     <Form.Label>Department</Form.Label>
