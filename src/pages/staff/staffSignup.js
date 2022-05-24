@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { RippleButton } from '../../components/RippleButton'
 import { registerUser } from '../../services/user.service';
+import { toastNotification } from '../../components/toastNotification';
 
 const StaffSignup = () => {
 
@@ -34,18 +35,26 @@ const StaffSignup = () => {
             registerUser(userPayload).then((response) => {
                 console.log("response", response);
                 if(response.ok) {
-                    alert("User Profile created successfully!!!")
+                    const message = "User profile created successfully!!!";
+                    const status = "success";
+                    toastNotification(message , status);
                     history('/login')
                   
                 }else{
-                    alert("Something went wrong")
+                    const message = "Something went wrong";
+                    const status = "error";
+                    toastNotification(message , status);
                 }
 
             }).catch((error) => {
-                alert("Something went wrong wrong")
+                const message = "Something went wrong";
+                const status = "error";
+                toastNotification(message , status);
             })
         }else{
-            alert("Password did not match")
+            const message = "Password did not match";
+            const status = "error";
+            toastNotification(message , status);
         }
     }
 
