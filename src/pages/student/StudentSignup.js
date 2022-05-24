@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { Form, Button, Row, Col, ProgressBar } from 'react-bootstrap'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -8,10 +9,13 @@ import toastNotification from '../../components/toastNotification';
 import { registerUser } from '../../services/user.service';
 
 export const StudentSignUp = () => {
+
+    const navigate = useNavigate();
+
     const [fullName, setFullName] = useState({ value: "", error: "This field cannot be empty", isError: false });
     const [email, setEmail] = useState({ value: "", error: "This field cannot be empty", isError: false });
     const [degree, setDegree] = useState({ value: "", error: "This field cannot be empty", isError: false });
-    const [studentID, setStudnetID] = useState({ value: "", error: "This field cannot be empty", isError: false });
+    const [studentID, setStudentID] = useState({ value: "", error: "This field cannot be empty", isError: false });
     const [contactNo, setContactNo] = useState({ value: "", error: "This field cannot be empty", isError: false });
     const [password, setPassword] = useState({ value: "", error: "This field cannot be empty", isError: false });
     const [confirmPassword, setConfirmPassword] = useState({ value: "", error: "This field cannot be empty", isError: false });
@@ -48,10 +52,11 @@ export const StudentSignUp = () => {
     ]
 
     useEffect(() => {
+
         fullName.value === "" ? setFullName({ ...fullName, isError: true }) : setFullName({ ...fullName, isError: false });
         email.value === "" ? setEmail({ ...email, isError: true }) : setEmail({ ...email, isError: false });
         degree.value === null ? setDegree({ ...degree, isError: true }) : setDegree({ ...degree, isError: false });
-        studentID.value === "" ? setStudnetID({ ...studentID, isError: true }) : setStudnetID({ ...studentID, isError: false });
+        studentID.value === "" ? setStudentID({ ...studentID, isError: true }) : setStudentID({ ...studentID, isError: false });
         contactNo.value === "" ? setContactNo({ ...contactNo, isError: true }) : setContactNo({ ...contactNo, isError: false });
         password.value === "" ? setPassword({ ...password, isError: true }) : setPassword({ ...password, isError: false });
         confirmPassword.value === "" ? setConfirmPassword({ ...confirmPassword, isError: true }) : setConfirmPassword({ ...confirmPassword, isError: false });
@@ -77,7 +82,15 @@ export const StudentSignUp = () => {
             if (password.value === confirmPassword.value) {
                 console.log("data>>", payload)
                 registerUser(payload).then((res) => {
+                    setFullName({ ...fullName, value: "" })
+                    setEmail({ ...email, value: "" })
+                    setDegree({ ...degree, value: "" })
+                    setStudentID({ ...studentID, value: "" })
+                    setContactNo({ ...contactNo, value: "" })
+                    setPassword({ ...password, value: "" })
+                    setConfirmPassword({ ...confirmPassword, value: "" })
                     res.ok ? toastNotification("Success!", "success") : null
+                    navigate("/login")
                 }).catch((err) => {
                     err.ok === false ? toastNotification("Error occured!", "error") : null
                     console.log("error while student signup", err.error)
@@ -133,7 +146,7 @@ export const StudentSignUp = () => {
                             <Row>
                                 <Col>
                                     <Form.Label>Student Registration No</Form.Label>
-                                    <Form.Control type="text" placeholder="ITxxxxxxxx" value={studentID.value} onChange={(e) => setStudnetID({ ...studentID, value: e.target.value })} />
+                                    <Form.Control type="text" placeholder="ITxxxxxxxx" value={studentID.value} onChange={(e) => setStudentID({ ...studentID, value: e.target.value })} />
                                     {studentID.isError && <small className='text-danger'>{studentID.error}</small>}
                                 </Col>
                                 <Col>
