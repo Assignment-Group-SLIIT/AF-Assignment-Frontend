@@ -45,7 +45,6 @@ const StaffSignup = () => {
             field: field.value,
 
         }
-
         if (!fullname.isError && !email.isError && !field.isError && !department.isError && !contactNo.isError && !password.isError && !confirmPassword.isError && !role.isError) {
             if (password.value === confirmPassword.value) {
                 console.log("data>>", userPayload)
@@ -195,9 +194,22 @@ const StaffSignup = () => {
                         <Form.Group className="mb-3" controlId="formBasicCheckbox">
                             <Form.Check type="checkbox" label="I accepts the terms and conditions" />
                         </Form.Group>
-                        <RippleButton className="ripple-button" text="submit" onClick={(e) => { onSubmit(e) }} />
+                        <Row>
+                            <Col>
+                            </Col>
+                            <Col className='text-center'>
+                                <RippleButton className="ripple-button" text="submit" onClick={(e) => { onSubmit(e) }} />
+                            </Col>
+                            <Col>
+                            </Col>
+                        </Row>
                     </Form>
                 </div>
+            </div>
+            <div className='box'>
+                <div className='wave -one'></div>
+                <div className='wave -two'></div>
+                <div className='wave -three'></div>
             </div>
         </div >
     )

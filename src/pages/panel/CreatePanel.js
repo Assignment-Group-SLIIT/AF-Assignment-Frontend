@@ -3,7 +3,10 @@ import { RippleButton } from "../../components/RippleButton";
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import '../../styles/usersList.styles.scss'
+import { nanoid } from 'nanoid'
 import { getAllUsers } from '../../services/user.service';
+import { createPanel } from '../../services/panel.service';
+import { toastNotification } from '../../components/toastNotification'
 
 export const CreatePanel = () => {
 
@@ -12,6 +15,7 @@ export const CreatePanel = () => {
 
     const [field, setField] = useState("");
     const [panelList, setPanelList] = useState([]);
+    const [panelId, setPanelId] = useState(null);
     const [panelNumber, setPanelNumber] = useState(null);
     const [selectedMember1, setSelectedMember1] = useState(null);
     const [selectedMember2, setSelectedMember2] = useState(null);
@@ -63,14 +67,26 @@ export const CreatePanel = () => {
         e.preventDefault()
 
         const panel = {
-            panelId,
-            panelNumber,
-            selectedMember1,
-            selectedMember2,
-            selectedMember3,
-            selectedMember4,
-            field,
+            panelId: nanoid(4),
+            panelNumber: panelNumber,
+            member1: selectedMember1,
+            member2: selectedMember2,
+            member3: selectedMember3,
+            member4: selectedMember4,
+            FieldOfInterest: field,
         }
+
+        createPanel(panel).then(response => {
+            if (response.ok) {
+                console.log(response)
+                toastNotification("Successfully created a panel", "success")
+            } else {
+                toastNotification("Could not create a panel", "warn")
+            }
+        }).catch(err => {
+            toastNotification("Error", "error")
+        })
+
 
     }
 
@@ -99,7 +115,7 @@ export const CreatePanel = () => {
                     <div class="row">
                         <div class="col-6">
                             <label className="form-pad" for="panelNo">Panel Number</label>
-                            <input type="number" class="form-control" id="panelNo" placeholder="Panel ID" onChange={(e) => { setPanelID(e.target.value) }} />
+                            <input type="number" class="form-control" id="panelNo" placeholder="Panel ID" onChange={(e) => { setPanelNumber(e.target.value) }} />
                         </div>
                         <div class="col-6">
                             <label className="form-pad" for="field">Field of Interest</label>
