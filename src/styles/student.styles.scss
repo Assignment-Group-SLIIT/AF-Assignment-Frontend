@@ -1,15 +1,15 @@
 .form-control:focus {
-    color: #495057;
+    color: #000000;
     background-color: #fff;
     border-color: rgb(239, 197, 255) !important;
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(234, 221, 236, 0.25) !important;
     caret-color: rgb(180, 64, 223) !important;
-    caret: underscore;
 }
 
 .form-control:not(active) {
-    color: white;
+    // color: white;
+    color: #495057;
     border-color: rgb(224, 187, 237);
 }
 

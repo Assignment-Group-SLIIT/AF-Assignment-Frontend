@@ -2,7 +2,10 @@ import React, { useState, Component } from 'react'
 // import { DropzoneArea } from 'material-ui-dropzone'
 import { DropzoneDialog } from 'material-ui-dropzone'
 import Button from '@material-ui/core/Button';
-import { RippleButton } from './RippleButton';
+
+import { storage } from '../firebase';
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { toastNotification } from './toastNotification';
 
 
 function DropzoneArea(props) {
@@ -38,26 +41,36 @@ function DropzoneArea(props) {
         props.sendData(data);
     }
 
+    const handleSubmit = (e) => {
+        // e.preventDefault()
+        console
+        const file = files[0];
 
-    const onFileUpload = () => {
-        console.log("Method called2", files[0])
-        const uploadFile = files[0];
-        console.log("Method called3", uploadFile.path)
-        // Create an object of formData
-        let formData = new FormData();
+        if (!file) return;
 
-        // Update the formData object
-        formData.append("file", uploadFile, uploadFile.name);
+        const storageRef = ref(storage, `files/${file.name}`);
+        const uploadTask = uploadBytesResumable(storageRef, file);
 
-        // Details of the uploaded file
-        console.log(formData.get('file'));
+        uploadTask.on("state_changed",
+            (snapshot) => {
+                const progress =
+                    Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                console.log("upload progress>>", progress)
+                // setProgresspercent(progress);
+            },
+            (error) => {
+                toastNotification("Error while uploading your file", "error")
 
-        sendData(formData.get('file'))
-        setOpen(false)
-        // Request made to the backend api
-        // Send formData object
-        // axios.post("api/uploadfile", formData);
-    };
+            },
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    console.log("url>>>", downloadURL);
+                    sendData(downloadURL)
+                    toastNotification("File uploaded successfully!", "success")
+                });
+            }
+        );
+    }
 
 
     return (
@@ -71,7 +84,8 @@ function DropzoneArea(props) {
 
             <DropzoneDialog
                 open={open}
-                onSave={() => { onFileUpload() }}
+                // onSave={() => { onFileUpload() }}
+                onSave={(e) => { handleSubmit(e) }}
                 // acceptedFiles={['/doc', '*/csv', 'lab-assessment/pdf']}
 
                 onDrop={(e) => { handleSave(e) }}
