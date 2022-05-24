@@ -9,14 +9,14 @@ const StaffSignup = () => {
 
     let history = useNavigate();
 
-    const [fullname , setFullname] = useState("");
-    const [email , setEmail] =useState("");
-    const [contactNo , setContactNo] = useState("");
-    const [role , setRole] = useState("");
-    const [password, setPassword] =useState("");
-    const [confirmPassword , setConfirmPassword] = useState("");
-    const [department , setDepartment] = useState("");
-    const [field , setField] = useState("");
+    const [fullname , setFullname] = useState({ value: "", error: "This field cannot be empty", isError: false });
+    const [email , setEmail] =useState({ value: "", error: "This field cannot be empty", isError: false });
+    const [contactNo , setContactNo] = useState({ value: "", error: "This field cannot be empty", isError: false });
+    const [role , setRole] = useState({ value: "", error: "This field cannot be empty", isError: false });
+    const [password, setPassword] =useState({ value: "", error: "This field cannot be empty", isError: false });
+    const [confirmPassword , setConfirmPassword] = useState({ value: "", error: "This field cannot be empty", isError: false });
+    const [department , setDepartment] = useState({ value: "", error: "This field cannot be empty", isError: false });
+    const [field , setField] = useState({ value: "", error: "This field cannot be empty", isError: false });
 
     const onSubmit = (e) => {
         e.preventDefault();
