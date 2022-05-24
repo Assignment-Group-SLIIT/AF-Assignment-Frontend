@@ -1,63 +1,66 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { RippleButton } from '../../components/RippleButton'
 import { registerUser } from '../../services/user.service';
-import { toastNotification } from '../../components/toastNotification';
+import toastNotification from '../../components/toastNotification';
 
 const StaffSignup = () => {
 
-    let history = useNavigate();
+    let navigate = useNavigate();
 
-    const [fullname , setFullname] = useState("");
-    const [email , setEmail] =useState("");
-    const [contactNo , setContactNo] = useState("");
-    const [role , setRole] = useState("");
-    const [password, setPassword] =useState("");
-    const [confirmPassword , setConfirmPassword] = useState("");
-    const [department , setDepartment] = useState("");
-    const [field , setField] = useState("");
+    const [fullname , setFullname] = useState({ value: "", error: "This field cannot be empty", isError: false });
+    const [email , setEmail] =useState({ value: "", error: "This field cannot be empty", isError: false });
+    const [contactNo , setContactNo] = useState({ value: "", error: "This field cannot be empty", isError: false });
+    const [role , setRole] = useState({ value: "", error: "This field cannot be empty", isError: false });
+    const [password, setPassword] =useState({ value: "", error: "This field cannot be empty", isError: false });
+    const [confirmPassword , setConfirmPassword] = useState({ value: "", error: "This field cannot be empty", isError: false });
+    const [department , setDepartment] = useState({ value: "", error: "This field cannot be empty", isError: false });
+    const [field , setField] = useState({ value: "", error: "This field cannot be empty", isError: false });
+
+    useEffect(() => {
+        fullname.value === "" ? setFullname({ ...fullname, isError: true }) : setFullname({ ...fullname, isError: false });
+        email.value === "" ? setEmail({ ...email, isError: true }) : setEmail({ ...email, isError: false });
+        contactNo.value === "" ? setContactNo({ ...contactNo, isError: true }) : setContactNo({ ...contactNo, isError: false });
+        role.value === "" ? setRole({ ...role, isError: true }) : setRole({ ...role, isError: false });
+        password.value === "" ? setPassword({ ...password, isError: true }) : setPassword({ ...password, isError: false });
+        confirmPassword.value === "" ? setConfirmPassword({ ...confirmPassword, isError: true }) : setConfirmPassword({ ...confirmPassword, isError: false });
+        department.value === "" ? setDepartment({ ...department, isError: true }) : setDepartment({ ...department, isError: false });
+        field.value === "" ? setField({ ...field, isError: true }) : setField({ ...field, isError: false });
+
+
+    }, [fullname.value, email.value, contactNo.value,role.value, password.value, confirmPassword.value , department.value, field.value]);
+
 
     const onSubmit = (e) => {
         e.preventDefault();
-        if(password === confirmPassword){
+
             const userPayload = {
-                fullname,
-                email,
-                contactNo,
-                role,
-                password,
-                department,
-                field
+                fullname: fullname.value,
+                email: email.value,
+                contactNo: contactNo.value,
+                role: role.value,
+                password:password.value,
+                department:department.value,
+                field:field.value,
+
             }
-            console.log("staff data" , userPayload);
-
-            registerUser(userPayload).then((response) => {
-                console.log("response", response);
-                if(response.ok) {
-                    const message = "User profile created successfully!!!";
-                    const status = "success";
-                    toastNotification(message , status);
-                    history('/login')
-                  
-                }else{
-                    const message = "Something went wrong";
-                    const status = "error";
-                    toastNotification(message , status);
+            if (!fullname.isError && !email.isError && !field.isError && !department.isError && !contactNo.isError && !password.isError && !confirmPassword.isError && !role.isError) {
+                if (password.value === confirmPassword.value) {
+                    console.log("data>>", userPayload)
+                    registerUser(userPayload).then((res) => {
+                        res.ok ? toastNotification("Staff Profile create Successfully", "success") : null
+                        navigate('/login')
+                    }).catch((err) => {
+                        err.ok === false ? toastNotification("Error occured!", "error") : null
+                        console.log("error while staff signup", err.error)
+                    })
+                } else {
+                    setConfirmPassword({ ...confirmPassword, isError: true, error: "Passwords are not matching" })
+                    toastNotification("Passwords are not matching", "error")
                 }
-
-            }).catch((error) => {
-                const message = "Something went wrong";
-                const status = "error";
-                toastNotification(message , status);
-            })
-        }else{
-            const message = "Password did not match";
-            const status = "error";
-            toastNotification(message , status);
+            }
         }
-    }
-
 
     return (
         <div className='body-content-container'>
@@ -73,10 +76,11 @@ const StaffSignup = () => {
                                     <Form.Control 
                                         type="text" 
                                         placeholder="Full Name" 
-                                        value={fullname}
-                                        onChange={(e) => {setFullname(e.target.value)}}
+                                        value={fullname.value}
+                                        onChange={(e) => {setFullname({...fullname, value:e.target.value})}}
                                         required
                                         />
+                                        {fullname.isError && <small className='text-danger'>{fullname.error}</small>}
                                 </Col>
 
                             </Row>
@@ -88,10 +92,11 @@ const StaffSignup = () => {
                             <Form.Control 
                                 type="email" 
                                 placeholder="Email"
-                                value={email}
-                                onChange={(e) => {setEmail(e.target.value)}}
+                                value={email.value}
+                                onChange={(e) => {setEmail({...email, value:e.target.value})}}
                                 required
                                 /> 
+                                {email.isError && <small className='text-danger'>{email.error}</small>}
                         </Form.Group>
 
                         <Form.Group className="mb-3" >
@@ -101,10 +106,11 @@ const StaffSignup = () => {
                                     <Form.Control 
                                         type="text" 
                                         placeholder="ContactNumber"
-                                        value={contactNo}
-                                        onChange={(e) => {setContactNo(e.target.value)}}
+                                        value={contactNo.value}
+                                        onChange={(e) => {setContactNo({...contactNo, value:e.target.value})}}
                                         required
                                         />
+                                        {contactNo.isError && <small className='text-danger'>{contactNo.error}</small>}
                                 </Col>
                                 <Col>
                                     <Form.Label>Role</Form.Label>
@@ -112,8 +118,8 @@ const StaffSignup = () => {
                                         name="role" 
                                         id="role" 
                                         required
-                                        value={role}
-                                        onChange={(e) => {setRole(e.target.value);
+                                        value={role.value}
+                                        onChange={(e) => {setRole({...role, value:e.target.value});
                                     }}
                                     >
                                         <option  >Choose</option>
@@ -122,6 +128,8 @@ const StaffSignup = () => {
                                         <option id="cosupervisor" >Co-Supervisor</option>
                                        
                                     </select>
+                                    {role.isError && <small className='text-danger'>{role.error}</small>}
+
                                 </Col>
                             </Row>
                         </Form.Group>
@@ -133,20 +141,22 @@ const StaffSignup = () => {
                                     <Form.Control 
                                         type="password" 
                                         placeholder="Password"
-                                        value={password}
-                                        onChange={(e) => {setPassword(e.target.value)}}
+                                        value={password.value}
+                                        onChange={(e) => {setPassword({...password, value:e.target.value})}}
                                         required
                                         />
+                                        {password.isError && <small className='text-danger'>{password.error}</small>}
                                 </Col>
                                 <Col>
                                     <Form.Label>Confirm Password</Form.Label>
                                     <Form.Control 
                                         type="password" 
                                         placeholder="Confirm Password"
-                                        value={confirmPassword}
-                                        onChange={(e) => {setConfirmPassword(e.target.value)}}
+                                        value={confirmPassword.value}
+                                        onChange={(e) => {setConfirmPassword({...confirmPassword, value:e.target.value})}}
                                         required
                                         />
+                                        {confirmPassword.isError && <small className='text-danger'>{confirmPassword.error}</small>}
                                 </Col>
                             </Row>
 
@@ -160,19 +170,22 @@ const StaffSignup = () => {
                                     <Form.Control 
                                         type="text" 
                                         placeholder="Department"
-                                        value={department}
-                                        onChange={(e) => {setDepartment(e.target.value)}}
+                                        value={department.value}
+                                        onChange={(e) => {setDepartment({...department, value:e.target.value})}}
                                         required />
+                                        {department.isError && <small className='text-danger'>{department.error}</small>}
                                 </Col>
                                 <Col>
                                     <Form.Label>Field of study</Form.Label>
                                     <Form.Control 
                                         type="text" 
-                                        placeholder="Field of study"
-                                        value={field}
-                                        onChange={(e) => {setField(e.target.value)}}
+                                        placeholder="Field of Interest"
+                                        value={field.value}
+                                        onChange={(e) => {setField({...field, value:e.target.value})}}
                                         required
                                         />
+                                        {field.isError && <small className='text-danger'>{field.error}</small>}
+
                                 </Col>
                             </Row>
                         </Form.Group>
