@@ -4,9 +4,13 @@ import ViewUser from './modals/ViewUser';
 import UpdateUser from './modals/UpdateUser';
 import { RippleButton } from "../../components/RippleButton"
 import '../../styles/usersList.styles.scss'
-import { getAllUsers } from '../../services/user.service';
+import { deleteUser, getAllUsers } from '../../services/user.service';
+import { useNavigate } from 'react-router-dom';
+import toastNotification from '../../components/toastNotification';
 
 export const UserList = () => {
+
+    let navigate = useNavigate();
 
     const [search, setSearch] = useState("");
     const [usersList, setUserList] = useState([]);
@@ -43,11 +47,6 @@ export const UserList = () => {
         setModalShow(true);
     }
 
-    const openModalDelete = (data) => {
-        // setModalDataDelete(data);
-        setModalDeleteConfirm(true);
-    }
-
     const openModalUpdate = (user) => {
 
         console.log("request came for modal updateeeeeee");
@@ -56,7 +55,18 @@ export const UserList = () => {
 
     }
 
+    const openModalDelete = (data) => {
+        setModalDataDelete(data);
+        setModalDeleteConfirm(true);
+   }
 
+    function onDelete(modalDataDelete){
+        deleteUser(modalDataDelete.email).then((response) => {
+            response.ok ? toastNotification("User successfully delete from the system", "success") : null
+            //navigate('/login')
+            window.location.reload(false);
+        })
+    }
 
     return (
         <div className='body-content-container'>
@@ -119,7 +129,7 @@ export const UserList = () => {
                                     <td>{user.role}</td>
                                     <td>
                                     <RippleButton className="ripple-button" text="Update" onClick={() => openModalUpdate()} />
-                                    <RippleButton className="ripple-button-danger" text="Delete" onClick={() => openModalDelete()} />
+                                    <RippleButton className="ripple-button-danger" text="Delete" onClick={() => openModalDelete(user)} />
                                     </td>
                                 </tr>
                             )
@@ -160,7 +170,7 @@ export const UserList = () => {
                 <Modal.Footer>
                     <div className="delete-modal row">
                         <div className="col-6">
-                            <RippleButton className="ripple-button" text=" Confirm" />
+                            <RippleButton className="ripple-button" text=" Confirm" onClick={() => { onDelete(modalDataDelete); }}  />
                         </div>
                         <div className="col-6">
                             <RippleButton className="ripple-button-warning" text="Cancel" onClick={() => setModalDeleteConfirm(false)} />
