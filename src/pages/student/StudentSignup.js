@@ -3,17 +3,20 @@ import { RippleButton } from '../../components/RippleButton'
 import { Form, Button, Row, Col, ProgressBar } from 'react-bootstrap'
 
 export const StudentSignUp = () => {
-    const [firstName, setFirstName] = useState();
-    const [lastName, setLastName] = useState();
-    const [email, setEmail] = useState();
-    const [studentID, setStudnetID] = useState();
-    const [ContactNo, setContactNo] = useState();
-    const [password, setPassword] = useState();
-    const [ConfirmPassword, setConfirmPassword] = useState();
+    const [fullName, setFullName] = useState({ value: "", error: "This field cannot be empty" });
+    const [email, setEmail] = useState({ value: "", error: "This field cannot be empty" });
+    const [studentID, setStudnetID] = useState({ value: "", error: "This field cannot be empty" });
+    const [ContactNo, setContactNo] = useState({ value: "", error: "This field cannot be empty" });
+    const [password, setPassword] = useState({ value: "", error: "This field cannot be empty" });
+    const [confirmPassword, setConfirmPassword] = useState({ value: "", error: "This field cannot be empty" });
 
 
-    const onSubmit = () => {
+    const onSubmit = (e) => {
+        e.preventDefault()
         console.log("clicked the button")
+        // if (password === confirmPassword) {
+
+        // })
     }
 
     return (
@@ -24,46 +27,35 @@ export const StudentSignUp = () => {
                 <hr></hr>
                 <div className='mt-5'>
                     <Form>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Row>
-                                <Col>
-                                    <Form.Label>First Name</Form.Label>
-                                    <Form.Control type="text" placeholder="First Name" onChange={(e) => setFirstName(e.target.value)} />
-                                </Col>
-                                <Col>
-                                    <Form.Label>Last Name</Form.Label>
-                                    <Form.Control type="text" placeholder="Last Name" onChange={(e) => setLastName(e.target.value)} />
-                                </Col>
-                            </Row>
-
-
+                        <Form.Group className="mb-3" >
+                            <Form.Label>Full Name</Form.Label>
+                            <Form.Control type="text" placeholder="full name" value={fullName.value} onChange={(e) => setFullName({ ...fullName, value: e.target.value })} />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3" >
                             <Form.Label>Email</Form.Label>
                             <Form.Control type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3" >
                             <Row>
+                                <Col>
+                                    <Form.Label>Student Registration No</Form.Label>
+                                    <Form.Control type="text" placeholder="ITxxxxxxxx" onChange={(e) => setStudnetID(e.target.value)} />
+                                </Col>
                                 <Col>
                                     <Form.Label>Contact Number</Form.Label>
                                     <Form.Control type="text" placeholder="ContactNumber" onChange={(e) => setContactNo(e.target.value)} />
                                 </Col>
-                                <Col>
-                                    <Form.Label>Role</Form.Label>
-                                    <Form.Label>Contact Number</Form.Label>
-                                    <Form.Control type="text" placeholder="IT########" onChange={(e) => setStudnetID(e.target.value)} />
-                                </Col>
                             </Row>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3" >
                             <Row>
                                 <Col>
-                                    <Form.Label>Passowrd</Form.Label>
-                                    <Form.Control type="text" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                                    <Form.Label>password</Form.Label>
+                                    <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                                 </Col>
                                 <Col>
                                     <Form.Label>Confirm Password</Form.Label>
-                                    <Form.Control type="text" placeholder="Confirm Password" onChange={(e) => setConfirmPassword(e.target.value)} />
+                                    <Form.Control type="password" placeholder="Confirm Password" onChange={(e) => setConfirmPassword(e.target.value)} />
                                 </Col>
                             </Row>
 
@@ -71,17 +63,18 @@ export const StudentSignUp = () => {
                         </Form.Group>
 
 
-                        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                        <Form.Group className="mb-3">
                             <Form.Check type="checkbox" label="I accepts the terms and conditions" />
                         </Form.Group>
                         <Row>
-                            <Col md={{ span: 6, offset: 4 }}>
-                                <button className='dropZoneBtn' onClick={() => { onSubmit() }}>Submit</button>
-                                {/* <RippleButton className="ripple-button" text="submit" onClick={() => { onSubmit() }} /> */}
+                            <Col>
+                            </Col>
+                            <Col className='text-center'>
+                                <RippleButton className="ripple-button" text="submit" onClick={(e) => { onSubmit(e) }} />
+                            </Col>
+                            <Col>
                             </Col>
                         </Row>
-
-
                     </Form>
                 </div>
             </div>

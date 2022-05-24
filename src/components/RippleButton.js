@@ -5,7 +5,6 @@ export const RippleButton = ({ disabled, text, className, onClick }) => {
     const [isRippling, setIsRippling] = React.useState(false);
 
     React.useEffect(() => {
-        console.log(text);
         if (coords.x !== -1 && coords.y !== -1) {
             setIsRippling(true);
             setTimeout(() => setIsRippling(false), 300);
