@@ -1,39 +1,86 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { RippleButton } from "../../components/RippleButton";
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import '../../styles/usersList.styles.scss'
+import { getAllUsers } from '../../services/user.service';
 
 export const CreatePanel = () => {
-    const panelMembers = [{ id: 1, name: 'One' }, { id: 2, name: 'Two' }, { id: 3, name: 'Three' }, { id: 4, name: 'Four' }, { id: 5, name: 'Four' }]
 
+    const panelMember = [];
+    const [panelMembers, setPanelMembers] = useState([]);
 
-    const [panelID, setPanelID] = useState("");
     const [field, setField] = useState("");
+    const [panelList, setPanelList] = useState([]);
+    const [panelNumber, setPanelNumber] = useState(null);
     const [selectedMember1, setSelectedMember1] = useState(null);
     const [selectedMember2, setSelectedMember2] = useState(null);
     const [selectedMember3, setSelectedMember3] = useState(null);
     const [selectedMember4, setSelectedMember4] = useState(null);
+
+
+    useEffect(() => {
+        getAllUsers().then(response => {
+            console.log("usersssssss", response)
+            if (response.ok) {
+                setPanelList(response.data.filter(el => {
+                    return (
+                        el.role == 'Panel'
+                    )
+                }));
+            } else {
+                toastNotification("Cannot load the panel members", "warn")
+            }
+        }).catch(err => {
+            toastNotification("Error", "error")
+        })
+    }, [])
+
+    useEffect(() => {
+        setPanelMembers(createPanelMembers())
+    }, [panelList])
+
+    const createPanelMembers = () => {
+        let value = -1;
+        panelList.map(member => {
+            value = Number(value + 1)
+            let pMember = {
+                id: value,
+                name: member.fullname
+            }
+            panelMember.push(pMember);
+
+        })
+
+        return panelMember;
+    }
+
+
+
 
     const createPanel = (e) => {
 
         e.preventDefault()
 
         const panel = {
-            panelID,
-            field,
+            panelId,
+            panelNumber,
             selectedMember1,
             selectedMember2,
             selectedMember3,
-            selectedMember4
+            selectedMember4,
+            field,
         }
 
-        console.log("panel>>>>>>>", panel)
     }
 
     function refreshPage() {
         window.location.reload();
     }
+
+
+
+
 
 
     return (
@@ -55,7 +102,7 @@ export const CreatePanel = () => {
                             <input type="number" class="form-control" id="panelNo" placeholder="Panel ID" onChange={(e) => { setPanelID(e.target.value) }} />
                         </div>
                         <div class="col-6">
-                            <label className="form-pad" for="field">Field of Interset</label>
+                            <label className="form-pad" for="field">Field of Interest</label>
 
                             <select class="form-select" className="form-control" name="field" id="field" onChange={(e) => { setField(e.target.value) }}>
                                 <option  >Field</option>
@@ -85,7 +132,7 @@ export const CreatePanel = () => {
                                 onChange={(_event, member) => {
                                     setSelectedMember1(member);
                                 }}
-
+                                size="small"
                             />
 
                         </div>
@@ -106,6 +153,7 @@ export const CreatePanel = () => {
                                 onChange={(_event, member) => {
                                     setSelectedMember2(member);
                                 }}
+                                size="small"
                             />
                         </div>
                     </div>
@@ -125,6 +173,7 @@ export const CreatePanel = () => {
                                 onChange={(_event, member) => {
                                     setSelectedMember3(member);
                                 }}
+                                size="small"
                             />
                         </div>
                     </div>
@@ -144,6 +193,7 @@ export const CreatePanel = () => {
                                 onChange={(_event, member) => {
                                     setSelectedMember4(member);
                                 }}
+                                size="small"
                             />
                         </div>
                     </div>

@@ -25,42 +25,42 @@ function ResearchGroup(group) {
                                     <th class="text-left" scope="row">
                                         Group ID
                                     </th>
-                                    {/* <td class="text-left">{rental.data.id}</td> */}
+                                    {group.data.groupId}
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Group Name
                                     </th>
-                                    {/* <td class="text-left">{rental.data.from}</td> */}
+                                    {group.data.groupId}
                                 </tr><tr>
                                     <th class="text-left" scope="row">
                                         Research Field
                                     </th>
-                                    {/* <td class="text-left">{rental.data.to}</td> */}
+                                    {group.data.researchField}
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Research Topic
                                     </th>
-                                    {/* <td class="text-left">{rental.data.status}</td> */}
+                                    {group.data.researchTopic}
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Supervisor
                                     </th>
-                                    {/* <td class="text-left">{rental.data.payment}</td> */}
+                                    {group.data.supervisor}
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Co-Supervisor
                                     </th>
-                                    {/* <td class="text-left">{rental.data.vehicleType + " " + rental.data.model}</td> */}
+                                    {group.data.coSupervisor}
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Allocated Panel
                                     </th>
-                                    {/* <td class="text-left">{rental.data.pickAddress}</td> */}
+                                    {group.data.panelNo}
                                 </tr>
                             </tbody>
                         </table>

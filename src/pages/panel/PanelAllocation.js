@@ -4,6 +4,8 @@ import { RippleButton } from "../../components/RippleButton"
 import ResearchGroup from './modals/ResearchGroup';
 import UpdateRGPanel from './modals/UpdateRGPanel';
 import '../../styles/usersList.styles.scss'
+import { getAllGroup } from '../../services/group.service';
+import toastNotification from '../../components/toastNotification';
 
 export const PanelAllocation = () => {
 
@@ -18,24 +20,42 @@ export const PanelAllocation = () => {
     const [modalLoading, setModalLoading] = useState(false);
 
 
-    const openModal = (user) => {
-        // setData(rental);
+    const openModal = (group) => {
+        setData(group);
         handleViewOnClick();
     }
 
     const handleViewOnClick = () => {
-        // console.log("req came for modal");
-        // console.log(modalData, "data came for modalllllll");
         setModalShow(true);
     }
 
-    const openModalUpdate = (user) => {
-
+    const openModalUpdate = (group) => {
         console.log("request came for modal updateeeeeee");
-        // setModalDataUpdate(data);
+        setModalDataUpdate(group);
         setModalUpdate(true);
 
     }
+
+    useEffect(() => {
+        const loadData = () => {
+            getAllGroup().then(response => {
+                console.log("data", response)
+                if (response.ok) {
+                    setGroupList(response.data.data);
+                } else {
+                    toastNotification("Cannot load the group Lists", "warn")
+                }
+            }).catch(err => {
+                toastNotification("Error", "error")
+            })
+        }
+        loadData()
+
+
+
+    }, [])
+
+
 
     return (
         <div className='body-content-container'>
@@ -47,7 +67,7 @@ export const PanelAllocation = () => {
                 centered
             >
                 <ResearchGroup
-                    // data={modalData}
+                    data={modalData}
                     onHide={() => setModalShow(false)}
                 />
             </Modal>
@@ -82,7 +102,7 @@ export const PanelAllocation = () => {
                     <thead className="thead-dark">
                         <tr>
                             <th className='text'>Group ID</th>
-                            <th className='text'>Group Name</th>
+                            <th className='text'>Leader</th>
                             <th className='text'>Research Topic</th>
                             <th className='text'>Research Field</th>
                             <th className='text'>Panel</th>
@@ -90,17 +110,22 @@ export const PanelAllocation = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr >
+                        {groupList.map((group) => {
+                            return (
+                                <tr key={Math.random()}>
 
-                            <td onClick={() => openModal()}>data</td>
-                            <td ></td>
-                            <td ></td>
-                            <td></td>
-                            <th></th>
-                            <td>
-                                <RippleButton className="ripple-button" text="Allocate Panel" onClick={() => openModalUpdate()} />
-                            </td>
-                        </tr>
+                                    <td onClick={() => openModal(group)}>{group.groupId}</td>
+                                    <td >{group?.student?.leader?.name}</td>
+                                    <td >{group.researchTopic}</td>
+                                    <td>{group.researchField}</td>
+                                    <th>{group.panelNo}</th>
+                                    <td>
+                                        <RippleButton className="ripple-button" text="Allocate Panel" onClick={() => openModalUpdate(group)} />
+                                    </td>
+                                </tr>
+                            )
+
+                        })}
                     </tbody>
                 </table>
             </div>

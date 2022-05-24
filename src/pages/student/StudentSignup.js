@@ -72,7 +72,7 @@ export const StudentSignUp = () => {
             contactNo: contactNo.value,
             degree: degree.value.name,
             password: password.value,
-            role: "student",
+            role: "Student",
             groupId: "",
             isAvailable: true,
             department: "",

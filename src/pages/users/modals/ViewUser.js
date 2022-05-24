@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
 import '../../../styles/usersList.styles.scss'
+import { PanelList } from "../../panel/PanelList";
 
 function ViewUser(user) {
 
@@ -24,42 +25,42 @@ function ViewUser(user) {
                                     <th class="text-left" scope="row">
                                         Full Name
                                     </th>
-                                    {/* <td class="text-left">{rental.data.id}</td> */}
+                                    {user.data.fullname}
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Email Address
                                     </th>
-                                    {/* <td class="text-left">{rental.data.from}</td> */}
+                                    {user.data.email}
                                 </tr><tr>
                                     <th class="text-left" scope="row">
                                         Contact No
                                     </th>
-                                    {/* <td class="text-left">{rental.data.to}</td> */}
+                                    {user.data.contactNo}
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Specialization
                                     </th>
-                                    {/* <td class="text-left">{rental.data.status}</td> */}
+                                    {/* {user.data.specilization} */}
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Field Of Interest
                                     </th>
-                                    {/* <td class="text-left">{rental.data.payment}</td> */}
+                                    {user.data.field}
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Department
                                     </th>
-                                    {/* <td class="text-left">{rental.data.vehicleType + " " + rental.data.model}</td> */}
+                                    {user.data.department}
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Role
                                     </th>
-                                    {/* <td class="text-left">{rental.data.pickAddress}</td> */}
+                                    {user.data.role}
                                 </tr>
                             </tbody>
                         </table>

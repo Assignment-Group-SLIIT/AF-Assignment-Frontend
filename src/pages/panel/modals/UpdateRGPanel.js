@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import { FormSection } from "../../../components/FormSection";
 import { RippleButton } from "../../../components/RippleButton";
+import toastNotification from "../../../components/toastNotification";
+import { updateGroup } from "../../../services/group.service";
 import "../../../styles/usersList.styles.scss"
 
-function UpdateRGPanel(user) {
+function UpdateRGPanel(group) {
+
 
     const [groupID, setGroupID] = useState("");
-    const [groupName, setGroupName] = useState("");
+    const [leader, setLeader] = useState("");
     const [topic, setTopic] = useState("");
     const [field, setField] = useState("");
     const [supervisor, setSupervisor] = useState("");
@@ -15,10 +18,47 @@ function UpdateRGPanel(user) {
     const [panel, setPanel] = useState("");
 
 
-
     useEffect(() => {
+        setGroupID(group.data.groupId)
+        setLeader(group.data.student?.leader?.name)
+        setTopic(group.data.researchTopic)
+        setField(group.data.researchField)
+        setSupervisor(group.data.supervisor)
+        setCoSupervisor(group.data.coSupervisor)
+        setPanel(group.data.panelNo)
 
     }, [])
+
+
+    const allocatePanel = (e) => {
+        e.preventDefault()
+
+        const updateResearchGroup = {
+            groupId: groupID,
+            student: group.data.student,
+            supervisor: supervisor,
+            coSupervisor: cosupervisor,
+            researchTopic: topic,
+            researchField: field,
+            panelNo: panel
+        }
+
+
+        console.log(updateResearchGroup)
+
+        updateGroup(groupID, updateResearchGroup).then(res => {
+            console.log(res)
+            if (res.ok) {
+                toastNotification("Allocated a panel to the research group successfully", "success")
+
+            } else {
+                toastNotification("Could not allocate a panel", "warn")
+            }
+        }).catch(err => {
+            toastNotification("Error", "error")
+        })
+
+    }
 
 
     return (
@@ -27,7 +67,7 @@ function UpdateRGPanel(user) {
             <Modal.Header>
                 <Modal.Title>Update Panel Allocation</Modal.Title>
                 <div>
-                    <button className="btn btn-close" onClick={user.onHide}></button>
+                    <button className="btn btn-close" onClick={group.onHide}></button>
                 </div>
 
             </Modal.Header>
@@ -48,8 +88,8 @@ function UpdateRGPanel(user) {
                                     <input type="text" class="form-control" id="groupID" placeholder="Group ID" value={groupID} onChange={(e) => { setGroupID(e.target.value) }} />
                                 </div>
                                 <div class="col-6">
-                                    <label className="form-pad" for="groupName">Group Name</label>
-                                    <input type="text" class="form-control" id="groupName" placeholder="Group Name" value={groupName} onChange={(e) => { setGroupName(e.target.value) }} />
+                                    <label className="form-pad" for="leader">Group Leader</label>
+                                    <input type="text" class="form-control" id="leader" placeholder="Group Leader" value={leader} onChange={(e) => { setLeader(e.target.value) }} />
                                 </div>
                             </div>
                             <br></br>
@@ -101,11 +141,11 @@ function UpdateRGPanel(user) {
                                     <label className="form-pad" for="panel">Panel</label>
                                     <select class="form-select" className="form-control" name="panel" id="panel" value={panel} onChange={(e) => { setPanel(e.target.value) }}>
                                         <option  >Select Panel</option>
-                                        <option id="1" >Panel One</option>
-                                        <option id="2" >Panel Two</option>
-                                        <option id="3" >Panel Three</option>
-                                        <option id="4" >Panel Four</option>
-                                        <option id="5" >Panel Five</option>
+                                        <option id="001" >Panel One</option>
+                                        <option id="002" >Panel Two</option>
+                                        <option id="003" >Panel Three</option>
+                                        <option id="004" >Panel Four</option>
+                                        <option id="005" >Panel Five</option>
                                     </select>
                                 </div>
 
@@ -114,11 +154,11 @@ function UpdateRGPanel(user) {
                             <br></br>
                             <div className="row mb-4">
                                 <div className="col py-3 text-center">
-                                    <RippleButton className="ripple-button" text="Submit" onClick={() => { onSubmit() }} />
+                                    <RippleButton className="ripple-button" text="Submit" onClick={(e) => { allocatePanel(e) }} />
 
                                 </div>
                                 <div className="col py-3 text-center">
-                                    <RippleButton className="ripple-button-warning" text="Cancel" onClick={user.onHide} />
+                                    <RippleButton className="ripple-button-warning" text="Cancel" onClick={group.onHide} />
 
                                 </div>
                             </div>

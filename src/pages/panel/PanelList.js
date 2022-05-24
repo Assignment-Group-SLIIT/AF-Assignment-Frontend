@@ -3,6 +3,8 @@ import { Modal } from "react-bootstrap";
 import ViewUser from '../users/modals/ViewUser';
 import { RippleButton } from "../../components/RippleButton"
 import '../../styles/usersList.styles.scss'
+import { deleteUser, getAllUsers } from '../../services/user.service';
+import toastNotification from '../../components/toastNotification';
 
 export const PanelList = () => {
 
@@ -14,30 +16,55 @@ export const PanelList = () => {
 
     const [modalDataDelete, setModalDataDelete] = useState([]);
     const [modalDeleteConfirm, setModalDeleteConfirm] = useState(false);
-    const [modalDelete, setModalDelete] = useState(false);
-
     const [modalLoading, setModalLoading] = useState(false);
 
 
-    const openModal = (user) => {
-        // setData(rental);
+    const openModal = (panel) => {
+
+        setData(panel);
         handleViewOnClick();
     }
 
     const handleViewOnClick = () => {
-        // console.log("req came for modal");
-        // console.log(modalData, "data came for modalllllll");
+
         setModalShow(true);
     }
 
-    const openModalDelete = (data) => {
-        // setModalDataDelete(data);
+    const openModalDelete = (panel) => {
+        setModalDataDelete(panel);
         setModalDeleteConfirm(true);
     }
 
     useEffect(() => {
+        getAllUsers().then(response => {
+            console.log("data", response)
+            if (response.ok) {
+                setPanelList(response.data);
+            } else {
+                toastNotification("Cannot load the panel members", "warn")
+            }
+        }).catch(err => {
+            toastNotification("Error", "error")
+        })
 
     }, [])
+
+
+    function onDelete(modalDataDelete) {
+
+        deleteUser(modalDataDelete.email).then(response => {
+            if (response.ok) {
+                toastNotification("Successfully deleted a Panel member");
+                // window.location.reload();
+            } else {
+                toastNotification("Error upon deleting a Panel member", "warn");
+            }
+
+        }).catch(err => {
+            toastNotification("Error", "error");
+        })
+
+    }
 
 
     return (
@@ -50,7 +77,7 @@ export const PanelList = () => {
                 centered
             >
                 <ViewUser
-                    // data={modalData}
+                    data={modalData}
                     onHide={() => setModalShow(false)}
                 />
             </Modal>
@@ -92,17 +119,22 @@ export const PanelList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr >
-
-                            <td >data</td>
-                            <td ></td>
-                            <td ></td>
-                            <td></td>
-                            <td>
-                                <RippleButton className="ripple-button" text="View" onClick={() => openModal()} />
-                                <RippleButton className="ripple-button-danger" text="Delete" onClick={() => openModalDelete()} />
-                            </td>
-                        </tr>
+                        {panelList.map((panel) => {
+                            if (panel.role == 'Panel') {
+                                return (
+                                    <tr key={Math.random()}>
+                                        <td >{panel.fullname}</td>
+                                        <td >{panel.email}</td>
+                                        <td >{panel.contactNo}</td>
+                                        <td>{panel.role}</td>
+                                        <td>
+                                            <RippleButton className="ripple-button" text="View" onClick={() => openModal(panel)} />
+                                            <RippleButton className="ripple-button-danger" text="Delete" onClick={() => openModalDelete(panel)} />
+                                        </td>
+                                    </tr>
+                                )
+                            }
+                        })}
                     </tbody>
                 </table>
             </div>
@@ -124,7 +156,7 @@ export const PanelList = () => {
                 <Modal.Footer>
                     <div className="delete-modal row">
                         <div className="col-6">
-                            <RippleButton className="ripple-button" text=" Confirm" />
+                            <RippleButton className="ripple-button" text=" Confirm" onClick={() => { onDelete(modalDataDelete); }} />
                         </div>
                         <div className="col-6">
                             <RippleButton className="ripple-button-warning" text="cancel" onClick={() => setModalDeleteConfirm(false)} />
