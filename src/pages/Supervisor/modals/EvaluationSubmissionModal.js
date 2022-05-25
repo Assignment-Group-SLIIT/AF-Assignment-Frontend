@@ -9,9 +9,9 @@ function EvaluationSubmissionModal(user) {
     const [submissionType, setSubmissionType] = useState("");
     const [document, setDocument] = useState("");
     const [marks, setMarks] = useState("");
-    
 
-    return(
+
+    return (
         <div>
             <Modal.Header>
                 <Modal.Title>Add Evaluation Marks</Modal.Title>
@@ -35,7 +35,7 @@ function EvaluationSubmissionModal(user) {
                                     <label className="form-pad" for="groupID">Group ID</label>
                                     <input type="text" class="form-control" id="groupID" placeholder="Group ID" value={groupID} onChange={(e) => { setGroupID(e.target.value) }} />
                                 </div>
-                                
+
                             </div>
                             <br></br>
                             <div class="row">
@@ -43,7 +43,7 @@ function EvaluationSubmissionModal(user) {
                                     <label className="form-pad" for="submissionID">Submission ID</label>
                                     <input type="text" class="form-control" id="submissionID" placeholder="Group ID" value={submissionID} onChange={(e) => { setsubmissionID(e.target.value) }} />
                                 </div>
-                                
+
                             </div>
                             <br></br>
                             <div class="row">
@@ -53,7 +53,7 @@ function EvaluationSubmissionModal(user) {
                                         <option  >Select Status</option>
                                         <option id="1" >Type 1</option>
                                         <option id="2" >Type 2</option>
-                                       
+
                                     </select>
                                 </div>
 
@@ -64,7 +64,7 @@ function EvaluationSubmissionModal(user) {
                                     <label className="form-pad" for="document">Document</label>
                                     <input type="text" class="form-control" id="document" placeholder="document" value={document} onChange={(e) => { setDocument(e.target.value) }} />
                                 </div>
-                               
+
                             </div>
                             <br></br>
                             <div class="row">
@@ -72,7 +72,7 @@ function EvaluationSubmissionModal(user) {
                                     <label className="form-pad" for="marks">Evaluation Marks</label>
                                     <input type="text" class="form-control" id="marks" placeholder="marks" value={marks} onChange={(e) => { setMarks(e.target.value) }} />
                                 </div>
-                               
+
                             </div>
                             <br></br>
                             <div className="row mb-4">
@@ -94,4 +94,4 @@ function EvaluationSubmissionModal(user) {
     )
 
 }
- export default EvaluationSubmissionModal;
+export default EvaluationSubmissionModal;
