@@ -2,6 +2,8 @@ import DropzoneArea from '../../components/DropZoneArea'
 import React, { useState, useEffect } from 'react'
 import { RippleButton } from '../../components/RippleButton'
 import '../../styles/usersList.styles.scss'
+import { createTemplate } from '../../services/template.service'
+import toastNotification from '../../components/toastNotification'
 
 export const CreateTemplate = () => {
 
@@ -9,14 +11,33 @@ export const CreateTemplate = () => {
     const [submissionType, setSubmissionType] = useState("")
     const [fileName, setFileName] = useState("")
 
-    useEffect(() => {
-
-    }, [])
-
 
     const sendData = (data) => {
-        console.log("Child data", data)
-        setFileName(data.name)
+        // console.log("Child data", data)
+        setFileName(data)
+    }
+
+    const uploadTemplate = (e) => {
+        e.preventDefault();
+
+        const template = {
+            submissionId: submissionID,
+            submissionType: submissionType,
+            template: fileName,
+        }
+
+        console.log("TEMPLATEEE", template)
+
+        createTemplate(template).then(res => {
+            if (res.ok) {
+                toastNotification("Uploaded a new template", "success")
+            } else {
+                toastNotification("Could not upload the template", "warn")
+            }
+        }).catch(err => {
+            toastNotification("Error", "error")
+        })
+
     }
 
     return (
@@ -61,7 +82,7 @@ export const CreateTemplate = () => {
                             <br></br>
                             <div className="row mb-4">
                                 <div className="col py-3 text-center">
-                                    <RippleButton className="ripple-button" text="Submit" onClick={() => { onSubmit() }} />
+                                    <RippleButton className="ripple-button" text="Submit" onClick={(e) => { uploadTemplate(e) }} />
 
                                 </div>
                                 <div className="col py-3 text-center">

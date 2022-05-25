@@ -29,12 +29,8 @@ function DropzoneArea(props) {
     }
 
     const handleSave = (e) => {
-        console.log("Method called", e)
+        // console.log("Method called", e)
         setFiles(e)
-
-        // console.log("Method called2", files[0].name)
-        // console.log("Method called2", files[0].path)
-
     }
 
     const sendData = (data) => {
@@ -67,9 +63,12 @@ function DropzoneArea(props) {
                     console.log("url>>>", downloadURL);
                     sendData(downloadURL)
                     toastNotification("File uploaded successfully!", "success")
+
                 });
             }
         );
+
+        handleClose();
     }
 
 
