@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import { RippleButton } from '../../components/RippleButton'
 import { Link, useNavigate } from 'react-router-dom'
 import { Modal, Button } from "react-bootstrap";
-
+import { getAllProjectProposal } from "../../services/projectProposal.service";
 
 
 export const TopicRequest = () => {
 
     const [search, setSearch] = useState("");
+    const [topicList, setTopicList] = useState([]);
     const [modalData, setData] = useState([]);
     const [modalShow, setModalShow] = useState(false);
-
 
     const [modalDataDelete, setModalDataDelete] = useState([]);
     const [modalDeleteConfirm, setModalDeleteConfirm] = useState(false);
@@ -22,6 +22,15 @@ export const TopicRequest = () => {
 
     const [modalLoading, setModalLoading] = useState(false);
 
+    useEffect(() => {
+        getAllProjectProposal().then((response) => {
+            console.log("data",response.data)
+            setTopicList(response.data.data.reverse())
+        }).catch((error) => {
+            console.log("error",error)
+        })
+    },[])
+
     const openModal = (data) => {
         // setData(rental);
         setModalAcceptConfirm(true);
@@ -31,7 +40,6 @@ export const TopicRequest = () => {
         // setModalDataDelete(data);
         setModalDeleteConfirm(true);
     }
-
 
     return (
         <div className='body-content-container'>
@@ -70,20 +78,23 @@ export const TopicRequest = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* return( */}
-
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td className='text'>
-                                <RippleButton className="ripple-button" text="Accept" onClick={() => openModal()} />
-                                <RippleButton className="ripple-button-danger" text="Reject" onClick={() => openModalDelete()} />
-                            </td>
-                        </tr>
-                        {/* ) */}
+                        {topicList.map((topic) => {
+                          
+                            return(
+                                <tr>
+                                    <td>{topic.groupId}</td>
+                                    <td>{topic.leaderEmail}</td>
+                                    <td>{topic.researchTopic}</td>
+                                    <td>{topic.field}</td>
+                                    <td><a target="_blank" href={topic.document}>document</a></td>
+                                    <td className='text'>
+                                        <RippleButton className="ripple-button" text="Accept" onClick={() => openModal(topic)} />
+                                        <RippleButton className="ripple-button-danger" text="Reject" onClick={() => openModalDelete(topic)} />
+                                    </td>
+                                </tr>
+                            ) 
+                        })}
+                        
                     </tbody>
                 </table>
 
