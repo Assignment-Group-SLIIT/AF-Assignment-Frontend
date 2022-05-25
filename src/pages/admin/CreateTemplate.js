@@ -4,6 +4,7 @@ import { RippleButton } from '../../components/RippleButton'
 import '../../styles/usersList.styles.scss'
 import { createTemplate } from '../../services/template.service'
 import toastNotification from '../../components/toastNotification'
+import Example from '../../components/PieChart'
 
 export const CreateTemplate = () => {
 
@@ -42,6 +43,8 @@ export const CreateTemplate = () => {
 
     return (
         <div className='template-content-container'>
+
+
             <div className='create-template-form'>
 
                 <div className="row">

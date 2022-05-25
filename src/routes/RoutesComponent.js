@@ -27,6 +27,7 @@ import UploadInitialEvaluation from '../pages/student/uploadEvaluation'
 import StudentSubmissionDocument from '../pages/student/StudentSubmissionDocument'
 import GroupRequestCoSupevisor from '../pages/co-supervisor/GroupRequest-Co'
 import { CreatedPanelList } from '../pages/panel/PanelList'
+import Dashboard from '../pages/admin/Dashboard'
 
 export const RoutesComponent = () => {
     return (
@@ -68,12 +69,15 @@ export const RoutesComponent = () => {
                     <Route exact path='/admin/list/panel' element={<CreatedPanelList />} />
                     <Route exact path='/admin/template' element={<CreateTemplate />} />
                     <Route exact path='/admin/submission' element={<CreateSubmission />} />
+                    <Route exact path='/admin/dashboard' element={<Dashboard />} />
 
 
                     {/* panel */}
                     <Route exact path='/panel/email' element={<SendEmail />} />
                     <Route exact path='/panel/evaluation' element={<Evaluation />} />
                     <Route exact path='/panel/topic' element={<TopicRequest />} />
+
+
 
                 </Routes>
                 <Footer />

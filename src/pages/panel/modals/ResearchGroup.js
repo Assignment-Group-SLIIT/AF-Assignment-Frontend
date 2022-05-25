@@ -6,7 +6,7 @@ import "../../../styles/usersList.styles.scss"
 
 function ResearchGroup(group) {
 
-    console.log("model openingggg", group)
+    // console.log("model openingggg", group)
 
     return (
         <div>

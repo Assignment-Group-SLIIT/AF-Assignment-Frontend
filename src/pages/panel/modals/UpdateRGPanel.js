@@ -89,6 +89,7 @@ function UpdateRGPanel(group) {
         updateGroup(groupID, updateResearchGroup).then(res => {
             console.log(res)
             if (res.ok) {
+
                 toastNotification("Allocated a panel to the research group successfully", "success")
 
             } else {
