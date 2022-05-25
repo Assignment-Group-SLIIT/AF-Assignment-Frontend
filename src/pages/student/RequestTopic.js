@@ -5,6 +5,8 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import { RippleButton } from '../../components/RippleButton'
 import { getAllUsers } from '../../services/user.service';
+import { createSupervisorRequest } from '../../services/supervisorRequests.service';
+import toastNotification from '../../components/toastNotification';
 
 
 export const RequestTopic = () => {
@@ -44,7 +46,17 @@ export const RequestTopic = () => {
         }
 
         if (!email.isError && !topic.isError && !field.isError && !supervisor.isError) {
-            console.log("payload>>", payload)
+            // console.log("payload>>", payload)
+            createSupervisorRequest(payload).then((res) => {
+                if (res.ok) {
+                    toastNotification("Request has been sent successfully!", "success")
+                } else {
+                    toastNotification("Error occured!", "error")
+                }
+            }).catch((err) => {
+                toastNotification("Error occured!", "error")
+                console.log("error while registering>>", err.err)
+            })
         }
     }
 
@@ -52,8 +64,8 @@ export const RequestTopic = () => {
         getAllUsers().then((res) => {
             if (res.ok) {
                 let tmpArr = res.data.filter((item) => {
-                    // return item.role === "Supervisor";
-                    return item.role === "Panel";
+                    return item.role === "Supervisor";
+                    // return item.role === "Panel";
                 })
                 setAllUsers(tmpArr)
             } else {
