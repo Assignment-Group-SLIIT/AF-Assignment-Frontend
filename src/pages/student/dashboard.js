@@ -1,12 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { AiOutlineCloudUpload } from 'react-icons/ai'
+import { FcApproval } from "react-icons/fc";
 import { useNavigate } from 'react-router-dom'
 import { RippleButton } from '../../components/RippleButton'
 
 const Dashboard = () => {
     const navigate = useNavigate()
 
-    const user = sessionStorage.getItem("user");
+    //for roadmap
+    const [isGroupRegistered, setIsGroupRegistered] = useState(false);
+    const [isTopicSelected, setIsTopicSelected] = useState(false);
+    const [isCoSupervisorSelected, setIsCoSupervisorSelected] = useState(false);
+    const [isProposalSent, setIsProposalSent] = useState(false);
+    const [isEvaluationCompleted, setIsEvaluationCompleted] = useState(false);
+
+    useEffect(() => {
+        const user = sessionStorage.getItem("user");
+        if (user.groupId != "") {
+            setIsGroupRegistered(true)
+        }
+    }, [])
+
 
 
     return (
@@ -17,15 +31,54 @@ const Dashboard = () => {
                 </div>
                 <div className="row roadmap">
                     <div className="col-5">
-                        <div className="row height-lg"><RippleButton className="ripple-button-border" text="Group Registration" onClick={() => { navigate("/student/groupregistration") }} /></div>
+                        <div className="row height-lg">
+                            <div class="d-flex flex-row justify-content-between align-items-center">
+                                <RippleButton className="ripple-button-border w-100" text="Group Registration" onClick={() => { navigate("/student/groupregistration") }} />
+                                {isGroupRegistered && <FcApproval size={30} />}
+                            </div>
+                        </div>
                         <div className="row height-lg"></div>
-                        <div className="row height-lg"><RippleButton disabled={true} className="ripple-button-border-disabled" text="Co - Supervisor Selection" onClick={() => { navigate("/student/groupregistration") }} /></div>
+                        <div className="row height-lg">
+                            <div class="d-flex flex-row justify-content-between align-items-center">
+                                {
+                                    isTopicSelected ?
+                                        (
+                                            <>
+                                                <RippleButton disabled={true} className="ripple-button-border w-100" text="Co - Supervisor Selection" onClick={() => { navigate("/student/groupregistration") }} />
+                                                {isCoSupervisorSelected && <FcApproval size={30} />}
+                                            </>
+                                        ) :
+                                        (
+                                            <>
+                                                <RippleButton disabled={true} className="ripple-button-border-disabled w-100" text="Co - Supervisor Selection" onClick={() => { navigate("/student/groupregistration") }} />
+                                            </>
+                                        )
+                                }
+
+                            </div>
+                        </div>
                         <div className="row height-lg"></div>
-                        <div className="row height-lg"><RippleButton disabled={true} className="ripple-button-border-disabled" text="Topic Evaluation Status" onClick={() => { navigate("/student/groupregistration") }} /></div>
+                        <div className="row height-lg">
+                            <div class="d-flex flex-row justify-content-between align-items-center">
+                                {
+                                    isEvaluationCompleted ?
+                                        (
+                                            <>
+                                                <RippleButton disabled={true} className="ripple-button-border w-100" text="Topic Evaluation Status" onClick={() => { navigate("/student/groupregistration") }} />
+                                                {isEvaluationCompleted && <FcApproval size={30} />}
+                                            </>
+                                        ) :
+                                        (
+                                            <>
+                                                <RippleButton disabled={true} className="ripple-button-border-disabled w-100" text="Topic Evaluation Status" onClick={() => { navigate("/student/groupregistration") }} />
+                                            </>
+                                        )
+                                }
+                            </div>
+                        </div>
                         <div className="row height-lg"></div>
                     </div>
-                    <div className="col-1 roadmap-line">
-                        {/* <div></div> */}
+                    <div className="col-1 roadmap-line mt-4">
                         <div className="row height-lg line"></div>
                         <div className="row height-lg line"></div>
                         <div className="row height-lg line"></div>
@@ -35,9 +88,42 @@ const Dashboard = () => {
                     </div>
                     <div className="col-5">
                         <div className="row height-lg"></div>
-                        <div className="row height-lg"><RippleButton disabled={true} className="ripple-button-border-disabled" text="Topic Selection & Supervisor Selection" onClick={() => { onSubmit() }} /></div>
+                        <div className="row height-lg">
+                            <div class="d-flex flex-row justify-content-between align-items-center">
+                                {isGroupRegistered ?
+                                    (
+                                        <>
+                                            <RippleButton disabled={true} className="ripple-button-border w-100" text="Topic Selection & Supervisor Selection" onClick={() => { onSubmit() }} />
+                                            {isTopicSelected && <FcApproval size={30} />}
+                                        </>
+                                    ) :
+                                    (
+                                        <>
+                                            <RippleButton disabled={true} className="ripple-button-border-disabled w-100" text="Topic Selection & Supervisor Selection" onClick={() => { onSubmit() }} />
+                                        </>
+                                    )
+                                }
+
+                            </div>
+                        </div>
                         <div className="row height-lg"></div>
-                        <div className="row height-lg"><RippleButton disabled={true} className="ripple-button-border-disabled" text="Send Documents for Topic Evaluation" onClick={() => { onSubmit() }} /></div>
+                        <div className="row height-lg">
+                            <div class="d-flex flex-row justify-content-between align-items-center">
+                                {isCoSupervisorSelected ?
+                                    (
+                                        <>
+                                            <RippleButton disabled={true} className="ripple-button-border w-100" text="Send Documents for Topic Evaluation" onClick={() => { onSubmit() }} />
+                                            {isProposalSent && <FcApproval size={30} />}
+                                        </>
+                                    ) :
+                                    (
+                                        <>
+                                            <RippleButton disabled={true} className="ripple-button-border-disabled w-100" text="Send Documents for Topic Evaluation" onClick={() => { onSubmit() }} />
+                                        </>
+                                    )
+                                }
+                            </div>
+                        </div>
                         <div className="row height-lg"></div>
                         <div className="row height-lg"></div>
                     </div>
