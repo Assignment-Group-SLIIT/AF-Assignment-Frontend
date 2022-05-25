@@ -26,6 +26,7 @@ import { CreateSubmission } from '../pages/admin/CreateSubmission'
 import UploadInitialEvaluation from '../pages/student/uploadEvaluation'
 import StudentSubmissionDocument from '../pages/student/StudentSubmissionDocument'
 import GroupRequestCoSupevisor from '../pages/co-supervisor/GroupRequest-Co'
+import AllSubmissions from '../pages/Supervisor/AllSubmissions'
 
 export const RoutesComponent = () => {
     return (
@@ -55,6 +56,7 @@ export const RoutesComponent = () => {
                     {/* supervisor */}
                     <Route exact path='/supervisor/list/request' element={<GroupRequest />} />
                     <Route exact path='/supervisor/list/submissions' element={<EvaluationSubmission />} />
+                    <Route exact path='/supervisor/list/all-submissions' element={<AllSubmissions />} />
 
                     {/* cosupervisor */}
                     <Route exact path='/cosupervisor/list/request' element={< GroupRequestCoSupevisor />} />
