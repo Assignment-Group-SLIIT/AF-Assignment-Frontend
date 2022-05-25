@@ -5,13 +5,7 @@ import { getAllTemplate } from '../services/template.service';
 
 export const Section = (props) => {
 
-    useEffect(() => {
-        getAllTemplate().then((res) => {
-            console.log(res)
-        }).catch((err) => {
-            console.log(err)
-        })
-    }, [])
+    let value = 0
 
     const download = (link) => {
         console.log(link)
@@ -36,9 +30,11 @@ export const Section = (props) => {
 
                             <tbody>
                                 {props.links.map((link) => {
+                                    value = value + 1
                                     return (
-                                        <tr onClick={() => download(link)} key={link + Math.random()} >
-                                            <td>{link}</td>
+
+                                        <tr onClick={() => download(link.template)} key={link + Math.random()} >
+                                            <td>Download from here link {value}</td>
                                         </tr>
                                     )
                                 })}

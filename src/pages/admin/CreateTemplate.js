@@ -26,7 +26,7 @@ export const CreateTemplate = () => {
             template: fileName,
         }
 
-        console.log("TEMPLATEEE", template)
+
 
         createTemplate(template).then(res => {
             if (res.ok) {
