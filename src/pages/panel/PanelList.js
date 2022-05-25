@@ -100,7 +100,7 @@ export const CreatedPanelList = () => {
 
                 <div className="row table-head mt-3">
                     <div className="col">
-                        <h3 className="float-left" >Panel Members</h3>
+                        <h3 className="float-left" >Evaluation Panels</h3>
                     </div>
                 </div>
                 <div className="row table-head-search">
@@ -125,8 +125,8 @@ export const CreatedPanelList = () => {
                 <table className="table table-hover">
                     <thead className="thead-dark">
                         <tr>
-                            <th className='text'>Panel ID</th>
                             <th className='text'>Panel No</th>
+                            <th className='text'>Field</th>
                             <th className='text'>Member</th>
                             <th className='text'>Member</th>
                             <th className='text'>Member </th>
@@ -139,8 +139,8 @@ export const CreatedPanelList = () => {
 
                             return (
                                 <tr key={Math.random()}>
-                                    <td >{panel.panelId}</td>
                                     <td >{panel.panelNumber}</td>
+                                    <td >{panel.FieldOfInterest}</td>
                                     <td onClick={() => openModal(panel.member1)}>{panel.member1}</td>
                                     <td onClick={() => openModal(panel.member2)}>{panel.member2}</td>
                                     <td onClick={() => openModal(panel.member3)}>{panel.member3}</td>

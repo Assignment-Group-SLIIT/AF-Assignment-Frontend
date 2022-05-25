@@ -7,6 +7,7 @@ import { nanoid } from 'nanoid'
 import { getAllUsers } from '../../services/user.service';
 import { createPanel } from '../../services/panel.service';
 import toastNotification from '../../components/toastNotification';
+import { FormSection } from '../../components/FormSection';
 
 export const CreatePanel = () => {
 
@@ -112,9 +113,10 @@ export const CreatePanel = () => {
                 <br></br>
                 <form>
                     <div class="form-row">
-                        <div class="col-md-3">
+                        {/* <div class="col-md-3">
                             <label class="create-panel" for="group">Panel Details</label>
-                        </div>
+                        </div> */}
+                        <FormSection headline={'Panel Details'} />
                     </div>
                     <br></br>
                     <div class="row">

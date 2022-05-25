@@ -124,7 +124,7 @@ export const UpdatePanel = (props) => {
     return (
         <div >
 
-            <Modal.Header>
+            <Modal.Header onClick={props.onHide}>
                 <Modal.Title>Update Panel Details</Modal.Title>
                 <div>
                     <button className="btn btn-close"></button>
@@ -245,7 +245,7 @@ export const UpdatePanel = (props) => {
                     <br></br>
                     <div className="row mb-4">
                         <div className="col py-3 text-center">
-                            <RippleButton className="ripple-button" text="Create" onClick={(e) => { updateNewPanel(e) }} />
+                            <RippleButton className="ripple-button" text="Update" onClick={(e) => { updateNewPanel(e) }} />
 
                         </div>
                         <div className="col py-3 text-center">
