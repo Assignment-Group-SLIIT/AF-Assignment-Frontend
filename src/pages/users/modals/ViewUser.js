@@ -4,7 +4,7 @@ import '../../../styles/usersList.styles.scss'
 
 function ViewUser(user) {
 
-    console.log("model openingggg", user)
+    console.log("model openingggg", user.data.fullname)
 
     return (
         <div>
@@ -24,42 +24,42 @@ function ViewUser(user) {
                                     <th class="text-left" scope="row">
                                         Full Name
                                     </th>
-                                    {/* <td class="text-left">{rental.data.id}</td> */}
+                                    <td class="text-left">{user.data.fullname}</td>
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Email Address
                                     </th>
-                                    {/* <td class="text-left">{rental.data.from}</td> */}
+                                    <td class="text-left">{user.data.email}</td>
                                 </tr><tr>
                                     <th class="text-left" scope="row">
                                         Contact No
                                     </th>
-                                    {/* <td class="text-left">{rental.data.to}</td> */}
+                                    <td class="text-left">{user.data.contactNo}</td>
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Specialization
                                     </th>
-                                    {/* <td class="text-left">{rental.data.status}</td> */}
+                                    <td class="text-left">{user.data.degree}</td>
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Field Of Interest
                                     </th>
-                                    {/* <td class="text-left">{rental.data.payment}</td> */}
+                                    <td class="text-left">{user.data.field}</td>
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Department
                                     </th>
-                                    {/* <td class="text-left">{rental.data.vehicleType + " " + rental.data.model}</td> */}
+                                    <td class="text-left">{user.data.department}</td>
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Role
                                     </th>
-                                    {/* <td class="text-left">{rental.data.pickAddress}</td> */}
+                                    <td class="text-left">{user.data.role}</td>
                                 </tr>
                             </tbody>
                         </table>

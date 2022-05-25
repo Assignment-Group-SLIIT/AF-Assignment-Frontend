@@ -1,0 +1,19 @@
+.step-container {
+    min-height: 60vh;
+
+    // background-color: red ;
+    .row {
+        margin-bottom: 2rem;
+    }
+
+}
+
+.step-four {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
