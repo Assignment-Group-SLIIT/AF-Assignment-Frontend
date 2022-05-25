@@ -93,7 +93,7 @@ const Dashboard = () => {
                                 {isGroupRegistered ?
                                     (
                                         <>
-                                            <RippleButton disabled={true} className="ripple-button-border w-100" text="Topic Selection & Supervisor Selection" onClick={() => { onSubmit() }} />
+                                            <RippleButton disabled={!isGroupRegistered} className="ripple-button-border w-100" text="Topic Selection & Supervisor Selection" onClick={() => { navigate("/student/request/supervisor") }} />
                                             {isTopicSelected && <FcApproval size={30} />}
                                         </>
                                     ) :
