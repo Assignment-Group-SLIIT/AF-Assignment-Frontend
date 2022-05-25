@@ -37,14 +37,14 @@
     align-items: center;
     transform: rotate(180deg);
 
-    .box {
+    .line {
         // min-height: 10vh;
         border: 2.5px solid #6E48AA;
         background-color: #6E48AA;
         border-radius: 1rem;
     }
 
-    .box:before {
+    .line:before {
         position: absolute;
         display: block;
         content: '';

@@ -6,6 +6,9 @@ import { RippleButton } from '../../components/RippleButton'
 const Dashboard = () => {
     const navigate = useNavigate()
 
+    const user = sessionStorage.getItem("user");
+
+
     return (
         <div className='body-content-container-student-dashboard'>
             <div class="container-border-student-dashboard">
@@ -16,18 +19,18 @@ const Dashboard = () => {
                     <div className="col-5">
                         <div className="row height-lg"><RippleButton className="ripple-button-border" text="Group Registration" onClick={() => { navigate("/student/groupregistration") }} /></div>
                         <div className="row height-lg"></div>
-                        <div className="row height-lg"><RippleButton disabled={true} className="ripple-button-border-disabled" text="Co - Supervisor Selection" onClick={() => { onSubmit() }} /></div>
+                        <div className="row height-lg"><RippleButton disabled={true} className="ripple-button-border-disabled" text="Co - Supervisor Selection" onClick={() => { navigate("/student/groupregistration") }} /></div>
                         <div className="row height-lg"></div>
-                        <div className="row height-lg"><RippleButton disabled={true} className="ripple-button-border-disabled" text="Topic Evaluation Status" onClick={() => { onSubmit() }} /></div>
+                        <div className="row height-lg"><RippleButton disabled={true} className="ripple-button-border-disabled" text="Topic Evaluation Status" onClick={() => { navigate("/student/groupregistration") }} /></div>
                         <div className="row height-lg"></div>
                     </div>
                     <div className="col-1 roadmap-line">
                         {/* <div></div> */}
-                        <div className="row height-lg box"></div>
-                        <div className="row height-lg box"></div>
-                        <div className="row height-lg box"></div>
-                        <div className="row height-lg box"></div>
-                        <div className="row height-lg box"></div>
+                        <div className="row height-lg line"></div>
+                        <div className="row height-lg line"></div>
+                        <div className="row height-lg line"></div>
+                        <div className="row height-lg line"></div>
+                        <div className="row height-lg line"></div>
 
                     </div>
                     <div className="col-5">

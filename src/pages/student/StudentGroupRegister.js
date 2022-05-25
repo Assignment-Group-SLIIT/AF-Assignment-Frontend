@@ -1,18 +1,22 @@
-import React, { useState } from 'react'
-import { RippleButton } from '../../components/RippleButton'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { Form, Button, Row, Col, ProgressBar } from 'react-bootstrap'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { nanoid } from 'nanoid'
-import { createGroup } from '../../services/group.service';
+import { RippleButton } from '../../components/RippleButton'
 import toastNotification from '../../components/toastNotification';
-
 import successLogo from '../../assets/images/success.png'
 import erroLogo from '../../assets/images/error.png'
-import { useNavigate } from 'react-router-dom';
+
+import { createGroup } from '../../services/group.service';
+import { getAllUsers } from '../../services/user.service';
 
 const StudentGroupRegister = () => {
     const navigate = useNavigate();
+
+    const [allUsers, setAllUsers] = useState([]);
+
     //leader
     const [nameL, setNameL] = useState("");
     const [contactNoL, setContactNoL] = useState("");
@@ -76,28 +80,63 @@ const StudentGroupRegister = () => {
         },
     ]
 
+    useEffect(() => {
+        getAllUsers().then((res) => {
+            if (res.ok) {
+                let tmpArr = res.data.filter((item) => {
+                    return item.isAvailable === false;
+                })
+                let tmpArrWithAvailableStudents = tmpArr.map(item => item.studentId
+                )
+                setAllUsers(tmpArrWithAvailableStudents)
+            } else {
+                console.log("error while fetching all users", err.err)
+            }
+        }).catch((err) => {
+            console.log("error while fetching all users", err.err)
+        })
+    }, []);
+
+    //method to check availability of a member
+    const checkIsRegistered = (id) => {
+        return allUsers.includes(id)
+    }
+
     const increaseStepFunc = (e) => {
         e.preventDefault()
 
         if (step == 1) {
+
             if (nameL != "" && contactNoL != "" && studentNoL != "" && specializationL != "" && emailL != "") {
-                setStep(2)
-                setProgress(25)
+                if (checkIsRegistered(studentNoL.toUpperCase()) === false) {
+                    setStep(2)
+                    setProgress(25)
+                } else {
+                    toastNotification(`${studentNoL} is already registered with an another group`, "warn")
+                }
             } else {
                 toastNotification("Please fill all the required fields!", "warn")
             }
 
         } else if (step == 2) {
             if (nameM1 != "" && contactNoM1 != "" && studentNoM1 != "" && specializationM1 != "" && emailM1 != "") {
-                setStep(3)
-                setProgress(50)
+                if (checkIsRegistered(studentNoM1.toUpperCase()) === false) {
+                    setStep(3)
+                    setProgress(50)
+                } else {
+                    toastNotification(`${studentNoM1} is already registered with an another group`, "warn")
+                }
             } else {
                 toastNotification("Please fill all the required fields!", "warn")
             }
         } else if (step == 3) {
             if (nameM2 != "" && contactNoM2 != "" && studentNoM2 != "" && specializationM2 != "" && emailM2 != "") {
-                setStep(4)
-                setProgress(75)
+                if (checkIsRegistered(studentNoM2.toUpperCase()) === false) {
+                    setStep(4)
+                    setProgress(75)
+                } else {
+                    toastNotification(`${studentNoM1} is already registered with an another group`, "warn")
+                }
             } else {
                 toastNotification("Please fill all the required fields!", "warn")
             }
@@ -167,20 +206,25 @@ const StudentGroupRegister = () => {
 
         }
 
-        console.log("students>>>", payload)
         if (nameM3 != "" && contactNoM3 != "" && studentNoM3 != "" && specializationM3 != "" && emailM3 != "") {
-            createGroup(payload).then((res) => {
-                console.log("after group registration>>", res)
-                if (res.ok) {
-                    setIsSuccess(true)
-                    setStep(5)
-                    setProgress(100)
-                }
+            if (checkIsRegistered(studentNoM3.toUpperCase()) === false) {
 
-            }).catch((err) => {
-                setIsSuccess(false)
-                console.log("error while registering a group>>", err)
-            })
+                createGroup(payload).then((res) => {
+                    console.log("after group registration>>", res)
+                    if (res.ok) {
+                        setIsSuccess(true)
+                        setStep(5)
+                        setProgress(100)
+                    }
+
+                }).catch((err) => {
+                    setIsSuccess(false)
+                    console.log("error while registering a group>>", err)
+                })
+
+            } else {
+                toastNotification(`${studentNoM3} is already registered with an another group`, "warn")
+            }
         } else {
             toastNotification("Please fill all the required fields!", "warn")
         }
