@@ -1,8 +1,11 @@
 import React from 'react'
 import { AiOutlineCloudUpload } from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom'
 import { RippleButton } from '../../components/RippleButton'
 
 const Dashboard = () => {
+    const navigate = useNavigate()
+
     return (
         <div className='body-content-container-student-dashboard'>
             <div class="container-border-student-dashboard">
@@ -11,7 +14,7 @@ const Dashboard = () => {
                 </div>
                 <div className="row roadmap">
                     <div className="col-5">
-                        <div className="row height-lg"><RippleButton className="ripple-button-border" text="Group Registration" onClick={() => { onSubmit() }} /></div>
+                        <div className="row height-lg"><RippleButton className="ripple-button-border" text="Group Registration" onClick={() => { navigate("/student/groupregistration") }} /></div>
                         <div className="row height-lg"></div>
                         <div className="row height-lg"><RippleButton disabled={true} className="ripple-button-border-disabled" text="Co - Supervisor Selection" onClick={() => { onSubmit() }} /></div>
                         <div className="row height-lg"></div>
@@ -55,7 +58,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                     <div className="row mr-2 ml-2 mb-4">
-                        <div className="row height-lg-border"></div>
+                        <div className="row height-lg-border">dfsfasdsaf</div>
                         <div className="row border shadow-sm height-lg p-2">
                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore unde quidem nihil laboriosam illo quod nostrum cupiditate minima aspernatur atque! Vitae commodi doloribus nesciunt quasi facere laudantium sequi enim. Provident.</p>
                             <p><AiOutlineCloudUpload size={20} /><span className='ml-2'><u>add submission</u></span></p>

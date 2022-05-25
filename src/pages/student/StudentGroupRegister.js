@@ -5,9 +5,14 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { nanoid } from 'nanoid'
 import { createGroup } from '../../services/group.service';
+import toastNotification from '../../components/toastNotification';
+
+import successLogo from '../../assets/images/success.png'
+import erroLogo from '../../assets/images/error.png'
+import { useNavigate } from 'react-router-dom';
 
 const StudentGroupRegister = () => {
-
+    const navigate = useNavigate();
     //leader
     const [nameL, setNameL] = useState("");
     const [contactNoL, setContactNoL] = useState("");
@@ -38,6 +43,7 @@ const StudentGroupRegister = () => {
 
     const [step, setStep] = useState(1)
     const [progress, setProgress] = useState(0)
+    const [isSuccess, setIsSuccess] = useState(false)
 
     const specializations = [
         {
@@ -70,22 +76,38 @@ const StudentGroupRegister = () => {
         },
     ]
 
-    const increaseStepFunc = () => {
+    const increaseStepFunc = (e) => {
+        e.preventDefault()
+
         if (step == 1) {
-            setStep(2)
-            setProgress(25)
+            if (nameL != "" && contactNoL != "" && studentNoL != "" && specializationL != "" && emailL != "") {
+                setStep(2)
+                setProgress(25)
+            } else {
+                toastNotification("Please fill all the required fields!", "warn")
+            }
 
         } else if (step == 2) {
-            setStep(3)
-            setProgress(50)
+            if (nameM1 != "" && contactNoM1 != "" && studentNoM1 != "" && specializationM1 != "" && emailM1 != "") {
+                setStep(3)
+                setProgress(50)
+            } else {
+                toastNotification("Please fill all the required fields!", "warn")
+            }
         } else if (step == 3) {
-            setStep(4)
-            setProgress(75)
+            if (nameM2 != "" && contactNoM2 != "" && studentNoM2 != "" && specializationM2 != "" && emailM2 != "") {
+                setStep(4)
+                setProgress(75)
+            } else {
+                toastNotification("Please fill all the required fields!", "warn")
+            }
         }
 
     }
 
-    const previousStepFunc = () => {
+    const previousStepFunc = (e) => {
+        e.preventDefault()
+
         if (step == 2) {
             setStep(1)
             setProgress(0)
@@ -146,16 +168,23 @@ const StudentGroupRegister = () => {
         }
 
         console.log("students>>>", payload)
-        createGroup(payload).then((res) => {
-            console.log("after group registration>>", res)
-            if (res.ok) {
-                setStep(5)
-                setProgress(100)
-            }
+        if (nameM3 != "" && contactNoM3 != "" && studentNoM3 != "" && specializationM3 != "" && emailM3 != "") {
+            createGroup(payload).then((res) => {
+                console.log("after group registration>>", res)
+                if (res.ok) {
+                    setIsSuccess(true)
+                    setStep(5)
+                    setProgress(100)
+                }
 
-        }).catch((err) => {
-            console.log("error while registering a group>>", err)
-        })
+            }).catch((err) => {
+                setIsSuccess(false)
+                console.log("error while registering a group>>", err)
+            })
+        } else {
+            toastNotification("Please fill all the required fields!", "warn")
+        }
+
     }
 
     return (
@@ -234,7 +263,7 @@ const StudentGroupRegister = () => {
                             </Form.Group>
 
 
-                            <RippleButton className="ripple-button" text="Next" onClick={() => { increaseStepFunc() }} />
+                            <RippleButton className="ripple-button" text="Next" onClick={(e) => { increaseStepFunc(e) }} />
                         </Form>}
                     {step == 2 &&
                         <Form>
@@ -303,9 +332,9 @@ const StudentGroupRegister = () => {
 
                             <div className='d-flex flex-row align-items-center justify-content-around'>
 
-                                <RippleButton className="ripple-button-warning" text="Previous" onClick={() => { previousStepFunc() }} />
+                                <RippleButton className="ripple-button-warning" text="Previous" onClick={(e) => { previousStepFunc(e) }} />
 
-                                <RippleButton className="ripple-button" text="Next" onClick={() => { increaseStepFunc() }} />
+                                <RippleButton className="ripple-button" text="Next" onClick={(e) => { increaseStepFunc(e) }} />
 
                             </div>
 
@@ -377,9 +406,9 @@ const StudentGroupRegister = () => {
 
                             <div className='d-flex flex-row align-items-center justify-content-around'>
 
-                                <RippleButton className="ripple-button-warning" text="Previous" onClick={() => { previousStepFunc() }} />
+                                <RippleButton className="ripple-button-warning" text="Previous" onClick={(e) => { previousStepFunc(e) }} />
 
-                                <RippleButton className="ripple-button" text="Next" onClick={() => { increaseStepFunc() }} />
+                                <RippleButton className="ripple-button" text="Next" onClick={(e) => { increaseStepFunc(e) }} />
 
                             </div>
 
@@ -451,13 +480,38 @@ const StudentGroupRegister = () => {
 
                             <div className='d-flex flex-row align-items-center justify-content-around'>
 
-                                <RippleButton className="ripple-button-warning" text="Previous" onClick={() => { previousStepFunc() }} />
+                                <RippleButton className="ripple-button-warning" text="Previous" onClick={(e) => { previousStepFunc(e) }} />
 
                                 <RippleButton className="ripple-button" text="submit" onClick={(e) => { onSubmit(e) }} />
 
                             </div>
 
                         </Form>}
+                    {step === 5 && (
+                        <div className="container step-container step-four">
+                            {isSuccess ? (
+                                <>
+                                    <img src={successLogo} width={200} height={200} alt='success logo' />
+                                    <h4>Your group has been successfully registered!</h4>
+                                    <div className='d-flex flex-row align-items-center justify-content-around'>
+
+
+
+                                        <RippleButton className="ripple-button" text="View next steps" onClick={() => { navigate("/student/dashboard") }} />
+
+
+                                    </div>
+                                </>
+
+                            ) :
+                                (
+                                    <>
+                                        <img src={erroLogo} width={200} height={200} alt='error logo' />
+                                        <h4>There is an error with your request. Please try again later.</h4>
+                                    </>
+                                )}
+                        </div>
+                    )}
                 </div>
             </div>
         </div >
