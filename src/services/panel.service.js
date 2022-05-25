@@ -32,3 +32,31 @@ export const getAllPanels = async () => {
 
 }
 
+export const deletePanel = async (id) => {
+    try {
+        const response = await API.delete("panels/" + id)
+        if (response.status === 204) {
+            return {
+                ok: true,
+                data: "Successfully deleted a panel"
+            }
+        }
+    } catch (error) {
+        return { ok: false, err: error.message }
+    }
+}
+
+export const updatePanel = async (panelId, updatePayload) => {
+    try {
+        const response = await API.put("panels/" + panelId, updatePayload)
+        if (response.status === 200) {
+            return {
+                ok: true,
+                data: response.data
+            }
+        }
+    } catch (error) {
+        return { ok: false, err: error.message }
+    }
+}
+

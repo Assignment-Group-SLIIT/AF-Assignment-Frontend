@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Modal } from "react-bootstrap";
+import ViewUser from '../users/modals/ViewUser';
 import { RippleButton } from "../../components/RippleButton"
 import '../../styles/usersList.styles.scss'
+import { deleteUser, getAllUsers } from '../../services/user.service';
 import toastNotification from '../../components/toastNotification';
-import { deletePanel, getAllPanels } from '../../services/panel.service';
-import ViewPanelMember from './modals/PanelMember';
-import { UpdatePanel } from './modals/UpdatePanel';
 
-export const CreatedPanelList = () => {
+export const PanelList = () => {
 
     const [search, setSearch] = useState("");
     const [panelList, setPanelList] = useState([]);
@@ -18,9 +17,6 @@ export const CreatedPanelList = () => {
     const [modalDataDelete, setModalDataDelete] = useState([]);
     const [modalDeleteConfirm, setModalDeleteConfirm] = useState(false);
     const [modalLoading, setModalLoading] = useState(false);
-
-    const [modalDataUpdate, setModalDataUpdate] = useState([]);
-    const [modalUpdate, setModalUpdate] = useState(false);
 
 
     const openModal = (panel) => {
@@ -39,21 +35,13 @@ export const CreatedPanelList = () => {
         setModalDeleteConfirm(true);
     }
 
-    const openModalUpdate = (panel) => {
-
-        console.log("request came for modal updateeeeeee");
-        setModalDataUpdate(panel);
-        setModalUpdate(true);
-
-    }
-
     useEffect(() => {
-        getAllPanels().then(response => {
-            // console.log("data", response)
+        getAllUsers().then(response => {
+            console.log("data", response)
             if (response.ok) {
                 setPanelList(response.data);
             } else {
-                toastNotification("Cannot load the panel list", "warn")
+                toastNotification("Cannot load the panel members", "warn")
             }
         }).catch(err => {
             toastNotification("Error", "error")
@@ -63,15 +51,13 @@ export const CreatedPanelList = () => {
 
 
     function onDelete(modalDataDelete) {
-        // console.log(modalDataDelete.panelId)
-        deletePanel(modalDataDelete.panelId).then(response => {
+
+        deleteUser(modalDataDelete.email).then(response => {
             if (response.ok) {
-                toastNotification("Successfully deleted a Panel", "success")
-
-                setModalDeleteConfirm(false);
-
+                toastNotification("Successfully deleted a Panel member");
+                // window.location.reload();
             } else {
-                toastNotification("Error upon deleting a Panel", "warn");
+                toastNotification("Error upon deleting a Panel member", "warn");
             }
 
         }).catch(err => {
@@ -90,7 +76,7 @@ export const CreatedPanelList = () => {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
-                <ViewPanelMember
+                <ViewUser
                     data={modalData}
                     onHide={() => setModalShow(false)}
                 />
@@ -125,50 +111,33 @@ export const CreatedPanelList = () => {
                 <table className="table table-hover">
                     <thead className="thead-dark">
                         <tr>
-                            <th className='text'>Panel ID</th>
-                            <th className='text'>Panel No</th>
-                            <th className='text'>Member</th>
-                            <th className='text'>Member</th>
-                            <th className='text'>Member </th>
-                            <th className='text'>Member </th>
+                            <th className='text'>Name</th>
+                            <th className='text'>Email Address</th>
+                            <th className='text'>Contact Number</th>
+                            <th className='text'>Role</th>
                             <th className='text'>Action </th>
                         </tr>
                     </thead>
                     <tbody>
                         {panelList.map((panel) => {
-
-                            return (
-                                <tr key={Math.random()}>
-                                    <td >{panel.panelId}</td>
-                                    <td >{panel.panelNumber}</td>
-                                    <td onClick={() => openModal(panel.member1)}>{panel.member1}</td>
-                                    <td onClick={() => openModal(panel.member2)}>{panel.member2}</td>
-                                    <td onClick={() => openModal(panel.member3)}>{panel.member3}</td>
-                                    <td onClick={() => openModal(panel.member4)}>{panel.member4}</td>
-                                    <td>
-                                        <RippleButton className="ripple-button" text="Update" onClick={() => openModalUpdate(panel)} />
-                                        <RippleButton className="ripple-button-danger" text="Delete" onClick={() => openModalDelete(panel)} />
-                                    </td>
-                                </tr>
-                            )
-
+                            if (panel.role == 'Panel') {
+                                return (
+                                    <tr key={Math.random()}>
+                                        <td >{panel.fullname}</td>
+                                        <td >{panel.email}</td>
+                                        <td >{panel.contactNo}</td>
+                                        <td>{panel.role}</td>
+                                        <td>
+                                            <RippleButton className="ripple-button" text="View" onClick={() => openModal(panel)} />
+                                            <RippleButton className="ripple-button-danger" text="Delete" onClick={() => openModalDelete(panel)} />
+                                        </td>
+                                    </tr>
+                                )
+                            }
                         })}
                     </tbody>
                 </table>
             </div>
-            {/* Modal to be used in update */}
-            <Modal
-                show={modalUpdate}
-                onHide={() => setModalUpdate(false)}
-                size="lg"
-                aria-labelledby="contained-modal-title-vcenter"
-                centered
-            >
-                <UpdatePanel
-                    data={modalDataUpdate}
-                    onHide={() => setModalUpdate(false)}
-                />
-            </Modal>
 
             {/* Modal to be used in delete */}
 
@@ -181,7 +150,7 @@ export const CreatedPanelList = () => {
                 <Modal.Body>
                     <center>
                         <p></p>
-                        <p><strong>Are you sure you want to remove this panel?</strong></p>
+                        <p><strong>Are you sure you want to remove this panel member?</strong></p>
                     </center>
                 </Modal.Body>
                 <Modal.Footer>
