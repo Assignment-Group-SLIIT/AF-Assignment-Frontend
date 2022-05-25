@@ -13,7 +13,10 @@ export const RequestTopic = () => {
     const [allUsers, setAllUsers] = useState([]);
     const [groupId, setGroupId] = useState("");
 
-    const [supervisor, setSupervisor] = ("")
+    const [email, setEmail] = useState({ value: "", error: "This field cannot be empty", isError: false })
+    const [topic, setTopic] = useState({ value: "", error: "This field cannot be empty", isError: false })
+    const [field, setField] = useState({ value: "", error: "This field cannot be empty", isError: false })
+    const [supervisor, setSupervisor] = useState({ value: "", error: "This field cannot be empty", isError: false })
 
     useEffect(() => {
         const user = sessionStorage.getItem("user");
@@ -23,14 +26,36 @@ export const RequestTopic = () => {
     }, [])
 
     useEffect(() => {
+
+        email.value === "" ? setEmail({ ...email, isError: true }) : setEmail({ ...email, isError: false })
+        topic.value === "" ? setTopic({ ...topic, isError: true }) : setTopic({ ...topic, isError: false })
+        field.value === "" ? setField({ ...field, isError: true }) : setField({ ...field, isError: false })
+        supervisor.value === "" ? setSupervisor({ ...supervisor, isError: true }) : setSupervisor({ ...supervisor, isError: false })
+
+    }, [email.value, topic.value, field.value, supervisor.value])
+
+    const onSubmit = () => {
+        const payload = {
+            groupId,
+            email: email.value,
+            researchTopic: topic.value,
+            researchField: field.value,
+            supervisor: supervisor.value.fullname
+        }
+
+        if (!email.isError && !topic.isError && !field.isError && !supervisor.isError) {
+            console.log("payload>>", payload)
+        }
+    }
+
+    useEffect(() => {
         getAllUsers().then((res) => {
             if (res.ok) {
                 let tmpArr = res.data.filter((item) => {
-                    return item.role === "Supervisor";
-                    // return item.role === "Panel";
+                    // return item.role === "Supervisor";
+                    return item.role === "Panel";
                 })
                 setAllUsers(tmpArr)
-                console.log("tmp arr>>>", tmpArr)
             } else {
                 console.log("error while fetching all users", err.err)
             }
@@ -73,9 +98,10 @@ export const RequestTopic = () => {
                                 className="form-control"
                                 placeholder="student Email address"
                                 id="email"
-                            // value={reserverName} 
-                            // onChange={(e) => { setReserverName(e.target.value) }} 
+                                value={email.value}
+                                onChange={(e) => { setEmail({ ...email, value: e.target.value }) }}
                             />
+                            {email.isError && <small className='text-danger'>{email.error}</small>}
                         </div>
                     </div>
                 </div>
@@ -89,9 +115,10 @@ export const RequestTopic = () => {
                                 className="form-control"
                                 placeholder="Research topic"
                                 id="topic"
-                            // value={reserverName} 
-                            // onChange={(e) => { setReserverName(e.target.value) }} 
+                                value={topic.value}
+                                onChange={(e) => { setTopic({ ...topic, value: e.target.value }) }}
                             />
+                            {topic.isError && <small className='text-danger'>{topic.error}</small>}
                         </div>
                     </div>
                 </div>
@@ -105,9 +132,10 @@ export const RequestTopic = () => {
                                 className="form-control"
                                 placeholder="Research field"
                                 id="field"
-                            // value={reserverName} 
-                            // onChange={(e) => { setReserverName(e.target.value) }} 
+                                value={field.value}
+                                onChange={(e) => { setField({ ...field, value: e.target.value }) }}
                             />
+                            {field.isError && <small className='text-danger'>{field.error}</small>}
                         </div>
                     </div>
                 </div>
@@ -116,14 +144,6 @@ export const RequestTopic = () => {
                     <div className="col">
                         <div className="form-group">
                             <label for="supervisor">Supervisor </label>
-                            {/* <input
-                                type="text"
-                                className="form-control"
-                                placeholder="Supervisor"
-                                id="supervisor"
-                            // value={reserverName} 
-                            // onChange={(e) => { setReserverName(e.target.value) }} 
-                            /> */}
                             <Autocomplete
 
                                 id="supervisor"
@@ -131,21 +151,23 @@ export const RequestTopic = () => {
                                 renderInput={params => (
                                     <TextField {...params} variant="outlined" />
                                 )}
-
-                                getOptionSelected={(option, value) => option._id === value._id}
-                                getOptionLabel={option => option.fullname}
-                                value={supervisor}
+                                getOptionSelected={(option, value) => option.id === value.id}
+                                getOptionLabel={option => option.fullname || ""}
+                                value={supervisor.value}
                                 onChange={(_event, name) => {
-                                    setSupervisor(name);
+                                    setSupervisor({ ...supervisor, value: name });
                                 }}
                                 size="small"
 
                             />
+                            {supervisor.isError && <small className='text-danger'>{supervisor.error}</small>}
                         </div>
                     </div>
                 </div>
-                <div className='sendEmail'>
-                    <RippleButton className="ripple-button " text="submit" />
+                <div className="text-center">
+                    <RippleButton className="ripple-button " text="submit" onClick={() => {
+                        onSubmit()
+                    }} />
                 </div>
 
             </div>
