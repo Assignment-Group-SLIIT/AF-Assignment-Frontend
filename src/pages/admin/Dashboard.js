@@ -143,18 +143,25 @@ export default Dashboard = () => {
 
 
     return (
-        <div className='admin-body-content-container'>
-            <div className='admin-dash-top'>
-                <h2>Admin Dashboard</h2>
-                <div className="d-flex justify-content-around">
-                    <PieChart data={userData} />
-                    <PieChart data={requetsData} />
-                    <PieChart data={submissions} />
+        <div>
+            <div className='admin-body-content-container'>
+                <div className='admin-dash-top'>
+                    <h2>Admin Dashboard</h2>
+                    <div className="d-flex justify-content-around">
+                        <PieChart data={userData} header={"System Users"} color={"#770737"} />
+                        <PieChart data={requetsData} header={"Topic Requests"} color={"#AA336A"} />
+                        <PieChart data={submissions} header={"Documents"} color={"#800020"} />
+                    </div>
+
                 </div>
 
+
+
             </div>
-
-
+            <div className='body-content-admin'>
+                <div className='view-admin'>
+                </div>
+            </div>
         </div>
     )
 

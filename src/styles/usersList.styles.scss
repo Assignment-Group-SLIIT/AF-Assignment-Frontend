@@ -164,7 +164,7 @@
     width: 100%;
     align-items: center;
     justify-content: center;
-    min-height: 10vh;
+    min-height: 5vh;
     position: relative;
     margin-top: 100px;
     margin-bottom: 4rem;
@@ -172,7 +172,7 @@
 
 .admin-dash-top {
     width: 200vh;
-    // min-height: 3vh;
+    // max-height: 400px;
     // border: 1px solid #512474;
     // top: 50%;
     border-radius: 10px;
@@ -184,7 +184,38 @@
 
 .pie-chart {
     position: relative;
-    width: 700px;
-    margin-left: 50px;
+    width: 750px;
+    margin-left: 20px;
     padding: 20px;
+}
+
+.section-view-subheader {
+    position: relative;
+    width: 100%;
+    color: #000000;
+    background-color: rgba(249, 249, 249, 0.993);
+    height: 2.5rem;
+}
+
+.view-admin {
+    width: 200vh;
+    min-height: 100vh;
+    // border: 1px solid #512474;
+    // border-radius: 10px;
+    // padding: 2rem 1.5rem 2rem 1.5rem;
+    // -webkit-box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.45);
+    // box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.45);
+    background-color: yellow;
+
+}
+
+.body-content-admin {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 4rem;
 }

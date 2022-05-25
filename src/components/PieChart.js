@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { ResponsiveContainer, PieChart, Pie, Legend, Sector } from 'recharts';
 
-
-
 export default PieChart = (props) => {
 
     const data = props.data;
-
+    const name = props.header;
+    const fill = props.color;
 
     const renderActiveShape = (data) => {
         const RADIAN = Math.PI / 180;
@@ -67,6 +66,9 @@ export default PieChart = (props) => {
 
     return (
         <div className='pie-chart'>
+            <center>
+                <h5> <strong>{name}</strong></h5>
+            </center>
             <div style={{ width: '100%', height: 300 }}>
                 <ResponsiveContainer>
                     <PieChart>
@@ -80,7 +82,7 @@ export default PieChart = (props) => {
                             cy="50%"
                             innerRadius={60}
                             outerRadius={80}
-                            fill="#8884d8"
+                            fill={fill}
                             dataKey="value"
                             onMouseEnter={onPieEnter}
                         />
