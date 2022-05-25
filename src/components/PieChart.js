@@ -73,7 +73,7 @@ export default PieChart = (props) => {
                 <ResponsiveContainer>
                     <PieChart>
                         {/* <Pie dataKey="value" data={data} fill="#8884d8" label
-                    /> */}
+                        /> */}
                         <Pie
                             activeIndex={activeIndex}
                             activeShape={renderActiveShape}

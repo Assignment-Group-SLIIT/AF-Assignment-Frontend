@@ -5,7 +5,7 @@ import { getAllRequests, } from '../../services/supervisorRequests.service';
 import { getAllTemplate } from '../../services/template.service';
 import { getAllUsers } from '../../services/user.service'
 import { getAllSubmissions } from '../../services/submission.service';
-
+import Chart from '../../components/Chart';
 
 export default Dashboard = () => {
 
@@ -143,26 +143,29 @@ export default Dashboard = () => {
 
 
     return (
-        <div>
-            <div className='admin-body-content-container'>
-                <div className='admin-dash-top'>
-                    <h2>Admin Dashboard</h2>
-                    <div className="d-flex justify-content-around">
-                        <PieChart data={userData} header={"System Users"} color={"#770737"} />
-                        <PieChart data={requetsData} header={"Topic Requests"} color={"#AA336A"} />
-                        <PieChart data={submissions} header={"Documents"} color={"#800020"} />
+        <>
+            <div>
+                <div className='admin-body-content-container'>
+                    <div className='admin-dash-top'>
+                        <h2>Admin Dashboard</h2>
+                        <div className="d-flex justify-content-around">
+                            <PieChart data={userData} header={"System Users"} color={"#770737"} />
+                            <PieChart data={requetsData} header={"Topic Requests"} color={"#AA336A"} />
+                            <PieChart data={submissions} header={"Documents"} color={"#800020"} />
+                        </div>
                     </div>
 
                 </div>
-
-
-
-            </div>
-            <div className='body-content-admin'>
-                <div className='view-admin'>
+                <div className='body-content-admin'>
+                    <div className='view-admin'>
+                        <Chart />
+                    </div>
                 </div>
+
             </div>
-        </div>
+
+        </>
+
     )
 
 

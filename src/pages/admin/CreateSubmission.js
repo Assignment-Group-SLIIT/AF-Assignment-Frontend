@@ -2,24 +2,50 @@ import DropzoneArea from '../../components/DropZoneArea'
 import React, { useState, useEffect } from 'react'
 import { RippleButton } from '../../components/RippleButton'
 import '../../styles/usersList.styles.scss'
+import { nanoid } from 'nanoid'
+import { addSubmission } from '../../services/submission.service'
+import moment from 'moment'
+import toastNotification from '../../components/toastNotification'
 
 export const CreateSubmission = () => {
 
-    const [submissionID, setSubmissionID] = useState("")
+    const [submissionID, setSubmissionID] = useState(nanoid(4))
     const [submissionType, setSubmissionType] = useState("")
-    const [startDate, setStartDate] = useState("")
-    const [endDate, setEndDate] = useState("")
+    const [startDate, setStartDate] = useState(moment().format("YYYY-MM-DD"))
+    const [endDate, setEndDate] = useState(moment().format("YYYY-MM-DD"))
     const [fileName, setFileName] = useState("")
 
-    useEffect(() => {
-
-    }, [])
-
-
     const sendData = (data) => {
-        console.log("Child data", data)
-        setFileName(data.name)
+        setFileName(data)
     }
+
+    const uploadSubmission = (e) => {
+        e.preventDefault();
+
+        const submissionDoc = {
+            submissionId: submissionID,
+            submissionType: submissionType,
+            startDate: moment(startDate).format("YYYY-MM-DD"),
+            endDate: moment(endDate).format("YYYY-MM-DD"),
+            markingSchema: fileName,
+        }
+
+
+
+        addSubmission(submissionDoc).then(res => {
+            if (res.ok) {
+                toastNotification("Uploaded a new submission", "success")
+            } else {
+                toastNotification("Could not upload a submission", "warn")
+            }
+        }).catch(err => {
+            toastNotification("Error", "error")
+        })
+
+    }
+
+
+
 
     return (
         <div className='template-content-container'>
@@ -33,11 +59,11 @@ export const CreateSubmission = () => {
                             <div class="row">
                                 <div class="col-6">
                                     <label className="form-pad" for="submissionID">Submission ID</label>
-                                    <input type="text" class="form-control" id="submissionID" placeholder="Submission ID" value={submissionID} onChange={(e) => { setSubmissionID(e.target.value) }} />
+                                    <input type="text" class="form-control" id="submissionID" placeholder="Submission ID" value={submissionID} onChange={(e) => { setSubmissionID(e.target.value) }} disabled />
                                 </div>
                                 <div class="col-6">
                                     <label className="form-pad" for="submissionType">Submission Type</label>
-                                    <select class="form-select" className="form-control" name="submissionType" id="submissionType" value={submissionType} onChange={(e) => { setSubmissionType(e.target.value) }}>
+                                    <select class="form-select" className="form-control" name="submissionType" id="submissionType" onChange={(e) => { setSubmissionType(e.target.value) }}>
                                         <option  >Choose Type</option>
                                         <option id="1" >Submission One</option>
                                         <option id="2" >Submission Two</option>
@@ -52,11 +78,11 @@ export const CreateSubmission = () => {
                             <div class="row">
                                 <div class="col-6">
                                     <label className="form-pad" for="startDate">Start Date</label>
-                                    <input type="date" class="form-control" id="startDate" placeholder="Start Date" value={startDate} onChange={(e) => { setStartDate(e.target.value) }} />
+                                    <input type="date" class="form-control" id="startDate" placeholder="Start Date" onChange={(e) => { setStartDate(e.target.value) }} />
                                 </div>
                                 <div class="col-6">
                                     <label className="form-pad" for="endDate">End Date</label>
-                                    <input type="date" class="form-control" id="endDate" placeholder="End Date" value={endDate} onChange={(e) => { setEndDate(e.target.value) }} />
+                                    <input type="date" class="form-control" id="endDate" placeholder="End Date" onChange={(e) => { setEndDate(e.target.value) }} />
                                 </div>
                             </div>
                             <br></br>
@@ -73,7 +99,7 @@ export const CreateSubmission = () => {
                             <br></br>
                             <div className="row mb-4">
                                 <div className="col py-3 text-center">
-                                    <RippleButton className="ripple-button" text="Submit" onClick={() => { onSubmit() }} />
+                                    <RippleButton className="ripple-button" text="Submit" onClick={(e) => { uploadSubmission(e) }} />
 
                                 </div>
                                 <div className="col py-3 text-center">
