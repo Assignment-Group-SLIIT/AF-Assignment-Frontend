@@ -2,15 +2,14 @@ import React, { useState, useEffect } from "react";
 import { RippleButton } from '../../components/RippleButton'
 import { Link, useNavigate } from 'react-router-dom'
 import { Modal, Button } from "react-bootstrap";
+import { getAllRequests } from "../../services/supervisorRequests.service";
 
 
 
 export const GroupRequest = () => {
 
     const [search, setSearch] = useState("");
-    const [modalData, setData] = useState([]);
-    const [modalShow, setModalShow] = useState(false);
-
+    const [groupList, setGroupList] = useState([]);
 
     const [modalDataDelete, setModalDataDelete] = useState([]);
     const [modalDeleteConfirm, setModalDeleteConfirm] = useState(false);
@@ -21,6 +20,17 @@ export const GroupRequest = () => {
     const [modalAccept, setModalAccept] = useState(false);
 
     const [modalLoading, setModalLoading] = useState(false);
+
+    const [disable, setDisable] = useState(false);
+    const [query, setQuery] = useState("")
+
+    useEffect(() => {
+        getAllRequests().then((response) => {
+            setGroupList(response.data.reverse())
+        }).catch((error) => {
+            console.log("error",error)
+        })
+    },[])
 
     const openModal = (data) => {
         // setData(rental);
@@ -51,8 +61,7 @@ export const GroupRequest = () => {
                                 // onSubmit={(e) => searchRooms(e)}
                                 >
                                     <input class="search_input" type="text" name="search" placeholder="Search..."
-                                        // value={search}
-                                        // onChange={(event) => { setSearch(event.target.value) }}
+                                        onChange={event => setQuery(event.target.value)}
                                         require />
                                     <button className="btn search_icon" type="submit" id="submit" name="submit">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
@@ -73,19 +82,29 @@ export const GroupRequest = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* return( */}
-
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td className='text'>
-                                <RippleButton className="ripple-button" text="Accept" onClick={() => openModal()} />
-                                <RippleButton className="ripple-button-danger" text="Reject" onClick={() => openModalDelete()} />
-                            </td>
-                        </tr>
-                        {/* ) */}
+                    {groupList.filter(grouplist => {
+                            if(query === ''){
+                                return grouplist;
+                            }else if (grouplist.groupId.toLowerCase().includes(query.toLowerCase()) || 
+                                      grouplist.email.toLowerCase().includes(query.toLowerCase()) ||
+                                      grouplist.researchTopic.toLowerCase().includes(query.toLowerCase())  || 
+                                      grouplist.researchField.toLowerCase().includes(query.toLowerCase())) {
+                                return grouplist;
+                              }
+                        }).map((grouplist , index) => {
+                            return(
+                                <tr key={index}>
+                                    <td>{grouplist.groupId}</td>
+                                    <td>{grouplist.email}</td>
+                                    <td>{grouplist.researchTopic}</td>
+                                    <td>{grouplist.researchField}</td>
+                                    <td className='text'>
+                                        <RippleButton className="ripple-button" text="Accept" onClick={() => openModal(topic)} />
+                                        <RippleButton className="ripple-button-danger" text="Reject" onClick={() => openModalDelete(topic)} />
+                                    </td>
+                                </tr>
+                            ) 
+                        })}
                     </tbody>
                 </table>
 
