@@ -32,9 +32,8 @@ export const EvaluationSubmission = () => {
 
     const getEvaluationData = async () => {
         let response = await getAllAssignement();
-        console.log("res>>", response)
         if (response.ok) {
-            setEvaluationData(response.data)
+            setEvaluationData(response.data.data)
         }
     }
 
@@ -42,10 +41,9 @@ export const EvaluationSubmission = () => {
         getEvaluationData()
     }, [])
 
-    const openModalUpdate = (user) => {
+    const openModalUpdate = (values) => {
 
-        console.log("request came for modal updateeeeeee");
-        // setModalDataUpdate(data);
+        setModalDataUpdate(values);
         setModalUpdate(true);
 
     }
@@ -92,19 +90,18 @@ export const EvaluationSubmission = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* return( */}
                         {console.log("evaData", evaluationData)}
                         {
                             evaluationData.map((values) => {
                                 return (
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{values.groupId}</td>
+                                        <td>{values.submissionId}</td>
+                                        <td>{values.submissionType}</td>
+                                        <td>{values.evaluationStatus}</td>
+                                        <td>{values.marks}</td>
                                         <td className='text'>
-                                            <RippleButton className="ripple-button" text="Evaluate" onClick={() => openModalUpdate()} />
+                                            <RippleButton className="ripple-button" text="Evaluate" onClick={() => openModalUpdate(values)} />
                                         </td>
                                     </tr>
                                 )
@@ -112,12 +109,12 @@ export const EvaluationSubmission = () => {
                         }
 
 
-                        {/* ) */}
                     </tbody>
                 </table>
 
             </div>
             {/* Modal to be used in update */}
+            {console.log(" modal data>>>", modalDataUpdate)}
             <Modal
                 show={modalUpdate}
                 onHide={() => setModalUpdate(false)}

@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import { RippleButton } from "../../../components/RippleButton";
 
-function EvaluationSubmissionModal(user) {
-
-    console.log("users", user)
-
+const EvaluationSubmissionModal = (props) => {
+    console.log("users", props)
     const [groupID, setGroupID] = useState("");
     const [submissionID, setsubmissionID] = useState("");
     const [submissionType, setSubmissionType] = useState("");
