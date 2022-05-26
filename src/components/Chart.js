@@ -1,79 +1,93 @@
-import React from 'react';
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import React, { useEffect, useState } from 'react';
+import { Tooltip, FunnelChart, Funnel, LabelList } from 'recharts';
+import { getAllProjectProposal } from '../services/projectProposal.service';
 
 
 const Chart = () => {
 
+    const [DS, setDS] = useState([]);
+    const [SE, setSE] = useState([]);
+    const [ML, setML] = useState([]);
+    const [ICT, setICT] = useState([])
+    const [state, setState] = useState(false)
+
+
+    useEffect(() => {
+        setState(true)
+    }, [])
+
+    useEffect(() => {
+        getAllProjectProposal().then(res => {
+            if (res.ok) {
+                setDS(res.data.data.filter(element => {
+                    return (
+                        element.field == 'DS'
+                    )
+                }))
+                setSE(res.data.data.filter(element => {
+                    return (
+                        element.field == 'SE'
+                    )
+                }))
+                setML(res.data.data.filter(element => {
+                    return (
+                        element.field == 'ML'
+                    )
+                }))
+                setICT(res.data.data.filter(element => {
+                    return (
+                        element.field == 'ICT'
+                    )
+                }))
+
+            }
+        }).catch(err => {
+            console.error(err)
+        })
+    }, [state])
+
+
+
     const data = [
         {
-            name: 'Page A',
-            uv: 4000,
-            pv: 2400,
-            amt: 2400,
+            "value": DS.length * 100,
+            "name": "Data Science",
+            "fill": "#8884d8"
         },
         {
-            name: 'Page B',
-            uv: 3000,
-            pv: 1398,
-            amt: 2210,
+            "value": ML.length * 100 || 100,
+            "name": "Machine Learning",
+            "fill": "#83a6ed"
         },
         {
-            name: 'Page C',
-            uv: 2000,
-            pv: 9800,
-            amt: 2290,
+            "value": SE.length * 100 || 100,
+            "name": "Software Engineering",
+            "fill": "#8dd1e1"
         },
         {
-            name: 'Page D',
-            uv: 2780,
-            pv: 3908,
-            amt: 2000,
+            "value": ICT.length * 100 || 100,
+            "name": "ICT",
+            "fill": "#82ca9d"
         },
-        {
-            name: 'Page E',
-            uv: 1890,
-            pv: 4800,
-            amt: 2181,
-        },
-        {
-            name: 'Page F',
-            uv: 2390,
-            pv: 3800,
-            amt: 2500,
-        },
-        {
-            name: 'Page G',
-            uv: 3490,
-            pv: 4300,
-            amt: 2100,
-        },
-    ];
+    ]
+
     return (
         <div className='pie-chart'>
-            <h3>HELLOOOO</h3>
-            <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                    width={200}
-                    height={200}
+            <h2>Research Proposal Fields 2022</h2>
+            <br></br>
+            <FunnelChart width={730} height={250}>
+                <Tooltip />
+                <Funnel
+                    dataKey="value"
                     data={data}
-                    margin={{
-                        top: 5,
-                        right: 30,
-                        left: 20,
-                        bottom: 5,
-                    }}
+                    isAnimationActive
                 >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="pv" fill="#8884d8" />
-                    <Bar dataKey="uv" fill="#82ca9d" />
-                </BarChart>
-            </ResponsiveContainer>
+                    <LabelList position="right" fill="#000" stroke="none" dataKey="name" />
+                </Funnel>
+            </FunnelChart>
         </div>
-    );
+    )
+
 
 }
 
