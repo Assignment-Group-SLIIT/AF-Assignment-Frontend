@@ -4,6 +4,8 @@ import { RippleButton } from "../../../components/RippleButton";
 
 function EvaluationSubmissionModal(user) {
 
+    console.log("users", user)
+
     const [groupID, setGroupID] = useState("");
     const [submissionID, setsubmissionID] = useState("");
     const [submissionType, setSubmissionType] = useState("");

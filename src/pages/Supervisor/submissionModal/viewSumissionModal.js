@@ -11,7 +11,7 @@ const ViewSubmissionModal = (props) => {
             <Modal.Header>
                 <Modal.Title> Submissions Details</Modal.Title>
                 <div>
-                    {/* <button className="btn btn-close" onClick={user.onHide}></button> */}
+                    <button className="btn btn-close" onClick={() => props.close()}></button>
                 </div>
 
             </Modal.Header>
