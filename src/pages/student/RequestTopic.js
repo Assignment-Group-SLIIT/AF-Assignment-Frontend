@@ -21,9 +21,10 @@ export const RequestTopic = () => {
     const [supervisor, setSupervisor] = useState({ value: "", error: "This field cannot be empty", isError: false })
 
     useEffect(() => {
-        const user = sessionStorage.getItem("user");
+        const user = JSON.parse(sessionStorage.getItem("user"));
+
         if (user.groupId != "") {
-            setGroupId(user.groupId)
+            setGroupId(user?.groupId)
         }
     }, [])
 
@@ -87,7 +88,7 @@ export const RequestTopic = () => {
                 <div className="row mb-2">
                     <div className="col">
                         <div className="form-group ">
-                            <label for="teamID">Team ID </label>
+                            <label htmlFor="teamID">Team ID </label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -104,7 +105,7 @@ export const RequestTopic = () => {
                 <div className="row mb-2">
                     <div className="col">
                         <div className="form-group ">
-                            <label for="email">Email </label>
+                            <label htmlFor="email">Email </label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -121,7 +122,7 @@ export const RequestTopic = () => {
                 <div className="row mb-2">
                     <div className="col">
                         <div className="form-group">
-                            <label for="topic">Research Topic </label>
+                            <label htmlFor="topic">Research Topic </label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -138,7 +139,7 @@ export const RequestTopic = () => {
                 <div className="row mb-2">
                     <div className="col">
                         <div className="form-group">
-                            <label for="field">Research Field </label>
+                            <label htmlFor="field">Research Field </label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -155,7 +156,7 @@ export const RequestTopic = () => {
                 <div className="row mb-2">
                     <div className="col">
                         <div className="form-group">
-                            <label for="supervisor">Supervisor </label>
+                            <label htmlFor="supervisor">Supervisor </label>
                             <Autocomplete
 
                                 id="supervisor"
