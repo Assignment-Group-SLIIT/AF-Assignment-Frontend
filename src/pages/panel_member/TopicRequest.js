@@ -10,8 +10,6 @@ export const TopicRequest = () => {
 
     const [search, setSearch] = useState("");
     const [topicList, setTopicList] = useState([]);
-    const [modalData, setData] = useState([]);
-    const [modalShow, setModalShow] = useState(false);
 
     const [modalDataDelete, setModalDataDelete] = useState([]);
     const [modalDeleteConfirm, setModalDeleteConfirm] = useState(false);
@@ -24,6 +22,7 @@ export const TopicRequest = () => {
     const [modalLoading, setModalLoading] = useState(false);
 
     const [disable, setDisable] = useState(false);
+    const [query, setQuery] = useState("")
 
     useEffect(() => {
         getAllProjectProposal().then((response) => {
@@ -70,10 +69,9 @@ export const TopicRequest = () => {
                     <div className="col">
                         <div class="search-box">
                             <div className="searchbar">
-                                <form
-                                // onSubmit={(e) => searchRooms(e)}
-                                >
+                                <form>
                                     <input class="search_input" type="text" name="search" placeholder="Search..."
+                                    onChange={event => setQuery(event.target.value)}
                                         // value={search}
                                         // onChange={(event) => { setSearch(event.target.value) }}
                                         require />
@@ -96,10 +94,18 @@ export const TopicRequest = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {topicList.map((topic) => {
-                          
+                        {topicList.filter(topic => {
+                            if(query === ''){
+                                return topic;
+                            }else if (topic.groupId.toLowerCase().includes(query.toLowerCase()) || 
+                                      topic.leaderEmail.toLowerCase().includes(query.toLowerCase()) ||
+                                      topic.researchTopic.toLowerCase().includes(query.toLowerCase())  || 
+                                      topic.field.toLowerCase().includes(query.toLowerCase())) {
+                                return topic;
+                              }
+                        }).map((topic , index) => {
                             return(
-                                <tr>
+                                <tr key={index}>
                                     <td>{topic.groupId}</td>
                                     <td>{topic.leaderEmail}</td>
                                     <td>{topic.researchTopic}</td>
