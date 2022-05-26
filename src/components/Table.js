@@ -16,31 +16,31 @@ function Tables(props) {
 
             <thead>
                 <tr>
-                    <th>Member</th>
-                    <th>Reg No</th>
-                    <th>Email</th>
+                    <th className='text'>Student</th>
+                    <th className='text'>ID</th>
+                    <th className='text'>Email</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>{members?.leader?.name}</td>
-                    <td >{members?.leader?.registrationNo}</td>
-                    <td >{members?.leader?.email}</td>
+                    <td className='text'>{members?.leader?.name}</td>
+                    <td className='text'>{members?.leader?.registrationNo}</td>
+                    <td className='text'>{members?.leader?.email}</td>
                 </tr>
                 <tr>
-                    <td>{members?.member01?.name}</td>
-                    <td >{members?.member01?.registrationNo}</td>
-                    <td >{members?.member01?.email}</td>
+                    <td className='text'>{members?.member01?.name}</td>
+                    <td className='text'>{members?.member01?.registrationNo}</td>
+                    <td className='text'>{members?.member01?.email}</td>
                 </tr>
                 <tr>
-                    <td>{members?.member02?.name}</td>
-                    <td >{members?.member02?.registrationNo}</td>
-                    <td >{members?.member02?.email}</td>
+                    <td className='text'>{members?.member02?.name}</td>
+                    <td className='text'>{members?.member02?.registrationNo}</td>
+                    <td className='text'>{members?.member02?.email}</td>
                 </tr>
                 <tr>
-                    <td>{members?.member03?.name}</td>
-                    <td >{members?.member03?.registrationNo}</td>
-                    <td >{members?.member03?.email}</td>
+                    <td className='text'>{members?.member03?.name}</td>
+                    <td className='text'>{members?.member03?.registrationNo}</td>
+                    <td className='text'>{members?.member03?.email}</td>
                 </tr>
             </tbody>
         </table>
