@@ -5,6 +5,7 @@ import '../../styles/usersList.styles.scss'
 import { createTemplate } from '../../services/template.service'
 import toastNotification from '../../components/toastNotification'
 import { nanoid } from 'nanoid'
+import { ProgressBar } from 'react-bootstrap';
 
 export const CreateTemplate = () => {
 
@@ -15,7 +16,14 @@ export const CreateTemplate = () => {
     //error state management
     const [errFile, setErrFile] = useState(true);
     const [errType, setErrType] = useState(true);
+    const [loadingProgress, setLoadingProgress] = useState(10)
+    const [state, setState] = useState(false)
 
+    const sendProgress = (data) => {
+        console.log("DATAAAA", data)
+        setState(true)
+        setLoadingProgress(data)
+    }
 
     const sendData = (data) => {
         setErrFile(false)
@@ -35,6 +43,8 @@ export const CreateTemplate = () => {
             createTemplate(template).then(res => {
                 if (res.ok) {
                     toastNotification("Uploaded a new template", "success")
+                    setFileName("")
+                    setSubmissionType("")
                 } else {
                     toastNotification("Could not upload the template", "warn")
                 }
@@ -42,6 +52,12 @@ export const CreateTemplate = () => {
                 toastNotification("Error", "error")
             })
         }
+    }
+
+
+    function refreshPage(e) {
+        e.preventDefault()
+        window.location.reload();
     }
 
     return (
@@ -52,7 +68,9 @@ export const CreateTemplate = () => {
 
                 <div className="row">
                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
                         <form >
+
                             <h2><label for="group">Create Template</label></h2>
                             <br></br>
                             <div class="row">
@@ -79,12 +97,16 @@ export const CreateTemplate = () => {
                                 <div class="col-3">
                                     <label className="form-pad mt-2" for="template">Template Doc</label>
                                 </div>
+
                                 <div className='col-4'>
-                                    <DropzoneArea sendData={sendData} />
+                                    <DropzoneArea sendData={sendData} sendProgress={sendProgress} />
                                     {fileName ? fileName.substring(0, 30) + "..." : ''}
                                     {errFile ? <small className='text-danger'>Must upload a file</small> : ""}
                                 </div>
 
+                            </div>
+                            <div className='uploading-box'>
+                                {state ? <ProgressBar now={loadingProgress} /> : ""}
                             </div>
                             <br></br>
                             <div className="row mb-4">
@@ -93,7 +115,7 @@ export const CreateTemplate = () => {
 
                                 </div>
                                 <div className="col py-3 text-center">
-                                    <RippleButton className="ripple-button-warning" text="Cancel" onClick={() => { onSubmit() }} />
+                                    <RippleButton className="ripple-button-warning" text="Cancel" onClick={(e) => { refreshPage(e) }} />
 
                                 </div>
                             </div>
