@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { RippleButton } from '../../components/RippleButton'
 import { Link, useNavigate } from 'react-router-dom'
 import { Modal, Button } from "react-bootstrap";
-import { getAllProjectProposal } from "../../services/projectProposal.service";
+import { getAllProjectProposal ,deleteProjectProposal, updateProjectProposal} from "../../services/projectProposal.service";
+import toastNotification from '../../components/toastNotification';
 
 
 export const TopicRequest = () => {
@@ -22,6 +23,8 @@ export const TopicRequest = () => {
 
     const [modalLoading, setModalLoading] = useState(false);
 
+    const [disable, setDisable] = useState(false);
+
     useEffect(() => {
         getAllProjectProposal().then((response) => {
             console.log("data",response.data)
@@ -32,13 +35,28 @@ export const TopicRequest = () => {
     },[])
 
     const openModal = (data) => {
-        // setData(rental);
+        setModalDataAccept(data);
         setModalAcceptConfirm(true);
     }
 
+    function onUpdate(modalDataAccept) {
+        
+        updateProjectProposal(modalDataAccept.groupId , modalDataAccept).then((response) => {
+            response.ok ? toastNotification("Project proposal accepted and send mail to group leader" , "success") : null
+            window.location.reload(false);
+        })
+    }
+
     const openModalDelete = (data) => {
-        // setModalDataDelete(data);
+        setModalDataDelete(data);
         setModalDeleteConfirm(true);
+    }
+
+    function onDelete(modalDataDelete){
+        deleteProjectProposal(modalDataDelete.groupId).then((response) => {
+            response.ok ? toastNotification("Project proposal reject" , "success") : null
+            window.location.reload(false);
+        })
     }
 
     return (
@@ -114,12 +132,11 @@ export const TopicRequest = () => {
                 <Modal.Footer>
                     <div className="delete-modal row">
                         <div className="col-6">
-                            <RippleButton className="ripple-button" text=" Confirm" />
+                            <RippleButton className="ripple-button" text=" Confirm" onClick={() => {onDelete(modalDataDelete)}} />
                         </div>
                         <div className="col-6">
                             <RippleButton className="ripple-button-warning" text="cancel" onClick={() => setModalDeleteConfirm(false)} />
                         </div>
-
                     </div>
                 </Modal.Footer>
             </Modal>
@@ -139,16 +156,14 @@ export const TopicRequest = () => {
                 <Modal.Footer>
                     <div className="delete-modal row">
                         <div className="col-6">
-                            <RippleButton className="ripple-button" text=" Confirm" />
+                            <RippleButton className="ripple-button" text=" Confirm" onClick={() => {onUpdate(modalDataAccept)}}/>
                         </div>
                         <div className="col-6">
                             <RippleButton className="ripple-button-warning" text="cancel" onClick={() => setModalAcceptConfirm(false)} />
                         </div>
-
                     </div>
                 </Modal.Footer>
             </Modal>
-
         </div >
     )
 }
