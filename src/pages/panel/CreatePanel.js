@@ -134,7 +134,7 @@ export const CreatePanel = () => {
 
         e.preventDefault()
 
-        console.log(field, selectedMember1, selectedMember2, selectedMember3, selectedMember4)
+
 
         if (field == null || selectedMember1 == null || selectedMember2 == null || selectedMember3 == null || selectedMember4 == null) {
             toastNotification("Please Make Sure filled all the required fields", "warn")

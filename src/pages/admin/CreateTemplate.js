@@ -4,41 +4,44 @@ import { RippleButton } from '../../components/RippleButton'
 import '../../styles/usersList.styles.scss'
 import { createTemplate } from '../../services/template.service'
 import toastNotification from '../../components/toastNotification'
-import Example from '../../components/PieChart'
+import { nanoid } from 'nanoid'
 
 export const CreateTemplate = () => {
 
-    const [submissionID, setSubmissionID] = useState("")
+    const [submissionID, setSubmissionID] = useState(nanoid(4))
     const [submissionType, setSubmissionType] = useState("")
     const [fileName, setFileName] = useState("")
 
+    //error state management
+    const [errFile, setErrFile] = useState(true);
+    const [errType, setErrType] = useState(true);
+
 
     const sendData = (data) => {
-        // console.log("Child data", data)
+        setErrFile(false)
         setFileName(data)
     }
 
     const uploadTemplate = (e) => {
         e.preventDefault();
-
-        const template = {
-            submissionId: submissionID,
-            submissionType: submissionType,
-            template: fileName,
-        }
-
-
-
-        createTemplate(template).then(res => {
-            if (res.ok) {
-                toastNotification("Uploaded a new template", "success")
-            } else {
-                toastNotification("Could not upload the template", "warn")
+        if (submissionType == "" || fileName == "") {
+            toastNotification("Make sure you fill all the fields", "warn")
+        } else {
+            const template = {
+                submissionId: submissionID,
+                submissionType: submissionType,
+                template: fileName,
             }
-        }).catch(err => {
-            toastNotification("Error", "error")
-        })
-
+            createTemplate(template).then(res => {
+                if (res.ok) {
+                    toastNotification("Uploaded a new template", "success")
+                } else {
+                    toastNotification("Could not upload the template", "warn")
+                }
+            }).catch(err => {
+                toastNotification("Error", "error")
+            })
+        }
     }
 
     return (
@@ -50,16 +53,16 @@ export const CreateTemplate = () => {
                 <div className="row">
                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <form >
-                            <h2><label for="group">Upload Submission Template</label></h2>
+                            <h2><label for="group">Create Template</label></h2>
                             <br></br>
                             <div class="row">
                                 <div class="col-6">
                                     <label className="form-pad" for="submissionID">Submission ID</label>
-                                    <input type="text" class="form-control" id="submissionID" placeholder="Submission ID" value={submissionID} onChange={(e) => { setSubmissionID(e.target.value) }} />
+                                    <input type="text" class="form-control" id="submissionID" placeholder="Submission ID" value={submissionID} disabled />
                                 </div>
                                 <div class="col-6">
                                     <label className="form-pad" for="submissionType">Submission Type</label>
-                                    <select class="form-select form-control" name="submissionType" id="submissionType" value={submissionType} onChange={(e) => { setSubmissionType(e.target.value) }}>
+                                    <select class="form-select form-control" name="submissionType" id="submissionType" value={submissionType} onChange={(e) => { setSubmissionType(e.target.value); submissionType != null ? setErrType(false) : setErrType(true) }}>
                                         <option  >Choose Type</option>
                                         <option id="1" >Submission One</option>
                                         <option id="2" >Submission Two</option>
@@ -67,18 +70,19 @@ export const CreateTemplate = () => {
                                         <option id="4" >Submission Four</option>
                                         <option id="5" >Submission Five</option>
                                     </select>
-
+                                    {errType ? <small className='text-danger'>Cannot keep the field empty</small> : ""}
                                 </div>
                             </div>
                             <br></br>
 
                             <div class="row">
                                 <div class="col-3">
-                                    <label className="form-pad mt-2" for="template">Upload Document</label>
+                                    <label className="form-pad mt-2" for="template">Template Doc</label>
                                 </div>
                                 <div className='col-4'>
                                     <DropzoneArea sendData={sendData} />
-                                    {fileName ? fileName : ''}
+                                    {fileName ? fileName.substring(0, 30) + "..." : ''}
+                                    {errFile ? <small className='text-danger'>Must upload a file</small> : ""}
                                 </div>
 
                             </div>
