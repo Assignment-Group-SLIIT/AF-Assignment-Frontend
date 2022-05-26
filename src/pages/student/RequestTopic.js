@@ -7,7 +7,7 @@ import { RippleButton } from '../../components/RippleButton'
 import { getAllUsers } from '../../services/user.service';
 import { createSupervisorRequest } from '../../services/supervisorRequests.service';
 import toastNotification from '../../components/toastNotification';
-
+import { research_areas } from '../../config/utils';
 
 export const RequestTopic = () => {
     const navigate = useNavigate()
@@ -42,7 +42,7 @@ export const RequestTopic = () => {
             groupId,
             email: email.value,
             researchTopic: topic.value,
-            researchField: field.value,
+            researchField: field.value.name,
             supervisor: supervisor.value.fullname
         }
 
@@ -140,13 +140,21 @@ export const RequestTopic = () => {
                     <div className="col">
                         <div className="form-group">
                             <label htmlFor="field">Research Field </label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder="Research field"
-                                id="field"
+                            <Autocomplete
+
+                                id="supervisor"
+                                options={research_areas}
+                                renderInput={params => (
+                                    <TextField {...params} variant="outlined" />
+                                )}
+                                getOptionSelected={(option, value) => option.id === value.id}
+                                getOptionLabel={option => option.name || ""}
                                 value={field.value}
-                                onChange={(e) => { setField({ ...field, value: e.target.value }) }}
+                                onChange={(_event, name) => {
+                                    setField({ ...field, value: name });
+                                }}
+                                size="small"
+
                             />
                             {field.isError && <small className='text-danger'>{field.error}</small>}
                         </div>
@@ -173,6 +181,7 @@ export const RequestTopic = () => {
                                 size="small"
 
                             />
+
                             {supervisor.isError && <small className='text-danger'>{supervisor.error}</small>}
                         </div>
                     </div>

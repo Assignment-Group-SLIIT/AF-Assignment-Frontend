@@ -43,12 +43,12 @@ export const RoutesComponent = () => {
 
                     {/* student */}
                     <Route exact path='/signup/student' element={< StudentSignUp />} />
-                    <Route exact path='/student/groupregistration' element={<StudentGroupRegister />} />
                     <Route exact path='/student/dashboard' element={< StudentDashboard />} />
-                    <Route exact path='/student/projectproposal' element={<StudentSubmissionDocument />} />
                     <Route exact path='/student/assignment' element={<UploadInitialEvaluation />} />
                     <Route exact path='/student/request/supervisor' element={<RequestTopic />} />
                     <Route exact path='/student/request/cosupervisor' element={<RequestTopicCoSupervisor />} />
+                    <Route exact path='/student/projectproposal' element={<StudentSubmissionDocument />} />
+                    <Route exact path='/student/groupregistration' element={<StudentGroupRegister />} />
 
                     {/* staff */}
                     <Route exact path='/signup/staff' element={<StaffSignup />} />
