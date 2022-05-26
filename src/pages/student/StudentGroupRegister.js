@@ -234,7 +234,7 @@ const StudentGroupRegister = () => {
     return (
         <div className='body-content-container'>
             <div className="container-border p-5">
-                <h3 className="pb-3">Sign-up Form</h3>
+                <h3 className="pb-3">Group Registration Form</h3>
                 <hr></hr>
                 <div className="progress mb-5">
                     <div className="progress-bar" role="progressbar" style={{ width: `${progress}%`, background: "#9D50BB" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="99">{progress}%</div>

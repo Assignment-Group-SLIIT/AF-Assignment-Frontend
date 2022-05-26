@@ -59,6 +59,8 @@ const StaffSignup = () => {
                 setConfirmPassword({ ...confirmPassword, isError: true, error: "Passwords are not matching" })
                 toastNotification("Passwords are not matching", "error")
             }
+        }else{
+            toastNotification("Please fill all the requeid field", "warn") 
         }
     }
 

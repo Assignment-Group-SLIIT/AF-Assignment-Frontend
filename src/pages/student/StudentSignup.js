@@ -98,6 +98,8 @@ export const StudentSignUp = () => {
             } else {
                 setConfirmPassword({ ...confirmPassword, isError: true, error: "Passwords are not matching" })
             }
+        }else{
+            toastNotification("Please fill all the requeid field", "warn") 
         }
     }
 
