@@ -83,14 +83,13 @@ function UpdateRGPanel(group) {
             panelNo: panel.name
         }
 
-
-        console.log(updateResearchGroup)
-
         updateGroup(groupID, updateResearchGroup).then(res => {
             console.log(res)
             if (res.ok) {
-
-                toastNotification("Allocated a panel to the research group successfully", "success")
+                toastNotification("Allocated a panel", "success")
+                setTimeout(function () {
+                    refreshPage();
+                }, 2000);
 
             } else {
                 toastNotification("Could not allocate a panel", "warn")
@@ -101,6 +100,10 @@ function UpdateRGPanel(group) {
 
     }
 
+    function refreshPage() {
+
+        window.location.reload();
+    }
 
     return (
 
@@ -117,77 +120,67 @@ function UpdateRGPanel(group) {
                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <form >
                             <div class="form-row">
-                                {/* <div class="col-md-3">
-                                    <label class="update-font" for="group">Group Details</label>
-                                </div> */}
+
                                 <FormSection headline={'Group Details'} />
                             </div>
                             <br></br>
                             <div class="row">
                                 <div class="col-6">
                                     <label className="form-pad" for="groupID">Group ID</label>
-                                    <input type="text" class="form-control" id="groupID" placeholder="Group ID" value={groupID} onChange={(e) => { setGroupID(e.target.value) }} />
+                                    <label type="text" class="form-control" id="groupID"><strong>{groupID}</strong></label>
+
                                 </div>
                                 <div class="col-6">
                                     <label className="form-pad" for="leader">Group Leader</label>
-                                    <input type="text" class="form-control" id="leader" placeholder="Group Leader" value={leader} onChange={(e) => { setLeader(e.target.value) }} />
+                                    <label type="text" class="form-control" id="leader"><strong>{leader}</strong></label>
+
                                 </div>
                             </div>
                             <br></br>
                             <div class="form-row">
-                                {/* <div class="col-md-3">
-                                    <label class="update-font" for="research">Research Details </label>
-                                </div> */}
+
                                 <FormSection headline={'Research Details'} />
                             </div>
                             <br></br>
                             <div class="row">
                                 <div class="col-6">
                                     <label className="form-pad" for="researchTopic">Research Topic</label>
-                                    <input type="text" class="form-control" id="researchTopic" placeholder="Topic" value={topic} onChange={(e) => { setTopic(e.target.value) }} />
+                                    <label type="text" class="form-control" id="researchTopic"><strong>{topic}</strong></label>
+
                                 </div>
                                 <div class="col-6">
                                     <label className="form-pad" for="researchField">Research Field</label>
-                                    <input type="text" class="form-control" id="researchField" placeholder="Field" value={field} onChange={(e) => { setField(e.target.value) }} />
+                                    <label type="text" class="form-control" id="researchTopic"><strong>{field}</strong></label>
+
                                 </div>
                             </div>
                             <br></br>
                             <div class="form-row">
-                                {/* <div class="col-md-3">
-                                    <label class="update-font" for="staff">Staff Details</label>
-                                </div> */}
+
                                 <FormSection headline={'Staff Details'} />
                             </div>
                             <br></br>
                             <div class="row">
                                 <div class="col-6">
                                     <label className="form-pad" for="supervisor">Supervisor</label>
-                                    <input type="text" class="form-control" id="supervisor" placeholder="Supervisor" value={supervisor} onChange={(e) => { setSupervisor(e.target.value) }} />
+                                    <label type="text" class="form-control" id="supervisor"><strong>{supervisor}</strong></label>
+
                                 </div>
                                 <div class="col-6">
                                     <label className="form-pad" for="cosupervisor">Co-Supervisor</label>
-                                    <input type="text" class="form-control" id="cosupervisor" placeholder="Co-Supervisor" value={cosupervisor} onChange={(e) => { setCoSupervisor(e.target.value) }} />
+                                    <label type="text" class="form-control" id="cosupervisor"><strong>{cosupervisor}</strong></label>
+
                                 </div>
                             </div>
                             <br></br>
                             <div class="form-row">
-                                {/* <div class="col-md-3">
-                                    <label class="update-font" for="customer">Panel Details</label>
-                                </div> */}
+
                                 <FormSection headline={'Panel Details'} />
                             </div>
                             <br></br>
                             <div class="row">
                                 <div class="col">
                                     <label className="form-pad" for="panel">Panel</label>
-                                    {/* <select class="form-select" className="form-control" name="panel" id="panel" value={panel} onChange={(e) => { setPanel(e.target.value) }}>
-                                        <option  >Select Panel</option>
-                                        <option id="001" >Panel One</option>
-                                        <option id="002" >Panel Two</option>
-                                        <option id="003" >Panel Three</option>
-                                        <option id="004" >Panel Four</option>
-                                        <option id="005" >Panel Five</option>
-                                    </select> */}
                                     <Autocomplete
                                         id="panel"
                                         options={panelOptions}
@@ -195,7 +188,7 @@ function UpdateRGPanel(group) {
                                             <TextField {...params} variant="outlined" />
                                         )}
                                         getOptionSelected={(option, value) => option.id === value.id}
-                                        getOptionLabel={option => option.name || ""}
+                                        getOptionLabel={option => option.name || panel}
                                         value={panel}
                                         onChange={(_event, panel) => {
                                             setPanel(panel);

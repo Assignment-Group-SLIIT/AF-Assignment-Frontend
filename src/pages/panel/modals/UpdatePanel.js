@@ -3,8 +3,7 @@ import { RippleButton } from '../../../components/RippleButton';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import '../../../styles/usersList.styles.scss'
-import { nanoid } from 'nanoid'
-import { getAllUsers } from '../../../services/user.service';
+import { getAllUsers, searchUser, updateUser } from '../../../services/user.service';
 import { updatePanel } from '../../../services/panel.service';
 import toastNotification from '../../../components/toastNotification';
 import { Modal } from "react-bootstrap";
@@ -12,7 +11,7 @@ import { FormSection } from '../../../components/FormSection';
 
 export const UpdatePanel = (props) => {
 
-    console.log(props.data)
+    // console.log(props.data)
 
     const panelMember = [];
     const [panelMembers, setPanelMembers] = useState([]);
@@ -28,6 +27,20 @@ export const UpdatePanel = (props) => {
     const [selectedMember4, setSelectedMember4] = useState(null);
 
 
+    //error state management
+    const [errfield, setErrField] = useState(false);
+    const [errselectedMember1, setErrSelectedMember1] = useState(false);
+    const [errselectedMember2, setErrSelectedMember2] = useState(false);
+    const [errselectedMember3, setErrSelectedMember3] = useState(false);
+    const [errselectedMember4, setErrSelectedMember4] = useState(false);
+
+    //update panel member 
+    const [searchMem1, setSearchMem1] = useState(null);
+    const [searchMem2, setSearchMem2] = useState(null);
+    const [searchMem3, setSearchMem3] = useState(null);
+    const [searchMem4, setSearchMem4] = useState(null);
+
+
     useEffect(() => {
 
         getAllUsers().then(response => {
@@ -35,7 +48,7 @@ export const UpdatePanel = (props) => {
             if (response.ok) {
                 setPanelList(response.data.filter(el => {
                     return (
-                        el.role == 'Panel'
+                        el.role == 'Panel' && el.isAvailable == true
                     )
                 }));
 
@@ -77,7 +90,45 @@ export const UpdatePanel = (props) => {
         setSelectedMember2(props?.data?.member2)
         setSelectedMember3(props?.data?.member3)
         setSelectedMember4(props?.data?.member4)
+
+        searchUser(props?.data?.member1).then(res => {
+            console.log("1", res)
+            if (res.ok) {
+                setSearchMem1(res.data)
+            }
+        }).catch(err => {
+            console.log(err)
+        })
+
+        searchUser(props?.data?.member2).then(res => {
+            console.log("2", res)
+            if (res.ok) {
+                setSearchMem2(res.data)
+            }
+        }).catch(err => {
+            console.log(err)
+        })
+
+        searchUser(props?.data?.member3).then(res => {
+            console.log("3", res)
+            if (res.ok) {
+                setSearchMem3(res.data)
+            }
+        }).catch(err => {
+            console.log(err)
+        })
+
+        searchUser(props?.data?.member4).then(res => {
+            console.log("4", res)
+            if (res.ok) {
+                setSearchMem4(res.data)
+            }
+        }).catch(err => {
+            console.log(err)
+        })
+
     }
+
 
 
 
@@ -86,33 +137,214 @@ export const UpdatePanel = (props) => {
 
         e.preventDefault()
 
-        const panel = {
-            panelId: panelId,
-            panelNumber: panelNumber,
-            member1: selectedMember1.name,
-            member2: selectedMember2.name,
-            member3: selectedMember3.name,
-            member4: selectedMember4.name,
-            FieldOfInterest: field,
-        }
+        if (field == null || selectedMember1 == null || selectedMember2 == null || selectedMember3 == null || selectedMember4 == null) {
+            toastNotification("Please Make Sure filled all the required fields", "warn")
+        } else {
 
+            if (props?.data?.member1 != selectedMember1) {
+                const user1 = {
+                    fullname: searchMem1.fullname,
+                    email: searchMem1.email,
+                    contactNo: searchMem1.contactNo,
+                    role: searchMem1.role,
+                    isAvailable: true,
+                    department: searchMem1.department,
+                    field: searchMem1.field
+                }
 
-        updatePanel(panelId, panel).then(response => {
-            // console.log(response)
-            if (response.ok) {
-                // console.log(response)
-                toastNotification("Successfully updated the panel", "success")
-            } else {
-                toastNotification("Could not update the panel", "warn")
+                searchUser(selectedMember1.name).then(res => {
+                    console.log("4", res)
+                    if (res.ok) {
+                        const user2 = {
+                            fullname: res.data.fullname,
+                            email: res.data.email,
+                            contactNo: res.data.contactNo,
+                            role: res.data.role,
+                            isAvailable: false,
+                            department: res.data.department,
+                            field: res.data.field
+
+                        }
+
+                        updateUser(user1.email, user1).then(res => {
+                            if (res.ok) {
+                                console.log("update1", res)
+                            }
+                        }).catch(err => console.error(err))
+
+                        updateUser(user2.email, user2).then(res => {
+                            if (res.ok) {
+                                console.log("update2", res)
+                            }
+                        }).catch(err => console.error(err))
+
+                    }
+                }).catch(err => {
+                    console.log(err)
+                })
+
             }
-        }).catch(err => {
-            toastNotification("Error", "error")
-        })
 
+            if (props?.data?.member2 != selectedMember2) {
+                const user3 = {
+                    fullname: searchMem2.fullname,
+                    email: searchMem2.email,
+                    contactNo: searchMem2.contactNo,
+                    role: searchMem2.role,
+                    isAvailable: true,
+                    department: searchMem2.department,
+                    field: searchMem2.field
+                }
+
+                searchUser(selectedMember2.name).then(res => {
+                    console.log("4", res)
+                    if (res.ok) {
+                        const user4 = {
+                            fullname: res.data.fullname,
+                            email: res.data.email,
+                            contactNo: res.data.contactNo,
+                            role: res.data.role,
+                            isAvailable: false,
+                            department: res.data.department,
+                            field: res.data.field
+
+                        }
+                        updateUser(user3.email, user3).then(res => {
+                            if (res.ok) {
+                                console.log("update3", res)
+                            }
+                        }).catch(err => console.error(err))
+
+                        updateUser(user4.email, user4).then(res => {
+                            if (res.ok) {
+                                console.log("update4", res)
+                            }
+                        }).catch(err => console.error(err))
+
+
+                    }
+                }).catch(err => {
+                    console.log(err)
+                })
+
+            }
+
+            if (props?.data?.member3 != selectedMember3) {
+                const user5 = {
+                    fullname: searchMem3.fullname,
+                    email: searchMem3.email,
+                    contactNo: searchMem3.contactNo,
+                    role: searchMem3.role,
+                    isAvailable: true,
+                    department: searchMem3.department,
+                    field: searchMem3.field
+                }
+
+                searchUser(selectedMember3.name).then(res => {
+                    console.log("4", res)
+                    if (res.ok) {
+                        const user6 = {
+                            fullname: res.data.fullname,
+                            email: res.data.email,
+                            contactNo: res.data.contactNo,
+                            role: res.data.role,
+                            isAvailable: false,
+                            department: res.data.department,
+                            field: res.data.field
+
+                        }
+                        updateUser(user5.email, user5).then(res => {
+                            if (res.ok) {
+                                console.log("update5", res)
+                            }
+                        }).catch(err => console.error(err))
+
+                        updateUser(user6.email, user6).then(res => {
+                            if (res.ok) {
+                                console.log("update6", res)
+                            }
+                        }).catch(err => console.error(err))
+
+
+                    }
+                }).catch(err => {
+                    console.log(err)
+                })
+
+            }
+
+            if (props?.data?.member4 != selectedMember4) {
+                const user7 = {
+                    fullname: searchMem4.fullname,
+                    email: searchMem4.email,
+                    contactNo: searchMem4.contactNo,
+                    role: searchMem4.role,
+                    isAvailable: true,
+                    department: searchMem4.department,
+                    field: searchMem4.field
+                }
+
+                searchUser(selectedMember4.name).then(res => {
+                    console.log("4", res)
+                    if (res.ok) {
+                        const user8 = {
+                            fullname: res.data.fullname,
+                            email: res.data.email,
+                            contactNo: res.data.contactNo,
+                            role: res.data.role,
+                            isAvailable: false,
+                            department: res.data.department,
+                            field: res.data.field
+
+                        }
+                        updateUser(user7.email, user7).then(res => {
+                            if (res.ok) {
+                                console.log("update7", res)
+                            }
+                        }).catch(err => console.error(err))
+
+                        updateUser(user8.email, user8).then(res => {
+                            if (res.ok) {
+                                console.log("update8", res)
+                            }
+                        }).catch(err => console.error(err))
+
+
+                    }
+                }).catch(err => {
+                    console.log(err)
+                })
+            }
+
+            const panel = {
+                panelId: panelId,
+                panelNumber: panelNumber,
+                member1: selectedMember1.name,
+                member2: selectedMember2.name,
+                member3: selectedMember3.name,
+                member4: selectedMember4.name,
+                FieldOfInterest: field,
+            }
+
+
+            updatePanel(panelId, panel).then(response => {
+                // console.log(response)
+                if (response.ok) {
+                    // console.log(response)
+                    toastNotification("Successfully updated the panel", "success")
+                } else {
+                    toastNotification("Could not update the panel", "warn")
+                }
+            }).catch(err => {
+                toastNotification("Error", "error")
+            })
+
+        }
 
     }
 
-    function refreshPage() {
+    function refreshPage(e) {
+        e.preventDefault();
         window.location.reload();
     }
 
@@ -143,12 +375,12 @@ export const UpdatePanel = (props) => {
                     <div class="row">
                         <div class="col-6">
                             <label className="form-pad" for="panelNo">Panel Number</label>
-                            <input type="number" class="form-control" id="panelNo" placeholder="Panel ID" value={panelNumber} onChange={(e) => { setPanelNumber(e.target.value) }} />
+                            <input type="number" class="form-control" id="panelNo" placeholder="Panel ID" value={panelNumber} onChange={(e) => { setPanelNumber(e.target.value) }} disabled />
                         </div>
                         <div class="col-6">
                             <label className="form-pad" for="field">Field of Interest</label>
 
-                            <select class="form-select" className="form-control" name="field" id="field" value={field} onChange={(e) => { setField(e.target.value) }}>
+                            <select class="form-select" className="form-control" name="field" id="field" value={field} onChange={(e) => { setField(e.target.value); field != null ? setErrField(false) : setErrField(true) }}>
                                 <option  >Field</option>
                                 <option id="Medical" >Medical</option>
                                 <option id="Technology" >Technology</option>
@@ -156,6 +388,7 @@ export const UpdatePanel = (props) => {
                                 <option id="ML" >Machine Learning</option>
                                 <option id="FS" >Food Science</option>
                             </select>
+                            {errfield ? <small className='text-danger'>Cannot keep this field empty</small> : ""}
                         </div>
                     </div>
                     <br></br>
@@ -175,10 +408,11 @@ export const UpdatePanel = (props) => {
                                 value={selectedMember1}
                                 onChange={(_event, member) => {
                                     setSelectedMember1(member);
+                                    member != null ? setErrSelectedMember1(false) : setErrSelectedMember1(true)
                                 }}
                                 size="small"
                             />
-
+                            {errselectedMember1 ? <small className='text-danger'>Cannot keep this field empty</small> : ""}
                         </div>
                     </div>
                     <br></br>
@@ -196,9 +430,11 @@ export const UpdatePanel = (props) => {
                                 value={selectedMember2}
                                 onChange={(_event, member) => {
                                     setSelectedMember2(member);
+                                    member != null ? setErrSelectedMember2(false) : setErrSelectedMember2(true)
                                 }}
                                 size="small"
                             />
+                            {errselectedMember2 ? <small className='text-danger'>Cannot keep this field empty</small> : ""}
                         </div>
                     </div>
                     <br></br>
@@ -216,9 +452,11 @@ export const UpdatePanel = (props) => {
                                 value={selectedMember3}
                                 onChange={(_event, member) => {
                                     setSelectedMember3(member);
+                                    member != null ? setErrSelectedMember3(false) : setErrSelectedMember3(true)
                                 }}
                                 size="small"
                             />
+                            {errselectedMember3 ? <small className='text-danger'>Cannot keep this field empty</small> : ""}
                         </div>
                     </div>
                     <br></br>
@@ -236,9 +474,11 @@ export const UpdatePanel = (props) => {
                                 value={selectedMember4}
                                 onChange={(_event, member) => {
                                     setSelectedMember4(member);
+                                    member != null ? setErrSelectedMember4(false) : setErrSelectedMember4(true)
                                 }}
                                 size="small"
                             />
+                            {errselectedMember4 ? <small className='text-danger'>Cannot keep this field empty</small> : ""}
                         </div>
                     </div>
 
@@ -249,7 +489,7 @@ export const UpdatePanel = (props) => {
 
                         </div>
                         <div className="col py-3 text-center">
-                            <RippleButton className="ripple-button-warning" text="Cancel" onClick={refreshPage} />
+                            <RippleButton className="ripple-button-warning" text="Cancel" onClick={(e) => refreshPage(e)} />
 
                         </div>
                     </div>

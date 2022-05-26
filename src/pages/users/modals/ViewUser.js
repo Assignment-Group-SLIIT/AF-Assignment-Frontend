@@ -5,7 +5,7 @@ import { PanelList } from "../../panel/PanelMembersList";
 
 function ViewUser(user) {
 
-    console.log("model openingggg", user)
+    // console.log("model openingggg", user)
 
     return (
         <div>
