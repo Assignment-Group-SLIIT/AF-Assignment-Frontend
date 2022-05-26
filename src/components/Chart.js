@@ -52,22 +52,22 @@ const Chart = () => {
         {
             "value": DS.length * 100,
             "name": "Data Science",
-            "fill": "#8884d8"
+            "fill": "#5a0047"
         },
         {
             "value": ML.length * 100 || 100,
             "name": "Machine Learning",
-            "fill": "#83a6ed"
+            "fill": "#800065"
         },
         {
             "value": SE.length * 100 || 100,
             "name": "Software Engineering",
-            "fill": "#8dd1e1"
+            "fill": "#ffbff2"
         },
         {
             "value": ICT.length * 100 || 100,
             "name": "ICT",
-            "fill": "#82ca9d"
+            "fill": "#ff80e4"
         },
     ]
 

@@ -6,6 +6,8 @@ import { getAllTemplate } from '../../services/template.service';
 import { getAllUsers } from '../../services/user.service'
 import { getAllSubmissions } from '../../services/submission.service';
 import Chart from '../../components/Chart';
+import LineCharts from '../../components/LineChart'
+
 
 export default Dashboard = () => {
 
@@ -158,7 +160,10 @@ export default Dashboard = () => {
                 </div>
                 <div className='body-content-admin'>
                     <div className='view-admin'>
-                        <Chart />
+                        <div className="d-flex justify-content-around">
+                            <Chart />
+                            <LineCharts />
+                        </div>
                     </div>
                 </div>
 
