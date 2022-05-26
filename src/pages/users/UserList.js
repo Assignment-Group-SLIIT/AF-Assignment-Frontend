@@ -122,10 +122,10 @@ export const UserList = () => {
                     <tbody>
                         {usersList.map((user) => {
                             return(
-                                <tr >
+                                <tr>
                                     <td onClick={() => openModal(user)}>{user.fullname}</td>
-                                    <td >{user.email}</td>
-                                    <td >{user.contactNo}</td>
+                                    <td>{user.email}</td>
+                                    <td>{user.contactNo}</td>
                                     <td>{user.role}</td>
                                     <td>
                                     <RippleButton className="ripple-button" text="Update" onClick={() => openModalUpdate(user)} />
@@ -179,8 +179,6 @@ export const UserList = () => {
                     </div>
                 </Modal.Footer>
             </Modal>
-
-
 
         </div>
     )

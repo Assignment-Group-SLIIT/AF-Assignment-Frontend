@@ -5,7 +5,9 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import { RippleButton } from '../../components/RippleButton'
 import { getAllUsers } from '../../services/user.service';
-
+import { createSupervisorRequest } from '../../services/supervisorRequests.service';
+import toastNotification from '../../components/toastNotification';
+import { research_areas } from '../../config/utils';
 
 export const RequestTopic = () => {
     const navigate = useNavigate()
@@ -13,14 +15,51 @@ export const RequestTopic = () => {
     const [allUsers, setAllUsers] = useState([]);
     const [groupId, setGroupId] = useState("");
 
-    const [supervisor, setSupervisor] = ("")
+    const [email, setEmail] = useState({ value: "", error: "This field cannot be empty", isError: false })
+    const [topic, setTopic] = useState({ value: "", error: "This field cannot be empty", isError: false })
+    const [field, setField] = useState({ value: "", error: "This field cannot be empty", isError: false })
+    const [supervisor, setSupervisor] = useState({ value: "", error: "This field cannot be empty", isError: false })
 
     useEffect(() => {
-        const user = sessionStorage.getItem("user");
+        const user = JSON.parse(sessionStorage.getItem("user"));
+
         if (user.groupId != "") {
-            setGroupId(user.groupId)
+            setGroupId(user?.groupId)
         }
     }, [])
+
+    useEffect(() => {
+
+        email.value === "" ? setEmail({ ...email, isError: true }) : setEmail({ ...email, isError: false })
+        topic.value === "" ? setTopic({ ...topic, isError: true }) : setTopic({ ...topic, isError: false })
+        field.value === "" ? setField({ ...field, isError: true }) : setField({ ...field, isError: false })
+        supervisor.value === "" ? setSupervisor({ ...supervisor, isError: true }) : setSupervisor({ ...supervisor, isError: false })
+
+    }, [email.value, topic.value, field.value, supervisor.value])
+
+    const onSubmit = () => {
+        const payload = {
+            groupId,
+            email: email.value,
+            researchTopic: topic.value,
+            researchField: field.value.name,
+            supervisor: supervisor.value.fullname
+        }
+
+        if (!email.isError && !topic.isError && !field.isError && !supervisor.isError) {
+            // console.log("payload>>", payload)
+            createSupervisorRequest(payload).then((res) => {
+                if (res.ok) {
+                    toastNotification("Request has been sent successfully!", "success")
+                } else {
+                    toastNotification("Error occured!", "error")
+                }
+            }).catch((err) => {
+                toastNotification("Error occured!", "error")
+                console.log("error while registering>>", err.err)
+            })
+        }
+    }
 
     useEffect(() => {
         getAllUsers().then((res) => {
@@ -30,7 +69,6 @@ export const RequestTopic = () => {
                     // return item.role === "Panel";
                 })
                 setAllUsers(tmpArr)
-                console.log("tmp arr>>>", tmpArr)
             } else {
                 console.log("error while fetching all users", err.err)
             }
@@ -50,7 +88,7 @@ export const RequestTopic = () => {
                 <div className="row mb-2">
                     <div className="col">
                         <div className="form-group ">
-                            <label for="teamID">Team ID </label>
+                            <label htmlFor="teamID">Team ID </label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -67,15 +105,16 @@ export const RequestTopic = () => {
                 <div className="row mb-2">
                     <div className="col">
                         <div className="form-group ">
-                            <label for="email">Email </label>
+                            <label htmlFor="email">Email </label>
                             <input
                                 type="text"
                                 className="form-control"
                                 placeholder="student Email address"
                                 id="email"
-                            // value={reserverName} 
-                            // onChange={(e) => { setReserverName(e.target.value) }} 
+                                value={email.value}
+                                onChange={(e) => { setEmail({ ...email, value: e.target.value }) }}
                             />
+                            {email.isError && <small className='text-danger'>{email.error}</small>}
                         </div>
                     </div>
                 </div>
@@ -83,15 +122,16 @@ export const RequestTopic = () => {
                 <div className="row mb-2">
                     <div className="col">
                         <div className="form-group">
-                            <label for="topic">Research Topic </label>
+                            <label htmlFor="topic">Research Topic </label>
                             <input
                                 type="text"
                                 className="form-control"
                                 placeholder="Research topic"
                                 id="topic"
-                            // value={reserverName} 
-                            // onChange={(e) => { setReserverName(e.target.value) }} 
+                                value={topic.value}
+                                onChange={(e) => { setTopic({ ...topic, value: e.target.value }) }}
                             />
+                            {topic.isError && <small className='text-danger'>{topic.error}</small>}
                         </div>
                     </div>
                 </div>
@@ -99,31 +139,32 @@ export const RequestTopic = () => {
                 <div className="row mb-2">
                     <div className="col">
                         <div className="form-group">
-                            <label for="field">Research Field </label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder="Research field"
-                                id="field"
-                            // value={reserverName} 
-                            // onChange={(e) => { setReserverName(e.target.value) }} 
-                            />
-                        </div>
-                    </div>
-                </div>
-                <br />
-                <div className="row mb-2">
-                    <div className="col">
-                        <div className="form-group">
-                            <label for="supervisor">Supervisor </label>
-                            {/* <input
-                                type="text"
-                                className="form-control"
-                                placeholder="Supervisor"
+                            <label htmlFor="field">Research Field </label>
+                            <Autocomplete
+
                                 id="supervisor"
-                            // value={reserverName} 
-                            // onChange={(e) => { setReserverName(e.target.value) }} 
-                            /> */}
+                                options={research_areas}
+                                renderInput={params => (
+                                    <TextField {...params} variant="outlined" />
+                                )}
+                                getOptionSelected={(option, value) => option.id === value.id}
+                                getOptionLabel={option => option.name || ""}
+                                value={field.value}
+                                onChange={(_event, name) => {
+                                    setField({ ...field, value: name });
+                                }}
+                                size="small"
+
+                            />
+                            {field.isError && <small className='text-danger'>{field.error}</small>}
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div className="row mb-2">
+                    <div className="col">
+                        <div className="form-group">
+                            <label htmlFor="supervisor">Supervisor </label>
                             <Autocomplete
 
                                 id="supervisor"
@@ -131,21 +172,24 @@ export const RequestTopic = () => {
                                 renderInput={params => (
                                     <TextField {...params} variant="outlined" />
                                 )}
-
-                                getOptionSelected={(option, value) => option._id === value._id}
-                                getOptionLabel={option => option.fullname}
-                                value={supervisor}
+                                getOptionSelected={(option, value) => option.id === value.id}
+                                getOptionLabel={option => option.fullname || ""}
+                                value={supervisor.value}
                                 onChange={(_event, name) => {
-                                    setSupervisor(name);
+                                    setSupervisor({ ...supervisor, value: name });
                                 }}
                                 size="small"
 
                             />
+
+                            {supervisor.isError && <small className='text-danger'>{supervisor.error}</small>}
                         </div>
                     </div>
                 </div>
-                <div className='sendEmail'>
-                    <RippleButton className="ripple-button " text="submit" />
+                <div className="text-center">
+                    <RippleButton className="ripple-button " text="submit" onClick={() => {
+                        onSubmit()
+                    }} />
                 </div>
 
             </div>
