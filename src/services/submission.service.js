@@ -39,3 +39,13 @@ export const deleteSubmission = async (id) => {
         return { ok: false, err: error };
     }
 }
+
+export const GetSubmissionType = async (type) => {
+    try {
+        const res = await API.post(`submissions/${type}`);
+        if (res.status === 200)
+            return { ok: true, data: res.data };
+    } catch (error) {
+        return { ok: false, err: error };
+    }
+}
