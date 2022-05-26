@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { signin } from '../../services/user.service';
+import { loginUser } from '../../services/user.service';
 import toastNotification from '../../components/toastNotification';
 
 const Signup = () => {
@@ -24,7 +24,7 @@ const Signup = () => {
         }
 
         if (!userName.isError && !password.isError) {
-            signin(payload).then((res) => {
+            loginUser(payload).then((res) => {
                 console.log("after sign in >>", res)
                 res.ok ? toastNotification("Success!", "success") : toastNotification("Username or Password is incorrect!", "error")
             }).catch((err) => {
