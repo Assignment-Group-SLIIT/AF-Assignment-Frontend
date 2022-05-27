@@ -94,19 +94,27 @@ export const CreateTemplate = () => {
                             <br></br>
 
                             <div class="row">
-                                <div class="col-3">
-                                    <label className="form-pad mt-2" for="template">Template Doc</label>
+                                <div className="d-flex flex-row">
+                                    <div class="col-2">
+                                        <label className="form-pad mt-2" for="template">Template</label>
+                                    </div>
+
+                                    <div className='col-3'>
+                                        <DropzoneArea sendData={sendData} sendProgress={sendProgress} />
+                                        {fileName ? fileName.substring(0, 30) + "..." : ''}
+                                        {errFile ? <small className='text-danger'>Must upload a file</small> : ""}
+                                    </div>
+                                    <div className='col-6'>
+                                        <div>
+                                            {!fileName && state ? <ProgressBar now={loadingProgress} /> : ""}
+                                        </div>
+
+                                    </div >
+
                                 </div>
 
-                                <div className='col-4'>
-                                    <DropzoneArea sendData={sendData} sendProgress={sendProgress} />
-                                    {fileName ? fileName.substring(0, 30) + "..." : ''}
-                                    {errFile ? <small className='text-danger'>Must upload a file</small> : ""}
-                                </div>
 
-                            </div>
-                            <div className='uploading-box'>
-                                {state ? <ProgressBar now={loadingProgress} /> : ""}
+
                             </div>
                             <br></br>
                             <div className="row mb-4">
