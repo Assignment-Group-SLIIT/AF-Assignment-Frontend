@@ -65,7 +65,7 @@ const LineCharts = () => {
     const data = [
         {
             "name": "AI",
-            "panels": AI.length * 100 || 300,
+            "panels": AI.length * 100 || 200,
             "students": sAI.length * 100 || 100,
 
         },
@@ -89,7 +89,7 @@ const LineCharts = () => {
         },
         {
             "name": "CN",
-            "panels": CN.length * 100 || 100,
+            "panels": CN.length * 100 || 200,
             "students": sCN.length * 100 || 100,
 
         },

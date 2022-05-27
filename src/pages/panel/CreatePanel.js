@@ -262,16 +262,6 @@ export const CreatePanel = () => {
                         </div>
                         <div class="col-6">
                             <label className="form-pad" for="field">Field of Interest</label>
-
-                            {/* <select class="form-select" className="form-control" name="field" id="field" onChange={(e) => { setField(e.target.value); field != null ? setErrField(false) : setErrField(true) }} required>
-                                <option  >Field</option>
-                                <option id="Medical" >Medical</option>
-                                <option id="Technology" >Technology</option>
-                                <option id="Robotics" >Robotics</option>
-                                <option id="ML" >Machine Learning</option>
-                                <option id="FS" >Food Science</option>
-                            </select> */}
-
                             <Autocomplete
 
                                 id="field"

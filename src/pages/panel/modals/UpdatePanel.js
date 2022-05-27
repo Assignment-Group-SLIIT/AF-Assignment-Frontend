@@ -8,6 +8,7 @@ import { updatePanel } from '../../../services/panel.service';
 import toastNotification from '../../../components/toastNotification';
 import { Modal } from "react-bootstrap";
 import { FormSection } from '../../../components/FormSection';
+import { research_areas } from '../../../config/utils';
 
 export const UpdatePanel = (props) => {
 
@@ -25,6 +26,8 @@ export const UpdatePanel = (props) => {
     const [selectedMember2, setSelectedMember2] = useState(null);
     const [selectedMember3, setSelectedMember3] = useState(null);
     const [selectedMember4, setSelectedMember4] = useState(null);
+
+    const [researchAreas, setResearchAreas] = useState(research_areas);
 
 
     //error state management
@@ -44,7 +47,7 @@ export const UpdatePanel = (props) => {
     useEffect(() => {
 
         getAllUsers().then(response => {
-            console.log("usersssssss", response)
+            // console.log("usersssssss", response)
             if (response.ok) {
                 setPanelList(response.data.filter(el => {
                     return (
@@ -92,7 +95,7 @@ export const UpdatePanel = (props) => {
         setSelectedMember4(props?.data?.member4)
 
         searchUser(props?.data?.member1).then(res => {
-            console.log("1", res)
+            // console.log("1", res)
             if (res.ok) {
                 setSearchMem1(res.data)
             }
@@ -101,7 +104,7 @@ export const UpdatePanel = (props) => {
         })
 
         searchUser(props?.data?.member2).then(res => {
-            console.log("2", res)
+            // console.log("2", res)
             if (res.ok) {
                 setSearchMem2(res.data)
             }
@@ -110,7 +113,7 @@ export const UpdatePanel = (props) => {
         })
 
         searchUser(props?.data?.member3).then(res => {
-            console.log("3", res)
+            // console.log("3", res)
             if (res.ok) {
                 setSearchMem3(res.data)
             }
@@ -119,7 +122,7 @@ export const UpdatePanel = (props) => {
         })
 
         searchUser(props?.data?.member4).then(res => {
-            console.log("4", res)
+            // console.log("4", res)
             if (res.ok) {
                 setSearchMem4(res.data)
             }
@@ -135,7 +138,7 @@ export const UpdatePanel = (props) => {
 
     const updateNewPanel = (e) => {
 
-        e.preventDefault()
+        e.preventDefault();
 
         if (field == null || selectedMember1 == null || selectedMember2 == null || selectedMember3 == null || selectedMember4 == null) {
             toastNotification("Please Make Sure filled all the required fields", "warn")
@@ -197,7 +200,7 @@ export const UpdatePanel = (props) => {
                 }
 
                 searchUser(selectedMember2.name).then(res => {
-                    console.log("4", res)
+                    // console.log("4", res)
                     if (res.ok) {
                         const user4 = {
                             fullname: res.data.fullname,
@@ -241,7 +244,7 @@ export const UpdatePanel = (props) => {
                 }
 
                 searchUser(selectedMember3.name).then(res => {
-                    console.log("4", res)
+                    // console.log("4", res)
                     if (res.ok) {
                         const user6 = {
                             fullname: res.data.fullname,
@@ -285,7 +288,7 @@ export const UpdatePanel = (props) => {
                 }
 
                 searchUser(selectedMember4.name).then(res => {
-                    console.log("4", res)
+                    // console.log("4", res)
                     if (res.ok) {
                         const user8 = {
                             fullname: res.data.fullname,
@@ -323,7 +326,7 @@ export const UpdatePanel = (props) => {
                 member2: selectedMember2.name,
                 member3: selectedMember3.name,
                 member4: selectedMember4.name,
-                FieldOfInterest: field,
+                FieldOfInterest: field.name,
             }
 
 
@@ -332,6 +335,10 @@ export const UpdatePanel = (props) => {
                 if (response.ok) {
                     // console.log(response)
                     toastNotification("Successfully updated the panel", "success")
+
+                    window.location.reload();
+
+
                 } else {
                     toastNotification("Could not update the panel", "warn")
                 }
@@ -380,14 +387,24 @@ export const UpdatePanel = (props) => {
                         <div class="col-6">
                             <label className="form-pad" for="field">Field of Interest</label>
 
-                            <select class="form-select" className="form-control" name="field" id="field" value={field} onChange={(e) => { setField(e.target.value); field != null ? setErrField(false) : setErrField(true) }}>
-                                <option  >Field</option>
-                                <option id="Medical" >Medical</option>
-                                <option id="Technology" >Technology</option>
-                                <option id="Robotics" >Robotics</option>
-                                <option id="ML" >Machine Learning</option>
-                                <option id="FS" >Food Science</option>
-                            </select>
+                            <Autocomplete
+
+                                id="field"
+                                options={researchAreas}
+                                renderInput={params => (
+                                    <TextField {...params} variant="outlined" />
+                                )}
+
+                                getOptionSelected={(option, value) => option.id === value.id}
+                                getOptionLabel={option => option.name || field}
+                                value={field}
+                                onChange={(_event, field) => {
+                                    setField(field);
+                                    field != null ? setErrField(false) : setErrField(true)
+                                }}
+                                size="small"
+                                required
+                            />
                             {errfield ? <small className='text-danger'>Cannot keep this field empty</small> : ""}
                         </div>
                     </div>

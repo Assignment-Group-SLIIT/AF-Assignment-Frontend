@@ -36,7 +36,7 @@ function UpdateRGPanel(group) {
         setPanel(group.data.panelNo)
 
         getAllPanels().then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             if (res.ok) {
                 setPanelListOptions(res.data)
                 setState(true)
@@ -84,7 +84,7 @@ function UpdateRGPanel(group) {
         }
 
         updateGroup(groupID, updateResearchGroup).then(res => {
-            console.log(res)
+            // console.log(res)
             if (res.ok) {
                 toastNotification("Allocated a panel", "success")
                 setTimeout(function () {
