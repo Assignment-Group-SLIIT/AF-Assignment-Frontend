@@ -61,7 +61,7 @@ export const PanelAllocation = () => {
             )
         }))
 
-        console.log(groupList)
+        // console.log(groupList)
     }
 
     function refreshPage() {

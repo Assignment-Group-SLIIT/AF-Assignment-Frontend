@@ -79,7 +79,7 @@ export const PanelList = () => {
             )
         }))
 
-        console.log(panelList)
+        // console.log(panelList)
     }
 
     function refreshPage() {

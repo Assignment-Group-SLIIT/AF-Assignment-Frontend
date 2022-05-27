@@ -169,8 +169,20 @@ export const CreatedPanelList = () => {
 
     }
 
-    function refreshPage() {
+    const searchResult = (e) => {
+        e.preventDefault();
+        // console.log(search)
+        setPanelList(panelList.filter(panel => {
+            return (
+                panel.panelNumber == search || panel.FieldOfInterest == search || panel.member1 == search || panel.member2 == search || panel.member3 == search || panel.member4 == search
+            )
+        }))
 
+        // console.log(panelList)
+    }
+
+
+    function refreshPage() {
         window.location.reload();
     }
 
@@ -194,7 +206,7 @@ export const CreatedPanelList = () => {
 
                 <div className="row table-head mt-3">
                     <div className="col">
-                        <h3 className="float-left" >Evaluation Panels</h3>
+                        <h3 className="float-left" onClick={refreshPage} >Evaluation Panels</h3>
                     </div>
                 </div>
                 <div className="row table-head-search">
@@ -203,8 +215,8 @@ export const CreatedPanelList = () => {
                     <div className="col">
                         <div className="search-box">
                             <div className="searchbar">
-                                <form >
-                                    <input className="search_input" type="text" name="search" placeholder="Search..."
+                                <form onSubmit={(e) => searchResult(e)}>
+                                    <input className="search_input" type="text" name="search" placeholder="Search..." onChange={(e) => setSearch(e.target.value)}
                                     />
                                     <button className="btn search_icon" type="submit" id="submit" name="submit">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
