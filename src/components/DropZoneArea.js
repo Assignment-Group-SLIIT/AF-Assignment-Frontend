@@ -4,8 +4,7 @@ import { DropzoneDialog } from 'material-ui-dropzone'
 import Button from '@material-ui/core/Button';
 import { storage } from '../firebase';
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
-import toastNotification from '../components/toastNotification'
-
+import toastNotification from './toastNotification';
 
 
 function DropzoneArea(props) {

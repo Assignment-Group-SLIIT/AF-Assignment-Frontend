@@ -1,7 +1,9 @@
 //default button
 .ripple-button {
   border-radius: 10px;
-  width: 150px;
+  padding: 5px;
+  padding: 5px;
+  min-width: 150px;
   height: 40px;
   border: none;
   margin: 8px;
@@ -12,15 +14,16 @@
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   -webkit-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.45);
-    box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.45);
+  box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.45);
 }
 
 //button with yellow colour
 .ripple-button-warning {
   border-radius: 10px;
-  width: 150px;
+  padding: 5px;
+  min-width: 150px;
   height: 40px;
   border: none;
   margin: 8px;
@@ -31,15 +34,16 @@
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   -webkit-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.45);
-    box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.45);
+  box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.45);
 }
 
 //button with red colour
 .ripple-button-danger {
   border-radius: 10px;
-  width: 150px;
+  padding: 5px;
+  min-width: 150px;
   height: 40px;
   border: none;
   margin: 8px;
@@ -50,15 +54,16 @@
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   -webkit-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.45);
-    box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.45);
+  box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.45);
 }
 
 //button with border
 .ripple-button-border {
   border-radius: 10px;
-  width: 150px;
+  padding: 5px;
+  min-width: 150px;
   height: 40px;
   border: 2px solid #9D50BB;
   margin: 8px;
@@ -69,15 +74,16 @@
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   -webkit-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.45);
-    box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.45);
+  box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.45);
 }
 
 //button with border
 .ripple-button-border-disabled {
   border-radius: 10px;
-  width: 150px;
+  padding: 5px;
+  min-width: 150px;
   height: 40px;
   border: 2px solid #c7c7c7;
   margin: 8px;
@@ -88,13 +94,13 @@
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   -webkit-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.45);
-    box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.45);
+  box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.45);
 }
 
-.ripple-button > .ripple {
-  width: 20px;
+.ripple-button>.ripple {
+  min-width: 20px;
   height: 20px;
   position: absolute;
   background: #ffffff49;
@@ -104,8 +110,9 @@
   opacity: 1;
   animation: 0.9s ease 1 forwards ripple-effect;
 }
-.ripple-button-warning > .ripple {
-  width: 20px;
+
+.ripple-button-warning>.ripple {
+  min-width: 20px;
   height: 20px;
   position: absolute;
   background: #ffffff49;
@@ -115,8 +122,9 @@
   opacity: 1;
   animation: 0.9s ease 1 forwards ripple-effect;
 }
-.ripple-button-danger > .ripple {
-  width: 20px;
+
+.ripple-button-danger>.ripple {
+  min-width: 20px;
   height: 20px;
   position: absolute;
   background: #ffffff49;
@@ -126,8 +134,9 @@
   opacity: 1;
   animation: 0.9s ease 1 forwards ripple-effect;
 }
-.ripple-button-border > .ripple {
-  width: 20px;
+
+.ripple-button-border>.ripple {
+  min-width: 20px;
   height: 20px;
   position: absolute;
   background: #6f00ff49;
@@ -143,14 +152,14 @@
     transform: scale(1);
     opacity: 1;
   }
+
   50% {
     transform: scale(10);
     opacity: 0.375;
   }
+
   100% {
     transform: scale(35);
     opacity: 0;
   }
 }
-
-

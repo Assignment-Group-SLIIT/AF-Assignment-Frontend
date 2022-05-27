@@ -28,7 +28,7 @@ import StudentSubmissionDocument from '../pages/student/StudentSubmissionDocumen
 import GroupRequestCoSupevisor from '../pages/co-supervisor/GroupRequest-Co'
 import { CreatedPanelList } from '../pages/panel/PanelList'
 import Dashboard from '../pages/admin/Dashboard'
-
+import AllSubmissions from '../pages/Supervisor/AllSubmissions'
 
 export const RoutesComponent = () => {
     return (
@@ -45,12 +45,12 @@ export const RoutesComponent = () => {
 
                     {/* student */}
                     <Route exact path='/signup/student' element={< StudentSignUp />} />
-                    <Route exact path='/student/groupregistration' element={<StudentGroupRegister />} />
                     <Route exact path='/student/dashboard' element={< StudentDashboard />} />
-                    <Route exact path='/student/projectproposal' element={<StudentSubmissionDocument />} />
                     <Route exact path='/student/assignment' element={<UploadInitialEvaluation />} />
                     <Route exact path='/student/request/supervisor' element={<RequestTopic />} />
                     <Route exact path='/student/request/cosupervisor' element={<RequestTopicCoSupervisor />} />
+                    <Route exact path='/student/projectproposal' element={<StudentSubmissionDocument />} />
+                    <Route exact path='/student/groupregistration' element={<StudentGroupRegister />} />
 
                     {/* staff */}
                     <Route exact path='/signup/staff' element={<StaffSignup />} />
@@ -58,6 +58,7 @@ export const RoutesComponent = () => {
                     {/* supervisor */}
                     <Route exact path='/supervisor/list/request' element={<GroupRequest />} />
                     <Route exact path='/supervisor/list/submissions' element={<EvaluationSubmission />} />
+                    <Route exact path='/supervisor/list/all-submissions' element={<AllSubmissions />} />
 
                     {/* cosupervisor */}
                     <Route exact path='/cosupervisor/list/request' element={< GroupRequestCoSupevisor />} />

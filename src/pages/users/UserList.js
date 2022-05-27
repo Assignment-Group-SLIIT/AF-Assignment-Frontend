@@ -4,8 +4,13 @@ import ViewUser from './modals/ViewUser';
 import UpdateUser from './modals/UpdateUser';
 import { RippleButton } from "../../components/RippleButton"
 import '../../styles/usersList.styles.scss'
+import { deleteUser, getAllUsers } from '../../services/user.service';
+import { useNavigate } from 'react-router-dom';
+import toastNotification from '../../components/toastNotification';
 
 export const UserList = () => {
+
+    let navigate = useNavigate();
 
     const [search, setSearch] = useState("");
     const [usersList, setUserList] = useState([]);
@@ -22,8 +27,17 @@ export const UserList = () => {
     const [modalLoading, setModalLoading] = useState(false);
     const [refresgPage, setRefreshPage] = useState(false);
 
+    useEffect(() => {
+        getAllUsers().then((response) => {
+            setUserList(response.data.reverse())
+        }).catch((error) => {
+            console.log(error)
+        })
+    },[])
+
+
     const openModal = (user) => {
-        // setData(rental);
+         setData(user);
         handleViewOnClick();
     }
 
@@ -33,19 +47,26 @@ export const UserList = () => {
         setModalShow(true);
     }
 
-    const openModalDelete = (data) => {
-        // setModalDataDelete(data);
-        setModalDeleteConfirm(true);
-    }
-
     const openModalUpdate = (user) => {
 
         console.log("request came for modal updateeeeeee");
-        // setModalDataUpdate(data);
+        setModalDataUpdate(user);
         setModalUpdate(true);
 
     }
 
+    const openModalDelete = (data) => {
+        setModalDataDelete(data);
+        setModalDeleteConfirm(true);
+   }
+
+    function onDelete(modalDataDelete){
+        deleteUser(modalDataDelete.email).then((response) => {
+            response.ok ? toastNotification("User successfully delete from the system", "success") : null
+            //navigate('/login')
+            window.location.reload(false);
+        })
+    }
 
     return (
         <div className='body-content-container'>
@@ -57,7 +78,7 @@ export const UserList = () => {
                 centered
             >
                 <ViewUser
-                    // data={modalData}
+                     data={modalData}
                     onHide={() => setModalShow(false)}
                 />
             </Modal>
@@ -99,17 +120,21 @@ export const UserList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr >
-
-                            <td onClick={() => openModal()}>data</td>
-                            <td ></td>
-                            <td ></td>
-                            <td></td>
-                            <td>
-                                <RippleButton className="ripple-button" text="Update" onClick={() => openModalUpdate()} />
-                                <RippleButton className="ripple-button-danger" text="Delete" onClick={() => openModalDelete()} />
-                            </td>
-                        </tr>
+                        {usersList.map((user) => {
+                            return(
+                                <tr>
+                                    <td onClick={() => openModal(user)}>{user.fullname}</td>
+                                    <td>{user.email}</td>
+                                    <td>{user.contactNo}</td>
+                                    <td>{user.role}</td>
+                                    <td>
+                                    <RippleButton className="ripple-button" text="Update" onClick={() => openModalUpdate(user)} />
+                                    <RippleButton className="ripple-button-danger" text="Delete" onClick={() => openModalDelete(user)} />
+                                    </td>
+                                </tr>
+                            )
+                        })}
+                        
                     </tbody>
                 </table>
             </div>
@@ -145,7 +170,7 @@ export const UserList = () => {
                 <Modal.Footer>
                     <div className="delete-modal row">
                         <div className="col-6">
-                            <RippleButton className="ripple-button" text=" Confirm" />
+                            <RippleButton className="ripple-button" text=" Confirm" onClick={() => { onDelete(modalDataDelete); }}  />
                         </div>
                         <div className="col-6">
                             <RippleButton className="ripple-button-warning" text="Cancel" onClick={() => setModalDeleteConfirm(false)} />
@@ -154,8 +179,6 @@ export const UserList = () => {
                     </div>
                 </Modal.Footer>
             </Modal>
-
-
 
         </div>
     )

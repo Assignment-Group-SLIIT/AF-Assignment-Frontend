@@ -25,42 +25,42 @@ function ViewUser(user) {
                                     <th class="text-left" scope="row">
                                         Full Name
                                     </th>
-                                    {user.data.fullname}
+                                    <td class="text-left">{user.data.fullname}</td>
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Email Address
                                     </th>
-                                    {user.data.email}
+                                    <td class="text-left">{user.data.email}</td>
                                 </tr><tr>
                                     <th class="text-left" scope="row">
                                         Contact No
                                     </th>
-                                    {user.data.contactNo}
+                                    <td class="text-left">{user.data.contactNo}</td>
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Specialization
                                     </th>
-                                    {/* {user.data.specilization} */}
+                                    <td class="text-left">{user.data.degree}</td>
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Field Of Interest
                                     </th>
-                                    {user.data.field}
+                                    <td class="text-left">{user.data.field}</td>
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Department
                                     </th>
-                                    {user.data.department}
+                                    <td class="text-left">{user.data.department}</td>
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Role
                                     </th>
-                                    {user.data.role}
+                                    <td class="text-left">{user.data.role}</td>
                                 </tr>
                             </tbody>
                         </table>

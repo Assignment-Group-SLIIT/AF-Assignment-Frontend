@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { Modal, Button } from "react-bootstrap";
 import { RippleButton } from '../../components/RippleButton'
 import EvaluationSubmissionModal from './modals/evaluationSubmissionModal';
-import { getAllAssignement } from '../../services/assignment.service';
+import { getAllSubmissions } from '../../services/submission.service';
+import ViewSubmissionModal from './submissionModal/viewSumissionModal';
 
 
-export const EvaluationSubmission = () => {
+const AllSubmissions = () => {
 
     const [search, setSearch] = useState("");
     const [evaluation, setEvaluation] = useState([]);
@@ -15,38 +16,46 @@ export const EvaluationSubmission = () => {
     const [modalDataUpdate, setModalDataUpdate] = useState([]);
     const [modalUpdate, setModalUpdate] = useState(false);
 
-    const [evaluationData, setEvaluationData] = useState([]);
-
     const [modalLoading, setModalLoading] = useState(false);
 
-    const openModal = (user) => {
-        // setData(rental);
-        handleViewOnClick();
-    }
+    const [submissionData, setSubmissionData] = useState([]);
 
-    const handleViewOnClick = () => {
-        // console.log("req came for modal");
-        // console.log(modalData, "data came for modalllllll");
+    // const openModal = (user) => {
+    //     // setData(rental);
+    //     handleViewOnClick();
+    //     setModalShow(true);
+    // }
+
+    // const handleViewOnClick = () => {
+    //     // console.log("req came for modal");
+    //     // console.log(modalData, "data came for modalllllll");
+    //     setModalShow(true);
+    // }
+
+
+    const openModalUpdate = (values) => {
+
+        console.log("request came for modal updateeeeeee");
+        setModalDataUpdate(values);
         setModalShow(true);
+
     }
 
-    const getEvaluationData = async () => {
-        let response = await getAllAssignement();
+    const closeModal = () => {
+        setModalShow(false);
+    }
+
+    const getAllSubmisionDetails = async () => {
+        let response = await getAllSubmissions();
+        console.log("res>>", response)
         if (response.ok) {
-            setEvaluationData(response.data.data)
+            setSubmissionData(response.data);
         }
     }
 
     useEffect(() => {
-        getEvaluationData()
+        getAllSubmisionDetails();
     }, [])
-
-    const openModalUpdate = (values) => {
-
-        setModalDataUpdate(values);
-        setModalUpdate(true);
-
-    }
 
     return (
         <div className='body-content-container'>
@@ -54,7 +63,7 @@ export const EvaluationSubmission = () => {
             <div className="container-border">
                 <div className="row table-head mt-3">
                     <div className="col">
-                        <h3 className="float-left" >Submissions To Be Evaluated</h3>
+                        <h3 className="float-left" >All Submissions</h3>
                     </div>
                 </div>
                 <br /> <br /> <br />
@@ -81,52 +90,54 @@ export const EvaluationSubmission = () => {
                 <table className='table table-hover'>
                     <thead class="thead-dark">
                         <tr>
-                            <th className='text'>Group ID</th>
-                            <th className='text'>Submission ID</th>
+                            <th className='text'>Submission ID </th>
                             <th className='text'>Submission Type</th>
-                            <th className='text'>Document</th>
-                            <th className='text'>Marks</th>
+                            <th className='text'>Start Date</th>
+                            <th className='text'>End Date</th>
                             <th className='text'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {console.log("evaData", evaluationData)}
+                        {/* return( */}
+
+                        {console.log("dta>>", submissionData)}
                         {
-                            evaluationData.map((values) => {
+                            submissionData.map((values) => {
                                 return (
                                     <tr>
-                                        <td>{values.groupId}</td>
-                                        <td>{values.submissionId}</td>
+                                        {console.log("Data>>", values)}
+
+                                        <td >{values.submissionId}</td>
                                         <td>{values.submissionType}</td>
-                                        <td>{values.evaluationStatus}</td>
-                                        <td>{values.marks}</td>
+                                        <td>{values.startDate}</td>
+                                        <td>{values.endDate}</td>
                                         <td className='text'>
-                                            <RippleButton className="ripple-button" text="Evaluate" onClick={() => openModalUpdate(values)} />
+                                            <RippleButton className="ripple-button" text="View" onClick={() => openModalUpdate(values)} />
                                         </td>
                                     </tr>
                                 )
                             })
                         }
 
-
+                        {/* ) */}
                     </tbody>
                 </table>
 
             </div>
             {/* Modal to be used in update */}
-            {console.log(" modal data>>>", modalDataUpdate)}
             <Modal
-                show={modalUpdate}
-                onHide={() => setModalUpdate(false)}
+                show={modalShow}
+                close={closeModal}
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
-                <EvaluationSubmissionModal
+                <ViewSubmissionModal
                     data={modalDataUpdate}
-                    onHide={() => setModalUpdate(false)}
+                    close={closeModal}
                 />
             </Modal>
         </div >
     )
 }
+export default AllSubmissions
