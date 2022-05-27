@@ -26,42 +26,63 @@ function ResearchGroup(group) {
                                     <th class="text-left" scope="row">
                                         Group ID
                                     </th>
-                                    {group.data.groupId}
+                                    <th class="text-left" scope="row">
+                                        {group.data.groupId}
+                                    </th>
+
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Leader Name
                                     </th>
-                                    {group.data?.student?.leader?.name}
+                                    <th class="text-left" scope="row">
+                                        {group.data?.student?.leader?.name}
+                                    </th>
+
                                 </tr><tr>
                                     <th class="text-left" scope="row">
                                         Research Field
                                     </th>
-                                    {group.data.researchField}
+                                    <th class="text-left" scope="row">
+                                        {group.data.researchField}
+                                    </th>
+
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Research Topic
                                     </th>
-                                    {group.data.researchTopic}
+                                    <th class="text-left" scope="row">
+                                        {group.data.researchTopic}
+                                    </th>
+
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Supervisor
                                     </th>
-                                    {group.data.supervisor}
+                                    <th class="text-left" scope="row">
+                                        {group.data.supervisor}
+                                    </th>
+
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Co-Supervisor
                                     </th>
-                                    {group.data.coSupervisor}
+                                    <th class="text-left" scope="row">
+                                        {group.data.coSupervisor}
+                                    </th>
+
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Allocated Panel
                                     </th>
-                                    {group.data.panelNo}
+                                    <th class="text-left" scope="row">
+                                        {group.data.panelNo}
+                                    </th>
+
                                 </tr>
 
                             </tbody>

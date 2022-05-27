@@ -54,8 +54,12 @@ export const PanelList = () => {
 
         deleteUser(modalDataDelete.email).then(response => {
             if (response.ok) {
-                toastNotification("Successfully deleted a Panel member");
+                toastNotification("Successfully deleted a Panel member", "success");
                 // window.location.reload();
+                setModalDeleteConfirm(false);
+                setTimeout(function () {
+                    refreshPage();
+                }, 2000);
             } else {
                 toastNotification("Error upon deleting a Panel member", "warn");
             }
@@ -66,6 +70,21 @@ export const PanelList = () => {
 
     }
 
+    const searchResult = (e) => {
+        e.preventDefault();
+        // console.log(search)
+        setPanelList(panelList.filter(panel => {
+            return (
+                panel.fullname == search || panel.email == search || panel.contactNo == search || panel.role == search
+            )
+        }))
+
+        console.log(panelList)
+    }
+
+    function refreshPage() {
+        window.location.reload();
+    }
 
     return (
         <div className='body-content-container'>
@@ -86,7 +105,7 @@ export const PanelList = () => {
 
                 <div className="row table-head mt-3">
                     <div className="col">
-                        <h3 className="float-left" >Panel Members</h3>
+                        <h3 className="float-left" onClick={refreshPage}>Panel Members</h3>
                     </div>
                 </div>
                 <div className="row table-head-search">
@@ -95,10 +114,13 @@ export const PanelList = () => {
                     <div className="col">
                         <div className="search-box">
                             <div className="searchbar">
-                                <form >
-                                    <input className="search_input" type="text" name="search" placeholder="Search..."
+                                <form onSubmit={(e) => searchResult(e)}>
+                                    <input className="search_input" type="text" name="search" placeholder="Search..." onChange={(e) => setSearch(e.target.value)}
                                     />
-                                    <button className="btn search_icon" type="submit" id="submit" name="submit">
+
+                                    <button className="btn search_icon" type="submit" id="submit" name="submit"
+
+                                    >
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
                                 </form>
                             </div>
