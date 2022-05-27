@@ -6,6 +6,7 @@ import toastNotification from '../../components/toastNotification';
 import { deletePanel, getAllPanels } from '../../services/panel.service';
 import ViewPanelMember from './modals/PanelMember';
 import { UpdatePanel } from './modals/UpdatePanel';
+import { searchUser, updateUser } from '../../services/user.service';
 
 export const CreatedPanelList = () => {
 
@@ -21,6 +22,7 @@ export const CreatedPanelList = () => {
 
     const [modalDataUpdate, setModalDataUpdate] = useState([]);
     const [modalUpdate, setModalUpdate] = useState(false);
+
 
 
     const openModal = (panel) => {
@@ -63,13 +65,100 @@ export const CreatedPanelList = () => {
 
 
     function onDelete(modalDataDelete) {
-        // console.log(modalDataDelete.panelId)
+
+        const pNo = panelList.findIndex(panel => panel.panelId === modalDataDelete.panelId)
+
+        console.log(modalDataDelete.panelId)
         deletePanel(modalDataDelete.panelId).then(response => {
             if (response.ok) {
                 toastNotification("Successfully deleted a Panel", "success")
-
                 setModalDeleteConfirm(false);
+                setTimeout(function () {
+                    refreshPage();
+                }, 2000);
 
+                searchUser(panelList[pNo].member1).then(res => {
+                    console.log("4", res)
+                    if (res.ok) {
+                        const user1 = {
+                            fullname: res.data.fullname,
+                            email: res.data.email,
+                            contactNo: res.data.contactNo,
+                            role: res.data.role,
+                            isAvailable: true,
+                            department: res.data.department,
+                            field: res.data.field
+
+                        }
+
+                        updateUser(user1.email, user1).then(res => {
+                            if (res.ok) {
+                                console.log("update1", res)
+                                searchUser(panelList[pNo].member2).then(res => {
+                                    console.log("4", res)
+                                    if (res.ok) {
+                                        const user2 = {
+                                            fullname: res.data.fullname,
+                                            email: res.data.email,
+                                            contactNo: res.data.contactNo,
+                                            role: res.data.role,
+                                            isAvailable: true,
+                                            department: res.data.department,
+                                            field: res.data.field
+
+                                        }
+
+                                        updateUser(user2.email, user2).then(res => {
+                                            if (res.ok) {
+                                                console.log("update1", res)
+                                                searchUser(panelList[pNo].member3).then(res => {
+                                                    if (res.ok) {
+                                                        const user3 = {
+                                                            fullname: res.data.fullname,
+                                                            email: res.data.email,
+                                                            contactNo: res.data.contactNo,
+                                                            role: res.data.role,
+                                                            isAvailable: true,
+                                                            department: res.data.department,
+                                                            field: res.data.field
+
+                                                        }
+                                                        updateUser(user3.email, user3).then(res => {
+                                                            if (res.ok) {
+                                                                console.log("update1", res)
+                                                                searchUser(panelList[pNo].member4).then(res => {
+                                                                    if (res.ok) {
+                                                                        const user4 = {
+                                                                            fullname: res.data.fullname,
+                                                                            email: res.data.email,
+                                                                            contactNo: res.data.contactNo,
+                                                                            role: res.data.role,
+                                                                            isAvailable: true,
+                                                                            department: res.data.department,
+                                                                            field: res.data.field
+
+                                                                        }
+                                                                        updateUser(user4.email, user4).then(res => {
+                                                                            if (res.ok) {
+                                                                                console.log("Panel Member details updated")
+                                                                            }
+                                                                        }).catch(err => console.error(err))
+                                                                    }
+                                                                }).catch(err => console.error(err))
+                                                            }
+                                                        }).catch(err => console.error(err))
+                                                    }
+                                                }).catch(err => console.error(err))
+                                            }
+                                        }).catch(err => console.log(err))
+                                    }
+                                }).catch(err => console.log(err))
+                            }
+                        }).catch(err => console.error(err))
+                    }
+                }).catch(err => {
+                    console.log(err)
+                })
             } else {
                 toastNotification("Error upon deleting a Panel", "warn");
             }
@@ -78,6 +167,11 @@ export const CreatedPanelList = () => {
             toastNotification("Error", "error");
         })
 
+    }
+
+    function refreshPage() {
+
+        window.location.reload();
     }
 
 
@@ -136,7 +230,6 @@ export const CreatedPanelList = () => {
                     </thead>
                     <tbody>
                         {panelList.map((panel) => {
-
                             return (
                                 <tr key={Math.random()}>
                                     <td >{panel.panelNumber}</td>

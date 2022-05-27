@@ -8,7 +8,7 @@ import { getAllUsers, updateUser } from '../../services/user.service';
 import { createPanel, getAllPanels } from '../../services/panel.service';
 import toastNotification from '../../components/toastNotification';
 import { FormSection } from '../../components/FormSection';
-
+import { research_areas } from '../../config/utils';
 
 export const CreatePanel = () => {
 
@@ -26,6 +26,7 @@ export const CreatePanel = () => {
     const [selectedMember3, setSelectedMember3] = useState(null);
     const [selectedMember4, setSelectedMember4] = useState(null);
 
+    const [researchAreas, setResearchAreas] = useState(research_areas);
 
     //error state management
     const [errfield, setErrField] = useState(true);
@@ -146,7 +147,7 @@ export const CreatePanel = () => {
                 member2: selectedMember2.name,
                 member3: selectedMember3.name,
                 member4: selectedMember4.name,
-                FieldOfInterest: field,
+                FieldOfInterest: field.name,
             }
 
             const user1 = {
@@ -262,14 +263,34 @@ export const CreatePanel = () => {
                         <div class="col-6">
                             <label className="form-pad" for="field">Field of Interest</label>
 
-                            <select class="form-select" className="form-control" name="field" id="field" onChange={(e) => { setField(e.target.value); field != null ? setErrField(false) : setErrField(true) }} required>
+                            {/* <select class="form-select" className="form-control" name="field" id="field" onChange={(e) => { setField(e.target.value); field != null ? setErrField(false) : setErrField(true) }} required>
                                 <option  >Field</option>
                                 <option id="Medical" >Medical</option>
                                 <option id="Technology" >Technology</option>
                                 <option id="Robotics" >Robotics</option>
                                 <option id="ML" >Machine Learning</option>
                                 <option id="FS" >Food Science</option>
-                            </select>
+                            </select> */}
+
+                            <Autocomplete
+
+                                id="field"
+                                options={researchAreas}
+                                renderInput={params => (
+                                    <TextField {...params} variant="outlined" />
+                                )}
+
+                                getOptionSelected={(option, value) => option.id === value.id}
+                                getOptionLabel={option => option.name || field}
+                                value={field}
+                                onChange={(_event, field) => {
+                                    setField(field);
+                                    field != null ? setErrField(false) : setErrField(true)
+                                }}
+                                size="small"
+                                required
+                            />
+
                             {errfield ? <small className='text-danger'>Cannot keep this field empty</small> : ""}
                         </div>
                     </div>
