@@ -1,13 +1,39 @@
 import React, { useState, useEffect } from 'react'
 import { RippleButton } from '../../../components/RippleButton'
 import { Modal } from "react-bootstrap";
+import { getOneGroup } from '../../../services/group.service';
 
 export const SendEmail = (evaluate) => {
+
+    // console.log("data cameeee", evaluate)
 
     const [groupID, setGroupID] = useState("")
     const [evaluationStatus, setEvaluationStatus] = useState("")
     const [email, setEmail] = useState("")
     const [link, setLink] = useState("")
+
+    useEffect(() => {
+
+        getOneGroup(evaluate.data.groupId).then(res => {
+            if (res.ok) {
+                setEmail(res.data?.student?.leader?.email)
+            } else {
+                console.log("Error occured")
+            }
+        }).catch(err => {
+            console.error(err)
+        })
+    }, [])
+
+    useEffect(() => {
+        setGroupID(evaluate.data.groupId)
+        setEvaluationStatus(evaluate.data.evaluationStatus)
+    }, [email])
+
+    const sendEmail = (e) => {
+        e.preventDefault()
+    }
+
 
 
     return (
@@ -52,7 +78,7 @@ export const SendEmail = (evaluate) => {
                             <br></br>
                             <div className="row mb-4">
                                 <div className="col py-3 text-center">
-                                    <RippleButton className="ripple-button" text="Send" onClick={(e) => { addEvalMarks(e) }} />
+                                    <RippleButton className="ripple-button" text="Send" onClick={(e) => { sendEmail(e) }} />
 
                                 </div>
                                 <div className="col py-3 text-center">

@@ -38,7 +38,7 @@ export const Evaluation = () => {
     }
 
     const openModalSendEmails = (evaluate) => {
-        // setModalDataSendEmail(evaluate);
+        setModalDataSendEmail(evaluate);
         setModalSendEmail(true);
     }
 
