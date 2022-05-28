@@ -112,7 +112,7 @@ const AllSubmissions = () => {
                                         <td>{values.startDate}</td>
                                         <td>{values.endDate}</td>
                                         <td className='text'>
-                                            <RippleButton className="ripple-button" text="View" onClick={() => openModalUpdate(values)} />
+                                            <RippleButton className="ripple-button-sm" text="View" onClick={() => openModalUpdate(values)} />
                                         </td>
                                     </tr>
                                 )

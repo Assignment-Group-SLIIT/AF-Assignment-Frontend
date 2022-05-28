@@ -83,7 +83,6 @@ export const GroupRequest = () => {
 
 
 
-
     }
 
 
@@ -206,8 +205,8 @@ export const GroupRequest = () => {
                                     <td>{grouplist.researchTopic}</td>
                                     <td>{grouplist.researchField}</td>
                                     <td className='text'>
-                                        <RippleButton className="ripple-button" text="Accept" onClick={() => acceptsRequest(grouplist)} />
-                                        <RippleButton className="ripple-button-danger" text="Reject" onClick={() => removesRequest(grouplist)} />
+                                        <RippleButton className="ripple-button-sm" text="Accept" onClick={() => acceptsRequest(grouplist)} />
+                                        <RippleButton className="ripple-button-danger-table" text="Reject" onClick={() => removesRequest(grouplist)} />
                                     </td>
                                 </tr>
                             )
