@@ -24,7 +24,7 @@ const EvaluationModal = (props) => {
             <Modal.Header>
                 <Modal.Title>Add Evaluation Marks
                 </Modal.Title>
-                <Alert className="mb-2 ml-1 p-2 float-left" variant={props.data.evaluationStatus === 'pending' ? 'warning' : props.data.evaluationStatus === 'evaluvated' ? 'success' : null} >
+                <Alert className="mb-2 ml-1 p-2 float-left" variant={props.data.evaluationStatus === 'Pending' ? 'warning' : props.data.evaluationStatus === 'Completed' ? 'success' : null} >
                     {props.data.evaluationStatus}
                 </Alert>
 
@@ -68,48 +68,52 @@ const EvaluationModal = (props) => {
                                     <label className="form-pad" for="submissionID">Submission Type</label>
                                 </div>
                                 <div class="col-sm">
-                                    <strong>{props.data.groupId}</strong>
+                                    <strong>{props.data.submissionType}</strong>
                                 </div>
-                            </div>
-                            <br></br>
-
-
-
-
-
-
-                            <div class="row">
-                                <div class="col">
-                                    <label className="form-pad" for="stype">Submission Type</label>
-                                    <label className="form-pad" for="stype">{props.data.submissionType}</label>
-                                </div>
-
                             </div>
                             <br></br>
                             <div class="row">
-                                <div class="col-6">
-                                    <label className="form-pad" for="document">Document</label>
-                                    <label className="form-pad" for="stype">{props.data.document}</label>
+                                <div class="col-4">
+                                    <label className="form-pad" for="submissionID">Submission Type</label>
                                 </div>
+                                <div class="col-sm">
+                                    <strong>{props.data.submissionType}</strong>
+                                </div>
+                            </div>
+                            <br></br>
 
+                            <div class="row">
+                                <div class="col-4">
+                                    <label className="form-pad" for="submissionID">Document</label>
+                                </div>
+                                <div class="col-sm">
+                                    {/* <strong>{props.data.document}</strong> */}
+                                    <strong><span className="viewAssessmentLink" onClick={(e) => window.open(props.data.document)} >View Document</span></strong>
+                                </div>
+                            </div>
+                            <br></br>
+
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <label className="form-pad" for="submissionID">Marking Schema</label>
+                                </div>
+                                <div class="col-sm">
+                                    <strong><span className="viewAssessmentLink" onClick={(e) => window.open(markingSchema)} >View Marking Schema</span></strong>
+                                </div>
                             </div>
                             <br></br>
                             <div class="row">
-                                <div class="col-6">
-                                    <label className="form-pad" for="marks">Evaluation Marks</label>
-                                    <label className="form-pad" for="stype">{props.data.marks}</label>
+                                <div class="col-4">
+                                    <label className="form-pad" for="submissionID">Evaluation Marks</label>
                                 </div>
-
+                                <div class="col-sm">
+                                    {props.data.marks == 0 ? <strong>Not Evaluated yet.</strong> : <strong>{props.data.marks}</strong>}
+                                </div>
                             </div>
                             <br></br>
-                            <div class="row">
-                                <div class="col-6">
-                                    <label className="form-pad" for="marks">Marking Schema</label>
-                                    <label className="form-pad" for="stype">{markingSchema}</label>
-                                </div>
 
-                            </div>
-                            <br></br>
+
                             <div className="row mb-4">
                                 <div className="col py-3 text-center">
                                     <RippleButton className="ripple-button" text="Submit" onClick={() => { onSubmit() }} />
