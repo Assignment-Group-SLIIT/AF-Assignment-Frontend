@@ -15,6 +15,12 @@ const Signup = () => {
 
     }, [userName.value, password.value]);
 
+    // useEffect(() => {
+    //     if (sessionStorage.getItem("user")) {
+    //       navigate("/chat");
+    //     }
+    //   }, []);
+
     const onSubmit = (e) => {
         e.preventDefault()
 
@@ -27,6 +33,9 @@ const Signup = () => {
             loginUser(payload).then((res) => {
                 console.log("after sign in >>", res)
                 res.ok ? toastNotification("Success!", "success") : toastNotification("Username or Password is incorrect!", "error")
+                // if (sessionStorage.getItem("user")) {
+                //     navigate("/chat");
+                //   }
             }).catch((err) => {
                 console.log("error while sign in >>", err.ok)
                 err.ok === false ? toastNotification("Username or Password is incorrect!", "error") : null

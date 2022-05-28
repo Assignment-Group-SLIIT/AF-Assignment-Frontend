@@ -25,6 +25,7 @@ export const TopicRequest = () => {
     const [query, setQuery] = useState("")
 
     useEffect(() => {
+        const user = JSON.parse(sessionStorage.getItem("user"))
         getAllProjectProposal().then((response) => {
             console.log("data",response.data)
             setTopicList(response.data.data.reverse())
@@ -40,7 +41,7 @@ export const TopicRequest = () => {
 
     function onUpdate(modalDataAccept) {
         
-        updateProjectProposal(modalDataAccept.groupId , modalDataAccept).then((response) => {
+        updateProjectProposal(modalDataAccept.groupId , modalDataAccept ).then((response) => {
             response.ok ? toastNotification("Project proposal accepted and send mail to group leader" , "success") : null
             window.location.reload(false);
         })
