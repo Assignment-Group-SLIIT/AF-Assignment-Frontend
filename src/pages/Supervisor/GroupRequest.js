@@ -26,6 +26,8 @@ export const GroupRequest = () => {
     const [modalAcceptConfirm, setModalAcceptConfirm] = useState(false);
     const [modalAccept, setModalAccept] = useState(false);
 
+    const [hideButtons, setHideButtons] = useState(false)
+
     useEffect(() => {
         getAllRequests().then((response) => {
             setGroupList(response.data.filter(ele => {
@@ -111,7 +113,7 @@ export const GroupRequest = () => {
                                     if (res4.ok) {
                                         updateSupervisor(res.data?.student?.member02?.name, supervisorName).then(res5 => {
                                             // console.log("updated3", res5)
-                                            if (res.ok) {
+                                            if (res5.ok) {
                                                 updateSupervisor(res.data?.student?.member03?.name, supervisorName).then(res6 => {
                                                     // console.log("updated6", res6)
                                                     if (res6.ok) {
@@ -124,6 +126,7 @@ export const GroupRequest = () => {
                                                         sendAcceptRejectEmail(emailBody)
                                                         toastNotification("Successfully accepted a teams request", "success")
                                                         refreshPage()
+                                                        setHideButtons(true)
                                                     } else {
                                                         toastNotification("Could not accept the request", "warn")
                                                     }
@@ -205,7 +208,7 @@ export const GroupRequest = () => {
                                     <td>{grouplist.researchTopic}</td>
                                     <td>{grouplist.researchField}</td>
                                     <td className='text'>
-                                        <RippleButton className="ripple-button-sm" text="Accept" onClick={() => acceptsRequest(grouplist)} />
+                                        {hideButtons ? " " : <RippleButton className="ripple-button-table" text="Accept" onClick={() => acceptsRequest(grouplist)} />}
                                         <RippleButton className="ripple-button-danger-table" text="Reject" onClick={() => removesRequest(grouplist)} />
                                     </td>
                                 </tr>

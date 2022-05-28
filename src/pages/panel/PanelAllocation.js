@@ -127,11 +127,11 @@ export const PanelAllocation = () => {
                             return (
                                 <tr key={Math.random()}>
 
-                                    <td onClick={() => openModal(group)}>{group.groupId}</td>
-                                    <td >{group?.student?.leader?.name}</td>
-                                    <td >{group.researchTopic}</td>
-                                    <td>{group.researchField}</td>
-                                    <th>{group.panelNo}</th>
+                                    <td className='text' onClick={() => openModal(group)}>{group.groupId}</td>
+                                    <td className='text' >{group?.student?.leader?.name}</td>
+                                    <td className='text' >{group.researchTopic}</td>
+                                    <td className='text'>{group.researchField}</td>
+                                    <th className='text'>{group.panelNo}</th>
                                     <td>
                                         <RippleButton className="ripple-button-sm" text="Allocate Panel" onClick={() => openModalUpdate(group)} />
                                     </td>
