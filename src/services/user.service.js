@@ -123,6 +123,7 @@ export const deleteUser = async (email) => {
 export const updateSupervisor = async (name, supervisor) => {
     try {
         const response = await API.put("users/supervisor/" + name + "/" + supervisor)
+        console.log("RESPONSEEE", response)
         if (response.status === 200) {
             return {
                 ok: true,

@@ -3,7 +3,8 @@ import { RippleButton } from '../../components/RippleButton'
 import { Link, useNavigate } from 'react-router-dom'
 import { Modal, Button } from "react-bootstrap";
 import { getAllRequests } from "../../services/supervisorRequests.service";
-import { updateGroup } from "../../services/group.service";
+import { getOneGroup, updateGroup } from "../../services/group.service";
+import { updateSupervisor } from "../../services/user.service";
 
 
 
@@ -15,6 +16,13 @@ export const GroupRequest = () => {
     const [modalDelete, setModalDelete] = useState(false);
     const [modalAcceptConfirm, setModalAcceptConfirm] = useState(false);
     const [query, setQuery] = useState("")
+    const [leader, setLeader] = useState("")
+    const [member1, setMember1] = useState("")
+    const [member2, setMember2] = useState("")
+    const [member3, setMember3] = useState("")
+
+
+    const [supervisorName, setSupervisorName] = useState('Thisara Ruwanpathirana')
 
     useEffect(() => {
         getAllRequests().then((response) => {
@@ -37,7 +45,51 @@ export const GroupRequest = () => {
     const acceptRequest = (grouplist) => {
         console.log("grouplist details", grouplist)
 
-        // updateGroup()
+        getOneGroup(grouplist.groupId).then(res => {
+            if (res.ok) {
+                const updatedGroup = {
+                    groupId: res.data?.groupId,
+                    student: res.data?.student,
+                    researchTopic: res.data?.researchTopic,
+                    researchField: res.data?.researchField,
+                    supervisor: supervisorName,
+                    coSupervisor: res.data?.coSupervisor,
+                    panelNo: res.data?.panelNo
+                }
+
+
+                updateGroup(grouplist.groupId, updatedGroup).then(res2 => {
+                    console.log(res.data?.student?.member1?.name)
+                    if (res2.ok) {
+                        console.log(res2)
+
+                        updateSupervisor(res.data?.student?.leader?.name, supervisorName).then(res3 => {
+                            console.log("updated1", res3)
+                            if (res3.ok) {
+                                updateSupervisor(res.data?.student?.member01?.name, supervisorName).then(res4 => {
+                                    console.log("updated2", res4)
+                                    if (res4.ok) {
+                                        updateSupervisor(res.data?.student?.member02?.name, supervisorName).then(res5 => {
+                                            console.log("updated3", res5)
+                                            if (res.ok) {
+                                                updateSupervisor(res.data?.student?.member03?.name, supervisorName).then(res6 => {
+                                                    console.log("updated6", res6)
+                                                })
+                                            }
+                                        })
+                                    }
+                                })
+                            }
+                        })
+
+
+
+                    }
+                })
+            }
+        })
+
+
 
 
     }
