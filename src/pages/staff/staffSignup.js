@@ -43,6 +43,7 @@ const StaffSignup = () => {
             role: role.value,
             department: department.value,
             field: field.value,
+            isAvailable: true
 
         }
         if (!fullname.isError && !email.isError && !field.isError && !department.isError && !contactNo.isError && !password.isError && !confirmPassword.isError && !role.isError) {
