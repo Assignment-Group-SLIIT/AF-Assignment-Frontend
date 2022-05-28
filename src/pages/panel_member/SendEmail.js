@@ -4,6 +4,10 @@ import { Modal } from "react-bootstrap";
 
 export const SendEmail = (evaluate) => {
 
+    const [groupID, setGroupID] = useState("")
+    const [email, setEmail] = useState("")
+    const [link, setLink] = useState("")
+
 
     return (
         <div>
