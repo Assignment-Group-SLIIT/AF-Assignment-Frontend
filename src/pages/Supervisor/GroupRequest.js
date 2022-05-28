@@ -3,43 +3,42 @@ import { RippleButton } from '../../components/RippleButton'
 import { Link, useNavigate } from 'react-router-dom'
 import { Modal, Button } from "react-bootstrap";
 import { getAllRequests } from "../../services/supervisorRequests.service";
+import { updateGroup } from "../../services/group.service";
 
 
 
 export const GroupRequest = () => {
 
-    const [search, setSearch] = useState("");
-    const [groupList, setGroupList] = useState([]);
 
-    const [modalDataDelete, setModalDataDelete] = useState([]);
+    const [groupList, setGroupList] = useState([]);
     const [modalDeleteConfirm, setModalDeleteConfirm] = useState(false);
     const [modalDelete, setModalDelete] = useState(false);
-
-    const [modalDataAccept, setModalDataAccept] = useState([]);
     const [modalAcceptConfirm, setModalAcceptConfirm] = useState(false);
-    const [modalAccept, setModalAccept] = useState(false);
-
-    const [modalLoading, setModalLoading] = useState(false);
-
-    const [disable, setDisable] = useState(false);
     const [query, setQuery] = useState("")
 
     useEffect(() => {
         getAllRequests().then((response) => {
-            setGroupList(response.data.reverse())
+            setGroupList(response.data.filter(ele => {
+                return ele.supervisor == 'Thisara Ruwanpathirana'
+            }))
         }).catch((error) => {
             console.log("error", error)
         })
     }, [])
 
-    const openModal = (data) => {
-        // setData(rental);
-        setModalAcceptConfirm(true);
-    }
 
     const openModalDelete = (data) => {
         // setModalDataDelete(data);
         setModalDeleteConfirm(true);
+    }
+
+
+    const acceptRequest = (grouplist) => {
+        console.log("grouplist details", grouplist)
+
+        // updateGroup()
+
+
     }
 
 

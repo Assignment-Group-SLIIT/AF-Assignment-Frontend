@@ -89,7 +89,7 @@ export const StudentSignUp = () => {
                     setContactNo({ ...contactNo, value: "" })
                     setPassword({ ...password, value: "" })
                     setConfirmPassword({ ...confirmPassword, value: "" })
-                    res.ok ? toastNotification("Success!", "success") : toastNotification("Error occured!", "error")
+                    res.ok ? toastNotification("Student Profile create Successfully!", "success") : toastNotification("Error occured while creating profile!", "error")
                     navigate("/login")
                 }).catch((err) => {
                     err.ok === false ? toastNotification("Error occured!", "error") : null

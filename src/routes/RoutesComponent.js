@@ -9,7 +9,6 @@ import { CreatePanel } from '../pages/panel/CreatePanel'
 import { PanelAllocation } from '../pages/panel/PanelAllocation'
 import { PanelList } from '../pages/panel/PanelMembersList'
 import { Evaluation } from '../pages/panel_member/Evaluation'
-import { SendEmail } from '../pages/panel_member/SendEmail'
 import { TopicRequest } from '../pages/panel_member/TopicRequest'
 import { TestPage } from '../pages/TestPage'
 import { StudentSignUp } from '../pages/student/StudentSignup'
@@ -76,7 +75,7 @@ export const RoutesComponent = () => {
 
 
                     {/* panel */}
-                    <Route exact path='/panel/email' element={<SendEmail />} />
+                    {/* <Route exact path='/panel/email' element={<SendEmail />} /> */}
                     <Route exact path='/panel/evaluation' element={<Evaluation />} />
                     <Route exact path='/panel/topic' element={<TopicRequest />} />
 
