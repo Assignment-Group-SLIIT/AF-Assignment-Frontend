@@ -3,7 +3,7 @@ import { Modal } from "react-bootstrap";
 import { FormSection } from "../../../components/FormSection";
 import { RippleButton } from "../../../components/RippleButton";
 import toastNotification from "../../../components/toastNotification";
-import { updateGroup } from "../../../services/group.service";
+import { sendAcceptRejectEmail, updateGroup } from "../../../services/group.service";
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import "../../../styles/usersList.styles.scss"
@@ -86,11 +86,19 @@ function UpdateRGPanel(group) {
         updateGroup(groupID, updateResearchGroup).then(res => {
             // console.log(res)
             if (res.ok) {
-                toastNotification("Allocated a panel", "success")
-                setTimeout(function () {
-                    refreshPage();
-                }, 2000);
 
+                const email = {
+                    email: group.data.student?.leader?.email,
+                    name: group.data.student?.leader?.name,
+                    message: "Your team evaluations will be conducted by Panel " + panel.name + ". So Please refer to the published time tables "
+                }
+
+                sendAcceptRejectEmail(email).then(res => {
+                    toastNotification("Allocated a panel", "success")
+                    setTimeout(function () {
+                        refreshPage();
+                    }, 2000);
+                })
             } else {
                 toastNotification("Could not allocate a panel", "warn")
             }
