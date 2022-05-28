@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getAllAssignementOfGroup } from '../../../services/assignment.service'
-import { Modal } from "react-bootstrap";
+import { Modal, Alert } from "react-bootstrap";
 import { FormSection } from '../../../components/FormSection';
 
 const ViewGroupEvaluate = (evaluate) => {
@@ -80,13 +80,16 @@ const ViewGroupEvaluate = (evaluate) => {
             <Modal.Body>
                 <div className="row">
                     <div className="col-12">
-
+                        {console.log("submission State", submission1State)}
                         <div class="row">
                             <div class="col-8">
                                 <FormSection headline={'Submission One'} />
                             </div>
-                            <div class="col-4">
+                            <div class="col-3">
                                 <label class="text-left" id="ID1"><strong>{submission1State}</strong></label>
+                                <Alert className="m-1 1 p-1 text-center" variant={submission1State === 'Pending' ? 'warning' : submission1State === 'Completed' ? 'success' : null} >
+                                    <strong>{submission1State}</strong>
+                                </Alert>
                             </div>
                         </div>
 
@@ -97,8 +100,11 @@ const ViewGroupEvaluate = (evaluate) => {
                                 <FormSection headline={'Submission Two'} />
 
                             </div>
-                            <div class="col-4">
-                                <label class="text-left" id="ID2"><strong>{submission2State}</strong></label>
+                            <div class="col-3">
+                                {/* <label class="text-left" id="ID2"><strong>{submission2State}</strong></label> */}
+                                <Alert className="m-1 1 p-1 text-center" variant={submission2State === 'Pending' ? 'warning' : submission2State === 'Completed' ? 'success' : null} >
+                                    <strong>{submission2State}</strong>
+                                </Alert>
                             </div>
                         </div>
 
@@ -108,8 +114,10 @@ const ViewGroupEvaluate = (evaluate) => {
                                 <FormSection headline={'Submission Three'} />
 
                             </div>
-                            <div class="col-4">
-                                <label class="text-left" id="ID3"><strong>{submission3State}</strong></label>
+                            <div class="col-3">
+                                <Alert className="m-1 1 p-1 text-center" variant={submission3State === 'Pending' ? 'warning' : submission3State === 'Completed' ? 'success' : null} >
+                                    <strong>{submission3State}</strong>
+                                </Alert>
                             </div>
                         </div>
                         <br></br>
@@ -118,8 +126,11 @@ const ViewGroupEvaluate = (evaluate) => {
                                 <FormSection headline={'Submission Four'} />
 
                             </div>
-                            <div class="col-4">
-                                <label class="text-left" id="ID4"><strong>{submission4State}</strong></label>
+                            <div class="col-3">
+
+                                <Alert className="m-1 1 p-1 text-center" variant={submission4State === 'Pending' ? 'warning' : submission4State === 'Completed' ? 'success' : null} >
+                                    <strong>{submission4State}</strong>
+                                </Alert>
                             </div>
                         </div>
                         <br></br>
@@ -127,8 +138,11 @@ const ViewGroupEvaluate = (evaluate) => {
                             <div class="col-8">
                                 <FormSection headline={'Submission Five'} />
                             </div>
-                            <div class="col-4">
-                                <label class="text-left" id="ID5"><strong>{submission5State}</strong></label>
+                            <div class="col-3">
+
+                                <Alert className="m-1 1 p-1 text-center" variant={submission5State === 'Pending' ? 'warning' : submission5State === 'Completed' ? 'success' : null} >
+                                    <strong>{submission5State}</strong>
+                                </Alert>
                             </div>
                         </div>
                     </div>
