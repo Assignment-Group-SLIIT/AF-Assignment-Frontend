@@ -33,7 +33,7 @@ const Dashboard = () => {
                     <div className="col-5">
                         <div className="row height-lg">
                             <div class="d-flex flex-row justify-content-between align-items-center">
-                                <RippleButton className="ripple-button-border w-100" text="Group Registration" onClick={() => { navigate("/student/groupregistration") }} />
+                                <RippleButton disabled={isGroupRegistered} className="ripple-button-border w-100" text="Group Registration" onClick={() => { navigate("/student/groupregistration") }} />
                                 {isGroupRegistered && <FcApproval size={30} />}
                             </div>
                         </div>
@@ -44,7 +44,7 @@ const Dashboard = () => {
                                     isTopicSelected ?
                                         (
                                             <>
-                                                <RippleButton disabled={true} className="ripple-button-border w-100" text="Co - Supervisor Selection" onClick={() => { navigate("/student/groupregistration") }} />
+                                                <RippleButton disabled={isTopicSelected} className="ripple-button-border w-100" text="Co - Supervisor Selection" onClick={() => { navigate("/student/groupregistration") }} />
                                                 {isCoSupervisorSelected && <FcApproval size={30} />}
                                             </>
                                         ) :
@@ -64,7 +64,7 @@ const Dashboard = () => {
                                     isEvaluationCompleted ?
                                         (
                                             <>
-                                                <RippleButton disabled={true} className="ripple-button-border w-100" text="Topic Evaluation Status" onClick={() => { navigate("/student/groupregistration") }} />
+                                                <RippleButton disabled={isEvaluationCompleted} className="ripple-button-border w-100" text="Topic Evaluation Status" onClick={() => { navigate("/student/groupregistration") }} />
                                                 {isEvaluationCompleted && <FcApproval size={30} />}
                                             </>
                                         ) :
@@ -93,7 +93,7 @@ const Dashboard = () => {
                                 {isGroupRegistered ?
                                     (
                                         <>
-                                            <RippleButton disabled={!isGroupRegistered} className="ripple-button-border w-100" text="Topic Selection & Supervisor Selection" onClick={() => { navigate("/student/request/supervisor") }} />
+                                            <RippleButton disabled={isTopicSelected} className="ripple-button-border w-100" text="Topic Selection & Supervisor Selection" onClick={() => { navigate("/student/request/supervisor") }} />
                                             {isTopicSelected && <FcApproval size={30} />}
                                         </>
                                     ) :
@@ -112,7 +112,7 @@ const Dashboard = () => {
                                 {isCoSupervisorSelected ?
                                     (
                                         <>
-                                            <RippleButton disabled={true} className="ripple-button-border w-100" text="Send Documents for Topic Evaluation" onClick={() => { onSubmit() }} />
+                                            <RippleButton disabled={isCoSupervisorSelected} className="ripple-button-border w-100" text="Send Documents for Topic Evaluation" onClick={() => { onSubmit() }} />
                                             {isProposalSent && <FcApproval size={30} />}
                                         </>
                                     ) :
@@ -133,21 +133,21 @@ const Dashboard = () => {
                 </div>
                 <div className="row mt-3">
                     <div className="row mr-2 ml-2 mb-4">
-                        <div className="row height-lg-border"></div>
+                        <div className="row height-lg-border">Submission 01</div>
                         <div className="row border shadow-sm height-lg p-2">
                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore unde quidem nihil laboriosam illo quod nostrum cupiditate minima aspernatur atque! Vitae commodi doloribus nesciunt quasi facere laudantium sequi enim. Provident.</p>
                             <p><AiOutlineCloudUpload size={20} /><span className='ml-2'><u>add submission</u></span></p>
                         </div>
                     </div>
                     <div className="row mr-2 ml-2 mb-4">
-                        <div className="row height-lg-border"></div>
+                        <div className="row height-lg-border">Submission 02</div>
                         <div className="row border shadow-sm height-lg p-2">
                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore unde quidem nihil laboriosam illo quod nostrum cupiditate minima aspernatur atque! Vitae commodi doloribus nesciunt quasi facere laudantium sequi enim. Provident.</p>
                             <p><AiOutlineCloudUpload size={20} /><span className='ml-2'><u>add submission</u></span></p>
                         </div>
                     </div>
                     <div className="row mr-2 ml-2 mb-4">
-                        <div className="row height-lg-border">dfsfasdsaf</div>
+                        <div className="row height-lg-border">Submission 03</div>
                         <div className="row border shadow-sm height-lg p-2">
                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore unde quidem nihil laboriosam illo quod nostrum cupiditate minima aspernatur atque! Vitae commodi doloribus nesciunt quasi facere laudantium sequi enim. Provident.</p>
                             <p><AiOutlineCloudUpload size={20} /><span className='ml-2'><u>add submission</u></span></p>

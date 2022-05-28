@@ -51,3 +51,14 @@ export const getOneGroup = async (id) => {
         return { ok: false, error: message };
     }
 }
+
+export const sendAcceptRejectEmail = async (payload) => {
+    // console.log("SENDS EMAIL CALLED", payload)
+    try {
+        const res = await API.post("groups/email/", payload);
+        if (res.status === 200)
+            return { ok: true };
+    } catch (error) {
+        return { ok: false, err: error };
+    }
+}

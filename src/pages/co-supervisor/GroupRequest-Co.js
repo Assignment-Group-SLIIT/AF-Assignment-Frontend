@@ -28,9 +28,9 @@ export default GroupRequest = () => {
         getAllRequestTopicsCoSupervisors().then((response) => {
             setGroupList(response.data.data.reverse())
         }).catch((error) => {
-            console.log("error",error)
+            console.log("error", error)
         })
-    },[])
+    }, [])
 
     const openModal = (data) => {
         // setData(rental);
@@ -82,28 +82,28 @@ export default GroupRequest = () => {
                         </tr>
                     </thead>
                     <tbody>
-                    {groupList.filter(grouplist => {
-                            if(query === ''){
+                        {groupList.filter(grouplist => {
+                            if (query === '') {
                                 return grouplist;
-                            }else if (grouplist.groupId.toLowerCase().includes(query.toLowerCase()) || 
-                                      grouplist.email.toLowerCase().includes(query.toLowerCase()) ||
-                                      grouplist.researchTopic.toLowerCase().includes(query.toLowerCase())  || 
-                                      grouplist.researchField.toLowerCase().includes(query.toLowerCase())) {
+                            } else if (grouplist.groupId.toLowerCase().includes(query.toLowerCase()) ||
+                                grouplist.email.toLowerCase().includes(query.toLowerCase()) ||
+                                grouplist.researchTopic.toLowerCase().includes(query.toLowerCase()) ||
+                                grouplist.researchField.toLowerCase().includes(query.toLowerCase())) {
                                 return grouplist;
-                              }
-                        }).map((grouplist , index) => {
-                            return(
+                            }
+                        }).map((grouplist, index) => {
+                            return (
                                 <tr key={index}>
                                     <td>{grouplist.groupId}</td>
                                     <td>{grouplist.email}</td>
                                     <td>{grouplist.researchTopic}</td>
                                     <td>{grouplist.researchField}</td>
                                     <td className='text'>
-                                        <RippleButton className="ripple-button" text="Accept" onClick={() => openModal(topic)} />
-                                        <RippleButton className="ripple-button-danger" text="Reject" onClick={() => openModalDelete(topic)} />
+                                        <RippleButton className="ripple-button-table" text="Accept" onClick={() => openModal(topic)} />
+                                        <RippleButton className="ripple-button-danger-table" text="Reject" onClick={() => openModalDelete(topic)} />
                                     </td>
                                 </tr>
-                            ) 
+                            )
                         })}
                     </tbody>
                 </table>
