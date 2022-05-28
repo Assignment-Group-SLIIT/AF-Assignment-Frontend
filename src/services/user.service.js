@@ -118,3 +118,32 @@ export const deleteUser = async (email) => {
         return { ok: false, err: error.message }
     }
 }
+
+
+export const updateSupervisor = async (name, supervisor) => {
+    try {
+        const response = await API.put("users/supervisor/" + name + "/" + supervisor)
+        if (response.status === 200) {
+            return {
+                ok: true,
+                data: response.data
+            }
+        }
+    } catch (error) {
+        return { ok: false, err: error.message }
+    }
+}
+
+export const updateCoSupervisor = async (name, cosupervisor) => {
+    try {
+        const response = await API.put("users/co/supervisor" + name + "/" + cosupervisor)
+        if (response.status === 200) {
+            return {
+                ok: true,
+                data: response.data
+            }
+        }
+    } catch (error) {
+        return { ok: false, err: error.message }
+    }
+}

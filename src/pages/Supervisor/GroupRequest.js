@@ -3,43 +3,43 @@ import { RippleButton } from '../../components/RippleButton'
 import { Link, useNavigate } from 'react-router-dom'
 import { Modal, Button } from "react-bootstrap";
 import { getAllRequests } from "../../services/supervisorRequests.service";
+import { updateGroup } from "../../services/group.service";
 
 
 
 export const GroupRequest = () => {
 
-    const [search, setSearch] = useState("");
-    const [groupList, setGroupList] = useState([]);
 
-    const [modalDataDelete, setModalDataDelete] = useState([]);
+    const [groupList, setGroupList] = useState([]);
     const [modalDeleteConfirm, setModalDeleteConfirm] = useState(false);
     const [modalDelete, setModalDelete] = useState(false);
-
-    const [modalDataAccept, setModalDataAccept] = useState([]);
     const [modalAcceptConfirm, setModalAcceptConfirm] = useState(false);
-    const [modalAccept, setModalAccept] = useState(false);
-
-    const [modalLoading, setModalLoading] = useState(false);
-
-    const [disable, setDisable] = useState(false);
     const [query, setQuery] = useState("")
 
     useEffect(() => {
         getAllRequests().then((response) => {
-            setGroupList(response.data.reverse())
+            setGroupList(response.data.filter(ele => {
+                return ele.supervisor == 'Thisara Ruwanpathirana'
+            }))
         }).catch((error) => {
-            console.log("error",error)
+            console.log("error", error)
         })
-    },[])
+    }, [])
 
-    const openModal = (data) => {
-        // setData(rental);
-        setModalAcceptConfirm(true);
-    }
+
 
     const openModalDelete = (data) => {
         // setModalDataDelete(data);
         setModalDeleteConfirm(true);
+    }
+
+
+    const acceptRequest = (grouplist) => {
+        console.log("grouplist details", grouplist)
+
+        // updateGroup()
+
+
     }
 
 
@@ -82,28 +82,28 @@ export const GroupRequest = () => {
                         </tr>
                     </thead>
                     <tbody>
-                    {groupList.filter(grouplist => {
-                            if(query === ''){
+                        {groupList.filter(grouplist => {
+                            if (query === '') {
                                 return grouplist;
-                            }else if (grouplist.groupId.toLowerCase().includes(query.toLowerCase()) || 
-                                      grouplist.email.toLowerCase().includes(query.toLowerCase()) ||
-                                      grouplist.researchTopic.toLowerCase().includes(query.toLowerCase())  || 
-                                      grouplist.researchField.toLowerCase().includes(query.toLowerCase())) {
+                            } else if (grouplist.groupId.toLowerCase().includes(query.toLowerCase()) ||
+                                grouplist.email.toLowerCase().includes(query.toLowerCase()) ||
+                                grouplist.researchTopic.toLowerCase().includes(query.toLowerCase()) ||
+                                grouplist.researchField.toLowerCase().includes(query.toLowerCase())) {
                                 return grouplist;
-                              }
-                        }).map((grouplist , index) => {
-                            return(
+                            }
+                        }).map((grouplist, index) => {
+                            return (
                                 <tr key={index}>
                                     <td>{grouplist.groupId}</td>
                                     <td>{grouplist.email}</td>
                                     <td>{grouplist.researchTopic}</td>
                                     <td>{grouplist.researchField}</td>
                                     <td className='text'>
-                                        <RippleButton className="ripple-button" text="Accept" onClick={() => openModal(topic)} />
+                                        <RippleButton className="ripple-button" text="Accept" onClick={() => acceptRequest(grouplist)} />
                                         <RippleButton className="ripple-button-danger" text="Reject" onClick={() => openModalDelete(topic)} />
                                     </td>
                                 </tr>
-                            ) 
+                            )
                         })}
                     </tbody>
                 </table>

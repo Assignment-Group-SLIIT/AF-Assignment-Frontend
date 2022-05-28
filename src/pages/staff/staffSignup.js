@@ -49,7 +49,7 @@ const StaffSignup = () => {
             if (password.value === confirmPassword.value) {
                 console.log("data>>", userPayload)
                 registerUser(userPayload).then((res) => {
-                    res.ok ? toastNotification("Staff Profile create Successfully", "success") : toastNotification("Staff Profile cannot be created", "error")
+                    res.ok ? toastNotification("Staff Profile create Successfully", "success") : toastNotification("Error occured while creating profile!", "error")
                     // navigate('/login')
                 }).catch((err) => {
                     err.ok === false ? toastNotification("Error occured!", "error") : null
