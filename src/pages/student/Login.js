@@ -15,6 +15,12 @@ const Signup = () => {
 
     }, [userName.value, password.value]);
 
+    // useEffect(() => {
+    //     if (sessionStorage.getItem("user")) {
+    //       navigate("/chat");
+    //     }
+    //   }, []);
+
     const onSubmit = (e) => {
         e.preventDefault()
 
@@ -27,6 +33,24 @@ const Signup = () => {
             loginUser(payload).then((res) => {
                 console.log("after sign in >>", res)
                 res.ok ? toastNotification("Success!", "success") : toastNotification("Username or Password is incorrect!", "error")
+
+                const user = JSON.parse(sessionStorage.getItem("user"))
+
+                if (user != undefined || user != null) {
+                    if (user.role === "Student") {
+                        sessionStorage.setItem('role', "Student")
+                        navigate("/student/dashboard");
+                    } else if (user.role === "Supervisor") {
+                        sessionStorage.setItem('role', "Supervisor")
+                        navigate("/supervisor/list/request");
+                    } else if (user.role === "Co-Supervisor") {
+                        sessionStorage.setItem('role', "Co-Supervisor")
+                        navigate("/cosupervisor/list/request")
+                    } else if (user.role === "Admin") {
+                        sessionStorage.setItem('role', "Admin")
+                        navigate("/admin/dashboard")
+                    }
+                }
             }).catch((err) => {
                 console.log("error while sign in >>", err.ok)
                 err.ok === false ? toastNotification("Username or Password is incorrect!", "error") : null
