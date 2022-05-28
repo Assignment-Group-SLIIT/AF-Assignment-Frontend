@@ -118,7 +118,7 @@ export const Evaluation = () => {
                             <th className='text'>Evaluation Status</th>
                             <th className='text'>Marks</th>
                             <th className='text'>Action</th>
-                            <th className='text'></th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -134,13 +134,13 @@ export const Evaluation = () => {
                                     </td>
                                     <td className='text'>{evaluate.marks}</td>
                                     <td className='text'>
-                                        <RippleButton className="ripple-button" text="Add Marks" onClick={() => openModalUpdate(evaluate)} />
-                                    </td>
-                                    {evaluate.marks > 0 ? (<td className='text'>
-                                        <RippleButton className="ripple-button" text="Send Mail" onClick={() => openModalSendEmails(evaluate)} />
-                                    </td>) : " "
-                                    }
+                                        <RippleButton className="ripple-button-table" text="Add Marks" onClick={() => openModalUpdate(evaluate)} />
 
+                                        {evaluate.marks > 0 ? (
+                                            <RippleButton className="ripple-button-danger-table" text="Send Mail" onClick={() => openModalSendEmails(evaluate)} />
+                                        ) : " "
+                                        }
+                                    </td>
                                 </tr>
                             )
                         })}

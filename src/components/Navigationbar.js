@@ -53,18 +53,80 @@ export const Navigationbar = () => {
                                     {role === "Student" && (
                                         <Link className="nav-link " to="/student/dashboard">Dashboard</Link>
                                     )}
+                                    {role === "Admin" && (
+                                        <Link className="nav-link " to="/admin/dashboard">Dashboard</Link>
+                                    )}
+                                    {role === "Supervisor" && (
+                                        <Link className="nav-link " to="/supervisor/list/request">Requests</Link>
+                                    )}
+                                    {role === "Co-supervisor" && (
+                                        <Link className="nav-link " to="/cosupervisor/list/request">Requests</Link>
+                                    )}
+                                    {role === "Panel" && (
+                                        <Link className="nav-link " to="/panel/topic">Requests</Link>
+                                    )}
+                                    {role == null && (
+                                        <Link className="nav-link " to="#">DashBoard</Link>
+                                    )}
+                                </li>
+                                <li className="nav-item ">
+
+                                    {role === "Admin" && (
+                                        <Link className="nav-link " to="/admin/list/user">Users</Link>
+                                    )}
+                                    {role === "Supervisor" && (
+                                        <Link className="nav-link " to="/supervisor/list/markingschema">Marking Schemas</Link>
+                                    )}
+                                    {role === "Co-supervisor" && (
+                                        <Link className="nav-link " to="/supervisor/list/markingschema">Marking Schemas</Link>
+                                    )}
+                                    {role === "Panel" && (
+                                        <Link className="nav-link " to="/panel/evaluation">Final Evaluations</Link>
+                                    )}
                                     {role == null && (
                                         <Link className="nav-link " to="#">Link 01</Link>
                                     )}
                                 </li>
                                 <li className="nav-item ">
-                                    <Link className="nav-link " to="##">Link 02</Link>
+
+                                    {role === "Admin" && (
+                                        <Link className="nav-link " to="/admin/list/panel">Panel</Link>
+                                    )}
+                                    {role === "Supervisor" && (
+                                        <Link className="nav-link " to="/supervisor/list/submissions">Submissions</Link>
+                                    )}
+                                    {role === "Co-supervisor" && (
+                                        <Link className="nav-link " to="/chat">Chat</Link>
+                                    )}
+                                    {role === "Panel" && (
+                                        <Link className="nav-link " to="/templates">Templates</Link>
+                                    )}
+                                    {role == null && (
+                                        <Link className="nav-link " to="#">Link 01</Link>
+                                    )}
                                 </li>
                                 <li className="nav-item ">
-                                    <Link className="nav-link " to="##">Link 03</Link>
+
+                                    {role === "Admin" && (
+                                        <Link className="nav-link " to="/admin/panel">Panel Allocation</Link>
+                                    )}
+                                    {role === "Supervisor" && (
+                                        <Link className="nav-link " to="/chat">Chat</Link>
+                                    )}
+                                    {role == null && (
+                                        <Link className="nav-link " to="#">Link 01</Link>
+                                    )}
                                 </li>
                                 <li className="nav-item ">
-                                    <Link className="nav-link " to="##">Link 04</Link>
+                                    {role === "Student" && (
+                                        <Link className="nav-link " to="/chat">Chat</Link>
+                                    )}
+                                    {role === "Admin" && (
+                                        <Link className="nav-link " to="/admin/list/panelmembers">Panel Members</Link>
+                                    )}
+                                    {role == null && (
+                                        <Link className="nav-link " to="#">Link 01</Link>
+                                    )}
                                 </li>
                             </ul>
                             <ul className="navbar-nav ml-auto ">

@@ -58,7 +58,7 @@ export const RoutesComponent = () => {
                     {/* supervisor */}
                     <Route exact path='/supervisor/list/request' element={<GroupRequest />} />
                     <Route exact path='/supervisor/list/submissions' element={<EvaluationSubmission />} />
-                    <Route exact path='/supervisor/list/all-submissions' element={<AllSubmissions />} />
+                    <Route exact path='/supervisor/list/markingschema' element={<AllSubmissions />} />
 
                     {/* cosupervisor */}
                     <Route exact path='/cosupervisor/list/request' element={< GroupRequestCoSupevisor />} />

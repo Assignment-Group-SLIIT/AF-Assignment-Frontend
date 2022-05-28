@@ -1,0 +1,32 @@
+.loader {
+    margin: 2em 0;
+    width: 5em;
+    height: 5em;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.loader2 {
+    border: 5px;
+    border-color: #333 transparent;
+    animation-duration: 2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader2::before {
+    content: '';
+    width: 75%;
+    height: 75%;
+    border: 5px solid;
+    border-color: transparent #ec39ec;
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(-360deg);
+    }
+}
