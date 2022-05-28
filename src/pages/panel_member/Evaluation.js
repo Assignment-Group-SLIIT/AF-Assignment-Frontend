@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Modal } from "react-bootstrap";
+import { Modal, Alert } from "react-bootstrap";
 import { RippleButton } from '../../components/RippleButton'
 import { getAllAssignement } from '../../services/assignment.service';
 import AddMarks from './modals/AddMarks';
@@ -126,7 +126,12 @@ export const Evaluation = () => {
                             return (
                                 <tr key={Math.random()}>
                                     <td className='text' onClick={() => openModal(evaluate)}>{evaluate.groupId}</td>
-                                    <td className='text'>{evaluate.evaluationStatus}</td>
+                                    <td className='text '>
+                                        <Alert className="w-50 ml-5 p-1 " variant={evaluate.evaluationStatus === 'Pending' ? 'warning' : evaluate.evaluationStatus === 'Completed' ? 'success' : null} >
+                                            {evaluate.evaluationStatus}
+                                        </Alert>
+
+                                    </td>
                                     <td className='text'>{evaluate.marks}</td>
                                     <td className='text'>
                                         <RippleButton className="ripple-button" text="Add Marks" onClick={() => openModalUpdate(evaluate)} />

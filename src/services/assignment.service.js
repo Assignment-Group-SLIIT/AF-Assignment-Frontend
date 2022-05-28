@@ -40,6 +40,16 @@ export const deleteAssignment = async (id) => {
         return { ok: false, err: error };
     }
 }
+export const UpdateMarks = async (id, payload) => {
+    console.log("payload>>", payload)
+    try {
+        const res = await API.post(`assignments/${id}`, payload)
+        if (res.status === 200)
+            return { ok: true };
+    } catch (err) {
+        return { ok: false, err: err };
+    }
+}
 
 export const sendsEmail = async (payload) => {
     // console.log("SENDS EMAIL CALLED", payload)

@@ -79,3 +79,16 @@
 .dropZoneBtn:hover::before {
     height: 200%;
 }
+
+//Evaluation Modal CSS
+.viewAssessmentLink {
+    border-bottom: black solid 1px;
+    font-size: var(--app-regular-secondary-font-size) !important;
+    cursor: pointer !important;
+}
+
+.viewAssessmentLink:hover {
+    cursor: pointer;
+    color: rgb(11, 152, 152);
+    border-bottom: rgb(11, 152, 152) solid 1px;
+}
