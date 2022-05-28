@@ -13,11 +13,21 @@ export default function ChatContainer({ currentChat, socket }) {
     const data = await JSON.parse(
       sessionStorage.getItem("user")
     );
-    const response = await axios.post(recieveMessageRoute, {
-      from: data.id,
-      to: currentChat.id,
-    });
-    setMessages(response.data);
+    // const response = await axios.post(recieveMessageRoute, {
+    //   from: data.id,
+    //   to: currentChat.id,
+    // });
+    // setMessages(response.data);
+
+    const interval = setInterval(async () => {
+      const response = await axios.post(recieveMessageRoute, {
+        from: data.id,
+        to: currentChat.id,
+      });
+      setMessages(response.data);
+    }, 1000);
+    return () => clearInterval(interval);
+
   }, [currentChat]);
 
   useEffect(() => {
