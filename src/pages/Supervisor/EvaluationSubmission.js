@@ -145,6 +145,7 @@ export const EvaluationSubmission = () => {
                 <EvaluationModal
                     data={modalDataUpdate}
                     onHide={() => setModalUpdate(false)}
+                    refresh={() => getEvaluationData()}
                 />
             </Modal>
         </div >
