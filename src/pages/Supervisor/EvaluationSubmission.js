@@ -101,7 +101,7 @@ export const EvaluationSubmission = () => {
                                         <td className='text'>{values.evaluationStatus}</td>
                                         <td className='text'>{values.marks}</td>
                                         <td className='text'>
-                                            <RippleButton className="ripple-button" text="Evaluate" onClick={() => openModalUpdate(values)} />
+                                            <RippleButton className="ripple-button-sm" text="Evaluate" onClick={() => openModalUpdate(values)} />
                                         </td>
                                     </tr>
                                 )
