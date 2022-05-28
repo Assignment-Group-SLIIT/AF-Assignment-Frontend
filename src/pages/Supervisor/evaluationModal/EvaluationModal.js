@@ -43,7 +43,7 @@ const EvaluationModal = (props) => {
     }
 
     useEffect(() => {
-        evaluationMarks.value === "" ? setEvaluationMarks({ ...evaluationMarks, isError: true }) : evaluationMarks.value < 0 ? setEvaluationMarks({ ...evaluationMarks, isError: true }) : evaluationMarks.value > 100 ? setEvaluationMarks({ ...evaluationMarks, isError: true }) : setEvaluationMarks({ ...evaluationMarks, isError: false });
+        evaluationMarks.value === "" ? setEvaluationMarks({ ...evaluationMarks, isError: true }) : evaluationMarks.value < 0 ? setEvaluationMarks({ ...evaluationMarks, isError: true, error: "Marks shold be more than 0" }) : evaluationMarks.value > 100 ? setEvaluationMarks({ ...evaluationMarks, isError: true, error: "marks should be more less than 100" }) : setEvaluationMarks({ ...evaluationMarks, isError: false });
 
         getAssignemnetType()
     }, [evaluationMarks.value])
