@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { RippleButton } from '../../components/RippleButton'
 import { Link, useNavigate } from 'react-router-dom'
 import { Modal, Button } from "react-bootstrap";
-import { getAllProjectProposal ,deleteProjectProposal, updateProjectProposal} from "../../services/projectProposal.service";
+import { getAllProjectProposal, deleteProjectProposal, updateProjectProposal } from "../../services/projectProposal.service";
 import toastNotification from '../../components/toastNotification';
 
 
@@ -27,12 +27,12 @@ export const TopicRequest = () => {
     useEffect(() => {
         const user = JSON.parse(sessionStorage.getItem("user"))
         getAllProjectProposal().then((response) => {
-            console.log("data",response.data)
+            console.log("data", response.data)
             setTopicList(response.data.data.reverse())
         }).catch((error) => {
-            console.log("error",error)
+            console.log("error", error)
         })
-    },[])
+    }, [])
 
     const openModal = (data) => {
         setModalDataAccept(data);
@@ -40,9 +40,9 @@ export const TopicRequest = () => {
     }
 
     function onUpdate(modalDataAccept) {
-        
-        updateProjectProposal(modalDataAccept.groupId , modalDataAccept ).then((response) => {
-            response.ok ? toastNotification("Project proposal accepted and send mail to group leader" , "success") : null
+
+        updateProjectProposal(modalDataAccept.groupId, modalDataAccept).then((response) => {
+            response.ok ? toastNotification("Project proposal accepted and send mail to group leader", "success") : null
             window.location.reload(false);
         })
     }
@@ -52,9 +52,9 @@ export const TopicRequest = () => {
         setModalDeleteConfirm(true);
     }
 
-    function onDelete(modalDataDelete){
+    function onDelete(modalDataDelete) {
         deleteProjectProposal(modalDataDelete.groupId).then((response) => {
-            response.ok ? toastNotification("Project proposal reject" , "success") : null
+            response.ok ? toastNotification("Project proposal reject", "success") : null
             window.location.reload(false);
         })
     }
@@ -72,7 +72,7 @@ export const TopicRequest = () => {
                             <div className="searchbar">
                                 <form>
                                     <input class="search_input" type="text" name="search" placeholder="Search..."
-                                    onChange={event => setQuery(event.target.value)}
+                                        onChange={event => setQuery(event.target.value)}
                                         // value={search}
                                         // onChange={(event) => { setSearch(event.target.value) }}
                                         require />
@@ -96,30 +96,32 @@ export const TopicRequest = () => {
                     </thead>
                     <tbody>
                         {topicList.filter(topic => {
-                            if(query === ''){
+                            if (query === '') {
                                 return topic;
-                            }else if (topic.groupId.toLowerCase().includes(query.toLowerCase()) || 
-                                      topic.leaderEmail.toLowerCase().includes(query.toLowerCase()) ||
-                                      topic.researchTopic.toLowerCase().includes(query.toLowerCase())  || 
-                                      topic.field.toLowerCase().includes(query.toLowerCase())) {
+                            } else if (topic.groupId.toLowerCase().includes(query.toLowerCase()) ||
+                                topic.leaderEmail.toLowerCase().includes(query.toLowerCase()) ||
+                                topic.researchTopic.toLowerCase().includes(query.toLowerCase()) ||
+                                topic.field.toLowerCase().includes(query.toLowerCase())) {
                                 return topic;
-                              }
-                        }).map((topic , index) => {
-                            return(
+                            }
+                        }).map((topic, index) => {
+                            return (
                                 <tr key={index}>
                                     <td>{topic.groupId}</td>
                                     <td>{topic.leaderEmail}</td>
                                     <td>{topic.researchTopic}</td>
                                     <td>{topic.field}</td>
-                                    <td><a target="_blank" href={topic.document}>document</a></td>
+                                    <td>
+                                        <strong><span className="viewAssessmentLink" onClick={(e) => window.open(topic.document)} >Document</span></strong>
+                                    </td>
                                     <td className='text'>
                                         <RippleButton className="ripple-button" text="Accept" onClick={() => openModal(topic)} />
                                         <RippleButton className="ripple-button-danger" text="Reject" onClick={() => openModalDelete(topic)} />
                                     </td>
                                 </tr>
-                            ) 
+                            )
                         })}
-                        
+
                     </tbody>
                 </table>
 
@@ -139,7 +141,7 @@ export const TopicRequest = () => {
                 <Modal.Footer>
                     <div className="delete-modal row">
                         <div className="col-6">
-                            <RippleButton className="ripple-button" text=" Confirm" onClick={() => {onDelete(modalDataDelete)}} />
+                            <RippleButton className="ripple-button" text=" Confirm" onClick={() => { onDelete(modalDataDelete) }} />
                         </div>
                         <div className="col-6">
                             <RippleButton className="ripple-button-warning" text="cancel" onClick={() => setModalDeleteConfirm(false)} />
@@ -163,7 +165,7 @@ export const TopicRequest = () => {
                 <Modal.Footer>
                     <div className="delete-modal row">
                         <div className="col-6">
-                            <RippleButton className="ripple-button" text=" Confirm" onClick={() => {onUpdate(modalDataAccept)}}/>
+                            <RippleButton className="ripple-button" text=" Confirm" onClick={() => { onUpdate(modalDataAccept) }} />
                         </div>
                         <div className="col-6">
                             <RippleButton className="ripple-button-warning" text="cancel" onClick={() => setModalAcceptConfirm(false)} />
