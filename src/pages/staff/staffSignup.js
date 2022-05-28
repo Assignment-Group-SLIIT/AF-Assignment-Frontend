@@ -39,8 +39,8 @@ const StaffSignup = () => {
             fullname: fullname.value,
             email: email.value,
             contactNo: contactNo.value,
-            role: role.value,
             password: password.value,
+            role: role.value,
             department: department.value,
             field: field.value,
 
@@ -49,8 +49,8 @@ const StaffSignup = () => {
             if (password.value === confirmPassword.value) {
                 console.log("data>>", userPayload)
                 registerUser(userPayload).then((res) => {
-                    res.ok ? toastNotification("Staff Profile create Successfully", "success") : null
-                    navigate('/login')
+                    res.ok ? toastNotification("Staff Profile create Successfully", "success") : toastNotification("Staff Profile cannot be created", "error")
+                    // navigate('/login')
                 }).catch((err) => {
                     err.ok === false ? toastNotification("Error occured!", "error") : null
                     console.log("error while staff signup", err.error)
@@ -59,8 +59,8 @@ const StaffSignup = () => {
                 setConfirmPassword({ ...confirmPassword, isError: true, error: "Passwords are not matching" })
                 toastNotification("Passwords are not matching", "error")
             }
-        }else{
-            toastNotification("Please fill all the requeid field", "warn") 
+        } else {
+            toastNotification("Please fill all the requeid field", "warn")
         }
     }
 
@@ -128,8 +128,9 @@ const StaffSignup = () => {
                                         <option  >Choose</option>
                                         <option id="Admin" >Admin</option>
                                         <option id="Supervisor">Supervisor</option>
-                                        <option id="Co-Supervisor" >Co-Supervisor</option>
+                                        <option id="Co-Supervisor">Co-Supervisor</option>
                                         <option id="Panel" >Panel</option>
+
                                     </select>
                                     {role.isError && <small className='text-danger'>{role.error}</small>}
 

@@ -7,7 +7,7 @@ import { ViewTemplates } from '../pages/admin/ViewTemplates'
 import { LandingPage } from '../pages/LandingPage'
 import { CreatePanel } from '../pages/panel/CreatePanel'
 import { PanelAllocation } from '../pages/panel/PanelAllocation'
-import { PanelList } from '../pages/panel/PanelList'
+import { PanelList } from '../pages/panel/PanelMembersList'
 import { Evaluation } from '../pages/panel_member/Evaluation'
 import { SendEmail } from '../pages/panel_member/SendEmail'
 import { TopicRequest } from '../pages/panel_member/TopicRequest'
@@ -26,6 +26,8 @@ import { CreateSubmission } from '../pages/admin/CreateSubmission'
 import UploadInitialEvaluation from '../pages/student/uploadEvaluation'
 import StudentSubmissionDocument from '../pages/student/StudentSubmissionDocument'
 import GroupRequestCoSupevisor from '../pages/co-supervisor/GroupRequest-Co'
+import { CreatedPanelList } from '../pages/panel/PanelList'
+import Dashboard from '../pages/admin/Dashboard'
 import AllSubmissions from '../pages/Supervisor/AllSubmissions'
 
 export const RoutesComponent = () => {
@@ -63,16 +65,21 @@ export const RoutesComponent = () => {
 
                     {/* admin */}
                     <Route exact path='/admin/list/user' element={<UserList />} />
-                    <Route exact path='/admin/list/panel' element={<PanelList />} />
+                    <Route exact path='/admin/list/panelmembers' element={<PanelList />} />
                     <Route exact path='/admin/panel' element={<PanelAllocation />} />
                     <Route exact path='/admin/panel/registration' element={<CreatePanel />} />
+                    <Route exact path='/admin/list/panel' element={<CreatedPanelList />} />
                     <Route exact path='/admin/template' element={<CreateTemplate />} />
                     <Route exact path='/admin/submission' element={<CreateSubmission />} />
+                    <Route exact path='/admin/dashboard' element={<Dashboard />} />
+
 
                     {/* panel */}
                     <Route exact path='/panel/email' element={<SendEmail />} />
                     <Route exact path='/panel/evaluation' element={<Evaluation />} />
                     <Route exact path='/panel/topic' element={<TopicRequest />} />
+
+
 
                 </Routes>
                 <Footer />
