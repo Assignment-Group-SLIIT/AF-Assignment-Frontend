@@ -150,7 +150,7 @@ export const PanelList = () => {
                                         <td >{panel.contactNo}</td>
                                         <td>{panel.role}</td>
                                         <td>
-                                            <RippleButton className="ripple-button-sm" text="View" onClick={() => openModal(panel)} />
+                                            <RippleButton className="ripple-button-table" text="View" onClick={() => openModal(panel)} />
                                             <RippleButton className="ripple-button-danger-table" text="Delete" onClick={() => openModalDelete(panel)} />
                                         </td>
                                     </tr>

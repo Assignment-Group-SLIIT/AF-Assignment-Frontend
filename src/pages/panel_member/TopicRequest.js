@@ -25,7 +25,7 @@ export const TopicRequest = () => {
     const [query, setQuery] = useState("")
 
     useEffect(() => {
-        const user = JSON.parse(sessionStorage.getItem("user"))
+        //const user = JSON.parse(sessionStorage.getItem("user"))
         getAllProjectProposal().then((response) => {
             console.log("data", response.data)
             setTopicList(response.data.data.reverse())
@@ -62,7 +62,7 @@ export const TopicRequest = () => {
     return (
         <div className='body-content-container'>
             <div className="container-border">
-                <h3> Topic Request - For Pannel Members</h3>
+                <h3> Topic Request - For Pannel Members(Project Proposal)</h3>
                 <br /> <br /> <br />
                 <div class="row table-head-search">
                     <div className="col-md-8"></div>

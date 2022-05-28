@@ -33,7 +33,7 @@ export const updateRequestTopicsCoSupervisors = async (id, payload) => {
 export const deleteRequestTopicsCoSupervisors = async (id) => {
     try{
         const response = await API.delete(`requestTopicsCoSupervisors/${id}`);
-        if(response.status === 200){
+        if(response.status === 204){
             return {ok:true};
         }
     }catch(message){
