@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { RippleButton } from '../../components/RippleButton'
+import { RippleButton } from '../../../components/RippleButton'
 import { Modal } from "react-bootstrap";
 
 export const SendEmail = (evaluate) => {

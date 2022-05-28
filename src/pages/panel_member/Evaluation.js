@@ -4,7 +4,7 @@ import { Modal } from "react-bootstrap";
 import { RippleButton } from '../../components/RippleButton'
 import { getAllAssignement } from '../../services/assignment.service';
 import AddMarks from './modals/AddMarks';
-import { SendEmail } from './SendEmail';
+import { SendEmail } from './modals/SendEmail';
 
 export const Evaluation = () => {
 
