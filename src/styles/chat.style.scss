@@ -279,7 +279,7 @@
     display: flex;
     gap: 1rem;
     align-items: center;
-    transition: 0.5s ease-in-out;
+    transition: 1s ease-in-out;
 
     .avatar {
       img {
@@ -292,11 +292,16 @@
         color: white;
       }
     }
+
   }
 
   .selected {
     background-color: #9a86f3;
   }
+}
+
+.contact:hover {
+  border: 1px solid black
 }
 
 .current-user {
