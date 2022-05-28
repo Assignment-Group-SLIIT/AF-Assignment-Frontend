@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Alert } from "react-bootstrap";
 import { RippleButton } from '../../components/RippleButton'
 import EvaluationSubmissionModal from './modals/evaluationSubmissionModal';
 import { getAllAssignement } from '../../services/assignment.service';
+import EvaluationModal from './evaluationModal/EvaluationModal';
 
 
 export const EvaluationSubmission = () => {
 
-    const [search, setSearch] = useState("");
+
     const [evaluation, setEvaluation] = useState([]);
     const [modalData, setData] = useState([]);
     const [modalShow, setModalShow] = useState(false);
@@ -16,6 +17,7 @@ export const EvaluationSubmission = () => {
     const [modalUpdate, setModalUpdate] = useState(false);
 
     const [evaluationData, setEvaluationData] = useState([]);
+    const [search, setSearch] = useState("");
 
     const [modalLoading, setModalLoading] = useState(false);
 
@@ -69,7 +71,7 @@ export const EvaluationSubmission = () => {
                                 >
                                     <input class="search_input" type="text" name="search" placeholder="Search..."
                                         // value={search}
-                                        // onChange={(event) => { setSearch(event.target.value) }}
+                                        onChange={(event) => { setSearch(event.target.value) }}
                                         require />
                                     <button className="btn search_icon" type="submit" id="submit" name="submit">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
@@ -84,7 +86,7 @@ export const EvaluationSubmission = () => {
                             <th className='text'>Group ID</th>
                             <th className='text'>Submission ID</th>
                             <th className='text'>Submission Type</th>
-                            <th className='text'>Document</th>
+                            <th className='text'>Status</th>
                             <th className='text'>Marks</th>
                             <th className='text'>Action</th>
                         </tr>
@@ -92,13 +94,31 @@ export const EvaluationSubmission = () => {
                     <tbody>
                         {console.log("evaData", evaluationData)}
                         {
-                            evaluationData.map((values) => {
+                            evaluationData.filter((values) => {
+
+                                if (search == "") {
+                                    return values
+                                }
+                                else if (values.groupId.toLowerCase().includes(search.toLowerCase()) ||
+                                    values.submissionId.toLowerCase().includes(search.toLowerCase()) ||
+                                    values.submissionType.toLowerCase().includes(search.toLowerCase()) ||
+                                    values.evaluationStatus.toLowerCase().includes(search.toLowerCase()) ||
+                                    values.marks.toString().includes(search)) {
+                                    return values
+
+                                }
+
+                            }).map((values, index) => {
                                 return (
-                                    <tr>
+                                    <tr key={index}>
                                         <td className='text'>{values.groupId}</td>
                                         <td className='text'>{values.submissionId}</td>
                                         <td className='text'>{values.submissionType}</td>
-                                        <td className='text'>{values.evaluationStatus}</td>
+                                        <td className='text'>
+                                            <Alert className="mb-1 1 p-1 " variant={values.evaluationStatus === 'Pending' ? 'warning' : values.evaluationStatus === 'Completed' ? 'success' : null} >
+                                                {values.evaluationStatus}
+                                            </Alert>
+                                        </td>
                                         <td className='text'>{values.marks}</td>
                                         <td className='text'>
                                             <RippleButton className="ripple-button-sm" text="Evaluate" onClick={() => openModalUpdate(values)} />
@@ -122,9 +142,10 @@ export const EvaluationSubmission = () => {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
-                <EvaluationSubmissionModal
+                <EvaluationModal
                     data={modalDataUpdate}
                     onHide={() => setModalUpdate(false)}
+                    refresh={() => getEvaluationData()}
                 />
             </Modal>
         </div >

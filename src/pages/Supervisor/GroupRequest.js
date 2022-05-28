@@ -7,11 +7,7 @@ import { getOneGroup, sendAcceptRejectEmail, updateGroup } from "../../services/
 import { updateSupervisor } from "../../services/user.service";
 import toastNotification from "../../components/toastNotification";
 
-
-
-
 export const GroupRequest = () => {
-
 
     const [groupList, setGroupList] = useState([]);
     const [query, setQuery] = useState("")

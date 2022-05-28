@@ -137,7 +137,7 @@ export const updateSupervisor = async (name, supervisor) => {
 
 export const updateCoSupervisor = async (name, cosupervisor) => {
     try {
-        const response = await API.put("users/co/supervisor" + name + "/" + cosupervisor)
+        const response = await API.put("users/co/supervisor/" + name + "/" + cosupervisor)
         if (response.status === 200) {
             return {
                 ok: true,

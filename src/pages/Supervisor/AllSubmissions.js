@@ -77,8 +77,8 @@ const AllSubmissions = () => {
                                 // onSubmit={(e) => searchRooms(e)}
                                 >
                                     <input class="search_input" type="text" name="search" placeholder="Search..."
-                                        // value={search}
-                                        // onChange={(event) => { setSearch(event.target.value) }}
+                                        value={search}
+                                        onChange={(event) => { setSearch(event.target.value) }}
                                         require />
                                     <button className="btn search_icon" type="submit" id="submit" name="submit">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
@@ -101,22 +101,35 @@ const AllSubmissions = () => {
                         {/* return( */}
 
                         {console.log("dta>>", submissionData)}
-                        {
-                            submissionData.map((values) => {
-                                return (
-                                    <tr>
-                                        {console.log("Data>>", values)}
+                        {submissionData.filter((values) => {
 
-                                        <td >{values.submissionId}</td>
-                                        <td>{values.submissionType}</td>
-                                        <td>{values.startDate}</td>
-                                        <td>{values.endDate}</td>
-                                        <td className='text'>
-                                            <RippleButton className="ripple-button-sm" text="View" onClick={() => openModalUpdate(values)} />
-                                        </td>
-                                    </tr>
-                                )
-                            })
+                            if (search == "") {
+                                return values
+                            }
+                            else if (
+                                values.submissionId.toLowerCase().includes(search.toLowerCase()) ||
+                                values.submissionType.toLowerCase().includes(search.toLowerCase()) ||
+                                values.startDate.toLowerCase().includes(search.toLowerCase()) ||
+                                values.endDate.toLowerCase().includes(search.toLowerCase())) {
+                                return values
+
+                            }
+
+                        }).map((values) => {
+                            return (
+                                <tr>
+                                    {console.log("Data>>", values)}
+
+                                    <td >{values.submissionId}</td>
+                                    <td>{values.submissionType}</td>
+                                    <td>{values.startDate}</td>
+                                    <td>{values.endDate}</td>
+                                    <td className='text'>
+                                        <RippleButton className="ripple-button" text="View" onClick={() => openModalUpdate(values)} />
+                                    </td>
+                                </tr>
+                            )
+                        })
                         }
 
                         {/* ) */}
