@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-
 import { Modal } from "react-bootstrap";
 import { RippleButton } from '../../components/RippleButton'
 import { getAllAssignement } from '../../services/assignment.service';
 import AddMarks from './modals/AddMarks';
 import { SendEmail } from './modals/SendEmail';
+import ViewGroupEvaluate from './modals/ViewGroup';
 
 export const Evaluation = () => {
 
@@ -21,14 +21,14 @@ export const Evaluation = () => {
 
     const [modalLoading, setModalLoading] = useState(false);
 
-    const openModal = (user) => {
-        // setData(rental);
+    const openModal = (evaluate) => {
+        console.log("MODA CALLED")
+        setData(evaluate);
         handleViewOnClick();
     }
 
     const handleViewOnClick = () => {
-        // console.log("req came for modal");
-        // console.log(modalData, "data came for modalllllll");
+
         setModalShow(true);
     }
 
@@ -44,14 +44,13 @@ export const Evaluation = () => {
 
     useEffect(() => {
         getAllAssignement().then(res => {
-            console.log("HELLOOOOS", res)
             if (res.ok) {
                 setEvaluation(res.data.data.filter(ele => {
                     return (
                         ele.submissionType == "Submission Five"
                     )
                 }))
-                console.log(res.data.data)
+                // console.log(res.data.data)
             }
         })
     }, [])
@@ -73,6 +72,18 @@ export const Evaluation = () => {
 
     return (
         <div className='body-content-container'>
+            <Modal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <ViewGroupEvaluate
+                    data={modalData}
+                    onHide={() => setModalShow(false)}
+                />
+            </Modal>
 
             <div className="container-border">
                 <div className="row table-head mt-3">
@@ -114,7 +125,7 @@ export const Evaluation = () => {
                         {evaluations.map((evaluate) => {
                             return (
                                 <tr key={Math.random()}>
-                                    <td className='text'>{evaluate.groupId}</td>
+                                    <td className='text' onClick={() => openModal(evaluate)}>{evaluate.groupId}</td>
                                     <td className='text'>{evaluate.evaluationStatus}</td>
                                     <td className='text'>{evaluate.marks}</td>
                                     <td className='text'>
