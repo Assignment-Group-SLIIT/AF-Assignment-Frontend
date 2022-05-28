@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { RippleButton } from '../../components/RippleButton'
 import { Link, useNavigate } from 'react-router-dom'
 import { Modal, Button } from "react-bootstrap";
-import { getAllRequests } from "../../services/supervisorRequests.service";
-import { getOneGroup, updateGroup } from "../../services/group.service";
+import { deleteSupervisorRequest, getAllRequests } from "../../services/supervisorRequests.service";
+import { getOneGroup, sendAcceptRejectEmail, updateGroup } from "../../services/group.service";
 import { updateSupervisor } from "../../services/user.service";
+import toastNotification from "../../components/toastNotification";
+
 
 
 
@@ -12,12 +14,17 @@ export const GroupRequest = () => {
 
 
     const [groupList, setGroupList] = useState([]);
+    const [query, setQuery] = useState("")
+    const [supervisorName, setSupervisorName] = useState('Thisara Ruwanpathirana')
+
+
+    const [modalDataDelete, setModalDataDelete] = useState([]);
     const [modalDeleteConfirm, setModalDeleteConfirm] = useState(false);
     const [modalDelete, setModalDelete] = useState(false);
-    const [modalAcceptConfirm, setModalAcceptConfirm] = useState(false);
-    const [query, setQuery] = useState("")
 
-    const [supervisorName, setSupervisorName] = useState('Thisara Ruwanpathirana')
+    const [modalDataAccept, setModalDataAccept] = useState([]);
+    const [modalAcceptConfirm, setModalAcceptConfirm] = useState(false);
+    const [modalAccept, setModalAccept] = useState(false);
 
     useEffect(() => {
         getAllRequests().then((response) => {
@@ -29,16 +36,59 @@ export const GroupRequest = () => {
         })
     }, [])
 
+    const acceptsRequest = (grouplist) => {
+        setModalDataAccept(grouplist)
+        handleViewOnClick()
+
+    }
+
+    const handleViewOnClick = () => {
+        setModalAcceptConfirm(true)
+    }
+
+    const removesRequest = (grouplist) => {
+        setModalDataDelete(grouplist)
+        handleViewOnClickDelete()
+    }
+
+    const handleViewOnClickDelete = () => {
+        setModalDeleteConfirm(true)
+    }
+
+    const rejectRequest = (grouplist) => {
+        console.log(grouplist.groupId)
+
+        getOneGroup(grouplist.groupId).then(respone => {
+            console.log(respone)
+            if (respone.ok) {
+                deleteSupervisorRequest(grouplist.groupId).then(res => {
+                    if (res.ok) {
+
+                        const emailBody = {
+                            email: respone.data.student?.leader?.email,
+                            name: respone.data.student?.leader?.name,
+                            message: "Sorry !!" + supervisorName + " has rejected your request of being the supervisor"
+                        }
+                        sendAcceptRejectEmail(emailBody)
+                        toastNotification("Rejected the request", "success")
+                        refreshPage()
+                    } else {
+                        toastNotification("Could not rejected the request", "warn")
+                    }
+                }).catch(err => {
+                    console.error(err)
+                })
+            }
+        })
 
 
-    const openModalDelete = (data) => {
-        // setModalDataDelete(data);
-        setModalDeleteConfirm(true);
+
+
     }
 
 
+
     const acceptRequest = (grouplist) => {
-        console.log("grouplist details", grouplist)
 
         getOneGroup(grouplist.groupId).then(res => {
             if (res.ok) {
@@ -55,33 +105,48 @@ export const GroupRequest = () => {
                 updateGroup(grouplist.groupId, updatedGroup).then(res2 => {
                     if (res2.ok) {
                         updateSupervisor(res.data?.student?.leader?.name, supervisorName).then(res3 => {
-                            console.log("updated1", res3)
+                            // console.log("updated1", res3)
                             if (res3.ok) {
                                 updateSupervisor(res.data?.student?.member01?.name, supervisorName).then(res4 => {
-                                    console.log("updated2", res4)
+                                    // console.log("updated2", res4)
                                     if (res4.ok) {
                                         updateSupervisor(res.data?.student?.member02?.name, supervisorName).then(res5 => {
-                                            console.log("updated3", res5)
+                                            // console.log("updated3", res5)
                                             if (res.ok) {
                                                 updateSupervisor(res.data?.student?.member03?.name, supervisorName).then(res6 => {
-                                                    console.log("updated6", res6)
+                                                    // console.log("updated6", res6)
+                                                    if (res6.ok) {
+                                                        const emailBody = {
+                                                            email: res.data.student?.leader?.email,
+                                                            name: res.data.student?.leader?.name,
+                                                            message: "Congratualation !!" + supervisorName + " has accepted your request to be your supervisor"
+                                                        }
+
+                                                        sendAcceptRejectEmail(emailBody)
+                                                        toastNotification("Successfully accepted a teams request", "success")
+                                                        refreshPage()
+                                                    } else {
+                                                        toastNotification("Could not accept the request", "warn")
+                                                    }
+                                                }).catch(err => {
+                                                    toastNotification("Error", "error")
                                                 })
                                             }
-                                        })
+                                        }).catch(err => { console.log(err) })
                                     }
-                                })
+                                }).catch(err => { console.log(err) })
                             }
-                        })
+                        }).catch(err => { console.error(err) })
                     }
-                })
+                }).catch(err => { console.error(err) })
             }
-        }).catch(err => {
-            console.error(err)
-        })
+        }).catch(err => { console.error(err) })
+
+    }
 
 
-
-
+    function refreshPage() {
+        window.location.reload();
     }
 
 
@@ -141,8 +206,8 @@ export const GroupRequest = () => {
                                     <td>{grouplist.researchTopic}</td>
                                     <td>{grouplist.researchField}</td>
                                     <td className='text'>
-                                        <RippleButton className="ripple-button" text="Accept" onClick={() => acceptRequest(grouplist)} />
-                                        <RippleButton className="ripple-button-danger" text="Reject" onClick={() => openModalDelete(topic)} />
+                                        <RippleButton className="ripple-button" text="Accept" onClick={() => acceptsRequest(grouplist)} />
+                                        <RippleButton className="ripple-button-danger" text="Reject" onClick={() => removesRequest(grouplist)} />
                                     </td>
                                 </tr>
                             )
@@ -166,7 +231,7 @@ export const GroupRequest = () => {
                 <Modal.Footer>
                     <div className="delete-modal row">
                         <div className="col-6">
-                            <RippleButton className="ripple-button" text=" Confirm" />
+                            <RippleButton className="ripple-button" text=" Confirm" onClick={() => rejectRequest(modalDataDelete)} />
                         </div>
                         <div className="col-6">
                             <RippleButton className="ripple-button-warning" text="cancel" onClick={() => setModalDeleteConfirm(false)} />
@@ -180,7 +245,7 @@ export const GroupRequest = () => {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered>
                 <Modal.Header>
-                    <Modal.Title>Confirm Accept the Research Topic</Modal.Title>
+                    <Modal.Title>Confirm Research Topic Acceptance</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <center>
@@ -191,10 +256,10 @@ export const GroupRequest = () => {
                 <Modal.Footer>
                     <div className="delete-modal row">
                         <div className="col-6">
-                            <RippleButton className="ripple-button" text=" Confirm" />
+                            <RippleButton className="ripple-button" text=" Confirm" onClick={() => { acceptRequest(modalDataAccept) }} />
                         </div>
                         <div className="col-6">
-                            <RippleButton className="ripple-button-warning" text="cancel" onClick={() => setModalAcceptConfirm(false)} />
+                            <RippleButton className="ripple-button-warning" text="Cancel" onClick={() => setModalAcceptConfirm(false)} />
                         </div>
 
                     </div>

@@ -107,7 +107,6 @@ function UpdateRGPanel(group) {
     }
 
     function refreshPage() {
-
         window.location.reload();
     }
 
