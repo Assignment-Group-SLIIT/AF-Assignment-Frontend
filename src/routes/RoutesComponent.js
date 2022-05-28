@@ -28,6 +28,7 @@ import GroupRequestCoSupevisor from '../pages/co-supervisor/GroupRequest-Co'
 import { CreatedPanelList } from '../pages/panel/PanelList'
 import Dashboard from '../pages/admin/Dashboard'
 import AllSubmissions from '../pages/Supervisor/AllSubmissions'
+import Chat from '../pages/chat/chat'
 
 export const RoutesComponent = () => {
     return (
@@ -78,6 +79,8 @@ export const RoutesComponent = () => {
                     <Route exact path='/panel/evaluation' element={<Evaluation />} />
                     <Route exact path='/panel/topic' element={<TopicRequest />} />
 
+                    {/*chat */}
+                    <Route exact path='/chat' element={<Chat />} />
 
 
                 </Routes>

@@ -60,10 +60,10 @@ const EvaluationSubmissionModal = (props) => {
 
                             <div class="row">
                                 <div class="col-sm">
-                                    One of three colu
+                                    <label className="form-pad" for="groupID">Submission ID</label>
                                 </div>
                                 <div class="col-sm">
-                                    One of three columns
+                                    <input type="text" class="form-control" id="groupID" placeholder="Group ID" value={props.data.submissionId} onChange={(e) => { setGroupID(e.target.value) }} />
                                 </div>
                             </div>
 
