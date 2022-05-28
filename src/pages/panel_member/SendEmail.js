@@ -5,6 +5,7 @@ import { Modal } from "react-bootstrap";
 export const SendEmail = (evaluate) => {
 
     const [groupID, setGroupID] = useState("")
+    const [evaluationStatus, setEvaluationStatus] = useState("")
     const [email, setEmail] = useState("")
     const [link, setLink] = useState("")
 
@@ -12,7 +13,7 @@ export const SendEmail = (evaluate) => {
     return (
         <div>
             <Modal.Header>
-                <Modal.Title>Send Email To Team</Modal.Title>
+                <Modal.Title><strong>Send Email To Team</strong></Modal.Title>
                 <div>
                     <button className="btn btn-close" onClick={evaluate.onHide}></button>
                 </div>
@@ -23,30 +24,31 @@ export const SendEmail = (evaluate) => {
                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <form >
 
-                            <br></br>
                             <div class="row">
-                                <div class="col">
-                                    <label className="form-pad" for="groupID">Group ID</label>
+                                <div class="col-6">
+                                    <label className="form-pad" for="groupID"><strong>Group ID</strong></label>
                                     <label type="text" class="form-control" id="groupID"><strong>{groupID}</strong></label>
                                 </div>
+                                <div class="col-6">
+                                    <label className="form-pad" for="presentation"><strong>Presenation Evaluation</strong></label>
+                                    <label type="text" class="form-control" id="presentation"><strong>{evaluationStatus}</strong></label>
+                                </div>
                             </div>
-                            <br></br>
+
                             <div class="row">
                                 <div class="col">
-                                    <label className="form-pad" for="email">Team Leaders Email</label>
-                                    <input type="email" class="form-control" id="email" />
+                                    <label className="form-pad" for="email"><strong>Team Leaders Email</strong></label>
+                                    <input type="email" class="form-control" id="email" placeholder="abc@gmail.com" value={email} onChange={(e) => { setEmail(e.target.value) }} />
                                 </div>
                             </div>
                             <br></br>
                             <div class="row">
                                 <div class="col">
-                                    <label className="form-pad" for="link">VIVA Link</label>
-                                    <input type="text" class="form-control" id="marks" placeholder="marks" value={marks} onChange={(e) => { setMarks(e.target.value) }} />
+                                    <label className="form-pad" for="link"><strong>VIVA Link</strong></label>
+                                    <input type="text" class="form-control" id="link" placeholder="link" value={link} onChange={(e) => { setLink(e.target.value) }} />
                                 </div>
 
                             </div>
-                            <br></br>
-
                             <br></br>
                             <div className="row mb-4">
                                 <div className="col py-3 text-center">
