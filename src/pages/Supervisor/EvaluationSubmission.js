@@ -3,6 +3,7 @@ import { Modal, Button } from "react-bootstrap";
 import { RippleButton } from '../../components/RippleButton'
 import EvaluationSubmissionModal from './modals/evaluationSubmissionModal';
 import { getAllAssignement } from '../../services/assignment.service';
+import EvaluationModal from './evaluationModal/EvaluationModal';
 
 
 export const EvaluationSubmission = () => {
@@ -122,7 +123,7 @@ export const EvaluationSubmission = () => {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
-                <EvaluationSubmissionModal
+                <EvaluationModal
                     data={modalDataUpdate}
                     onHide={() => setModalUpdate(false)}
                 />
