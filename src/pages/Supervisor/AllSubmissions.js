@@ -3,6 +3,7 @@ import { Modal, Button } from "react-bootstrap";
 import { RippleButton } from '../../components/RippleButton'
 import EvaluationSubmissionModal from './modals/evaluationSubmissionModal';
 import { getAllSubmissions } from '../../services/submission.service';
+import ViewSubmissionModal from './submissionModal/viewSumissionModal';
 
 
 const AllSubmissions = () => {
@@ -17,29 +18,38 @@ const AllSubmissions = () => {
 
     const [modalLoading, setModalLoading] = useState(false);
 
-    const openModal = (user) => {
-        // setData(rental);
-        handleViewOnClick();
-    }
+    const [submissionData, setSubmissionData] = useState([]);
 
-    const handleViewOnClick = () => {
-        // console.log("req came for modal");
-        // console.log(modalData, "data came for modalllllll");
-        setModalShow(true);
-    }
+    // const openModal = (user) => {
+    //     // setData(rental);
+    //     handleViewOnClick();
+    //     setModalShow(true);
+    // }
 
-    const openModalUpdate = (user) => {
+    // const handleViewOnClick = () => {
+    //     // console.log("req came for modal");
+    //     // console.log(modalData, "data came for modalllllll");
+    //     setModalShow(true);
+    // }
+
+
+    const openModalUpdate = (values) => {
 
         console.log("request came for modal updateeeeeee");
-        // setModalDataUpdate(data);
-        setModalUpdate(true);
+        setModalDataUpdate(values);
+        setModalShow(true);
 
+    }
+
+    const closeModal = () => {
+        setModalShow(false);
     }
 
     const getAllSubmisionDetails = async () => {
-        let response = getAllSubmissions();
+        let response = await getAllSubmissions();
+        console.log("res>>", response)
         if (response.ok) {
-
+            setSubmissionData(response.data);
         }
     }
 
@@ -80,27 +90,35 @@ const AllSubmissions = () => {
                 <table className='table table-hover'>
                     <thead class="thead-dark">
                         <tr>
-                            <th className='text'>Group ID</th>
-                            <th className='text'>Submission ID</th>
+                            <th className='text'>Submission ID </th>
                             <th className='text'>Submission Type</th>
-                            <th className='text'>Document</th>
-                            <th className='text'>Marks</th>
+                            <th className='text'>Start Date</th>
+                            <th className='text'>End Date</th>
                             <th className='text'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {/* return( */}
 
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td className='text'>
-                                <RippleButton className="ripple-button" text="Evaluate" onClick={() => openModalUpdate()} />
-                            </td>
-                        </tr>
+                        {console.log("dta>>", submissionData)}
+                        {
+                            submissionData.map((values) => {
+                                return (
+                                    <tr>
+                                        {console.log("Data>>", values)}
+
+                                        <td >{values.submissionId}</td>
+                                        <td>{values.submissionType}</td>
+                                        <td>{values.startDate}</td>
+                                        <td>{values.endDate}</td>
+                                        <td className='text'>
+                                            <RippleButton className="ripple-button" text="View" onClick={() => openModalUpdate(values)} />
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                        }
+
                         {/* ) */}
                     </tbody>
                 </table>
@@ -108,15 +126,15 @@ const AllSubmissions = () => {
             </div>
             {/* Modal to be used in update */}
             <Modal
-                show={modalUpdate}
-                onHide={() => setModalUpdate(false)}
+                show={modalShow}
+                close={closeModal}
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
-                <EvaluationSubmissionModal
+                <ViewSubmissionModal
                     data={modalDataUpdate}
-                    onHide={() => setModalUpdate(false)}
+                    close={closeModal}
                 />
             </Modal>
         </div >

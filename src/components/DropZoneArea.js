@@ -2,7 +2,6 @@ import React, { useState, Component } from 'react'
 // import { DropzoneArea } from 'material-ui-dropzone'
 import { DropzoneDialog } from 'material-ui-dropzone'
 import Button from '@material-ui/core/Button';
-
 import { storage } from '../firebase';
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import toastNotification from './toastNotification';
@@ -20,6 +19,7 @@ function DropzoneArea(props) {
     const [files, setFiles] = useState([])
     const [open, setOpen] = useState(false)
 
+
     const handleClose = () => {
         setOpen(false)
     }
@@ -29,16 +29,16 @@ function DropzoneArea(props) {
     }
 
     const handleSave = (e) => {
-        console.log("Method called", e)
+        // console.log("Method called", e)
         setFiles(e)
-
-        // console.log("Method called2", files[0].name)
-        // console.log("Method called2", files[0].path)
-
     }
 
     const sendData = (data) => {
         props.sendData(data);
+    }
+
+    const sendProgress = (data) => {
+        props.sendProgress(data);
     }
 
     const handleSubmit = (e) => {
@@ -56,6 +56,7 @@ function DropzoneArea(props) {
                 const progress =
                     Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
                 console.log("upload progress>>", progress)
+                sendProgress(progress)
                 // setProgresspercent(progress);
             },
             (error) => {
@@ -66,10 +67,13 @@ function DropzoneArea(props) {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     console.log("url>>>", downloadURL);
                     sendData(downloadURL)
-                    toastNotification("File uploaded successfully!", "success")
+                    // toastNotification("File uploaded successfully!", "success")
+
                 });
             }
         );
+
+        handleClose();
     }
 
 

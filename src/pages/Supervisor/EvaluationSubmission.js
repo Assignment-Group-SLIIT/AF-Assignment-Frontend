@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Modal, Button } from "react-bootstrap";
 import { RippleButton } from '../../components/RippleButton'
 import EvaluationSubmissionModal from './modals/evaluationSubmissionModal';
+import { getAllAssignement } from '../../services/assignment.service';
 
 
 export const EvaluationSubmission = () => {
@@ -13,6 +14,8 @@ export const EvaluationSubmission = () => {
 
     const [modalDataUpdate, setModalDataUpdate] = useState([]);
     const [modalUpdate, setModalUpdate] = useState(false);
+
+    const [evaluationData, setEvaluationData] = useState([]);
 
     const [modalLoading, setModalLoading] = useState(false);
 
@@ -27,10 +30,20 @@ export const EvaluationSubmission = () => {
         setModalShow(true);
     }
 
-    const openModalUpdate = (user) => {
+    const getEvaluationData = async () => {
+        let response = await getAllAssignement();
+        if (response.ok) {
+            setEvaluationData(response.data.data)
+        }
+    }
 
-        console.log("request came for modal updateeeeeee");
-        // setModalDataUpdate(data);
+    useEffect(() => {
+        getEvaluationData()
+    }, [])
+
+    const openModalUpdate = (values) => {
+
+        setModalDataUpdate(values);
         setModalUpdate(true);
 
     }
@@ -77,24 +90,31 @@ export const EvaluationSubmission = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* return( */}
+                        {console.log("evaData", evaluationData)}
+                        {
+                            evaluationData.map((values) => {
+                                return (
+                                    <tr>
+                                        <td className='text'>{values.groupId}</td>
+                                        <td className='text'>{values.submissionId}</td>
+                                        <td className='text'>{values.submissionType}</td>
+                                        <td className='text'>{values.evaluationStatus}</td>
+                                        <td className='text'>{values.marks}</td>
+                                        <td className='text'>
+                                            <RippleButton className="ripple-button" text="Evaluate" onClick={() => openModalUpdate(values)} />
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                        }
 
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td className='text'>
-                                <RippleButton className="ripple-button" text="Evaluate" onClick={() => openModalUpdate()} />
-                            </td>
-                        </tr>
-                        {/* ) */}
+
                     </tbody>
                 </table>
 
             </div>
             {/* Modal to be used in update */}
+            {console.log(" modal data>>>", modalDataUpdate)}
             <Modal
                 show={modalUpdate}
                 onHide={() => setModalUpdate(false)}

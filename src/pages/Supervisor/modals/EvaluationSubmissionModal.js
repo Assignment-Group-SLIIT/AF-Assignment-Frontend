@@ -1,22 +1,42 @@
 import React, { useState, useEffect } from "react";
-import { Modal } from "react-bootstrap";
+import { Modal, Alert } from "react-bootstrap";
 import { RippleButton } from "../../../components/RippleButton";
+import { GetSubmissionType } from "../../../services/submission.service";
 
-function EvaluationSubmissionModal(user) {
-
+const EvaluationSubmissionModal = (props) => {
+    // console.log("users", props)
     const [groupID, setGroupID] = useState("");
     const [submissionID, setsubmissionID] = useState("");
     const [submissionType, setSubmissionType] = useState("");
     const [document, setDocument] = useState("");
     const [marks, setMarks] = useState("");
-    
 
-    return(
+    const [markingSchema, setMarkingSchema] = useState("");
+
+    const getAssignemnetType = async () => {
+        let response = await GetSubmissionType(props.data.submissionType);
+        console.log("res>>>", response)
+        if (response) {
+            setMarkingSchema(response.data.markingSchema)
+        }
+    }
+
+    useEffect(() => {
+        getAssignemnetType()
+    }, [])
+
+
+    return (
         <div>
             <Modal.Header>
-                <Modal.Title>Add Evaluation Marks</Modal.Title>
+                <Modal.Title>Add Evaluation Marks
+                </Modal.Title>
+                <Alert className="mb-2 ml-1 p-1 float-left" variant={props.data.evaluationStatus === 'pending' ? 'warning' : props.data.evaluationStatus === 'evaluvated' ? 'success' : null} >
+                    {props.data.evaluationStatus}
+                </Alert>
+
                 <div>
-                    <button className="btn btn-close" onClick={user.onHide}></button>
+                    <button className="btn btn-close" onClick={props.onHide}></button>
                 </div>
 
             </Modal.Header>
@@ -26,35 +46,42 @@ function EvaluationSubmissionModal(user) {
                         <form >
                             <div class="form-row">
                                 <div class="col-md-3">
-                                    <label class="update-font" for="group">Group Details</label>
+                                    <label class="update-font" for="group">Group Detls</label>
                                 </div>
                             </div>
                             <br></br>
                             <div class="row">
                                 <div class="col-6">
-                                    <label className="form-pad" for="groupID">Group ID</label>
-                                    <input type="text" class="form-control" id="groupID" placeholder="Group ID" value={groupID} onChange={(e) => { setGroupID(e.target.value) }} />
+                                    <label className="form-pad" for="groupID">Submission ID</label>
+                                    <input type="text" class="form-control" id="groupID" placeholder="Group ID" value={props.data.submissionId} onChange={(e) => { setGroupID(e.target.value) }} />
                                 </div>
-                                
+
                             </div>
+
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label className="form-pad" for="groupID">Submission ID</label>
+                                </div>
+                                <div class="col-sm">
+                                    <input type="text" class="form-control" id="groupID" placeholder="Group ID" value={props.data.submissionId} onChange={(e) => { setGroupID(e.target.value) }} />
+                                </div>
+                            </div>
+
+
+
                             <br></br>
                             <div class="row">
                                 <div class="col-6">
-                                    <label className="form-pad" for="submissionID">Submission ID</label>
-                                    <input type="text" class="form-control" id="submissionID" placeholder="Group ID" value={submissionID} onChange={(e) => { setsubmissionID(e.target.value) }} />
+                                    <label className="form-pad" for="submissionID">Group ID</label>
+                                    <input type="text" class="form-control" id="submissionID" placeholder="Group ID" value={props.data.groupId} onChange={(e) => { setsubmissionID(e.target.value) }} />
                                 </div>
-                                
+
                             </div>
                             <br></br>
                             <div class="row">
                                 <div class="col">
                                     <label className="form-pad" for="stype">Submission Type</label>
-                                    <select class="form-select" className="form-control" name="stype" id="stype" value={submissionType} onChange={(e) => { setSubmissionType(e.target.value) }}>
-                                        <option  >Select Status</option>
-                                        <option id="1" >Type 1</option>
-                                        <option id="2" >Type 2</option>
-                                       
-                                    </select>
+                                    <label className="form-pad" for="stype">{props.data.submissionType}</label>
                                 </div>
 
                             </div>
@@ -62,17 +89,25 @@ function EvaluationSubmissionModal(user) {
                             <div class="row">
                                 <div class="col-6">
                                     <label className="form-pad" for="document">Document</label>
-                                    <input type="text" class="form-control" id="document" placeholder="document" value={document} onChange={(e) => { setDocument(e.target.value) }} />
+                                    <label className="form-pad" for="stype">{props.data.document}</label>
                                 </div>
-                               
+
                             </div>
                             <br></br>
                             <div class="row">
                                 <div class="col-6">
                                     <label className="form-pad" for="marks">Evaluation Marks</label>
-                                    <input type="text" class="form-control" id="marks" placeholder="marks" value={marks} onChange={(e) => { setMarks(e.target.value) }} />
+                                    <label className="form-pad" for="stype">{props.data.marks}</label>
                                 </div>
-                               
+
+                            </div>
+                            <br></br>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label className="form-pad" for="marks">Marking Schema</label>
+                                    <label className="form-pad" for="stype">{markingSchema}</label>
+                                </div>
+
                             </div>
                             <br></br>
                             <div className="row mb-4">
@@ -81,7 +116,7 @@ function EvaluationSubmissionModal(user) {
 
                                 </div>
                                 <div className="col py-3 text-center">
-                                    <RippleButton className="ripple-button-warning" text="Cancel" onClick={user.onHide} />
+                                    {/* <RippleButton className="ripple-button-warning" text="Cancel" onClick={user.onHide} /> */}
 
                                 </div>
                             </div>
@@ -94,4 +129,4 @@ function EvaluationSubmissionModal(user) {
     )
 
 }
- export default EvaluationSubmissionModal;
+export default EvaluationSubmissionModal;

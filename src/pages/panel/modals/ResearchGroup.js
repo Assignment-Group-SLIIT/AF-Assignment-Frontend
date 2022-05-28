@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
+import Tables from "../../../components/Table";
 import "../../../styles/usersList.styles.scss"
 
 
 function ResearchGroup(group) {
 
-    console.log("model openingggg", group)
+    // console.log("model openingggg", group)
 
     return (
         <div>
@@ -25,50 +26,77 @@ function ResearchGroup(group) {
                                     <th class="text-left" scope="row">
                                         Group ID
                                     </th>
-                                    {/* <td class="text-left">{rental.data.id}</td> */}
+                                    <th class="text-left" scope="row">
+                                        {group.data.groupId}
+                                    </th>
+
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
-                                        Group Name
+                                        Leader Name
                                     </th>
-                                    {/* <td class="text-left">{rental.data.from}</td> */}
+                                    <th class="text-left" scope="row">
+                                        {group.data?.student?.leader?.name}
+                                    </th>
+
                                 </tr><tr>
                                     <th class="text-left" scope="row">
                                         Research Field
                                     </th>
-                                    {/* <td class="text-left">{rental.data.to}</td> */}
+                                    <th class="text-left" scope="row">
+                                        {group.data.researchField}
+                                    </th>
+
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Research Topic
                                     </th>
-                                    {/* <td class="text-left">{rental.data.status}</td> */}
+                                    <th class="text-left" scope="row">
+                                        {group.data.researchTopic}
+                                    </th>
+
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Supervisor
                                     </th>
-                                    {/* <td class="text-left">{rental.data.payment}</td> */}
+                                    <th class="text-left" scope="row">
+                                        {group.data.supervisor}
+                                    </th>
+
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Co-Supervisor
                                     </th>
-                                    {/* <td class="text-left">{rental.data.vehicleType + " " + rental.data.model}</td> */}
+                                    <th class="text-left" scope="row">
+                                        {group.data.coSupervisor}
+                                    </th>
+
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Allocated Panel
                                     </th>
-                                    {/* <td class="text-left">{rental.data.pickAddress}</td> */}
+                                    <th class="text-left" scope="row">
+                                        {group.data.panelNo}
+                                    </th>
+
                                 </tr>
+
                             </tbody>
                         </table>
+                        <Tables members={group.data} />
+
                     </div>
                 </div>
             </Modal.Body>
         </div>
     )
 }
+
+
+
 
 export default ResearchGroup

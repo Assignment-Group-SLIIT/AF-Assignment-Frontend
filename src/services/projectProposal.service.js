@@ -2,7 +2,7 @@ import API from "./API";
 
 export const createProjectProposal = async (payload) => {
     try {
-        const res = await API.post(`projectproposals`, payload);
+        const res = await API.post(`projectproposals/`, payload);
         if (res.status === 201)
             return { ok: true };
     } catch (error) {
@@ -12,7 +12,7 @@ export const createProjectProposal = async (payload) => {
 
 export const getAllProjectProposal = async () => {
     try {
-        const res = await API.get(`projectproposals`);
+        const res = await API.get(`projectproposals/`);
         if (res.status === 200)
             return { ok: true, data: res.data };
     } catch (error) {

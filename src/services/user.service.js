@@ -90,6 +90,21 @@ export const updateUser = async (email, updatePayload) => {
     }
 }
 
+
+export const searchUser = async (name) => {
+    try {
+        const response = await API.get("users/name/" + name)
+        if (response.status === 200) {
+            return {
+                ok: true,
+                data: response.data
+            }
+        }
+    } catch (error) {
+        return { ok: false, err: error.message }
+    }
+}
+
 export const deleteUser = async (email) => {
     try {
         const response = await API.delete("users/" + email)
