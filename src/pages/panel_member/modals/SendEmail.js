@@ -52,6 +52,9 @@ export const SendEmail = (evaluate) => {
                 // console.log(res)
                 // if (res.ok) {
                 toastNotification("Sent the email to " + email)
+                setTimeout(function () {
+                    refreshPage();
+                }, 1000);
                 // }
             })
         }
@@ -60,6 +63,9 @@ export const SendEmail = (evaluate) => {
 
     }
 
+    function refreshPage() {
+        window.location.reload();
+    }
 
 
     return (

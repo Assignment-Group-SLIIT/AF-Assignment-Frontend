@@ -11,7 +11,6 @@ function AddMarks(evaluate) {
     const [marks, setMarks] = useState("");
 
     useEffect(() => {
-        console.log()
         setGroupID(evaluate.data.groupId)
         setEvaluationStatus(evaluate.data.evaluationStatus)
         setMarks(evaluate.data.marks)
@@ -23,28 +22,35 @@ function AddMarks(evaluate) {
         e.preventDefault();
         console.log(e)
 
-        const presentaionEvaluate = {
-            groupId: groupID,
-            submissionId: evaluate?.data?.submissionId,
-            submissionType: evaluate?.data?.submissionType,
-            document: evaluate?.data?.document,
-            evaluationStatus: evaluationStatus,
-            marks: marks,
-        }
-        console.log(presentaionEvaluate)
+        if (groupID == "" || evaluationStatus == "" || marks == "") {
+            toastNotification("Please make sure you fill all fields")
 
-        updateAssignment(evaluate.data.submissionId, presentaionEvaluate).then(res => {
-            if (res.ok) {
-                toastNotification("Updated the presentation evaluation", "success")
-                setTimeout(function () {
-                    refreshPage();
-                }, 1000);
-            } else {
-                toastNotification("Error with update", "warn")
+        } else {
+            const presentaionEvaluate = {
+                groupId: groupID,
+                submissionId: evaluate?.data?.submissionId,
+                submissionType: evaluate?.data?.submissionType,
+                document: evaluate?.data?.document,
+                evaluationStatus: evaluationStatus,
+                marks: marks,
             }
-        }).catch(err => {
-            toastNotification("Error", "error")
-        })
+            console.log(presentaionEvaluate)
+
+            updateAssignment(evaluate.data.submissionId, presentaionEvaluate).then(res => {
+                if (res.ok) {
+                    toastNotification("Updated the presentation evaluation", "success")
+                    setTimeout(function () {
+                        refreshPage();
+                    }, 1000);
+                } else {
+                    toastNotification("Error with update", "warn")
+                }
+            }).catch(err => {
+                toastNotification("Error", "error")
+            })
+        }
+
+
 
     }
 
