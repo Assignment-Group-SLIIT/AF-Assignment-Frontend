@@ -120,9 +120,11 @@ export const Evaluation = () => {
                                     <td className='text'>
                                         <RippleButton className="ripple-button" text="Add Marks" onClick={() => openModalUpdate(evaluate)} />
                                     </td>
-                                    <td className='text'>
+                                    {evaluate.marks > 0 ? (<td className='text'>
                                         <RippleButton className="ripple-button" text="Send Mail" onClick={() => openModalSendEmails(evaluate)} />
-                                    </td>
+                                    </td>) : " "
+                                    }
+
                                 </tr>
                             )
                         })}

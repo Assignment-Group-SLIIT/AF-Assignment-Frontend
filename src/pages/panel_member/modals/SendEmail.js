@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { RippleButton } from '../../../components/RippleButton'
 import { Modal } from "react-bootstrap";
 import { getOneGroup } from '../../../services/group.service';
+import { sendsEmail } from '../../../services/assignment.service';
+import toastNotification from '../../../components/toastNotification';
 
 export const SendEmail = (evaluate) => {
-
-    // console.log("data cameeee", evaluate)
 
     const [groupID, setGroupID] = useState("")
     const [evaluationStatus, setEvaluationStatus] = useState("")
     const [email, setEmail] = useState("")
+    const [name, setName] = useState("")
     const [link, setLink] = useState("")
 
     useEffect(() => {
@@ -17,6 +18,7 @@ export const SendEmail = (evaluate) => {
         getOneGroup(evaluate.data.groupId).then(res => {
             if (res.ok) {
                 setEmail(res.data?.student?.leader?.email)
+                setName(res.data?.student?.leader?.name)
             } else {
                 console.log("Error occured")
             }
@@ -30,8 +32,32 @@ export const SendEmail = (evaluate) => {
         setEvaluationStatus(evaluate.data.evaluationStatus)
     }, [email])
 
-    const sendEmail = (e) => {
-        e.preventDefault()
+    const sendLink = (e) => {
+        e.preventDefault();
+
+        const message = "Please participate for final evaluations using " + link + " ."
+
+        // console.log(email, name, message)
+
+        if (groupID == "" || evaluationStatus == "" || email == "" || link == "") {
+            toastNotification("Please make sure to fill all the fields")
+        } else {
+            const payload = {
+                email: email,
+                name: name,
+                message: message
+            }
+
+            sendsEmail(payload).then(res => {
+                // console.log(res)
+                // if (res.ok) {
+                toastNotification("Sent the email to " + email)
+                // }
+            })
+        }
+
+
+
     }
 
 
@@ -61,10 +87,11 @@ export const SendEmail = (evaluate) => {
                                 </div>
                             </div>
 
+                            <br></br>
                             <div class="row">
                                 <div class="col">
                                     <label className="form-pad" for="email"><strong>Team Leaders Email</strong></label>
-                                    <input type="email" class="form-control" id="email" placeholder="abc@gmail.com" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+                                    <label type="email" class="form-control" id="email"><strong>{email}</strong></label>
                                 </div>
                             </div>
                             <br></br>
@@ -78,7 +105,7 @@ export const SendEmail = (evaluate) => {
                             <br></br>
                             <div className="row mb-4">
                                 <div className="col py-3 text-center">
-                                    <RippleButton className="ripple-button" text="Send" onClick={(e) => { sendEmail(e) }} />
+                                    <RippleButton className="ripple-button" text="Send" onClick={(e) => { sendLink(e) }} />
 
                                 </div>
                                 <div className="col py-3 text-center">

@@ -40,3 +40,14 @@ export const deleteAssignment = async (id) => {
         return { ok: false, err: error };
     }
 }
+
+export const sendsEmail = async (payload) => {
+    console.log("SENDS EMAIL CALLED", payload)
+    try {
+        const res = await API.post("assignments/email/", payload);
+        if (res.status === 200)
+            return { ok: true };
+    } catch (error) {
+        return { ok: false, err: error };
+    }
+}
