@@ -49,6 +49,8 @@ const Signup = () => {
                     } else if (user.role === "Admin") {
                         sessionStorage.setItem('role', "Admin")
                         navigate("/admin/dashboard")
+                    } else if (user.role === "Panel") {
+                        navigate("/panel/topic")
                     }
                 }
             }).catch((err) => {
@@ -68,7 +70,7 @@ const Signup = () => {
                             <form className="login">
                                 <div className="login__field">
                                     <i className="login__icon fas fa-user"></i>
-                                    <input type="text" className="login__input" placeholder="User name / Email" value={userName.value} onChange={(e) => { setUserName({ ...userName, value: e.target.value }) }}></input>
+                                    <input type="text" className="login__input" placeholder="Email" value={userName.value} onChange={(e) => { setUserName({ ...userName, value: e.target.value }) }}></input>
                                 </div>
                                 {userName.isError && <small className='text-danger'>{userName.error}</small>}
                                 <div className="login__field">

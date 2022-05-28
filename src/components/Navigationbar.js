@@ -59,14 +59,14 @@ export const Navigationbar = () => {
                                     {role === "Supervisor" && (
                                         <Link className="nav-link " to="/supervisor/list/request">Requests</Link>
                                     )}
-                                    {role === "Co-supervisor" && (
+                                    {role === "Co-Supervisor" && (
                                         <Link className="nav-link " to="/cosupervisor/list/request">Requests</Link>
                                     )}
                                     {role === "Panel" && (
                                         <Link className="nav-link " to="/panel/topic">Requests</Link>
                                     )}
                                     {role == null && (
-                                        <Link className="nav-link " to="#">DashBoard</Link>
+                                        <Link className="nav-link " to="/home">Home</Link>
                                     )}
                                 </li>
                                 <li className="nav-item ">
@@ -77,7 +77,7 @@ export const Navigationbar = () => {
                                     {role === "Supervisor" && (
                                         <Link className="nav-link " to="/supervisor/list/markingschema">Marking Schemas</Link>
                                     )}
-                                    {role === "Co-supervisor" && (
+                                    {role === "Co-Supervisor" && (
                                         <Link className="nav-link " to="/supervisor/list/markingschema">Marking Schemas</Link>
                                     )}
                                     {role === "Panel" && (
@@ -95,7 +95,7 @@ export const Navigationbar = () => {
                                     {role === "Supervisor" && (
                                         <Link className="nav-link " to="/supervisor/list/submissions">Submissions</Link>
                                     )}
-                                    {role === "Co-supervisor" && (
+                                    {role === "Co-Supervisor" && (
                                         <Link className="nav-link " to="/chat">Chat</Link>
                                     )}
                                     {role === "Panel" && (

@@ -69,7 +69,7 @@ const AllSubmissions = () => {
                             <h3 className="float-left" >All Submissions</h3>
                         </div>
                     </div>
-                    <br /> <br /> <br />
+                    <br /> <br />
                     <div class="row table-head-search">
                         <div className="col-md-8"></div>
 
@@ -123,12 +123,12 @@ const AllSubmissions = () => {
                                     <tr>
                                         {console.log("Data>>", values)}
 
-                                        <td >{values.submissionId}</td>
-                                        <td>{values.submissionType}</td>
-                                        <td>{values.startDate}</td>
-                                        <td>{values.endDate}</td>
+                                        <td className='text'>{values.submissionId}</td>
+                                        <td className='text'>{values.submissionType}</td>
+                                        <td className='text'>{values.startDate}</td>
+                                        <td className='text'>{values.endDate}</td>
                                         <td className='text'>
-                                            <RippleButton className="ripple-button" text="View" onClick={() => openModalUpdate(values)} />
+                                            <RippleButton className="ripple-button-table" text="View" onClick={() => openModalUpdate(values)} />
                                         </td>
                                     </tr>
                                 )

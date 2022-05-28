@@ -59,7 +59,7 @@ export const EvaluationSubmission = () => {
                         <h3 className="float-left" >Submissions To Be Evaluated</h3>
                     </div>
                 </div>
-                <br /> <br /> <br />
+                <br /> <br />
                 <div class="row table-head-search">
                     <div className="col-md-8"></div>
 
@@ -121,7 +121,7 @@ export const EvaluationSubmission = () => {
                                         </td>
                                         <td className='text'>{values.marks}</td>
                                         <td className='text'>
-                                            <RippleButton className="ripple-button-sm" text="Evaluate" onClick={() => openModalUpdate(values)} />
+                                            <RippleButton className="ripple-button-table" text="Evaluate" onClick={() => openModalUpdate(values)} />
                                         </td>
                                     </tr>
                                 )

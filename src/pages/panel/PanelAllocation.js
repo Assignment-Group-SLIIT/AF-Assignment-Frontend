@@ -133,7 +133,7 @@ export const PanelAllocation = () => {
                                     <td className='text'>{group.researchField}</td>
                                     <th className='text'>{group.panelNo}</th>
                                     <td>
-                                        <RippleButton className="ripple-button-sm" text="Allocate Panel" onClick={() => openModalUpdate(group)} />
+                                        <RippleButton className="ripple-button-table" text="Allocate" onClick={() => openModalUpdate(group)} />
                                     </td>
                                 </tr>
                             )

@@ -62,8 +62,8 @@ export const TopicRequest = () => {
     return (
         <div className='body-content-container'>
             <div className="container-border">
-                <h3> Topic Request - For Pannel Members(Project Proposal)</h3>
-                <br /> <br /> <br />
+                <h3> Project Proposals</h3>
+                <br /> <br />
                 <div class="row table-head-search">
                     <div className="col-md-8"></div>
 
@@ -115,8 +115,8 @@ export const TopicRequest = () => {
                                         <strong><span className="viewAssessmentLink" onClick={(e) => window.open(topic.document)} >Document</span></strong>
                                     </td>
                                     <td className='text'>
-                                        <RippleButton className="ripple-button" text="Accept" onClick={() => openModal(topic)} />
-                                        <RippleButton className="ripple-button-danger" text="Reject" onClick={() => openModalDelete(topic)} />
+                                        <RippleButton className="ripple-button-table" text="Accept" onClick={() => openModal(topic)} />
+                                        <RippleButton className="ripple-button-danger-table" text="Reject" onClick={() => openModalDelete(topic)} />
                                     </td>
                                 </tr>
                             )
