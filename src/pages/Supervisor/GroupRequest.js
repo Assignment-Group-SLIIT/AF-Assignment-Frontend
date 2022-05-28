@@ -16,11 +16,6 @@ export const GroupRequest = () => {
     const [modalDelete, setModalDelete] = useState(false);
     const [modalAcceptConfirm, setModalAcceptConfirm] = useState(false);
     const [query, setQuery] = useState("")
-    const [leader, setLeader] = useState("")
-    const [member1, setMember1] = useState("")
-    const [member2, setMember2] = useState("")
-    const [member3, setMember3] = useState("")
-
 
     const [supervisorName, setSupervisorName] = useState('Thisara Ruwanpathirana')
 
@@ -57,12 +52,8 @@ export const GroupRequest = () => {
                     panelNo: res.data?.panelNo
                 }
 
-
                 updateGroup(grouplist.groupId, updatedGroup).then(res2 => {
-                    console.log(res.data?.student?.member1?.name)
                     if (res2.ok) {
-                        console.log(res2)
-
                         updateSupervisor(res.data?.student?.leader?.name, supervisorName).then(res3 => {
                             console.log("updated1", res3)
                             if (res3.ok) {
@@ -81,12 +72,11 @@ export const GroupRequest = () => {
                                 })
                             }
                         })
-
-
-
                     }
                 })
             }
+        }).catch(err => {
+            console.error(err)
         })
 
 

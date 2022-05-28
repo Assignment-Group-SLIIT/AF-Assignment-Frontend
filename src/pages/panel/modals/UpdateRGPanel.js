@@ -93,12 +93,10 @@ function UpdateRGPanel(group) {
                     message: "Your team evaluations will be conducted by Panel " + panel.name + ". So Please refer to the published time tables "
                 }
 
-                sendAcceptRejectEmail(email).then(res => {
-                    toastNotification("Allocated a panel", "success")
-                    setTimeout(function () {
-                        refreshPage();
-                    }, 2000);
-                })
+                sendAcceptRejectEmail(email)
+                toastNotification("Allocated a panel", "success")
+                refreshPage()
+
             } else {
                 toastNotification("Could not allocate a panel", "warn")
             }
