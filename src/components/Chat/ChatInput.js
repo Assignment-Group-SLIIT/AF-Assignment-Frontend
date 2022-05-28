@@ -24,9 +24,9 @@ export default function ChatInputChat({ handleSendMsg }) {
     }
   };
 
-    return(
-      <div className="chat-input">
-         
+  return (
+    <div className="chat-input">
+
       <div className="button-container">
         <div className="emoji">
           <BsEmojiSmileFill onClick={handleEmojiPickerhideShow} />
@@ -44,7 +44,7 @@ export default function ChatInputChat({ handleSendMsg }) {
           <IoMdSend />
         </button>
       </form>
- 
-        </div>
-    )
+
+    </div>
+  )
 }
