@@ -11,10 +11,7 @@ const Footer = () => {
                 <div className="row">
                     <div className="col-4 d-flex flex-column align-items-start justify-content-start pt-4">
                         <h3>Research Portal</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Duis eget commodo neque.
-                            Quisque id urna tempor, varius risus eget, congue erat.
-                            Aenean ac ante est. Vestibulum mollis hendrerit </p>
+                        <p>We are a leading non-state higher education institute approved by the University Grants Commission (UGC) under the Universities Act. We are members of the Association of Commonwealth Universities (ACU), as well as the International Association of Universities (IAU). We are also the first Sri Lankan institute to be accredited by the Institute of Engineering & Technology( IET), UK and Engineering Council, UK.</p>
                     </div>
                     <div className="col-4 d-flex align-items-center justify-content-center">
                         <img src={SliitLogo} alt="" width="140" height="200" class="d-inline-block align-text-top nav-logo" onClick={() => {
