@@ -22,7 +22,6 @@ const Dashboard = () => {
         if (user?.groupId != "") {
             setIsGroupRegistered(true)
             getOneGroup(user?.groupId).then((res) => {
-                console.log(res.data);
                 setGroupDetails(res.data)
             }).catch((err) => {
                 console.log("error!", err)
@@ -148,24 +147,31 @@ const Dashboard = () => {
                 </div>
                 <div className="row mt-3">
                     <div className="row mr-2 ml-2 mb-4">
-                        <div className="row height-lg-border">Submission 01</div>
-                        <div className="row border shadow-sm height-lg p-2">
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore unde quidem nihil laboriosam illo quod nostrum cupiditate minima aspernatur atque! Vitae commodi doloribus nesciunt quasi facere laudantium sequi enim. Provident.</p>
-                            <p><AiOutlineCloudUpload size={20} /><span className='ml-2'><u>add submission</u></span></p>
-                        </div>
-                    </div>
-                    <div className="row mr-2 ml-2 mb-4">
                         <div className="row height-lg-border">Submission 02</div>
                         <div className="row border shadow-sm height-lg p-2">
                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore unde quidem nihil laboriosam illo quod nostrum cupiditate minima aspernatur atque! Vitae commodi doloribus nesciunt quasi facere laudantium sequi enim. Provident.</p>
-                            <p><AiOutlineCloudUpload size={20} /><span className='ml-2'><u>add submission</u></span></p>
+                            <p onClick={() => { navigate("/student/assignment", { state: { version: "Submission Two", groupId: groupDetails?.groupId } }) }}><AiOutlineCloudUpload size={20} /><span className='ml-2'><u>add submission</u></span></p>
                         </div>
                     </div>
                     <div className="row mr-2 ml-2 mb-4">
                         <div className="row height-lg-border">Submission 03</div>
                         <div className="row border shadow-sm height-lg p-2">
                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore unde quidem nihil laboriosam illo quod nostrum cupiditate minima aspernatur atque! Vitae commodi doloribus nesciunt quasi facere laudantium sequi enim. Provident.</p>
-                            <p><AiOutlineCloudUpload size={20} /><span className='ml-2'><u>add submission</u></span></p>
+                            <p onClick={() => { navigate("/student/assignment", { state: { version: "Submission Three", groupId: groupDetails?.groupId } }) }}><AiOutlineCloudUpload size={20} /><span className='ml-2'><u>add submission</u></span></p>
+                        </div>
+                    </div>
+                    <div className="row mr-2 ml-2 mb-4">
+                        <div className="row height-lg-border">Submission 04</div>
+                        <div className="row border shadow-sm height-lg p-2">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore unde quidem nihil laboriosam illo quod nostrum cupiditate minima aspernatur atque! Vitae commodi doloribus nesciunt quasi facere laudantium sequi enim. Provident.</p>
+                            <p onClick={() => { navigate("/student/assignment", { state: { version: "Submission Four", groupId: groupDetails?.groupId } }) }}><AiOutlineCloudUpload size={20} /><span className='ml-2'><u>add submission</u></span></p>
+                        </div>
+                    </div>
+                    <div className="row mr-2 ml-2 mb-4">
+                        <div className="row height-lg-border">Submission 05</div>
+                        <div className="row border shadow-sm height-lg p-2">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore unde quidem nihil laboriosam illo quod nostrum cupiditate minima aspernatur atque! Vitae commodi doloribus nesciunt quasi facere laudantium sequi enim. Provident.</p>
+                            <p onClick={() => { navigate("/student/assignment", { state: { version: "Submission Five", groupId: groupDetails?.groupId } }) }}><AiOutlineCloudUpload size={20} /><span className='ml-2'><u>add submission</u></span></p>
                         </div>
                     </div>
                 </div>

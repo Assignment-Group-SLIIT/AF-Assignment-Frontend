@@ -89,9 +89,6 @@ export const Navigationbar = () => {
                                 </li>
                                 <li className="nav-item ">
 
-                                    {role === "Admin" && (
-                                        <Link className="nav-link " to="/admin/list/panel">Panel</Link>
-                                    )}
                                     {role === "Supervisor" && (
                                         <Link className="nav-link " to="/supervisor/list/submissions">Submissions</Link>
                                     )}
@@ -108,7 +105,16 @@ export const Navigationbar = () => {
                                 <li className="nav-item ">
 
                                     {role === "Admin" && (
-                                        <Link className="nav-link " to="/admin/panel">Panel Allocation</Link>
+                                        <div class="dropdown">
+                                            <button class="btn btn-text dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Panel
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <Link to="/admin/panel/registration" class="dropdown-item text-dark">Create</Link>
+                                                <Link to="/admin/panel" class="dropdown-item text-dark"> Allocate</Link>
+                                                <Link to="/admin/list/panel" class="dropdown-item text-dark"> View</Link>
+                                            </div>
+                                        </div>
                                     )}
                                     {role === "Supervisor" && (
                                         <Link className="nav-link " to="/chat">Chat</Link>
@@ -153,11 +159,15 @@ export const Navigationbar = () => {
                                             null
                                         ) :
                                         (
-                                            <Link to="/signup/student">
-                                                <button className="btn btn-text">
+                                            <div class="dropdown">
+                                                <button class="btn btn-text dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     register
                                                 </button>
-                                            </Link>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <Link to="/signup/student" class="dropdown-item text-dark">Student</Link>
+                                                    <Link to="/signup/staff" class="dropdown-item text-dark">Staff</Link>
+                                                </div>
+                                            </div>
                                         )
                                     }
 
