@@ -3,6 +3,7 @@ import { AiOutlineCloudUpload } from 'react-icons/ai'
 import { FcApproval } from "react-icons/fc";
 import { useNavigate } from 'react-router-dom'
 import { RippleButton } from '../../components/RippleButton'
+import { getOneGroup } from '../../services/group.service';
 
 const Dashboard = () => {
     const navigate = useNavigate()
@@ -14,11 +15,23 @@ const Dashboard = () => {
     const [isProposalSent, setIsProposalSent] = useState(false);
     const [isEvaluationCompleted, setIsEvaluationCompleted] = useState(false);
 
+    const [groupDetails, setGroupDetails] = useState([])
+
     useEffect(() => {
-        const user = sessionStorage.getItem("user");
-        if (user.groupId != "") {
+        const user = JSON.parse(sessionStorage.getItem("user"));
+        if (user?.groupId != "") {
             setIsGroupRegistered(true)
+            getOneGroup(user?.groupId).then((res) => {
+                console.log(res.data);
+                setGroupDetails(res.data)
+            }).catch((err) => {
+                console.log("error!", err)
+            })
+
+            user?.researchTopic ? setIsTopicSelected(true) : setIsTopicSelected(false);
+            user?.coSupervisor ? setIsCoSupervisorSelected(true) : setIsCoSupervisorSelected(false);
         }
+
     }, [])
 
 
