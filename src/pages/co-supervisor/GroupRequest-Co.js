@@ -3,7 +3,7 @@ import { RippleButton } from '../../components/RippleButton'
 import { Link, useNavigate } from 'react-router-dom'
 import { Modal, Button } from "react-bootstrap";
 import { deleteRequestTopicsCoSupervisors, getAllRequestTopicsCoSupervisors } from "../../services/cosupervisorRequests.service";
-import { getOneGroup,sendAcceptRejectEmail, updateGroup } from "../../services/group.service";
+import { getOneGroup, sendAcceptRejectEmail, updateGroup } from "../../services/group.service";
 import { updateCoSupervisor } from "../../services/user.service";
 import toastNotification from "../../components/toastNotification";
 
@@ -11,7 +11,7 @@ export default GroupRequest = () => {
 
     const [groupList, setGroupList] = useState([]);
     const [query, setQuery] = useState("")
-    const [coSupervisorName, setCoSupervisorName] = useState('Ranuka Malewithane')
+    const [coSupervisorName, setCoSupervisorName] = useState('')
 
     const [modalDataDelete, setModalDataDelete] = useState([]);
     const [modalDeleteConfirm, setModalDeleteConfirm] = useState(false);
@@ -22,8 +22,10 @@ export default GroupRequest = () => {
 
     useEffect(() => {
         getAllRequestTopicsCoSupervisors().then((response) => {
+            const user = JSON.parse(sessionStorage.getItem("user"))
+            setCoSupervisorName(user?.fullname)
             setGroupList(response.data.data.filter(ele => {
-                return ele.coSupervisor == 'Ranuka Malewithane'
+                return ele.coSupervisor == user?.fullname
             }))
         }).catch((error) => {
             console.log("error", error)
@@ -93,16 +95,16 @@ export default GroupRequest = () => {
                 updateGroup(grouplist.groupId, updatedGroup).then(res2 => {
                     if (res2.ok) {
                         updateCoSupervisor(res.data?.student?.leader?.name, coSupervisorName).then(res3 => {
-                             console.log("updated1", res3)
+                            console.log("updated1", res3)
                             if (res3.ok) {
                                 updateCoSupervisor(res.data?.student?.member01?.name, coSupervisorName).then(res4 => {
-                                     console.log("updated2", res4)
+                                    console.log("updated2", res4)
                                     if (res4.ok) {
                                         updateCoSupervisor(res.data?.student?.member02?.name, coSupervisorName).then(res5 => {
-                                             console.log("updated3", res5)
+                                            console.log("updated3", res5)
                                             if (res.ok) {
                                                 updateCoSupervisor(res.data?.student?.member03?.name, coSupervisorName).then(res6 => {
-                                                     console.log("updated6", res6)
+                                                    console.log("updated6", res6)
                                                     if (res6.ok) {
                                                         const emailBody = {
                                                             email: res.data.student?.leader?.email,

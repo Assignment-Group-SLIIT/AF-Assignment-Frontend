@@ -11,7 +11,7 @@ export const GroupRequest = () => {
 
     const [groupList, setGroupList] = useState([]);
     const [query, setQuery] = useState("")
-    const [supervisorName, setSupervisorName] = useState('Thisara Ruwanpathirana')
+    const [supervisorName, setSupervisorName] = useState('')
 
 
     const [modalDataDelete, setModalDataDelete] = useState([]);
@@ -26,8 +26,10 @@ export const GroupRequest = () => {
 
     useEffect(() => {
         getAllRequests().then((response) => {
+            const user = JSON.parse(sessionStorage.getItem("user"))
+            setSupervisorName(user?.fullname)
             setGroupList(response.data.filter(ele => {
-                return ele.supervisor == 'Thisara Ruwanpathirana'
+                return ele.supervisor == user?.fullname
             }))
         }).catch((error) => {
             console.log("error", error)
