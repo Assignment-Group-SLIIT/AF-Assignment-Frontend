@@ -28,11 +28,13 @@ const Dashboard = () => {
                 console.log("error!", err)
             })
 
-            user?.researchTopic ? setIsTopicSelected(true) : setIsTopicSelected(false);
-            user?.coSupervisor ? setIsCoSupervisorSelected(true) : setIsCoSupervisorSelected(false);
+            groupDetails?.researchTopic ? setIsTopicSelected(true) : setIsTopicSelected(false);
+            groupDetails?.coSupervisor ? setIsCoSupervisorSelected(true) : setIsCoSupervisorSelected(false);
+            (groupDetails?.coSupervisor && groupDetails?.researchTopic) ? setIsProposalSent(true) : setIsProposalSent(false)
+            groupDetails?.isProposalAccepted ? setIsEvaluationCompleted(true) : setIsEvaluationCompleted(false);
         }
 
-    }, [])
+    }, [groupDetails])
 
 
 
@@ -57,7 +59,7 @@ const Dashboard = () => {
                                     isTopicSelected ?
                                         (
                                             <>
-                                                <RippleButton disabled={isTopicSelected} className="ripple-button-border w-100" text="Co - Supervisor Selection" onClick={() => { navigate("/student/groupregistration") }} />
+                                                <RippleButton disabled={isCoSupervisorSelected} className="ripple-button-border w-100" text="Co - Supervisor Selection" onClick={() => { navigate("/student/request/cosupervisor") }} />
                                                 {isCoSupervisorSelected && <FcApproval size={30} />}
                                             </>
                                         ) :
@@ -125,13 +127,13 @@ const Dashboard = () => {
                                 {isCoSupervisorSelected ?
                                     (
                                         <>
-                                            <RippleButton disabled={isCoSupervisorSelected} className="ripple-button-border w-100" text="Send Documents for Topic Evaluation" onClick={() => { onSubmit() }} />
-                                            {isProposalSent && <FcApproval size={30} />}
+                                            <RippleButton disabled={isEvaluationCompleted} className="ripple-button-border w-100" text="Send Documents for Topic Evaluation" onClick={() => { navigate("/student/projectproposal") }} />
+                                            {isEvaluationCompleted && <FcApproval size={30} />}
                                         </>
                                     ) :
                                     (
                                         <>
-                                            <RippleButton disabled={true} className="ripple-button-border-disabled w-100" text="Send Documents for Topic Evaluation" onClick={() => { onSubmit() }} />
+                                            <RippleButton disabled={true} className="ripple-button-border-disabled w-100" text="Send Documents for Topic Evaluation" />
                                         </>
                                     )
                                 }
