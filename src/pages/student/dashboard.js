@@ -150,28 +150,28 @@ const Dashboard = () => {
                         <div className="row height-lg-border">Submission 02</div>
                         <div className="row border shadow-sm height-lg p-2">
                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore unde quidem nihil laboriosam illo quod nostrum cupiditate minima aspernatur atque! Vitae commodi doloribus nesciunt quasi facere laudantium sequi enim. Provident.</p>
-                            <p onClick={() => { navigate("/student/assignment", { state: { version: "Submission Two", groupId: groupDetails?.groupId } }) }}><AiOutlineCloudUpload size={20} /><span className='ml-2'><u>add submission</u></span></p>
+                            <p className='link-hover' onClick={() => { navigate("/student/assignment", { state: { version: "Submission Two", groupId: groupDetails?.groupId } }) }}><AiOutlineCloudUpload size={20} /><span className='ml-2'><u>add submission</u></span></p>
                         </div>
                     </div>
                     <div className="row mr-2 ml-2 mb-4">
                         <div className="row height-lg-border">Submission 03</div>
                         <div className="row border shadow-sm height-lg p-2">
                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore unde quidem nihil laboriosam illo quod nostrum cupiditate minima aspernatur atque! Vitae commodi doloribus nesciunt quasi facere laudantium sequi enim. Provident.</p>
-                            <p onClick={() => { navigate("/student/assignment", { state: { version: "Submission Three", groupId: groupDetails?.groupId } }) }}><AiOutlineCloudUpload size={20} /><span className='ml-2'><u>add submission</u></span></p>
+                            <p className='link-hover' onClick={() => { navigate("/student/assignment", { state: { version: "Submission Three", groupId: groupDetails?.groupId } }) }}><AiOutlineCloudUpload size={20} /><span className='ml-2'><u>add submission</u></span></p>
                         </div>
                     </div>
                     <div className="row mr-2 ml-2 mb-4">
                         <div className="row height-lg-border">Submission 04</div>
                         <div className="row border shadow-sm height-lg p-2">
                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore unde quidem nihil laboriosam illo quod nostrum cupiditate minima aspernatur atque! Vitae commodi doloribus nesciunt quasi facere laudantium sequi enim. Provident.</p>
-                            <p onClick={() => { navigate("/student/assignment", { state: { version: "Submission Four", groupId: groupDetails?.groupId } }) }}><AiOutlineCloudUpload size={20} /><span className='ml-2'><u>add submission</u></span></p>
+                            <p className='link-hover' onClick={() => { navigate("/student/assignment", { state: { version: "Submission Four", groupId: groupDetails?.groupId } }) }}><AiOutlineCloudUpload size={20} /><span className='ml-2'><u>add submission</u></span></p>
                         </div>
                     </div>
                     <div className="row mr-2 ml-2 mb-4">
                         <div className="row height-lg-border">Submission 05</div>
                         <div className="row border shadow-sm height-lg p-2">
                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore unde quidem nihil laboriosam illo quod nostrum cupiditate minima aspernatur atque! Vitae commodi doloribus nesciunt quasi facere laudantium sequi enim. Provident.</p>
-                            <p onClick={() => { navigate("/student/assignment", { state: { version: "Submission Five", groupId: groupDetails?.groupId } }) }}><AiOutlineCloudUpload size={20} /><span className='ml-2'><u>add submission</u></span></p>
+                            <p className='link-hover' onClick={() => { navigate("/student/assignment", { state: { version: "Submission Five", groupId: groupDetails?.groupId } }) }}><AiOutlineCloudUpload size={20} /><span className='ml-2'><u>add submission</u></span></p>
                         </div>
                     </div>
                 </div>

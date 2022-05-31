@@ -29,8 +29,10 @@ export const LandingPage = () => {
                     <Row>
                         <Col className='' lg={6}>
                             <div className="left-panel">
-                                <p>Heading</p>
-                                <p>Lorem ipsum dolor sit amet</p>
+
+                                <h1><em>
+                                    “As for the future, your task is not to foresee it, but to enable it.”
+                                </em></h1>
                             </div>
                         </Col>
                         <Col lg={6}>
@@ -95,8 +97,8 @@ export const LandingPage = () => {
                         </Col>
                         <Col lg={6}>
                             <div className="right-panel">
-                                <p>Heading</p>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae accusantium deserunt aliquid distinctio modi. Facilis est odit ipsum error non veniam accusamus, necessitatibus optio quibusdam laborum ipsam nesciunt a. Dolores.</p>
+
+                                <p><em>" SLIIT Research Portal help you to clarify your doubts on your Research project. "</em></p>
                             </div>
                         </Col>
                     </Row>
@@ -123,8 +125,11 @@ export const LandingPage = () => {
                         </Col>
                         <Col lg={6}>
                             <div className="right-panel">
-                                <p>Heading</p>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae accusantium deserunt aliquid distinctio modi. Facilis est odit ipsum error non veniam accusamus, necessitatibus optio quibusdam laborum ipsam nesciunt a. Dolores.</p>
+
+                                <h6>
+                                    As a leading tertiary educational Institute in Sri Lanka, research is an integral part of SLIIT.We strive for a vibrant research culture and numerous initiatives are in place for programming research among the academic and student communities.
+
+                                    Integrating research methodology to undergraduate and postgraduate curricula, establishing a research center to carry out research work, the SLIIT research grant scheme is all meant to promote research.</h6>
                             </div>
                         </Col>
                     </Row>

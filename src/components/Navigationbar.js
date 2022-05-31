@@ -11,8 +11,12 @@ export const Navigationbar = () => {
         const token = sessionStorage.getItem("token");
         token != "" && token != null ? setIsLoggedIn(true) : setIsLoggedIn(false);
 
-        const role = JSON.parse(sessionStorage.getItem("user")).role
-        role != null || role != "" ? setRole(role) : setRole(null)
+
+        const roleTemp = JSON.parse(sessionStorage.getItem("user"));
+
+        (roleTemp != undefined || roleTemp != null) ? setRole(roleTemp.role) : setRole(null);
+
+
 
 
     }, [sessionStorage, location.pathname])
@@ -82,6 +86,9 @@ export const Navigationbar = () => {
                                     )}
                                     {role === "Panel" && (
                                         <Link className="nav-link " to="/panel/evaluation">Final Evaluations</Link>
+                                    )}
+                                    {role == "Student" && (
+                                        <Link className="nav-link " to="/templates">Templates</Link>
                                     )}
                                     {role == null && (
                                         <Link className="nav-link " to="/templates">Templates</Link>

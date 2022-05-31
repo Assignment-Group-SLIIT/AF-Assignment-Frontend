@@ -93,10 +93,10 @@ export const PanelAllocation = () => {
                     </div>
                 </div>
                 <div className="row table-head-search">
-                    <div className="col-md-8"></div>
+                    <div className="col"></div>
 
                     <div className="col">
-                        <div className="search-box">
+                        <div className="search-box float-right mr-2">
                             <div className="searchbar">
                                 <form onSubmit={(e) => searchResult(e)}>
                                     <input className="search_input" type="text" name="search" placeholder="Search..." onChange={(e) => setSearch(e.target.value)}

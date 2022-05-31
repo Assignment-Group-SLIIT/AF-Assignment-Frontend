@@ -91,7 +91,7 @@ export const Evaluation = () => {
                         <h3 className="float-left" onClick={refreshPage}>Presentation Evaluation</h3>
                     </div>
                 </div>
-                <br /> <br /> <br />
+                <br /> <br />
                 <div class="row table-head-search">
                     <div className="col"></div>
 

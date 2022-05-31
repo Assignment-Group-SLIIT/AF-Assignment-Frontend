@@ -1,12 +1,16 @@
 // styles for customized scrollbar
 ::-webkit-scrollbar {
-  width: 5px; /* Remove scrollbar space */
-  background: transparent; /* Optional: just make scrollbar invisible */
+  width: 5px;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
 }
+
 /*show position indicator in red */
 ::-webkit-scrollbar-thumb {
   background: #9d50bb;
 }
+
 //end of scrollbar styles
 
 //navigation bar styles
@@ -29,6 +33,7 @@ a {
 header nav {
   background-image: linear-gradient(to right, #9d50bb, #6e48aaba);
 }
+
 //end of navigation bar styles
 
 /*bg*/
@@ -119,7 +124,7 @@ footer {
 }
 
 //for body container
-.body-content-container{
+.body-content-container {
   display: flex;
   width: 100%;
   align-items: center;
@@ -129,13 +134,18 @@ footer {
   margin-top: 8rem;
   margin-bottom: 4rem;
 }
-.container-border{
+
+.container-border {
   // border: 1px solid black;
   width: 150vh;
   min-height: 100vh;
-  border: 1px solid #512474; 
+  border: 1px solid #512474;
   border-radius: 10px;
-  padding:2rem 1.5rem 2rem 1.5rem;
+  padding: 2rem 1.5rem 2rem 1.5rem;
   -webkit-box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.45);
-    box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.45);
+  box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.45);
+}
+
+.link-hover:hover {
+  cursor: pointer !important;
 }
