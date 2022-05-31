@@ -65,10 +65,10 @@ export const TopicRequest = () => {
                 <h3> Project Proposals</h3>
                 <br /> <br />
                 <div class="row table-head-search">
-                    <div className="col-md-8"></div>
+                    <div className="col"></div>
 
-                    <div className="col">
-                        <div class="search-box">
+                    <div className="col ">
+                        <div class="search-box float-right mr-2">
                             <div className="searchbar">
                                 <form>
                                     <input class="search_input" type="text" name="search" placeholder="Search..."

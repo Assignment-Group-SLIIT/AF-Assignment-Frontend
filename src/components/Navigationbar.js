@@ -11,7 +11,7 @@ export const Navigationbar = () => {
         const token = sessionStorage.getItem("token");
         token != "" && token != null ? setIsLoggedIn(true) : setIsLoggedIn(false);
 
-        const role = sessionStorage.getItem("role")
+        const role = JSON.parse(sessionStorage.getItem("user")).role
         role != null || role != "" ? setRole(role) : setRole(null)
 
 
@@ -63,7 +63,7 @@ export const Navigationbar = () => {
                                         <Link className="nav-link " to="/cosupervisor/list/request">Requests</Link>
                                     )}
                                     {role === "Panel" && (
-                                        <Link className="nav-link " to="/panel/topic">Requests</Link>
+                                        <Link className="nav-link " to="/panel/topic">Proposals</Link>
                                     )}
                                     {role == null && (
                                         <Link className="nav-link " to="/home">Home</Link>
@@ -84,11 +84,22 @@ export const Navigationbar = () => {
                                         <Link className="nav-link " to="/panel/evaluation">Final Evaluations</Link>
                                     )}
                                     {role == null && (
-                                        <Link className="nav-link " to="#">Link 01</Link>
+                                        <Link className="nav-link " to="/templates">Templates</Link>
                                     )}
                                 </li>
                                 <li className="nav-item ">
+                                    {role === "Admin" && (
+                                        <div class="dropdown">
+                                            <button class="btn btn-text dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Documents
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <Link to="/admin/template" class="dropdown-item text-dark">Template</Link>
+                                                <Link to="/admin/submission" class="dropdown-item text-dark"> Submissions</Link>
 
+                                            </div>
+                                        </div>
+                                    )}
                                     {role === "Supervisor" && (
                                         <Link className="nav-link " to="/supervisor/list/submissions">Submissions</Link>
                                     )}
@@ -98,9 +109,7 @@ export const Navigationbar = () => {
                                     {role === "Panel" && (
                                         <Link className="nav-link " to="/templates">Templates</Link>
                                     )}
-                                    {role == null && (
-                                        <Link className="nav-link " to="#">Link 01</Link>
-                                    )}
+
                                 </li>
                                 <li className="nav-item ">
 
@@ -119,9 +128,7 @@ export const Navigationbar = () => {
                                     {role === "Supervisor" && (
                                         <Link className="nav-link " to="/chat">Chat</Link>
                                     )}
-                                    {role == null && (
-                                        <Link className="nav-link " to="#">Link 01</Link>
-                                    )}
+
                                 </li>
                                 <li className="nav-item ">
                                     {role === "Student" && (
@@ -130,9 +137,7 @@ export const Navigationbar = () => {
                                     {role === "Admin" && (
                                         <Link className="nav-link " to="/admin/list/panelmembers">Panel Members</Link>
                                     )}
-                                    {role == null && (
-                                        <Link className="nav-link " to="#">Link 01</Link>
-                                    )}
+
                                 </li>
                             </ul>
                             <ul className="navbar-nav ml-auto ">

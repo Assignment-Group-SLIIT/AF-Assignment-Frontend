@@ -147,11 +147,11 @@ export default GroupRequest = () => {
                 <h3> Initial Group Request For Co-Supervisor</h3>
                 <br /> <br />
                 <div class="row table-head-search">
-                    <div className="col-md-8"></div>
+                    <div className="col"></div>
 
                     <div className="col">
-                        <div class="search-box">
-                            <div className="searchbar">
+                        <div class="search-box float-right mr-2">
+                            <div className="searchbar ">
                                 <form
                                 // onSubmit={(e) => searchRooms(e)}
                                 >
