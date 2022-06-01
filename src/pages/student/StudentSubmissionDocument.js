@@ -7,6 +7,7 @@ import { Form, Button, Row, Col, ProgressBar } from 'react-bootstrap'
 import toastNotification from '../../components/toastNotification';
 import { createProjectProposal } from '../../services/projectProposal.service';
 import { getOneGroup } from '../../services/group.service';
+import { ProgressBar } from 'react-bootstrap';
 
 const StudentSubmissionDocument = () => {
     const [groupId, setGroupId] = useState("");
@@ -15,7 +16,8 @@ const StudentSubmissionDocument = () => {
     const [topic, setTopic] = useState({ value: "", error: "This field cannot be empty", isError: false })
     const [field, setField] = useState({ value: "", error: "This field cannot be empty", isError: false })
     const [fileName, setFileName] = useState({ value: "", error: "Please select a file", isError: false });
-
+    const [loadingProgress, setLoadingProgress] = useState(10)
+    const [state, setState] = useState(false)
 
     useEffect(() => {
         email.value === "" ? setEmail({ ...email, isError: true }) : setEmail({ ...email, isError: false })
@@ -134,10 +136,16 @@ const StudentSubmissionDocument = () => {
                                     <Col>
 
                                         <div className='col-4'>
-                                            <DropzoneArea sendData={sendData} />
+                                            <DropzoneArea sendData={sendData} sendProgress={sendProgress} />
                                             {fileName.value ? fileName.value.substring(0, 30) + "..." : ''}
                                             {fileName.isError && <small className='text-danger'>{fileName.error}</small>}
                                         </div>
+                                        <div className='col-6'>
+                                            <div>
+                                                {!fileName.value && state ? <ProgressBar now={loadingProgress} /> : ""}
+                                            </div>
+
+                                        </div >
                                     </Col>
 
                                 </Row>
