@@ -150,7 +150,7 @@ export default Dashboard = () => {
                 <div className='admin-body-content-container'>
                     <div className='admin-dash-top'>
                         <center>
-                            <h2>Admin Dashboard</h2></center>
+                            <h2>System Overview</h2></center>
                         <div className="d-flex justify-content-around">
                             <PieChart data={userData} header={"System Users"} color={"#770737"} />
                             <PieChart data={requetsData} header={"Topic Requests"} color={"#AA336A"} />
