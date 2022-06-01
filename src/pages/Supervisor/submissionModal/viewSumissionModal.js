@@ -16,87 +16,58 @@ const ViewSubmissionModal = (props) => {
 
             </Modal.Header>
             <Modal.Body className="px-4">
+
                 <div className="row">
-                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <form >
+                    <div className="col-12">
+                        <table class="table table-striped table-light ">
+                            <tbody>
+                                <tr>
+                                    <th class="text-left" scope="row">
+                                        Submission ID
+                                    </th>
+                                    <th>
+                                        {data.submissionId}
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th class="text-left" scope="row">
+                                        Submission Type
+                                    </th>
+                                    <th>
+                                        {data.submissionType}
+                                    </th>
 
-                            <br></br>
-                            <div class="row">
+                                </tr><tr>
+                                    <th class="text-left" scope="row">
+                                        Start Date
+                                    </th>
+                                    <th>
+                                        {data.submissionType}
+                                    </th>
 
-                                <div class="col-6">
-                                    <label className="form-pad" for="groupID">Submission ID</label>
-                                </div>
-                                <div class="col-6">
-                                    <p>{data.submissionId}</p>
-                                </div>
+                                </tr>
+                                <tr>
+                                    <th class="text-left" scope="row">
+                                        End Date
+                                    </th>
+                                    <th>
+                                        {data.endDate}
+                                    </th>
 
+                                </tr>
+                                <tr>
+                                    <th class="text-left" scope="row">
+                                        Marking Schema
+                                    </th>
+                                    <th>
+                                        <strong><span className="viewAssessmentLink" onClick={(e) => window.open(data.markingSchema)} >View Document</span></strong>
+                                    </th>
 
-                            </div>
-                            <br></br>
-                            <div class="row">
-
-                                <div class="col-6">
-                                    <label className="form-pad" for="groupID">Submission Type</label>
-                                </div>
-                                <div class="col-6">
-                                    <p>{data.submissionType}</p>
-                                </div>
-
-
-                            </div>
-                            <br></br>
-                            <div class="row">
-
-                                <div class="col-6">
-                                    <label className="form-pad" for="groupID">Start Date</label>
-                                </div>
-                                <div class="col-6">
-                                    <p>{data.startDate}</p>
-                                </div>
-
-
-                            </div>
-                            <br></br>
-                            <div class="row">
-
-                                <div class="col-6">
-                                    <label className="form-pad" for="groupID">End Date</label>
-                                </div>
-                                <div class="col-6">
-                                    <p>{data.endDate}</p>
-                                </div>
-
-
-                            </div>
-                            <br></br>
-                            <div class="row">
-                                <div class="col-6">
-                                    <label className="form-pad mr-5" for="marks">Marking Schema</label>
-
-
-                                </div>
-                                <div class="col-6">
-                                    <strong><span className="viewAssessmentLink" onClick={(e) => window.open(data.markingSchema)} >View Document</span></strong>
-                                </div>
-
-                            </div>
-                            <br></br>
-                            <div className="row mb-4">
-                                <div className="col-6 py-3 text-center">
-                                    {/* <RippleButton className="ripple-button" text="Submit" onClick={() => { onSubmit() }} /> */}
-
-                                </div>
-                                <div className="col pr-3 mr-6 text-right">
-                                    <RippleButton className="ripple-button-warning" text="Close"
-                                        onClick={() => props.close()}
-                                    />
-
-                                </div>
-                            </div>
-                        </form>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-
             </Modal.Body >
         </div >
     )
