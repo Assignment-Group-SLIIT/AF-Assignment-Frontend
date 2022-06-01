@@ -22,11 +22,11 @@ const Footer = () => {
                     <div className="col-4 d-flex flex-column align-items-start justify-content-start pt-4">
                         <h3 className='pl-2'>Follow us on social media</h3>
                         <div className="d-flex flex-row align-items-center justify-content-between w-75">
-                            <AiFillFacebook size={40} />
-                            <AiFillInstagram size={40} />
-                            <AiFillLinkedin size={40} />
-                            <BsMessenger size={40} />
-                            <AiOutlineMail size={40} />
+                            <AiFillFacebook size={30} />
+                            <AiFillInstagram size={30} />
+                            <AiFillLinkedin size={30} />
+                            <BsMessenger size={30} />
+                            <AiOutlineMail size={30} />
                         </div>
                     </div>
                 </div>
