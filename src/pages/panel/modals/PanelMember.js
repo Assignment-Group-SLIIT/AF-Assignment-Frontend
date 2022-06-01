@@ -68,30 +68,40 @@ function ViewPanelMember(user) {
                                     <th class="text-left" scope="row">
                                         Full Name
                                     </th>
-                                    {name}
+                                    <th>
+                                        {name}
+                                    </th>
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Email Address
                                     </th>
-                                    {email}
+                                    <th>
+                                        {email}
+                                    </th>
                                 </tr><tr>
                                     <th class="text-left" scope="row">
                                         Contact No
                                     </th>
-                                    {contactNo}
+                                    <th>
+                                        {contactNo}
+                                    </th>
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Field Of Interest
                                     </th>
-                                    {field}
+                                    <th>
+                                        {field}
+                                    </th>
                                 </tr>
                                 <tr>
                                     <th class="text-left" scope="row">
                                         Department
                                     </th>
-                                    {department}
+                                    <th>
+                                        {department}
+                                    </th>
                                 </tr>
                             </tbody>
                         </table>
