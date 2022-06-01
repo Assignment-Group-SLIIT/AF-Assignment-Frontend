@@ -24,6 +24,12 @@ const StudentSubmissionDocument = () => {
         fileName.value === "" ? setFileName({ ...fileName, isError: true }) : setFileName({ ...fileName, isError: false })
     }, [email.value, fileName.value])
 
+    const sendProgress = (data) => {
+        console.log("DATAAAA", data)
+        setState(true)
+        setLoadingProgress(data)
+    }
+
     useEffect(() => {
         const user = JSON.parse(sessionStorage.getItem("user"));
 

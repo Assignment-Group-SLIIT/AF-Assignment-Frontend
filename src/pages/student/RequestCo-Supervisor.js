@@ -96,7 +96,6 @@ export const RequestTopicCoSupervisor = () => {
 
                 <br />
                 <hr />
-                <br />
                 <div className="row mb-2">
                     <div className="col">
                         <div className="form-group ">
@@ -112,7 +111,7 @@ export const RequestTopicCoSupervisor = () => {
                         </div>
                     </div>
                 </div>
-                <br />
+
                 <div className="row mb-2">
                     <div className="col">
                         <div className="form-group ">
@@ -129,7 +128,7 @@ export const RequestTopicCoSupervisor = () => {
                         </div>
                     </div>
                 </div>
-                <br />
+
                 <div className="row mb-2">
                     <div className="col">
                         <div className="form-group">
@@ -145,7 +144,7 @@ export const RequestTopicCoSupervisor = () => {
                         </div>
                     </div>
                 </div>
-                <br />
+
                 <div className="row mb-2">
                     <div className="col">
                         <div className="form-group">
@@ -161,7 +160,7 @@ export const RequestTopicCoSupervisor = () => {
                         </div>
                     </div>
                 </div>
-                <br />
+
                 <div className="row mb-2">
                     <div className="col">
                         <div className="form-group">
