@@ -98,6 +98,7 @@ export const UserList = () => {
                             <div className="searchbar">
                                 <form >
                                     <input className="search_input" type="text" name="search" placeholder="Search..."
+                                        onChange={(event) => { setSearch(event.target.value) }}
                                     />
                                     <button className="btn search_icon" type="submit" id="submit" name="submit">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
@@ -120,7 +121,21 @@ export const UserList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {usersList.map((user) => {
+                        {usersList.filter((values) => {
+
+                            if (search == "") {
+                                return values
+                            }
+                            else if (
+                                values.fullname.toLowerCase().includes(search.toLowerCase()) ||
+                                values.email.toLowerCase().includes(search.toLowerCase()) ||
+                                values.contactNo.toLowerCase().includes(search.toLowerCase()) ||
+                                values.role.toLowerCase().includes(search.toLowerCase())) {
+                                return values
+
+                            }
+
+                        }).map((user) => {
                             return (
                                 <tr>
                                     <td onClick={() => openModal(user)}>{user.fullname}</td>
