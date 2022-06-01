@@ -70,6 +70,7 @@ const StudentSubmissionDocument = () => {
             createProjectProposal(payload).then((res) => {
                 if (res.ok) {
                     toastNotification("Project proposal has been submitted successfully!", "success")
+                    window.location.reload()
                 } else {
                     toastNotification("Error occured!", "error")
                 }

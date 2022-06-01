@@ -51,6 +51,7 @@ export const RequestTopic = () => {
             createSupervisorRequest(payload).then((res) => {
                 if (res.ok) {
                     toastNotification("Request has been sent successfully!", "success")
+                    window.location.reload()
                 } else {
                     toastNotification("Error occured!", "error")
                 }
