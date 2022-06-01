@@ -56,6 +56,7 @@ const UploadEvaluation = () => {
             addAssignment(payload).then((res) => {
                 if (res.ok) {
                     toastNotification("Assignment submitted successfully!", "success")
+                    window.location.reload()
                 } else {
                     toastNotification("Oops! Error occured", "error")
                 }

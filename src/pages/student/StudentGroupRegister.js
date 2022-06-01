@@ -215,6 +215,7 @@ const StudentGroupRegister = () => {
                         setIsSuccess(true)
                         setStep(5)
                         setProgress(100)
+                        toastNotification("Group registered successfully!", "success")
                     }
 
                 }).catch((err) => {
