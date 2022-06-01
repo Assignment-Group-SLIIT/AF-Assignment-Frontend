@@ -128,7 +128,7 @@ const AllSubmissions = () => {
                                         <td className='text'>{values.startDate}</td>
                                         <td className='text'>{values.endDate}</td>
                                         <td className='text'>
-                                            <RippleButton className="ripple-button-table" text="View" onClick={() => openModalUpdate(values)} />
+                                            <RippleButton className="ripple-button-table  link-hover" text="View" onClick={() => openModalUpdate(values)} />
                                         </td>
                                     </tr>
                                 )

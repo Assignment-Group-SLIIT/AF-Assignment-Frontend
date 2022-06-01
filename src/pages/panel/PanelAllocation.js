@@ -127,7 +127,7 @@ export const PanelAllocation = () => {
                             return (
                                 <tr key={Math.random()}>
 
-                                    <td className='text' onClick={() => openModal(group)}>{group.groupId}</td>
+                                    <td className='text link-hover' onClick={() => openModal(group)}>{group.groupId}</td>
                                     <td className='text' >{group?.student?.leader?.name}</td>
                                     <td className='text' >{group.researchTopic}</td>
                                     <td className='text'>{group.researchField}</td>

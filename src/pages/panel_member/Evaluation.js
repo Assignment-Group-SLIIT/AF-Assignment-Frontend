@@ -125,7 +125,7 @@ export const Evaluation = () => {
                         {evaluations.map((evaluate) => {
                             return (
                                 <tr key={Math.random()}>
-                                    <td className='text' onClick={() => openModal(evaluate)}>{evaluate.groupId}</td>
+                                    <td className='text link-hover' onClick={() => openModal(evaluate)}>{evaluate.groupId}</td>
                                     <td className='text '>
                                         <Alert className="w-50 ml-5 p-1 " variant={evaluate.evaluationStatus === 'Pending' ? 'warning' : evaluate.evaluationStatus === 'Completed' ? 'success' : null} >
                                             {evaluate.evaluationStatus}

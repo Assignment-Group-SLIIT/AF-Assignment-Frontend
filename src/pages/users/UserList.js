@@ -138,7 +138,7 @@ export const UserList = () => {
                         }).map((user) => {
                             return (
                                 <tr>
-                                    <td onClick={() => openModal(user)}>{user.fullname}</td>
+                                    <td className='link-hover' onClick={() => openModal(user)}>{user.fullname}</td>
                                     <td>{user.email}</td>
                                     <td>{user.contactNo}</td>
                                     <td>{user.role}</td>

@@ -246,10 +246,10 @@ export const CreatedPanelList = () => {
                                 <tr key={Math.random()}>
                                     <td >{panel.panelNumber}</td>
                                     <td >{panel.FieldOfInterest}</td>
-                                    <td onClick={() => openModal(panel.member1)}>{panel.member1}</td>
-                                    <td onClick={() => openModal(panel.member2)}>{panel.member2}</td>
-                                    <td onClick={() => openModal(panel.member3)}>{panel.member3}</td>
-                                    <td onClick={() => openModal(panel.member4)}>{panel.member4}</td>
+                                    <td className='link-hover' onClick={() => openModal(panel.member1)}>{panel.member1}</td>
+                                    <td className='link-hover' onClick={() => openModal(panel.member2)}>{panel.member2}</td>
+                                    <td className='link-hover' onClick={() => openModal(panel.member3)}>{panel.member3}</td>
+                                    <td className='link-hover' onClick={() => openModal(panel.member4)}>{panel.member4}</td>
                                     <td>
                                         <RippleButton className="ripple-button-table" text="Update" onClick={() => openModalUpdate(panel)} />
                                         <RippleButton className="ripple-button-danger-table" text="Delete" onClick={() => openModalDelete(panel)} />
