@@ -126,10 +126,11 @@ export const LandingPage = () => {
                         <Col lg={6}>
                             <div className="right-panel">
 
-                                <h6>
+                                <p>
                                     As a leading tertiary educational Institute in Sri Lanka, research is an integral part of SLIIT.We strive for a vibrant research culture and numerous initiatives are in place for programming research among the academic and student communities.
 
-                                    Integrating research methodology to undergraduate and postgraduate curricula, establishing a research center to carry out research work, the SLIIT research grant scheme is all meant to promote research.</h6>
+                                    Integrating research methodology to undergraduate and postgraduate curricula, establishing a research center to carry out research work, the SLIIT research grant scheme is all meant to promote research.
+                                </p>
                             </div>
                         </Col>
                     </Row>
