@@ -28,7 +28,7 @@ export const LandingPage = () => {
                 <Container fluid>
                     <Row>
                         <Col className='' lg={6}>
-                            <div className="left-panel">
+                            <div className="left-panel" data-aos="fade-right">
 
                                 <h1><em>
                                     “As for the future, your task is not to foresee it, but to enable it.”
@@ -36,7 +36,7 @@ export const LandingPage = () => {
                             </div>
                         </Col>
                         <Col lg={6}>
-                            <div className="right-panel">
+                            <div className="right-panel" data-aos="fade-left">
                                 <img src={SliitLogo} width={"200px"} height={"300px"} alt="sliit logo" />
                             </div>
                         </Col>
