@@ -98,8 +98,8 @@ export const StudentSignUp = () => {
             } else {
                 setConfirmPassword({ ...confirmPassword, isError: true, error: "Passwords are not matching" })
             }
-        }else{
-            toastNotification("Please fill all the requeid field", "warn") 
+        } else {
+            toastNotification("Please fill all the requeid field", "warn")
         }
     }
 
@@ -161,7 +161,7 @@ export const StudentSignUp = () => {
                         <Form.Group className="mb-3" >
                             <Row>
                                 <Col>
-                                    <Form.Label>password</Form.Label>
+                                    <Form.Label>Password</Form.Label>
                                     <Form.Control type="password" placeholder="Password" value={password.value} onChange={(e) => setPassword({ ...password, value: e.target.value })} />
                                     {password.isError && <small className='text-danger'>{password.error}</small>}
                                 </Col>
