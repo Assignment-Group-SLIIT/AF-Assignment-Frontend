@@ -2,7 +2,6 @@
   "name": "rmp-frontend",
   "version": "1.0.0",
   "description": "front end for research management tool",
-  "main": "app.js",
   "source": "index.html",
   "scripts": {
     "start": "parcel index.html",
