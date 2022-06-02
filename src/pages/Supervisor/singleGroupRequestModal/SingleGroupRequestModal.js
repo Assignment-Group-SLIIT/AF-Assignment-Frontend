@@ -9,7 +9,7 @@ const SingleGroupRequestModal = (props) => {
     return (
         <div>
             <Modal.Header>
-                <Modal.Title> Submissions Details</Modal.Title>
+                <Modal.Title> Initial Group Request </Modal.Title>
                 <div>
                     <button className="btn btn-close" onClick={() => props.close()}></button>
                 </div>
