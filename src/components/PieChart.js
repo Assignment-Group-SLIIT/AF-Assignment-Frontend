@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ResponsiveContainer, PieChart, Pie, Legend, Sector } from 'recharts';
 
-export default PieChart = (props) => {
+export default PieChartComp = (props) => {
 
     const data = props.data;
     const name = props.header;
