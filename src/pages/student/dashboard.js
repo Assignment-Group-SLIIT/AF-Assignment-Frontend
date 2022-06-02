@@ -46,14 +46,14 @@ const Dashboard = () => {
                 <div className="row roadmap">
                     <div className="col-5">
                         <div className="row height-lg">
-                            <div class="d-flex flex-row justify-content-between align-items-center">
+                            <div class="d-flex flex-row justify-content-between align-items-center" data-aos="flip-left">
                                 <RippleButton disabled={isGroupRegistered} className="ripple-button-border w-100" text="Group Registration" onClick={() => { navigate("/student/groupregistration") }} />
                                 {isGroupRegistered && <FcApproval size={30} />}
                             </div>
                         </div>
                         <div className="row height-lg"></div>
                         <div className="row height-lg">
-                            <div class="d-flex flex-row justify-content-between align-items-center">
+                            <div class="d-flex flex-row justify-content-between align-items-center" data-aos="flip-left">
                                 {
                                     isTopicSelected ?
                                         (
@@ -73,7 +73,7 @@ const Dashboard = () => {
                         </div>
                         <div className="row height-lg"></div>
                         <div className="row height-lg">
-                            <div class="d-flex flex-row justify-content-between align-items-center">
+                            <div class="d-flex flex-row justify-content-between align-items-center" data-aos="flip-left">
                                 {
                                     isEvaluationCompleted ?
                                         (
@@ -103,7 +103,7 @@ const Dashboard = () => {
                     <div className="col-5">
                         <div className="row height-lg"></div>
                         <div className="row height-lg">
-                            <div class="d-flex flex-row justify-content-between align-items-center">
+                            <div class="d-flex flex-row justify-content-between align-items-center" data-aos="flip-right">
                                 {isGroupRegistered ?
                                     (
                                         <>
@@ -122,7 +122,7 @@ const Dashboard = () => {
                         </div>
                         <div className="row height-lg"></div>
                         <div className="row height-lg">
-                            <div class="d-flex flex-row justify-content-between align-items-center">
+                            <div class="d-flex flex-row justify-content-between align-items-center" data-aos="flip-right">
                                 {isCoSupervisorSelected ?
                                     (
                                         <>
@@ -146,7 +146,7 @@ const Dashboard = () => {
                     <h3>Upcoming Submissions</h3>
                 </div>
                 <div className="row mt-3">
-                    <div className="row mr-2 ml-2 mb-4">
+                    <div className="row mr-2 ml-2 mb-4" data-aos="fade-right">
                         <div className="row height-lg-border">Submission 02</div>
                         <div className="row border shadow-sm height-lg p-2">
                             <p>
@@ -161,7 +161,7 @@ const Dashboard = () => {
                             <p className='link-hover' onClick={() => { navigate("/student/assignment", { state: { version: "Submission Two", groupId: groupDetails?.groupId } }) }}><AiOutlineCloudUpload size={20} /><span className='ml-2'><u>add submission</u></span></p>
                         </div>
                     </div>
-                    <div className="row mr-2 ml-2 mb-4">
+                    <div className="row mr-2 ml-2 mb-4" data-aos="fade-right">
                         <div className="row height-lg-border">Submission 03</div>
                         <div className="row border shadow-sm height-lg p-2">
                             <p>
@@ -176,7 +176,7 @@ const Dashboard = () => {
                             <p className='link-hover' onClick={() => { navigate("/student/assignment", { state: { version: "Submission Three", groupId: groupDetails?.groupId } }) }}><AiOutlineCloudUpload size={20} /><span className='ml-2'><u>add submission</u></span></p>
                         </div>
                     </div>
-                    <div className="row mr-2 ml-2 mb-4">
+                    <div className="row mr-2 ml-2 mb-4" data-aos="fade-right">
                         <div className="row height-lg-border">Submission 04</div>
                         <div className="row border shadow-sm height-lg p-2">
                             <p>
@@ -190,7 +190,7 @@ const Dashboard = () => {
                             <p className='link-hover' onClick={() => { navigate("/student/assignment", { state: { version: "Submission Four", groupId: groupDetails?.groupId } }) }}><AiOutlineCloudUpload size={20} /><span className='ml-2'><u>add submission</u></span></p>
                         </div>
                     </div>
-                    <div className="row mr-2 ml-2 mb-4">
+                    <div className="row mr-2 ml-2 mb-4" data-aos="fade-right">
                         <div className="row height-lg-border">Submission 05</div>
                         <div className="row border shadow-sm height-lg p-2">
                             <p>
