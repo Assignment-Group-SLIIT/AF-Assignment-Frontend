@@ -7,6 +7,6 @@ AOS.init();
 
 const rootElement = document.getElementById("app");
 render(
-    <>
-        <App />
-    </>, rootElement)
+    <App />
+    ,
+    rootElement)
