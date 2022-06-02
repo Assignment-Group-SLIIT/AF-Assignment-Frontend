@@ -158,7 +158,7 @@ export const Navigationbar = () => {
                                         (
                                             <Link to="/login">
                                                 <button className="btn btn-text">
-                                                    login
+                                                    Signin
                                                 </button>
                                             </Link>
                                         )
@@ -173,7 +173,7 @@ export const Navigationbar = () => {
                                         (
                                             <div class="dropdown">
                                                 <button class="btn btn-text dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    register
+                                                    Signup
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                     <Link to="/signup/student" class="dropdown-item text-dark">Student</Link>
