@@ -31,7 +31,6 @@ const Signup = () => {
 
         if (!userName.isError && !password.isError) {
             loginUser(payload).then((res) => {
-                console.log("after sign in >>", res)
                 res.ok ? toastNotification("Success!", "success") : toastNotification("Username or Password is incorrect!", "error")
 
                 const user = JSON.parse(sessionStorage.getItem("user"))
