@@ -6,6 +6,9 @@ import { RippleButton } from "../../../components/RippleButton";
 import toastNotification from "../../../components/toastNotification";
 import { updateUser } from "../../../services/user.service";
 import '../../../styles/usersList.styles.scss'
+import { research_areas } from "../../../config/utils";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import { TextField } from "@material-ui/core";
 
 function UpdateUser(user) {
     console.log("data", user.data.department)
@@ -14,14 +17,15 @@ function UpdateUser(user) {
 
     const [fName, setFname] = useState("");
     const [contactNo, setContactNo] = useState("");
-    const [studentId , setStudentId] = useState("");
-    const [groupId , setGroupId] = useState("");
+    const [studentId, setStudentId] = useState("");
+    const [groupId, setGroupId] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [degree, setDegree] = useState("");
     const [department, setDepartment] = useState("");
     const [role, setRole] = useState("");
     const [field, setField] = useState("");
+    const [researchAreas, setResearchAreas] = useState(research_areas);
 
     const setUserList = () => {
         setFname(user.data.fullname);
@@ -42,7 +46,7 @@ function UpdateUser(user) {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log("email" , email)
+        console.log("email", email)
         const updateUserPayload = {
             fName,
             contactNo,
@@ -56,7 +60,7 @@ function UpdateUser(user) {
             field
 
         }
-        updateUser(email , updateUserPayload).then((response) =>{ 
+        updateUser(email, updateUserPayload).then((response) => {
             response.ok ? toastNotification("Success!", "success") : toastNotification("Error occured!", "error")
             window.location.reload(false);
         }).catch((err) => {
@@ -86,7 +90,7 @@ function UpdateUser(user) {
                             </div>
                             <br></br>
                             <div class="row">
-                            
+
                                 <div class="col-6">
                                     <label className="form-pad" for="lName">Last Name</label>
                                     <input type="text" class="form-control" id="lName" placeholder="Last Name" value={fName} onChange={(e) => { setFname(e.target.value) }} />
@@ -157,14 +161,32 @@ function UpdateUser(user) {
                                 </div>
                                 <div class="col-6">
                                     <label className="form-pad" for="field">Field Of Interest</label>
-                                    <select class="form-select" className="form-control" name="field" id="field" value={field} onChange={(e) => { setField(e.target.value) }}>
+                                    {/* <select class="form-select" className="form-control" name="field" id="field" value={field} onChange={(e) => { setField(e.target.value) }}>
                                         <option  >Choose Fieldt</option>
                                         <option id="Medical" >Medical</option>
                                         <option id="Technology" >Technology</option>
                                         <option id="Robotics" >Robotics</option>
                                         <option id="ML" >Machine Learning</option>
                                         <option id="FS" >Food Science</option>
-                                    </select>
+                                    </select> */}
+                                    <Autocomplete
+
+                                        id="field"
+                                        options={researchAreas}
+                                        renderInput={params => (
+                                            <TextField {...params} variant="outlined" />
+                                        )}
+
+                                        getOptionSelected={(option, value) => option.id === value.id}
+                                        getOptionLabel={option => option.name || field}
+                                        value={field}
+                                        onChange={(_event, field) => {
+                                            setField(field);
+                                            // field != null ? setErrField(false) : setErrField(true)
+                                        }}
+                                        size="small"
+                                        required
+                                    />
                                 </div>
                             </div>
                             <br></br>

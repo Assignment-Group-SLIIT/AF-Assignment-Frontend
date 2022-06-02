@@ -137,7 +137,7 @@ export const UserList = () => {
 
                         }).map((user) => {
                             return (
-                                <tr>
+                                <tr key={Math.random()}>
                                     <td className='link-hover' onClick={() => openModal(user)}>{user.fullname}</td>
                                     <td>{user.email}</td>
                                     <td>{user.contactNo}</td>
