@@ -119,7 +119,8 @@ export const LandingPage = () => {
                                         Some quick example text to build on the card title and make up the bulk of
                                         the card's content.
                                     </Card.Text>
-                                    <RippleButton className="ripple-button " text="Read More"></RippleButton>
+
+                                    <RippleButton className="ripple-button " text="Read More" onClick={(e) => window.open(" https://bit.ly/CDAPREG22")}></RippleButton>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -131,11 +132,12 @@ export const LandingPage = () => {
                                     <Card.Text>
                                         Microsoft Imagine Cup 2022 – Team Nana Shilpa of SLIIT Faculty of Computing
                                     </Card.Text>
-                                    <RippleButton className="ripple-button " text="Read More"></RippleButton>
+                                    <RippleButton className="ripple-button " text="Read More" onClick={(e) => window.open("https://www.sliit.lk/blog/computing-news/microsoft-imagine-cup-2022-team-nana-shilpa-of-sliit-faculty-of-computing/")}></RippleButton>
                                 </Card.Body>
                             </Card>
                         </Col>
                         <Col>
+
                             <Card style={{ width: '18rem' }}>
                                 <Card.Img variant="top" width={100} height={322} src="https://static.sliit.lk/wp-content/uploads/2022/05/19081651/18th-session-of-the-SBS-Research-Workshop-series-.jpg" />
                                 <Card.Body className='text-center'>
@@ -143,7 +145,8 @@ export const LandingPage = () => {
                                     <Card.Text>
                                         The 18th session of the research workshop series organized by the SLIIT Business school
                                     </Card.Text>
-                                    <RippleButton className="ripple-button " text="Read More"></RippleButton>
+
+                                    <RippleButton className="ripple-button " text="Read More" onClick={(e) => window.open("https://www.sliit.lk/blog/business-news/18th-session-of-the-sbs-research-workshop-series/")} ></RippleButton>
                                 </Card.Body>
                             </Card>
                         </Col>
