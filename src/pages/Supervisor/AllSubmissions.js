@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Modal, Button } from "react-bootstrap";
 import { RippleButton } from '../../components/RippleButton'
-import EvaluationSubmissionModal from './modals/evaluationSubmissionModal';
 import { getAllSubmissions } from '../../services/submission.service';
 import ViewSubmissionModal from './submissionModal/viewSumissionModal';
-import Loader from '../../components/Loader';
 
 
 const AllSubmissions = () => {
