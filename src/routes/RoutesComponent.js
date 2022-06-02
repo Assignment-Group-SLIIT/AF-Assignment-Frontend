@@ -23,7 +23,7 @@ import { EvaluationSubmission } from '../pages/Supervisor/EvaluationSubmission'
 import { CreateSubmission } from '../pages/admin/CreateSubmission'
 import UploadInitialEvaluation from '../pages/student/uploadEvaluation'
 import StudentSubmissionDocument from '../pages/student/StudentSubmissionDocument'
-import GroupRequestCoSupevisor from '../pages/co-supervisor/GroupRequestCoSupervisor'
+import { GroupRequestCoSupervisor } from '../pages/co-supervisor/GroupRequestCoSupervisor'
 import { CreatedPanelList } from '../pages/panel/PanelList'
 import Dashboard from '../pages/admin/Dashboard'
 import AllSubmissions from '../pages/Supervisor/AllSubmissions'
@@ -53,7 +53,7 @@ export const RoutesComponent = () => {
                         <Route exact path='/supervisor/list/markingschema' element={<AllSubmissions />} />
 
                         {/* cosupervisor */}
-                        <Route exact path='/cosupervisor/list/request' element={< GroupRequestCoSupevisor />} />
+                        <Route exact path='/cosupervisor/list/request' element={< GroupRequestCoSupervisor />} />
 
                         {/* admin */}
                         <Route exact path='/admin/list/user' element={<UserList />} />
