@@ -81,14 +81,6 @@ const UploadEvaluation = () => {
 
                                 <div class="col">
                                     <label className="form-pad" for="submissionType">Submission Type : </label>
-                                    {/* <select class="form-select form-control" name="submissionType" id="submissionType" value={submissionType} onChange={(e) => { setSubmissionType(e.target.value) }}>
-                                        <option  >Choose Type</option>
-                                        <option id="1" >Submission One</option>
-                                        <option id="2" >Submission Two</option>
-                                        <option id="3" >Submission Three</option>
-                                        <option id="4" >Submission Four</option>
-                                        <option id="5" >Submission Five</option>
-                                    </select> */}
 
                                     <strong> &emsp; &emsp; {assignmentVersion}</strong>
 
