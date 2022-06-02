@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import { Form, Row, Col } from 'react-bootstrap'
 import { RippleButton } from '../../components/RippleButton'
 import { registerUser } from '../../services/user.service';
 import toastNotification from '../../components/toastNotification';

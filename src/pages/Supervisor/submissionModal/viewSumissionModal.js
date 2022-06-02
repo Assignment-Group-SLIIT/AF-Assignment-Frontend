@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
-import { RippleButton } from "../../../components/RippleButton";
-import Button from '@material-ui/core/Button';
 
 const ViewSubmissionModal = (props) => {
     console.log("props", props);

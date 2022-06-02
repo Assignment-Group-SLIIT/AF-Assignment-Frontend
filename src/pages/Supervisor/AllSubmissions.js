@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { RippleButton } from '../../components/RippleButton'
 import { getAllSubmissions } from '../../services/submission.service';
 import ViewSubmissionModal from './submissionModal/viewSumissionModal';

@@ -1,5 +1,5 @@
 import DropzoneArea from '../../components/DropZoneArea'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { RippleButton } from '../../components/RippleButton'
 import '../../styles/usersList.styles.scss'
 import { createTemplate } from '../../services/template.service'

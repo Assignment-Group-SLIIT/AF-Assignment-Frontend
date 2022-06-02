@@ -1,7 +1,7 @@
 import React from 'react'
 import { RippleButton } from '../components/RippleButton';
 import SliitLogo from '../assets/images/SLIIT_Logo_Crest.png'
-import { Col, Container, Row, Card, Button } from 'react-bootstrap';
+import { Col, Container, Row, Card } from 'react-bootstrap';
 
 export const LandingPage = () => {
     return (

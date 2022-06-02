@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import '../../styles/usersList.styles.scss'
-import { useNavigate } from 'react-router-dom'
 import DropzoneArea from '../../components/DropZoneArea'
 import { RippleButton } from '../../components/RippleButton'
-import { Form, Button, Row, Col, ProgressBar } from 'react-bootstrap'
+import { Form, Row, Col, ProgressBar } from 'react-bootstrap'
 import toastNotification from '../../components/toastNotification';
 import { createProjectProposal } from '../../services/projectProposal.service';
 import { getOneGroup } from '../../services/group.service';

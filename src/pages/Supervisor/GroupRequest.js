@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { RippleButton } from '../../components/RippleButton'
-import { Link, useNavigate } from 'react-router-dom'
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { deleteSupervisorRequest, getAllRequests } from "../../services/supervisorRequests.service";
 import { getOneGroup, sendAcceptRejectEmail, updateGroup } from "../../services/group.service";
 import { updateSupervisor } from "../../services/user.service";

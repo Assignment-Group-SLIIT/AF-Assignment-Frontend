@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Modal, Button } from "react-bootstrap";
+import React from "react";
+import { Modal } from "react-bootstrap";
 import Tables from "../../../components/Table";
 import "../../../styles/usersList.styles.scss"
 

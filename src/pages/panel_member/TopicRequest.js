@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { RippleButton } from '../../components/RippleButton'
-import { Link, useNavigate } from 'react-router-dom'
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { getAllProjectProposal, deleteProjectProposal, updateProjectProposal } from "../../services/projectProposal.service";
 import toastNotification from '../../components/toastNotification';
 

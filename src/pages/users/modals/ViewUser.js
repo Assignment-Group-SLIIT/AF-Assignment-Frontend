@@ -1,7 +1,6 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
 import '../../../styles/usersList.styles.scss'
-import { PanelList } from "../../panel/PanelMembersList";
 
 function ViewUser(user) {
 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Modal, Button, Alert } from "react-bootstrap";
+import { Modal, Alert } from "react-bootstrap";
 import { RippleButton } from '../../components/RippleButton'
-import EvaluationSubmissionModal from './modals/evaluationSubmissionModal';
 import { getAllAssignement } from '../../services/assignment.service';
 import EvaluationModal from './evaluationModal/EvaluationModal';
 
