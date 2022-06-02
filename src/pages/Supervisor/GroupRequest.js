@@ -6,6 +6,7 @@ import { deleteSupervisorRequest, getAllRequests } from "../../services/supervis
 import { getOneGroup, sendAcceptRejectEmail, updateGroup } from "../../services/group.service";
 import { updateSupervisor } from "../../services/user.service";
 import toastNotification from "../../components/toastNotification";
+import SingleGroupRequestModal from "./singleGroupRequestModal/SingleGroupRequestModal";
 
 export const GroupRequest = () => {
 
@@ -23,6 +24,8 @@ export const GroupRequest = () => {
     const [modalAccept, setModalAccept] = useState(false);
 
     const [hideButtons, setHideButtons] = useState(false)
+    const [showSingleRequestModal, setShowSingleRequestModal] = useState(false);
+    const [singleRequestModalData, setSingleRequestModalData] = useState();
 
     useEffect(() => {
         getAllRequests().then((response) => {
@@ -53,6 +56,16 @@ export const GroupRequest = () => {
 
     const handleViewOnClickDelete = () => {
         setModalDeleteConfirm(true)
+    }
+
+    const viewSingleRequestModal = (values) => {
+        setSingleRequestModalData(values);
+        setShowSingleRequestModal(true);
+    }
+
+    const closeSingleRequestModal = () => {
+
+        setShowSingleRequestModal(false);
     }
 
     const rejectRequest = (grouplist) => {
@@ -201,7 +214,7 @@ export const GroupRequest = () => {
                         }).map((grouplist, index) => {
                             return (
                                 <tr key={index}>
-                                    <td>{grouplist.groupId}</td>
+                                    <td className='link-hover' onClick={() => viewSingleRequestModal(grouplist)}>{grouplist.groupId}</td>
                                     <td>{grouplist.email}</td>
                                     <td>{grouplist.researchTopic}</td>
                                     <td>{grouplist.researchField}</td>
@@ -265,6 +278,16 @@ export const GroupRequest = () => {
                     </div>
                 </Modal.Footer>
             </Modal>
+            <Modal
+                show={showSingleRequestModal}
+                close={closeSingleRequestModal}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <SingleGroupRequestModal data={singleRequestModalData} close={closeSingleRequestModal} />
+            </Modal>
+
 
         </div >
 
