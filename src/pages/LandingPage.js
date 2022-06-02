@@ -114,7 +114,6 @@ export const LandingPage = () => {
                             <Card style={{ width: '18rem' }}>
                                 <Card.Img variant="top" src="https://i.ibb.co/W3J3Dpf/Whats-App-Image-2022-06-01-at-8-34-14-PM.jpg" />
                                 <Card.Body className='text-center'>
-                                    <Card.Title>Card Title</Card.Title>
                                     <Card.Text>
                                         Some quick example text to build on the card title and make up the bulk of
                                         the card's content.
@@ -128,7 +127,6 @@ export const LandingPage = () => {
                             <Card style={{ width: '18rem' }}>
                                 <Card.Img variant="top" width={100} height={322} src="https://static.sliit.lk/wp-content/uploads/2022/05/26060326/Microsoft-Imagine-Cup-2022-Team-Nana-Shilpa-of-SLIIT-Faculty-of-Computing-.jpg" />
                                 <Card.Body className='text-center'>
-                                    {/* <Card.Title>Card Title</Card.Title> */}
                                     <Card.Text>
                                         Microsoft Imagine Cup 2022 – Team Nana Shilpa of SLIIT Faculty of Computing
                                     </Card.Text>
@@ -141,7 +139,6 @@ export const LandingPage = () => {
                             <Card style={{ width: '18rem' }}>
                                 <Card.Img variant="top" width={100} height={322} src="https://static.sliit.lk/wp-content/uploads/2022/05/19081651/18th-session-of-the-SBS-Research-Workshop-series-.jpg" />
                                 <Card.Body className='text-center'>
-                                    {/* <Card.Title></Card.Title> */}
                                     <Card.Text>
                                         The 18th session of the research workshop series organized by the SLIIT Business school
                                     </Card.Text>
@@ -154,7 +151,6 @@ export const LandingPage = () => {
                             <Card style={{ width: '18rem' }}>
                                 <Card.Img variant="top" width={100} height={322} src="https://static.sliit.lk/wp-content/uploads/2022/05/26020951/SLIIT-Business-School-successfully-conducted-the-46th-virtual-guest-lecture-with-Hemas-Consumer-Brands.jpg" />
                                 <Card.Body className='text-center'>
-                                    {/* <Card.Title>Card Title</Card.Title> */}
                                     <Card.Text>
                                         SLIIT Business School successfully conducted the 46th virtual ...
                                     </Card.Text>
