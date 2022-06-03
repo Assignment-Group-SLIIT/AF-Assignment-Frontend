@@ -96,13 +96,13 @@ export const Navigationbar = () => {
                                 </li>
                                 <li className="nav-item ">
                                     {role === "Admin" && (
-                                        <div class="dropdown">
-                                            <button class="btn btn-text dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <div className="dropdown">
+                                            <button className="btn btn-text dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Documents
                                             </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <Link to="/admin/template" class="dropdown-item text-dark">Template</Link>
-                                                <Link to="/admin/submission" class="dropdown-item text-dark"> Submissions</Link>
+                                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <Link to="/admin/template" className="dropdown-item text-dark">Template</Link>
+                                                <Link to="/admin/submission" className="dropdown-item text-dark"> Submissions</Link>
 
                                             </div>
                                         </div>
@@ -121,14 +121,14 @@ export const Navigationbar = () => {
                                 <li className="nav-item ">
 
                                     {role === "Admin" && (
-                                        <div class="dropdown">
-                                            <button class="btn btn-text dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <div className="dropdown">
+                                            <button className="btn btn-text dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Panel
                                             </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <Link to="/admin/panel/registration" class="dropdown-item text-dark">Create</Link>
-                                                <Link to="/admin/panel" class="dropdown-item text-dark"> Allocate</Link>
-                                                <Link to="/admin/list/panel" class="dropdown-item text-dark"> View</Link>
+                                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <Link to="/admin/panel/registration" className="dropdown-item text-dark">Create</Link>
+                                                <Link to="/admin/panel" className="dropdown-item text-dark"> Allocate</Link>
+                                                <Link to="/admin/list/panel" className="dropdown-item text-dark"> View</Link>
                                             </div>
                                         </div>
                                     )}
@@ -171,13 +171,13 @@ export const Navigationbar = () => {
                                             null
                                         ) :
                                         (
-                                            <div class="dropdown">
-                                                <button class="btn btn-text dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <div className="dropdown">
+                                                <button className="btn btn-text dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Signup
                                                 </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <Link to="/signup/student" class="dropdown-item text-dark">Student</Link>
-                                                    <Link to="/signup/staff" class="dropdown-item text-dark">Staff</Link>
+                                                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <Link to="/signup/student" className="dropdown-item text-dark">Student</Link>
+                                                    <Link to="/signup/staff" className="dropdown-item text-dark">Staff</Link>
                                                 </div>
                                             </div>
                                         )

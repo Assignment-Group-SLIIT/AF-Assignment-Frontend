@@ -7,6 +7,8 @@ AOS.init();
 
 const rootElement = document.getElementById("app");
 render(
-    <App />
-    ,
-    rootElement)
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
+    rootElement
+)

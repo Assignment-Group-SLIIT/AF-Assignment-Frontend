@@ -23,14 +23,14 @@ export const LandingPage = () => {
                 </Container>
             </section>
             <section className="section section-two">
-                <div class="cube"></div>
-                <div class="cube"></div>
-                <div class="cube"></div>
-                <div class="cube"></div>
-                <div class="cube"></div>
-                <div class="cube"></div>
-                <div class="cube"></div>
-                <div class="cube"></div>
+                <div className="cube"></div>
+                <div className="cube"></div>
+                <div className="cube"></div>
+                <div className="cube"></div>
+                <div className="cube"></div>
+                <div className="cube"></div>
+                <div className="cube"></div>
+                <div className="cube"></div>
                 <Container fluid>
                     <Row>
                         <Col className='' lg={6}>
