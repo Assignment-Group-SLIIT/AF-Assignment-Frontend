@@ -9,7 +9,7 @@ import Chart from '../../components/Chart';
 import LineCharts from '../../components/LineChart'
 
 
-export default Dashboard = () => {
+export const Dashboard = () => {
 
     //pie chart details for users
     const [userData, setUserData] = useState([]);
