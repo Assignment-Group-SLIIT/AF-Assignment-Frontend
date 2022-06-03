@@ -59,11 +59,10 @@ export const LandingPage = () => {
                     <Row>
                         <Col>
                             <Card style={{ width: '18rem' }} >
-                                <Card.Img variant="top" src="https://i.ibb.co/W3J3Dpf/Whats-App-Image-2022-06-01-at-8-34-14-PM.jpg" />
+                                <Card.Img variant="top" width={100} height={322} src="https://i.ibb.co/W3J3Dpf/Whats-App-Image-2022-06-01-at-8-34-14-PM.jpg" />
                                 <Card.Body className='text-center'>
-                                    <Card.Text>
-                                        Some quick example text to build on the card title and make up the bulk of
-                                        the card's content.
+                                    <Card.Text >
+                                        SESC and MS Club proudly presents, The Road to CDAP, an online workshop
                                     </Card.Text>
 
                                     <RippleButton className="ripple-button " text="Read More" onClick={(e) => window.open(" https://bit.ly/CDAPREG22")}></RippleButton>
