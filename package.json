@@ -2,10 +2,10 @@
   "name": "rmp-frontend",
   "version": "1.0.0",
   "description": "front end for research management tool",
-  "main": "app.js",
+  "source": "index.html",
   "scripts": {
-    "start": "parcel index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel",
+    "build": "parcel build"
   },
   "keywords": [
     "react",

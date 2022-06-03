@@ -18,7 +18,8 @@ a {
   color: #fff !important;
 
   &:hover {
-    color: #512474 !important;
+    color: #ffffff !important;
+    transform: scale(1.1);
   }
 }
 
@@ -26,12 +27,13 @@ a {
   color: #fff !important;
 
   &:hover {
-    color: #512474 !important;
+    color: #ffffff !important;
+    transform: scale(1.1);
   }
 }
 
 header nav {
-  background-image: linear-gradient(to right, #9d50bb, #6e48aaba);
+  background-image: linear-gradient(to right, #9d50bb, #6e48aa);
 }
 
 //end of navigation bar styles
