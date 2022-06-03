@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import PieChartComp from '../../components/PieChart'
+import PieChartComp from '../../components/PieChartComp'
 import { getAllRequestTopicsCoSupervisors } from '../../services/cosupervisorRequests.service';
 import { getAllRequests, } from '../../services/supervisorRequests.service';
 import { getAllTemplate } from '../../services/template.service';
