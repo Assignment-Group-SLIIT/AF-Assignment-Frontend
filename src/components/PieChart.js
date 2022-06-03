@@ -21,7 +21,7 @@ export default PieChartComp = (props) => {
         const textAnchor = cos >= 0 ? 'start' : 'end';
 
         return (
-            <g>
+            <>
                 <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
                     {payload.name}
                 </text>
@@ -49,7 +49,7 @@ export default PieChartComp = (props) => {
                 <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="#999">
                     {`(Rate ${(percent * 100).toFixed(2)}%)`}
                 </text>
-            </g>
+            </>
         );
     };
 

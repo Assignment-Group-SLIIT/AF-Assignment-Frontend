@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import PieChart from '../../components/PieChart'
+// import PieChartComp from '../../components/PieChart'
 import { getAllRequestTopicsCoSupervisors } from '../../services/cosupervisorRequests.service';
 import { getAllRequests, } from '../../services/supervisorRequests.service';
 import { getAllTemplate } from '../../services/template.service';
@@ -152,9 +152,9 @@ export default Dashboard = () => {
                         <center>
                             <h2>System Overview</h2></center>
                         <div className="d-flex justify-content-around">
-                            <PieChart data={userData} header={"System Users"} color={"#770737"} />
-                            <PieChart data={requetsData} header={"Topic Requests"} color={"#AA336A"} />
-                            <PieChart data={submissions} header={"Documents"} color={"#800020"} />
+                            {/* <PieChartComp data={userData} header={"System Users"} color={"#770737"} />
+                            <PieChartComp data={requetsData} header={"Topic Requests"} color={"#AA336A"} />
+                            <PieChartComp data={submissions} header={"Documents"} color={"#800020"} /> */}
                         </div>
                     </div>
 
