@@ -181,7 +181,7 @@ const StaffSignup = () => {
                                     {department.isError && <small className='text-danger'>{department.error}</small>}
                                 </Col>
                                 <Col>
-                                    <Form.Label>Field of study</Form.Label>
+                                    <Form.Label>Field of Interest</Form.Label>
                                     <Form.Control
                                         type="text"
                                         placeholder="Field of Interest"
