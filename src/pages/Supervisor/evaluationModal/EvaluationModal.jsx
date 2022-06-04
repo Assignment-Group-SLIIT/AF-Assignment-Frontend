@@ -6,14 +6,16 @@ import { UpdateMarks } from "../../../services/assignment.service";
 import toastNotification from "../../../components/toastNotification";
 
 const EvaluationModal = (props) => {
+    // console.log("props", props)
 
     const [markingSchema, setMarkingSchema] = useState("");
     const [marks, setMarks] = useState(props.data.marks);
     const [evaluationMarks, setEvaluationMarks] = useState({ value: props.data.marks, error: "This field cannot be empty", isError: false });
 
     const getAssignemnetType = async () => {
+
         let response = await GetSubmissionType(props.data.submissionType);
-        console.log("res>>>", response)
+
         if (response) {
             setMarkingSchema(response.data.markingSchema)
         }
@@ -26,7 +28,7 @@ const EvaluationModal = (props) => {
         }
         if (!evaluationMarks.isError) {
             let response = await UpdateMarks(props.data.submissionId, payload);
-            console.log("res>>> 122222", response)
+            // console.log("res>>> 122222", response)
             if (response.ok) {
                 toastNotification("Success!", "success")
                 props.onHide()

@@ -41,9 +41,9 @@ export const deleteAssignment = async (id) => {
     }
 }
 export const UpdateMarks = async (id, payload) => {
-    console.log("payload>>", payload)
+    console.log("payload>>", id)
     try {
-        const res = await API.post(`assignments/${id}`, payload)
+        const res = await API.post(`assignments/marks/${id}`, payload)
         if (res.status === 200)
             return { ok: true };
     } catch (err) {
