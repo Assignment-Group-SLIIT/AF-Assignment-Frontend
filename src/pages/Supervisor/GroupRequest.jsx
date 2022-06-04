@@ -106,8 +106,8 @@ export const GroupRequest = () => {
                 const updatedGroup = {
                     groupId: res.data?.groupId,
                     student: res.data?.student,
-                    researchTopic: res.data?.researchTopic,
-                    researchField: res.data?.researchField,
+                    researchTopic: grouplist.researchTopic,
+                    researchField: grouplist.researchField,
                     supervisor: supervisorName,
                     coSupervisor: res.data?.coSupervisor,
                     panelNo: res.data?.panelNo
